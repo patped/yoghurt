@@ -1,3 +1,7 @@
+<?php
+include_once "fil.php";
+?>
+
 <!doctype html>
 <html>
 <head>
@@ -12,7 +16,10 @@
 	<p>Skriv inn bedriften du ønsker å søke etter</p>
 	
 	<input type="textbox" alt="Skriv inn bedrift">
+	<?php
+	// hent bedrifter
+	?>
 	<input type="button" value="Søk">
-	
+
 </body>
 </html>
