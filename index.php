@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Forside</title>
+<title>Forside youghurt</title>
 	<link rel="stylesheet" href="stilark.css" type="text/css">
 </head>
 <body>
