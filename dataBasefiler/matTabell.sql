@@ -1,0 +1,28 @@
+DROP TABLE IF EXISTS matTabell;
+CREATE TABLE matTabell (
+	tilsynsobjektid VARCHAR(50),
+	orgnummer INTEGER,
+	navn VARCHAR(150),
+	adrlinje1 VARCHAR(100),
+	adrlinje2 VARCHAR(100),
+	postnr CHAR(5),
+	poststed VARCHAR(50),
+	tilsynid VARCHAR(50),
+	sakref VARCHAR(15),
+	status BOOLEAN,
+	dato CHAR(8),
+	total_karakter SMALLINT,
+	tilsynsbesoektype BOOLEAN,
+	tema1_no CHAR(20),
+	tema1_nn CHAR(18),
+	karakter1 SMALLINT,
+	tema2_no CHAR(18),
+	tema2_nn CHAR(18),
+	karakter2 SMALLINT,
+	tema3_no VARCHAR(40),
+	tema3_nn VARCHAR(40),
+	karakter3 SMALLINT, 
+	tema4_no VARCHAR(30),
+	tema4_nn VARCHAR(30),
+	karakter4 SMALLINT
+)Engine = INNODB;
