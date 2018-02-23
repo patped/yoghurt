@@ -1,0 +1,23 @@
+Legg til ny tilsynsrapport
+
+Her blir brukeren presantert med et skjema hvor brukeren må taste inn følgende informasjon:
+* tilsynsobjektid (en id som linker dataene sammen eks fra databasen: Z1006050006428191190ORWFH_Tilsynsobjekt Dette er en unik id per resturant)
+* orgnummer
+* navn
+* adrlinje1
+* adrlinje2
+* postnr
+* poststed
+* tilsynid (her må vi fylle inn tilsynid som brukes for å fylle ut et kravpunkt)
+* sakref
+* status (checkbox)
+* dato
+Når brukeren trykke på "lag ny rapport" vill formet bli convertert til en db-spørring med php og sendt til db ved hjelp av msqli.
+
+Fylle ut/endre tilsynsrapport
+Her blir brukeren presantert med et skjema lignende side over alle eventuelle kravpunkt som kan gjøres.
+Hvert kravpunkt er representert på en enkel rad, og består av følgende informasjon som kan endres legges til:
+* ordningsverdi (vi er usikre på hva dette er fornoe så sett det bare som et felt man kan fylle inn)
+* karakter (dropdown meny med lovlig verdier)
+* tekst_no (en slags beskrivelse/notat)
+Når brukeren trykker på "oppdater" vill formet bli convertert til en db-spørring med php og sendt til db ved hjelp av msqli.
