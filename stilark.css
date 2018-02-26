@@ -1,7 +1,22 @@
 body {
 	text-align: center;
+	background-color: #B22222;
 }
 
 table {
 	
 }
+input{
+
+}
+.loginn{
+
+	position: absolute;
+	right: 10px;
+	top: 15;
+	font-size: 7px;
+
+	
+}
+
+
