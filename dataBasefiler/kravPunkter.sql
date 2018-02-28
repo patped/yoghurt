@@ -1,9 +1,9 @@
 DROP TABLE IF EXISTS kravpunkter;
 create table kravpunkter (
 	tilsynid varchar(50),
-	dato SMALLINT,
+	dato int,
 	ordingsverdi varchar(150),
 	kravpunktnavn_no varchar (160),
-	karakter smallint,
+	karakter tinyint,
 	tekst_no varchar(160)
 );
