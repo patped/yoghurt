@@ -10,7 +10,7 @@ CREATE TABLE matTabell (
 	tilsynid VARCHAR(50),
 	sakref VARCHAR(15),
 	status BOOLEAN,
-	dato CHAR(8),
+	dato SMALLINT,
 	total_karakter SMALLINT,
 	tilsynsbesoektype BOOLEAN,
 	tema1_no CHAR(20),

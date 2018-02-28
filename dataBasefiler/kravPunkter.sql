@@ -1,6 +1,6 @@
 create table kravpunkter (
-	tilsynid varchar(150),
-	dato int,
+	tilsynid varchar(50),
+	dato SMALLINT,
 	ordingsverdi varchar(150),
 	kravpunktnavn_no varchar (160),
 	karakter smallint,
