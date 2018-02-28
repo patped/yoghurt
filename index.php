@@ -1,5 +1,6 @@
 <?php
-//include_once "fil.php";
+	include database.php;
+	@db = kobleOpp();
 ?>
 
 <!doctype html>
@@ -45,3 +46,7 @@
 
 </body>
 </html>
+
+<?php
+    lukk();
+?>
