@@ -3,7 +3,7 @@
 // Oppkoblingsparametre (konstanter)
 
 // brukerdatabasen
-$brukerConfig=array(
+$tilsynrapportConfig=array(
     'TJENER'=>'itfag.usn.no',
     'BRUKER'=>'v18u125',
     'PASSORD'=>'pw125',
@@ -11,7 +11,7 @@ $brukerConfig=array(
 );
 
 // tilsynsrapportdatabasen
-$tilsynrapportConfig=array(
+$brukerConfig=array(
     'TJENER'=>'itfag.usn.no',
     'BRUKER'=>'h17u402',
     'PASSORD'=>'pw402',
