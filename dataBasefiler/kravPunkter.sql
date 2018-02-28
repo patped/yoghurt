@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS kravpunkter;
 create table kravpunkter (
 	tilsynid varchar(50),
 	dato SMALLINT,
