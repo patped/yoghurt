@@ -1,6 +1,6 @@
 <?php
-	include database.php;
-	@db = kobleOpp();
+	include_once 'database.php';
+	$db = kobleOpp($tilsynrapportConfig);
 ?>
 
 <!doctype html>
@@ -48,5 +48,5 @@
 </html>
 
 <?php
-    lukk();
+    lukk($db);
 ?>
