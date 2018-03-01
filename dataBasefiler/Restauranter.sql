@@ -9,3 +9,7 @@ CREATE TABLE Restauranter (
 	PRIMARY KEY (tilsynsobjektid),
 	FOREIGN KEY (postnr) REFERENCES Poststed(postnr)
 )Engine = INNODB;
+INSERT INTO Restauranter
+SELECT DISTINCT mt.tilsynsobjektid, mt.orgnummer, mt.navn, mt.adrlinje1, mt.adrlinje2, mt.postnr 
+FROM matTabell as mt 
+WHERE mt.postnr 

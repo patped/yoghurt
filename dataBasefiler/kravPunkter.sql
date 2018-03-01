@@ -1,5 +1,5 @@
-DROP TABLE IF EXISTS kravpunkter;
-create table kravpunkter (
+DROP TABLE IF EXISTS Kravpunkter;
+create table Kravpunkter (
 	tilsynid varchar(50),
 	dato int,
 	ordingsverdi varchar(150),
