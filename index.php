@@ -20,12 +20,14 @@
 		}
 	?>
 	<div class="loginn">
-		<input type="text" name="" id="Brukernavn" style="width: 75px; height: 15px">
+		<form method="POST" action="Brukerside.php">
+		<input type="text" name="bruker" id="Brukernavn"  style="width: 75px; height: 15px">
 		<br>
-		<input type="passord" name="" id="passord"
+		<input type="text" name="passord" id="pass"
 		style="width: 75px; height: 15px">
 		<br>
 		<input type="submit" name="" value="logg inn" style=" width: 65px; height: 20px">
+		</form>
 
 	</div>
 	<h1>Hvilken smiley har bedriften fått?</h1>

@@ -12,22 +12,35 @@
 </head>
 <body>
 	<?php
-		if (isset($_POST['Søk'])) {
-			$søkeord = $_POST['textbox'];
 
-		}else {
-			$søkeord = ":)";
-		}
+	$BRUKER = $_REQUEST['bruker'];
+	$PASS = $_POST['passord'];
 
-	</div>
-	<h1>Hvilken smiley har bedriften fått?</h1>
 
-	<h2>Sjekk det her</h2>
+	echo <<<EOT
+	<div class="loginn">
+		<form method="POST" action="index.php">
+			<input type="submit" name="Logg Ut" value="Logg ut">
+		</form></div>
+
+	<h1>Hvilken smiley har bedriften fått</h1>
+
+	<h2>Velkommen $BRUKER </h2> 
+	<h1>$PASS </h1>
+	<a href="leggInn.php">Legg til ny rapport</a>
+	<br>
+	<h1>Søk opp eksisterende rapport</h1>
+	<form method="POST" action="Søke.php">
+		<input type="text" name="Varenummer">
+		<br>
+		<input type="submit" name="Søk">
+	</form>
+EOT;
+	?>	
 
 
 </body>
 </html>
-
 <?php
-    lukk($db);
-?>
+	lukk($db)
+	?>
