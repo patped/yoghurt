@@ -13,10 +13,14 @@
 <body>
 	<?php
 
-	$BRUKER = $_REQUEST['bruker'];
+	$NR = $_REQUEST['bruker'];
 	$PASS = $_POST['passord'];
-
-
+	kobleOpp($brukerConfig);
+	$NAVN = logginn($db,$NR,$PASS);
+	//$brukerNavn = mysqli_query($dblink, $sql);
+	if(is_null($NAVN))
+		echo"FEIL brukernavn eller passord";
+	else {
 	echo <<<EOT
 	<div class="loginn">
 		<form method="POST" action="index.php">
@@ -25,8 +29,7 @@
 
 	<h1>Hvilken smiley har bedriften fått</h1>
 
-	<h2>Velkommen $BRUKER </h2> 
-	<h1>$PASS </h1>
+	<h2>Velkommen $NAVN </h2> 
 	<a href="leggInn.php">Legg til ny rapport</a>
 	<br>
 	<h1>Søk opp eksisterende rapport</h1>
@@ -36,7 +39,7 @@
 		<input type="submit" name="Søk">
 	</form>
 EOT;
-	?>	
+	}?>	
 
 
 </body>

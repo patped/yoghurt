@@ -32,6 +32,18 @@ function kobleOpp($config) {
     mysqli_set_charset($dblink, 'utf8');
     return $dblink;
 }
+function logginn($dblink,$nr,$pass){
+    $sql = "SELECT fornavn FROM
+    BrukerDatabase WHERE BrukerID = $nr AND passord = 
+    '$pass';";
+    $res = mysqli_query($dblink, $sql);
+    //$antall = mysqli_num_rows($res);
+    $ret = mysqli_fetch_assoc($res);
+    $fornavn = $ret['fornavn'];
+    return $fornavn;
+
+}
+
 
 // Lukker forbindelsen til databasen
 function lukk($dblink) {
