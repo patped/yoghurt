@@ -1,14 +1,20 @@
 body {
 	text-align: center;
-	background-color: #B22222;
+	background-color: #B11111;
+
 }
 
 table {
-	
+margin: auto;
 }
 input{
 
 }
+
+.radMedLink{
+color: green;
+}
+
 .loginn{
 
 	position: absolute;
