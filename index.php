@@ -23,7 +23,7 @@
 		<form method="POST" action="Brukerside.php">
 		<input type="text" name="bruker" id="Brukernavn"  style="width: 75px; height: 15px">
 		<br>
-		<input type="text" name="passord" id="pass"
+		<input type="password" name="passord" id="pass"
 		style="width: 75px; height: 15px">
 		<br>
 		<input type="submit" name="" value="logg inn" style=" width: 65px; height: 20px">

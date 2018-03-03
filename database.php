@@ -33,14 +33,13 @@ function kobleOpp($config) {
     return $dblink;
 }
 function logginn($dblink,$nr,$pass){
-    $sql = "SELECT fornavn FROM
+    $sql = "SELECT * FROM
     BrukerDatabase WHERE BrukerID = $nr AND passord = 
     '$pass';";
     $res = mysqli_query($dblink, $sql);
     //$antall = mysqli_num_rows($res);
     $ret = mysqli_fetch_assoc($res);
-    $fornavn = $ret['fornavn'];
-    return $fornavn;
+    return $ret;
 
 }
 

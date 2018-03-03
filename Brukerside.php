@@ -1,6 +1,7 @@
 <?php
 	include_once 'database.php';
 	$db = kobleOpp($tilsynrapportConfig);
+	session_start();
 ?>
 
 <!doctype html>
@@ -16,10 +17,16 @@
 	$NR = $_REQUEST['bruker'];
 	$PASS = $_POST['passord'];
 	kobleOpp($brukerConfig);
-	$NAVN = logginn($db,$NR,$PASS);
+	$fraDB = logginn($db,$NR,$PASS);
+	$fornavn = $fraDB['fornavn'];
+	$adm = $fraDB['adminrettighet'];
+	$etternavn = $fraDB['etternavn'];
+	setcookie("fornavn",$fornavn);
+	setcookie("adm",$adm);
+	setcookie("etternavn",$etternavn);
 	//$brukerNavn = mysqli_query($dblink, $sql);
-	if(is_null($NAVN))
-		echo"FEIL brukernavn eller passord";
+	if(is_null($fraDB))
+		echo"<h1>FEIL brukernavn eller passord</h1>";
 	else {
 	echo <<<EOT
 	<div class="loginn">
@@ -29,9 +36,10 @@
 
 	<h1>Hvilken smiley har bedriften fått</h1>
 
-	<h2>Velkommen $NAVN </h2> 
+	<h2>Velkommen $fornavn $etternavn</h2> 
 	<a href="leggInn.php">Legg til ny rapport</a>
 	<br>
+	<a href="nyBruker.php">Legg til ny bruker(krever adminrettigheter)</a>
 	<h1>Søk opp eksisterende rapport</h1>
 	<form method="POST" action="Søke.php">
 		<input type="text" name="Varenummer">
