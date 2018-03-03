@@ -37,7 +37,7 @@
 	<h1>Hvilken smiley har bedriften fått</h1>
 
 	<h2>Velkommen $fornavn $etternavn</h2> 
-	<a href="leggInn.php">Legg til ny rapport</a>
+	<a href="leggTilBedrift.php">Legg til ny rapport</a>
 	<br>
 	<a href="nyBruker.php">Legg til ny bruker(krever adminrettigheter)</a>
 	<h1>Søk opp eksisterende rapport</h1>
