@@ -3,12 +3,14 @@ body {
 	background-color: #B22222;
 }
 
-table {
-	
-}
 input{
 
 }
+
+table {
+	margin: auto;
+}
+
 .loginn{
 
 	position: absolute;
