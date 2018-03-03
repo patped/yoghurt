@@ -20,60 +20,74 @@
 		}
 	?>
 	<div class="loginn">
-		<input type="text" name="" id="Brukernavn" style="width: 75px; height: 15px">
-		<br>
-		<input type="passord" name="" id="passord"
-		style="width: 75px; height: 15px">
-		<br>
-		<input type="submit" name="" value="logg inn" style=" width: 65px; height: 20px">
+		<<form method="POST" action="index.php">
+			<input type="submit" name="Logg Ut" value="Logg ut">
 
 	</div>
-	<h1>Legg til ny beddrift</h1>
+	<h1>Legg til ny bedrift</h1>
 
 	<h2>Fyll ut skjema</h2>
+	
+	<?php 
+	$adm = $_COOKIE["adm"];
+	if($adm==true){
+		echo <<<EOT
 
 	<div>
-		<form>
+		<form method="POST" action="function leggTilNy()">
 			<table>
 			
 	  			<tr>
 	    			<td>TilsynsobjektID:</td>
 	    			<td><input type="text" name="TilsynsobjektID" ></td>
-	  			</tr>>   
+	  			</tr>
 
 	  			<tr>
 	    			<td>Navn:</td>
 	   				 <td><input type="text" name="Navn" ></td>
-	  			</tr>>  
+	  			</tr>
 
 	  			<tr>
 	    			<td>Organisasjonsnummer:</td>
 	   				<td><input type="text" name="Organisasjonsnummer" ></td>
-	  			</tr>>   
+	  			</tr>
 
 	  			<tr>
 	   				 <td>Adresselinje: 1</td>
 	   				 <td><input type="text" name="Adresselinje1" ></td>
-	 			 </tr>> 
+	 			 </tr>
 	 			
 	 			 <tr>
 	    			<td>Adresselinje 2:</td>
 	    			<td><input type="text" name="Adresselinje2" ></td>
-	  			</tr>>  
+	  			</tr> 
 
 	 			<tr>
 	    			<td>Postnummer:</td>
 	    			<td><input type="text" name="Postnummer" ></td>
-	  			</tr>>  
+	  			</tr> 
 
 				<tr>
 				    <td>Poststed:</td>
 				    <td><input type="text" name="Poststed" ></td>
-				</tr>>   
+				</tr>   
+				<td></td><td></td><td><input type="submit" name="send"></td>
 			 
 			</table>
 		</form>
     </div>
+
+EOT;
+}
+else
+echo "du har ikke adminrettigheter";
+function leggTilNY(){
+	$TilsynsobjektID = $_Request['TilsynsobjektID'];
+	echo $TilsynsobjektID;
+
+}
+
+	?>
 
 </body>
 </html>

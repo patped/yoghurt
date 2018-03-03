@@ -31,8 +31,7 @@
 	echo <<<EOT
 	<div class="loginn">
 		<form method="POST" action="index.php">
-			<input type="submit" name="Logg Ut" value="Logg ut">
-		</form></div>
+			<input type="submit" name="Logg Ut" value="Logg ut"></div>
 
 	<h1>Hvilken smiley har bedriften fått</h1>
 
