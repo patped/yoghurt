@@ -1,6 +1,7 @@
 <?php
 	include_once 'database.php';
 	$db = kobleOpp($tilsynrapportConfig);
+	session_start();
 ?>
 
 <!doctype html>
@@ -12,9 +13,8 @@
 </head>
 <body>
 	<?php
-
-	$fornavn = $_COOKIE["fornavn"];
-	$adm = $_COOKIE["adm"];
+	$adm = $_SESSION['adm'];
+	
 	if($adm==false)
 		echo "Du har ikke tilgang";
 	else{

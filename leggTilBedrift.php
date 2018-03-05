@@ -1,6 +1,7 @@
 <?php
 	include_once 'database.php';
 	$db = kobleOpp($tilsynrapportConfig);
+	session_start();
 ?>
 
 <!doctype html>
@@ -29,7 +30,11 @@
 	<h2>Fyll ut skjema</h2>
 	
 	<?php 
-	$adm = $_COOKIE["adm"];
+	$fornavn= $_SESSION['fornavn'];
+	$adm = $_SESSION['adm'];
+	if(is_null($fornavn))
+		echo "du er ikke innlogget";
+	else{
 	if($adm==true){
 		echo <<<EOT
 
@@ -86,7 +91,7 @@ function leggTilNY(){
 	echo $TilsynsobjektID;
 
 }
-
+}
 	?>
 
 </body>

@@ -15,19 +15,21 @@
 	<?php
 
 	$NR = $_REQUEST['bruker'];
-	$PASS = $_POST['passord'];
+	$PASS = $_REQUEST['passord'];
 	kobleOpp($brukerConfig);
+
 	$fraDB = logginn($db,$NR,$PASS);
-	$fornavn = $fraDB['fornavn'];
-	$adm = $fraDB['adminrettighet'];
-	$etternavn = $fraDB['etternavn'];
-	setcookie("fornavn",$fornavn);
-	setcookie("adm",$adm);
-	setcookie("etternavn",$etternavn);
+	$navn = $_SESSION['fornavn'] . ' ' . $_SESSION['etternavn'];
+	//$adm = $fraDB['adminrettighet'];
+	//$etternavn = $fraDB['etternavn'];
+	//setcookie("fornavn",$fornavn);
+	//setcookie("adm",$adm);
+	//setcookie("etternavn",$etternavn);
+
 	//$brukerNavn = mysqli_query($dblink, $sql);
-	if(is_null($fraDB))
+	if($fraDB == false)
 		echo"<h1>FEIL brukernavn eller passord</h1>";
-	else {
+	else if(isset($navn)){
 	echo <<<EOT
 	<div class="loginn">
 		<form method="POST" action="index.php">
@@ -35,7 +37,7 @@
 
 	<h1>Hvilken smiley har bedriften fått</h1>
 
-	<h2>Velkommen $fornavn $etternavn</h2> 
+	<h2>Velkommen $navn</h2> 
 	<a href="leggTilBedrift.php">Legg til ny rapport</a>
 	<br>
 	<a href="nyBruker.php">Legg til ny bruker(krever adminrettigheter)</a>
@@ -44,6 +46,7 @@
 		<input type="text" name="Varenummer">
 		<br>
 		<input type="submit" name="Søk">
+
 	</form>
 EOT;
 	}?>	
