@@ -44,8 +44,10 @@ $db = kobleOpp($tilsynrapportConfig);
                 $poststed = $rad['poststed'];
                 $orgnummer = $rad['orgnummer'];
                 $totalkarakter = $rad['total_karakter'];
+                $fullAdresse = $rad['adrlinje1'] . ' ' . $rad['poststed'];
                 echo "
                     <h1>$navn</h1>
+                    <h2>$fullAdresse</h2>
                     <table name='resultatTabell'>
                         <th>Organisasjonsnummer</th>
                         <th>Adresse</th>
@@ -54,12 +56,41 @@ $db = kobleOpp($tilsynrapportConfig);
                         <th>Smilefjes-Karakter</th>
                         <tr>
                             <td>$orgnummer</td>
-                            <td>$adresse</td>
+                            <td id='adresseTest' value='Borgjalia 4B'>$adresse</td>
                             <td>$postnummer</td>
                             <td>$poststed</td>
                             <td>$totalkarakter</td>
                         </tr>
                     </table>
+                    <div id='map'></div>";
+                    /*Legger til script for å vise Google Map*/
+                    echo "
+                    <script>
+                      function initMap() {
+                      var map = new google.maps.Map(document.getElementById('map'), {
+                        zoom: 15,
+                        center: {lat: -34.397, lng: 150.644}
+                      });
+                      var geocoder = new google.maps.Geocoder();
+
+                        geocodeAddress(geocoder, map);
+                    }
+
+                    function geocodeAddress(geocoder, resultsMap) {
+                      var address = '$fullAdresse';
+                      geocoder.geocode({'address': address}, function(results, status) {
+                        if (status === 'OK') {
+                          resultsMap.setCenter(results[0].geometry.location);
+                          var marker = new google.maps.Marker({
+                            map: resultsMap,
+                            position: results[0].geometry.location
+                          });
+                        } else {
+                          alert('Geocode was not successful for the following reason: ' + status);
+                        }
+                      });
+                    }
+                                        </script>
                 ";
             } else {
                 echo "<h1>Resultatet av SQL-spørringen ga 0 rader</h1>";
@@ -67,5 +98,12 @@ $db = kobleOpp($tilsynrapportConfig);
         }
         mysqli_close($db);
         ?>
+
+
+
+
+        <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCG_9QaZStF7k76o_tBYtuA3J89WnQXedQ&callback=initMap">
+    </script>
     </body>
 </html>

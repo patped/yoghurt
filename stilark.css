@@ -17,3 +17,8 @@ table {
     top: 15;
     font-size: 7px;
 }
+#map {
+        height: 400px;
+        width: 35%;
+        margin: auto;
+       }
