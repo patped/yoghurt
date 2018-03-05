@@ -14,6 +14,7 @@
 <body>
 	<?php
 	$adm = $_SESSION['adm'];
+	$fornavn = $_SESSION['fornavn'];
 	
 	if($adm==false)
 		echo "Du har ikke tilgang";
