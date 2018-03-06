@@ -44,6 +44,7 @@ function logginn($dblink,$nr,$pass){
     }
     if($pass == $kryptert){
         $ok = true;
+        $_SESSION['BrukerID'] = $ret['BrukerID'];
         $_SESSION['fornavn'] = $ret['fornavn'];
         $_SESSION['etternavn'] = $ret['etternavn'];
         $_SESSION['adm'] = $ret['adminrettighet'];
@@ -51,6 +52,16 @@ function logginn($dblink,$nr,$pass){
     }
     return $ok;
 
+
+}
+function sjekkInnlogging(){
+    if(!isset($_SESSION['BrukerID'])){
+        session_destroy();
+        header("Location: index.php");
+}
+}
+
+function leggInnBed($dblink){
 
 }
 

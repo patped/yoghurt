@@ -13,7 +13,7 @@
 </head>
 <body>
 	<?php
-
+	sjekkInnlogging();
 	$NR = $_REQUEST['bruker'];
 	$PASS = $_REQUEST['passord'];
 	kobleOpp($brukerConfig);

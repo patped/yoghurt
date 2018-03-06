@@ -2,6 +2,8 @@
 	include_once 'database.php';
 	$db = kobleOpp($tilsynrapportConfig);
 	session_start();
+	
+	sjekkInnlogging();
 ?>
 
 <!doctype html>
@@ -12,14 +14,6 @@
 	<link rel="stylesheet" href="stilark.css" type="text/css">
 </head>
 <body>
-	<?php
-		if (isset($_POST['Søk'])) {
-			$søkeord = $_POST['textbox'];
-
-		}else {
-			$søkeord = ":)";
-		}
-	?>
 	<div class="loginn">
 		<<form method="POST" action="index.php">
 			<input type="submit" name="Logg Ut" value="Logg ut">
@@ -37,6 +31,7 @@
 	else{
 	if($adm==true){
 		echo <<<EOT
+
 
 	<div>
 		<form method="POST" action="function leggTilNy()">

@@ -2,6 +2,7 @@
 	include_once 'database.php';
 	$db = kobleOpp($tilsynrapportConfig);
 	session_start();
+	sjekkInnlogging();
 ?>
 
 <!doctype html>
@@ -12,6 +13,9 @@
 	<link rel="stylesheet" href="stilark.css" type="text/css">
 </head>
 <body>
+	<div class="loginn">
+		<form method="POST" action="index.php">
+			<input type="submit" name="Logg Ut" value="Logg ut"></div>
 	<?php
 	$adm = $_SESSION['adm'];
 	$fornavn = $_SESSION['fornavn'];
@@ -21,11 +25,6 @@
 	else{
 	//$brukerNavn = mysqli_query($dblink, $sql);
 	echo <<<EOT
-	<div class="loginn">
-		<form method="POST" action="index.php">
-			<input type="submit" name="Logg Ut" value="Logg ut">
-			</div>
-		
 
 	
 
