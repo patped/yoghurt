@@ -50,6 +50,13 @@ $db = kobleOpp($tilsynrapportConfig);
                 $rad = mysqli_fetch_assoc($svar);
                 if ($rad) {
                     echo '<h1>Søkeresultat</h1>';
+                    if (isset($_POST["adresse"])) {
+                    	echo "<p>adresse er checked!</p>";
+                    }
+                    if (isset($_POST["orgnr"])) {
+                    	echo "<p>org er checked!</p>";
+                    }
+                    
                     echo "<table name='resultatTabell'><th>Navn</th><th>Postnummer</th><th>Poststed</th>";
                     while ($rad) {
                         $id = $rad['tilsynsobjektid'];
@@ -124,5 +131,6 @@ $db = kobleOpp($tilsynrapportConfig);
             >
 
         </form>
+
     </body>
 </html>
