@@ -11,17 +11,18 @@
         <link rel="stylesheet" href="stilark.css" type="text/css">
     </head>
     <body>
-        <div class="loginn">
-            <input type="text" name="" id="Brukernavn" style="width: 75px; height: 15px">
-            <br>
-            <input type="passord" name="" id="passord"
-            style="width: 75px; height: 15px">
-            <br>
-            <input type="submit" name="" value="logg inn" style=" width: 65px; height: 20px">
-        </div>
 
-        <h1>Hvilken smiley har bedriften fått?</h1>
 
+	<div class="loginn">
+		<form method="POST" action="Brukerside.php">
+		<input type="text" name="bruker" id="Brukernavn"  style="width: 75px; height: 15px">
+		<br>
+		<input type="password" name="passord" id="pass"
+		style="width: 75px; height: 15px">
+		<br>
+		<input type="submit" name="" value="logg inn" style=" width: 65px; height: 20px">
+		</form>
+    </div>
         <h2>Sjekk det her</h2>
 
         <form action="sokeresultat.php" method="POST">
