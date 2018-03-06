@@ -2,7 +2,6 @@
 	include_once 'database.php';
 	$db = kobleOpp($tilsynrapportConfig);
 	session_start();
-	
 	sjekkInnlogging();
 ?>
 
@@ -26,9 +25,6 @@
 	<?php 
 	$fornavn= $_SESSION['fornavn'];
 	$adm = $_SESSION['adm'];
-	if(is_null($fornavn))
-		echo "du er ikke innlogget";
-	else{
 	if($adm==true){
 		echo <<<EOT
 
@@ -79,19 +75,15 @@
 
 EOT;
 }
+
 else
 echo "du har ikke adminrettigheter";
+
 function leggTilNY(){
 	$TilsynsobjektID = $_Request['TilsynsobjektID'];
 	echo $TilsynsobjektID;
-
-}
 }
 	?>
 
 </body>
 </html>
-
-<?php
-    lukk($db);
-?>

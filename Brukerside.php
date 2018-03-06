@@ -13,23 +13,14 @@
 </head>
 <body>
 	<?php
-	sjekkInnlogging();
+	//sjekkInnlogging();
 	$NR = $_REQUEST['bruker'];
 	$PASS = $_REQUEST['passord'];
-	kobleOpp($brukerConfig);
-
 	$fraDB = logginn($db,$NR,$PASS);
 	$navn = $_SESSION['fornavn'] . ' ' . $_SESSION['etternavn'];
-	//$adm = $fraDB['adminrettighet'];
-	//$etternavn = $fraDB['etternavn'];
-	//setcookie("fornavn",$fornavn);
-	//setcookie("adm",$adm);
-	//setcookie("etternavn",$etternavn);
 
 	//$brukerNavn = mysqli_query($dblink, $sql);
-	if($fraDB == false)
-		echo"<h1>FEIL brukernavn eller passord</h1>";
-	else if(isset($navn)){
+	if($fraDB == true){
 	echo <<<EOT
 	<div class="loginn">
 		<form method="POST" action="index.php">
@@ -49,7 +40,10 @@
 
 	</form>
 EOT;
-	}?>	
+	}
+	else
+		echo "nei";
+	?>	
 
 
 </body>
