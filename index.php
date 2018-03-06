@@ -30,7 +30,7 @@
             <label><input type="checkbox" onclick="restaurantKlikk()" name="restaurant" id="restaurant" value="">Søk på spisested</label>
 
             <br><br>
-            <input type="text" id="sokeFelt" name="Søkefelt" value="" placeholder="Søk på navnet til spisested">	
+            <label hidden="false" id="hovedsøkLabel">Spisested: </label><input type="text" id="sokeFelt" name="Søkefelt" value="" placeholder="Søk på navnet til spisested" hidden="true">
             <br>
             <label hidden="true" id="poststedLabel">Poststed: <input type="text" id="poststedInput" name="poststedInput" value="" placeholder="Poststed" hidden="true"></label>
             <br>
@@ -45,25 +45,34 @@
 					document.getElementById("adresse").checked = false;
 					document.getElementById("restaurant").checked = false;
 					document.getElementById("sokeFelt").placeholder="Søk på orgnummer";
+					document.getElementById("sokeFelt").hidden = false;
 					document.getElementById("poststedLabel").hidden = true;
 					document.getElementById("poststedInput").hidden = true;
+					document.getElementById("adresse").disabled = true;
+					document.getElementById("restaurant").disabled = true;
 				}
 				else{
 					document.getElementById("sokeFelt").placeholder="Søk på navnet til spisested";
+					document.getElementById("restaurant").disabled = false;
+					document.getElementById("adresse").disabled = false;
+					document.getElementById("sokeFelt").hidden = true;
 
 				}
 			}
 			function adresseKlikk(){
 				if(document.getElementById("adresse").checked) {
 					document.getElementById("orgnr").checked = false;
-					document.getElementById("restaurant").checked = false;
 					document.getElementById("sokeFelt").placeholder="Søk på adresse";
+					document.getElementById("sokeFelt").hidden = false;
 					document.getElementById("poststedLabel").hidden = false;
 					document.getElementById("poststedInput").hidden = false;
+					document.getElementById("orgnr").disabled = true;
 				}else{
 					document.getElementById("sokeFelt").placeholder="Søk på navnet til spisested";
 					document.getElementById("poststedLabel").hidden = false;
 					document.getElementById("poststedInput").hidden = false;
+					document.getElementById("orgnr").disabled = false;
+					document.getElementById("sokeFelt").hidden = true;
 				}
 			}
 			function restaurantKlikk(){
@@ -73,6 +82,10 @@
 					document.getElementById("sokeFelt").placeholder="Søk på navnet til spisested";
 					document.getElementById("poststedLabel").hidden = true;
 					document.getElementById("poststedInput").hidden = true;
+					document.getElementById("orgnr").disabled = true;
+				}
+				else{
+					document.getElementById("orgnr").disabled = false;
 				}
 			}
         </script>
