@@ -56,8 +56,8 @@ function logginn($dblink,$nr,$pass){
 }
 function sjekkInnlogging(){
     if(!isset($_SESSION['BrukerID'])){
-        session_destroy();
         header("Location: index.php");
+        return true;
 }
 }
 

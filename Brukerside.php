@@ -13,14 +13,15 @@
 </head>
 <body>
 	<?php
-	//sjekkInnlogging();
+
 	$NR = $_REQUEST['bruker'];
 	$PASS = $_REQUEST['passord'];
 	$fraDB = logginn($db,$NR,$PASS);
-	$navn = $_SESSION['fornavn'] . ' ' . $_SESSION['etternavn'];
+	
 
 	//$brukerNavn = mysqli_query($dblink, $sql);
 	if($fraDB == true){
+	$navn = $_SESSION['fornavn'] . ' ' . $_SESSION['etternavn'];
 	echo <<<EOT
 	<div class="loginn">
 		<form method="POST" action="index.php">
