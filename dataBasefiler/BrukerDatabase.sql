@@ -29,8 +29,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `BrukerDatabase` (
-  `BrukerID` smallint(6) NOT NULL,
-  `Passord` varchar(10) DEFAULT NULL,
+  `brukerid` smallint(6) NOT NULL,
+  `passord` varchar(10) DEFAULT NULL,
   `fornavn` varchar(14) DEFAULT NULL,
   `etternavn` varchar(14) DEFAULT NULL,
   `telefonnummer` int(11) DEFAULT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE `BrukerDatabase` (
 -- Dataark for tabell `BrukerDatabase`
 --
 
-INSERT INTO `BrukerDatabase` (`BrukerID`, `Passord`, `fornavn`, `etternavn`, `telefonnummer`, `adminrettighet`) VALUES
+INSERT INTO `BrukerDatabase` (`brukerid`, `passord`, `fornavn`, `etternavn`, `telefonnummer`, `adminrettighet`) VALUES
 (1, 'mik', 'kim', 'næss', 97640345, 1);
 
 --
@@ -52,7 +52,7 @@ INSERT INTO `BrukerDatabase` (`BrukerID`, `Passord`, `fornavn`, `etternavn`, `te
 -- Indexes for table `BrukerDatabase`
 --
 ALTER TABLE `BrukerDatabase`
-  ADD PRIMARY KEY (`BrukerID`);
+  ADD PRIMARY KEY (`brukerid`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
