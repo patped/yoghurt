@@ -14,13 +14,13 @@
 <body>
 	<?php
 
-	$NR = $_REQUEST['bruker'];
-	$PASS = $_REQUEST['passord'];
-	$fraDB = logginn($db,$NR,$PASS);
-	
+	if(!isset($_SESSION['loggetInn'])){
+		$_SESSION['loggetInn'] = logginn($db,$_REQUEST['bruker'],$_REQUEST['passord']);
+	}
+	else{
 
 	//$brukerNavn = mysqli_query($dblink, $sql);
-	if($fraDB == true){
+	if($_SESSION['loggetInn'] == true){
 	$navn = $_SESSION['fornavn'] . ' ' . $_SESSION['etternavn'];
 	echo <<<EOT
 	<div class="loginn">
@@ -44,6 +44,7 @@ EOT;
 	}
 	else
 		echo "nei";
+}
 	?>	
 
 

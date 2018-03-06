@@ -1,6 +1,7 @@
 <?php
     require_once 'database.php';
     $db = kobleOpp($tilsynrapportConfig);
+    $_SESSION["loggetInn"]=false;
 ?>
 
 <!doctype html>

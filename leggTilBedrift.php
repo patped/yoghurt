@@ -1,7 +1,6 @@
 <?php
 	include_once 'database.php';
 	$db = kobleOpp($tilsynrapportConfig);
-	session_start();
 	sjekkInnlogging();
 ?>
 
@@ -25,7 +24,7 @@
 	<?php 
 	$fornavn= $_SESSION['fornavn'];
 	$adm = $_SESSION['adm'];
-	if($adm==true){
+	if($_SESSION['loggetInn']==true){
 		echo <<<EOT
 
 

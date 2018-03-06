@@ -19,7 +19,7 @@
 	<?php
 	$adm = $_SESSION['adm'];
 	$fornavn = $_SESSION['fornavn'];
-	
+	if($_SESSION["loggetInn"]==true){
 	if($adm==false)
 		echo "Du har ikke tilgang";
 	else{
@@ -50,6 +50,7 @@
  
 	
 EOT;
+}
 }
 	?>	
 
