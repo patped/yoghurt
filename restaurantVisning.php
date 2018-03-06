@@ -56,7 +56,7 @@ $db = kobleOpp($tilsynrapportConfig);
                         <th>Smilefjes-Karakter</th>
                         <tr>
                             <td>$orgnummer</td>
-                            <td id='adresseTest' value='Borgjalia 4B'>$adresse</td>
+                            <td>$adresse</td>
                             <td>$postnummer</td>
                             <td>$poststed</td>
                             <td>$totalkarakter</td>
