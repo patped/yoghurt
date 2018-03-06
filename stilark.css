@@ -1,6 +1,6 @@
 body {
-	text-align: center;
-	background-color: #B22222;
+    text-align: center;
+    background-color: #B11111;
 }
 
 input{
@@ -8,17 +8,16 @@ input{
 }
 
 table {
-	margin: auto;
+    margin: auto;
 }
 
-.loginn{
-
-	position: absolute;
-	right: 10px;
-	top: 15;
-	font-size: 7px;
-
-	
+.radMedLink {
+    color: green;
 }
 
-
+.loginn {
+    position: absolute;
+    right: 10px;
+    top: 15;
+    font-size: 7px;
+}
