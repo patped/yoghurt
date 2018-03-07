@@ -1,8 +1,9 @@
 <?php
 	include_once 'database.php';
+	include_once 'hjelpefunksj.php';
 	$db = kobleOpp($tilsynrapportConfig);
 	session_start();
-	sjekkInnlogging();
+	
 ?>
 
 <!doctype html>
@@ -18,7 +19,7 @@
 			<input type="submit" name="Logg Ut" value="Logg ut">
 		</form>
 
-	</div>
+	sjekkInnLogg();
 	<h1>Legg til ny bedrift</h1>
 
 	<h2>Fyll ut skjema</h2>
@@ -26,7 +27,7 @@
 	<?php 
 	$fornavn= $_SESSION['fornavn'];
 	$adm = $_SESSION['adm'];
-	if($adm==true){
+	if($_SESSION['loggetInn']==true){
 		echo <<<EOT
 
 
@@ -84,3 +85,4 @@ function leggTilNY(){
 
 </body>
 </html>
+	?>

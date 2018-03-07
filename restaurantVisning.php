@@ -33,8 +33,11 @@ $db = kobleOpp($tilsynrapportConfig);
                 WHERE p.postnr = r.postnr
                 AND t.tilsynsobjektid = r.tilsynsobjektid
                 AND r.tilsynsobjektid
-                LIKE '$id'"
-            );
+                LIKE '$id'
+                ORDER BY MOD(t.dato, 10) DESC, MOD((t.dato/10000), 100) DESC, t.dato/1000000 DESC" 
+            ); /* Legger til ORDER BY her for at den første linjen skal være den som er sist utført mtp DATO. 
+            Dato er lagret som Integer, ettersom databasen fra Mattilsynet ikke hadde lagret 0'ere i en av de to 
+            databasefilene sine. Jeg har løst problemet med å sortere etter år, så måned og så dag.*/
             $svar = mysqli_query($db, $sqlSpørring);
             $rad = mysqli_fetch_assoc($svar);
             if ($rad) {
@@ -62,14 +65,34 @@ $db = kobleOpp($tilsynrapportConfig);
                             <td>$totalkarakter</td>
                         </tr>
                     </table>
-                    <div id='map'></div>";
+                    ";
+                    /* Legger til Smilefjes-karakter*/
+                    switch ($totalkarakter) {
+                    case 0:
+                       $bilde = './bilder/smilSmil.jpg';
+                        break;
+                    case 1:
+                        $bilde = './bilder/mellomSmil.jpg';
+                        break;
+                    default:
+                        $bilde = './bilder/surSmil.jpg';
+                }
+                    
+                    echo "
+                      <img id ='smileBilde' src='$bilde' title='smilefjes' width= '30%'>
+                      <div id='map'></div>
+                    ";
+                    
+
+
+
                     /*Legger til script for å vise Google Map*/
                     echo "
                     <script>
                       function initMap() {
                       var map = new google.maps.Map(document.getElementById('map'), {
                         zoom: 15,
-                        center: {lat: -34.397, lng: 150.644}
+                        center: {lat: 0, lng: 0}
                       });
                       var geocoder = new google.maps.Geocoder();
 

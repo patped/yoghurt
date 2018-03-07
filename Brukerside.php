@@ -1,5 +1,6 @@
 <?php
 	include_once 'database.php';
+	include_once 'hjelpefunksj.php';
 	$db = kobleOpp($tilsynrapportConfig);
 	session_start();
 ?>
@@ -13,19 +14,14 @@
 </head>
 <body>
 	<?php
-
-	$NR = $_REQUEST['bruker'];
-	$PASS = $_REQUEST['passord'];
-	$fraDB = logginn($db,$NR,$PASS);
+	if(isset($_POST['bruker'])){
+		$_SESSION['loggetInn'] = loggInn($db, $_POST['bruker'] , $_POST['passord']);
+	}
 	
-
-	//$brukerNavn = mysqli_query($dblink, $sql);
-	if($fraDB == true){
+	if($_SESSION['loggetInn'] == true){
 	$navn = $_SESSION['fornavn'] . ' ' . $_SESSION['etternavn'];
+	sjekkInnlogg();
 	echo <<<EOT
-	<div class="loginn">
-		<form method="POST" action="index.php">
-			<input type="submit" name="Logg Ut" value="Logg ut"></div>
 
 	<h1>Hvilken smiley har bedriften fått</h1>
 
@@ -43,7 +39,8 @@
 EOT;
 	}
 	else
-		echo "nei";
+		echo " Ikke logget inn";
+
 	?>	
 
 
@@ -51,4 +48,4 @@ EOT;
 </html>
 <?php
 	lukk($db)
-	?>
+?>
