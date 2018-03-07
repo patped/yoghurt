@@ -65,7 +65,27 @@ $db = kobleOpp($tilsynrapportConfig);
                             <td>$totalkarakter</td>
                         </tr>
                     </table>
-                    <div id='map'></div>";
+                    ";
+                    /* Legger til Smilefjes-karakter*/
+                    switch ($totalkarakter) {
+                    case 0:
+                       $bilde = './bilder/smilSmil.jpg';
+                        break;
+                    case 1:
+                        $bilde = './bilder/mellomSmil.jpg';
+                        break;
+                    default:
+                        $bilde = './bilder/surSmil.jpg';
+                }
+                    
+                    echo "
+                      <img id ='smileBilde' src='$bilde' title='smilefjes' width= '30%'>
+                      <div id='map'></div>
+                    ";
+                    
+
+
+
                     /*Legger til script for å vise Google Map*/
                     echo "
                     <script>
