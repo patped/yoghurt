@@ -1,24 +1,22 @@
 body {
-    text-align: center;
-    background-color: #B11111;
+	text-align: center;
+	background-color: #B22222;
 }
 
 table {
-    margin: auto;
+	
+}
+input{
+
+}
+.loginn{
+
+	position: absolute;
+	right: 10px;
+	top: 15;
+	font-size: 7px;
+
+	
 }
 
-.radMedLink {
-    color: green;
-}
 
-.loginn {
-    position: absolute;
-    right: 10px;
-    top: 15;
-    font-size: 7px;
-}
-#map {
-        height: 400px;
-        width: 35%;
-        margin: auto;
-       }

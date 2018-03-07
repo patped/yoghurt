@@ -32,39 +32,6 @@ function kobleOpp($config) {
     mysqli_set_charset($dblink, 'utf8');
     return $dblink;
 }
-function logginn($dblink,$nr,$pass){
-    $ok = false;
-    $sql = "SELECT * FROM
-    BrukerDatabase WHERE BrukerID = $nr";
-    $res = mysqli_query($dblink, $sql);
-    $antall = mysqli_num_rows($res);
-    if($antall==1){
-        $ret = mysqli_fetch_assoc($res);
-        $kryptert = $ret['Passord'];
-    }
-    if($pass == $kryptert){
-        $ok = true;
-        $_SESSION['BrukerID'] = $ret['BrukerID'];
-        $_SESSION['fornavn'] = $ret['fornavn'];
-        $_SESSION['etternavn'] = $ret['etternavn'];
-        $_SESSION['adm'] = $ret['adminrettighet'];
-
-    }
-    return $ok;
-
-
-}
-function sjekkInnlogging(){
-    if(!isset($_SESSION['BrukerID'])){
-        header("Location: index.php");
-        return true;
-}
-}
-
-function leggInnBed($dblink){
-
-}
-
 
 // Lukker forbindelsen til databasen
 function lukk($dblink) {

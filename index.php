@@ -4,14 +4,16 @@
 ?>
 
 <!doctype html>
-<html>
+<html lang="no">
     <head>
         <meta charset="utf-8">
-        <title>Forside youghurt</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="bibloteker/bootstrap-4.0.0-dist/css/bootstrap.css">
         <link rel="stylesheet" href="stilark.css" type="text/css">
     </head>
     <body>
 
+        <title>Forside youghurt</title>
 
 	<div class="loginn">
 		<form method="POST" action="Brukerside.php">
@@ -35,9 +37,9 @@
             <input type="text" name="Søkefelt" value="" placeholder="Søk på spisested">
             <input type="submit" name="søkeKnapp" value="Utfør søk">
         </form>
-
-        <br>
-
+        <script src="bibloteker/jquery/jquery-3.3.1.js"></script>
+        <script src="bibloteker/bootstrap-4.0.0-dist/js/bootstrap.bundle.js"></script>
+        <script src="js/index.js"></script>
     </body>
 </html>
 
