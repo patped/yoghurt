@@ -22,7 +22,7 @@
 
         <h1>Hvilken smiley har bedriften fått?</h1>
 
-        <h2>Sjekk det her</h2>
+        <h2>Velg hva du vil søke på</h2>
 
         <form action="sokeresultat.php" method="POST" onsubmit="return sjekkForm()">
             <label><input type="checkbox" onclick="orgKlikk()" name="orgnr" id="orgnr" value="">Søk på organisasjonsnummer</label>
