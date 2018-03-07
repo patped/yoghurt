@@ -14,7 +14,10 @@
 	<link rel="stylesheet" href="stilark.css" type="text/css">
 </head>
 <body>
-	<?php
+	<div class="loginn">
+		<<form method="POST" action="index.php">
+			<input type="submit" name="Logg Ut" value="Logg ut">
+		</form>
 
 	sjekkInnLogg();
 	<h1>Legg til ny bedrift</h1>
@@ -29,7 +32,7 @@
 
 
 	<div>
-		<form method="POST" action="function leggTilNy()">
+		<form method="POST" action="registrerBedrift.php">
 			<table>
 			
 	  			<tr>
@@ -38,22 +41,22 @@
 	  			</tr>
 
 	  			<tr>
-	    			<td>Navn:</td>
-	   				 <td><input type="text" name="Navn" ></td>
-	  			</tr>
-
-	  			<tr>
 	    			<td>Organisasjonsnummer:</td>
 	   				<td><input type="text" name="Organisasjonsnummer" ></td>
 	  			</tr>
 
 	  			<tr>
-	   				 <td>Adresselinje: 1</td>
+	    			<td>Navn:</td>
+	   				 <td><input type="text" name="Navn" ></td>
+	  			</tr>
+
+	  			<tr>
+	   				 <td>Adresselinje1:</td>
 	   				 <td><input type="text" name="Adresselinje1" ></td>
 	 			 </tr>
 	 			
 	 			 <tr>
-	    			<td>Adresselinje 2:</td>
+	    			<td>Adresselinje2:</td>
 	    			<td><input type="text" name="Adresselinje2" ></td>
 	  			</tr> 
 
@@ -62,10 +65,6 @@
 	    			<td><input type="text" name="Postnummer" ></td>
 	  			</tr> 
 
-				<tr>
-				    <td>Poststed:</td>
-				    <td><input type="text" name="Poststed" ></td>
-				</tr>   
 				<td></td><td></td><td><input type="submit" name="send"></td>
 			 
 			</table>
