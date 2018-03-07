@@ -15,11 +15,11 @@
 </head>
 <body>
 	<div class="loginn">
-		<<form method="POST" action="index.php">
+		<form method="POST" action="index.php">
 			<input type="submit" name="Logg Ut" value="Logg ut">
 		</form>
+	</div>
 
-	sjekkInnLogg();
 	<h1>Legg til ny bedrift</h1>
 
 	<h2>Fyll ut skjema</h2>
@@ -72,17 +72,20 @@
     </div>
 
 EOT;
-}
+	}
 
-else
-echo "du har ikke adminrettigheter";
+	else {
+		echo "du har ikke adminrettigheter";
+	}
 
-function leggTilNY(){
-	$TilsynsobjektID = $_Request['TilsynsobjektID'];
-	echo $TilsynsobjektID;
-}
+	function leggTilNY(){
+		$TilsynsobjektID = $_Request['TilsynsobjektID'];
+		echo $TilsynsobjektID;
+	}
 	?>
 
 </body>
 </html>
-	?>
+<?php
+	lukk(db);
+?>
