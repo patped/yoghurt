@@ -17,14 +17,6 @@
 	<?php
 
 	sjekkInnLogg();
-	/*  
-	if($_SESSION['LoggetInn'])
-	<div class="loginn">
-		<<form method="POST" action="index.php">
-			<input type="submit" name="Logg Ut" value="Logg ut">
-
-	</div>*/
-	?>
 	<h1>Legg til ny bedrift</h1>
 
 	<h2>Fyll ut skjema</h2>
@@ -94,3 +86,4 @@ function leggTilNY(){
 
 </body>
 </html>
+	?>
