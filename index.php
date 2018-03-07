@@ -4,24 +4,29 @@
 ?>
 
 <!doctype html>
-<html>
+<html lang="no">
     <head>
         <meta charset="utf-8">
-        <title>Forside youghurt</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="bibloteker/bootstrap-4.0.0-dist/css/bootstrap.css">
         <link rel="stylesheet" href="stilark.css" type="text/css">
     </head>
     <body>
-        <div class="loginn">
-            <input type="text" name="" id="Brukernavn" style="width: 75px; height: 15px">
-            <br>
-            <input type="passord" name="" id="passord"
-            style="width: 75px; height: 15px">
-            <br>
-            <input type="submit" name="" value="logg inn" style=" width: 65px; height: 20px">
+
+        <title>Forside youghurt</title>
+
+	      <div class="loginn">
+		        <form method="POST" action="Brukerside.php">
+		            <input type="text" name="bruker" id="Brukernavn"  style="width: 75px; height: 15px">
+		            <br>
+		            <input type="password" name="passord" id="pass" style="width: 75px; height: 15px">
+		            <br>
+		            <input type="submit" name="" value="logg inn" style=" width: 65px; height: 20px">
+		        </form>
         </div>
-
+        
         <h1>Hvilken smiley har bedriften fått?</h1>
-
+        
         <h2>Velg hva du vil søke på</h2>
 
         <form action="sokeresultat.php" method="POST" onsubmit="return sjekkForm()">
@@ -123,6 +128,9 @@
 				}
 			}
         </script>
+        <script src="bibloteker/jquery/jquery-3.3.1.js"></script>
+        <script src="bibloteker/bootstrap-4.0.0-dist/js/bootstrap.bundle.js"></script>
+        <script src="js/index.js"></script>
     </body>
 </html>
 
