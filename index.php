@@ -5,10 +5,11 @@
 ?>
 
 <!doctype html>
-<html>
+<html lang="no">
     <head>
         <meta charset="utf-8">
-        <title>Forside youghurt</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="bibloteker/bootstrap-4.0.0-dist/css/bootstrap.css">
         <link rel="stylesheet" href="stilark.css" type="text/css">
     </head>
     <body>
