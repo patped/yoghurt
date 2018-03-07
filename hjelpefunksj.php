@@ -12,13 +12,17 @@ function logginn($dblink,$nr,$pass){
         $ret = mysqli_fetch_assoc($res);
         $kryptert = $ret['Passord'];
     }
+    else if($antall==0){
+        echo "finner ikke bruker";
+        return false;
+    }
+
     if($pass == $kryptert){
         $_SESSION['BrukerID'] = $ret['BrukerID'];
         $_SESSION['fornavn'] = $ret['fornavn'];
         $_SESSION['etternavn'] = $ret['etternavn'];
         $_SESSION['adm'] = $ret['adminrettighet'];
-        $ok = true;
-
+        return true;
     }
     return false;
 }
