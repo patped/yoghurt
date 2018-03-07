@@ -1,5 +1,6 @@
 <?php
 	include_once 'database.php';
+	include_once 'hjelpefunksj.php';
 	$db = kobleOpp($tilsynrapportConfig);
 	session_start();
 ?>
@@ -13,18 +14,15 @@
 </head>
 <body>
 	<?php
+	sjekkInnlogg();
 	$adm = $_SESSION['adm'];
-	
+	$fornavn = $_SESSION['fornavn'];
+	if($_SESSION["loggetInn"]==true){
 	if($adm==false)
 		echo "Du har ikke tilgang";
 	else{
 	//$brukerNavn = mysqli_query($dblink, $sql);
 	echo <<<EOT
-	<div class="loginn">
-		<form method="POST" action="index.php">
-			<input type="submit" name="Logg Ut" value="Logg ut">
-			</div>
-		
 
 	
 
@@ -50,6 +48,7 @@
  
 	
 EOT;
+}
 }
 	?>	
 

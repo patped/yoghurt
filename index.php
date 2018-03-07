@@ -1,6 +1,7 @@
 <?php
     require_once 'database.php';
     $db = kobleOpp($tilsynrapportConfig);
+    $_SESSION["loggetInn"]=false;
 ?>
 
 <!doctype html>
@@ -13,7 +14,6 @@
     </head>
     <body>
 
-        <title>Forside youghurt</title>
 
 	      <div class="loginn">
 		        <form method="POST" action="Brukerside.php">

@@ -1,7 +1,9 @@
 <?php
 	include_once 'database.php';
+	include_once 'hjelpefunksj.php';
 	$db = kobleOpp($tilsynrapportConfig);
 	session_start();
+	
 ?>
 
 <!doctype html>
@@ -13,18 +15,8 @@
 </head>
 <body>
 	<?php
-		if (isset($_POST['Søk'])) {
-			$søkeord = $_POST['textbox'];
 
-		}else {
-			$søkeord = ":)";
-		}
-	?>
-	<div class="loginn">
-		<<form method="POST" action="index.php">
-			<input type="submit" name="Logg Ut" value="Logg ut">
-
-	</div>
+	sjekkInnLogg();
 	<h1>Legg til ny bedrift</h1>
 
 	<h2>Fyll ut skjema</h2>
@@ -32,11 +24,9 @@
 	<?php 
 	$fornavn= $_SESSION['fornavn'];
 	$adm = $_SESSION['adm'];
-	if(is_null($fornavn))
-		echo "du er ikke innlogget";
-	else{
-	if($adm==true){
+	if($_SESSION['loggetInn']==true){
 		echo <<<EOT
+
 
 	<div>
 		<form method="POST" action="function leggTilNy()">
@@ -84,19 +74,16 @@
 
 EOT;
 }
+
 else
 echo "du har ikke adminrettigheter";
+
 function leggTilNY(){
 	$TilsynsobjektID = $_Request['TilsynsobjektID'];
 	echo $TilsynsobjektID;
-
-}
 }
 	?>
 
 </body>
 </html>
-
-<?php
-    lukk($db);
-?>
+	?>

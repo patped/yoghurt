@@ -1,5 +1,6 @@
 <?php
 	include_once 'database.php';
+	include_once 'hjelpefunksj.php';
 	$db = kobleOpp($tilsynrapportConfig);
 	session_start();
 ?>
@@ -13,27 +14,14 @@
 </head>
 <body>
 	<?php
-
-	$NR = $_REQUEST['bruker'];
-	$PASS = $_REQUEST['passord'];
-	kobleOpp($brukerConfig);
-
-	$fraDB = logginn($db,$NR,$PASS);
+	if(isset($_POST['bruker'])){
+		$_SESSION['loggetInn'] = loggInn($db, $_POST['bruker'] , $_POST['passord']);
+	}
+	
+	if($_SESSION['loggetInn'] == true){
 	$navn = $_SESSION['fornavn'] . ' ' . $_SESSION['etternavn'];
-	//$adm = $fraDB['adminrettighet'];
-	//$etternavn = $fraDB['etternavn'];
-	//setcookie("fornavn",$fornavn);
-	//setcookie("adm",$adm);
-	//setcookie("etternavn",$etternavn);
-
-	//$brukerNavn = mysqli_query($dblink, $sql);
-	if($fraDB == false)
-		echo"<h1>FEIL brukernavn eller passord</h1>";
-	else if(isset($navn)){
+	sjekkInnlogg();
 	echo <<<EOT
-	<div class="loginn">
-		<form method="POST" action="index.php">
-			<input type="submit" name="Logg Ut" value="Logg ut"></div>
 
 	<h1>Hvilken smiley har bedriften fått</h1>
 
@@ -49,11 +37,15 @@
 
 	</form>
 EOT;
-	}?>	
+	}
+	else
+		echo " Ikke logget inn";
+
+	?>	
 
 
 </body>
 </html>
 <?php
 	lukk($db)
-	?>
+?>

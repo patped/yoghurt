@@ -33,6 +33,18 @@ function kobleOpp($config) {
     return $dblink;
 }
 
+function sjekkInnlogging(){
+    if(!isset($_SESSION['BrukerID'])){
+        header("Location: index.php");
+        return true;
+}
+}
+
+function leggInnBed($dblink){
+
+}
+
+
 // Lukker forbindelsen til databasen
 function lukk($dblink) {
     mysqli_close($dblink);
