@@ -72,13 +72,10 @@
 					document.getElementById("utforSok").disabled = true;
 					document.getElementById("sokeFelt").removeAttribute("pattern");
 					document.getElementById("sokeFelt").removeAttribute("title");
-					
-
 				}
 			}
 			function adresseKlikk(){
 				if(document.getElementById("adresse").checked) {
-
 					document.getElementById("orgnr").checked = false;
 					document.getElementById("sokeFelt").placeholder="Søk på adresse";
 					document.getElementById("sokeFelt").hidden = false;
@@ -96,6 +93,7 @@
 					document.getElementById("poststedInput").hidden = true;
 					document.getElementById("sokeFelt").hidden = true;
 					document.getElementById("sokeFelt").value = "";
+					document.getElementById("poststedInput").value = "";
 					document.getElementById("adresseLabel").hidden = true;
 					if (!document.getElementById("restaurant").checked && !document.getElementById("orgnr").checked) {
 						document.getElementById("utforSok").disabled = true;
@@ -115,6 +113,7 @@
 					if (!document.getElementById("adresse").checked) {
 						document.getElementById("orgnr").disabled = false;
 					}
+					document.getElementById("spisestedSokefelt").value = "";
 					document.getElementById("spisestedLabel").hidden = true;
 					document.getElementById("spisestedSokefelt").hidden = true;
 					if (!document.getElementById("adresse").checked && !document.getElementById("orgnr").checked) {
