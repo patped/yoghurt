@@ -1,4 +1,4 @@
-<<?php 
+<?php 
 
 
 
@@ -22,8 +22,31 @@ function logginn($dblink,$nr,$pass){
     }
     return false;
 }
-function loggUt(){
-	$_SESSION["loggetInn"]=false;
+function sjekkInnLogg(){
+    if($_SESSION['loggetInn']==true){
+        echo<<< EOT
+        <div class="loginn">
+        <<form method="POST" action="loggut.php">
+            <input type="submit" name="Logg Ut" value="Logg ut">
 
+    </div>
+EOT;
+    }
+    else{
+        echo<<< EOT
+    }
+    <div class="loginn">
+        <form method="POST" action=<?php loggUt() ?>>
+        <input type="text" name="bruker" id="Brukernavn"  style="width: 75px; height: 15px">
+        <br>
+        <input type="password" name="passord" id="pass"
+        style="width: 75px; height: 15px">
+        <br>
+        <input type="submit" name="" value="logg inn" style=" width: 65px; height: 20px">
+        </form>
+    </div>
+EOT;
+}
+}
 
- ?>}
+ ?>

@@ -1,8 +1,8 @@
 <?php
 	include_once 'database.php';
+	include_once 'hjelpefunksj.php';
 	$db = kobleOpp($tilsynrapportConfig);
 	session_start();
-	sjekkInnlogging();
 ?>
 
 <!doctype html>
@@ -13,10 +13,8 @@
 	<link rel="stylesheet" href="stilark.css" type="text/css">
 </head>
 <body>
-	<div class="loginn">
-		<form method="POST" action="index.php">
-			<input type="submit" name="Logg Ut" value="Logg ut"></div>
 	<?php
+	sjekkInnlogg();
 	$adm = $_SESSION['adm'];
 	$fornavn = $_SESSION['fornavn'];
 	if($_SESSION["loggetInn"]==true){

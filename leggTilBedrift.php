@@ -1,7 +1,9 @@
 <?php
 	include_once 'database.php';
+	include_once 'hjelpefunksj.php';
 	$db = kobleOpp($tilsynrapportConfig);
-	sjekkInnlogging();
+	session_start();
+	
 ?>
 
 <!doctype html>
@@ -12,11 +14,17 @@
 	<link rel="stylesheet" href="stilark.css" type="text/css">
 </head>
 <body>
+	<?php
+
+	sjekkInnLogg();
+	/*  
+	if($_SESSION['LoggetInn'])
 	<div class="loginn">
 		<<form method="POST" action="index.php">
 			<input type="submit" name="Logg Ut" value="Logg ut">
 
-	</div>
+	</div>*/
+	?>
 	<h1>Legg til ny bedrift</h1>
 
 	<h2>Fyll ut skjema</h2>
