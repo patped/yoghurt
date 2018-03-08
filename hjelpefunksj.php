@@ -32,7 +32,7 @@ function sjekkInnLogg(){
         <div class="loginn">
         <<form method="POST" action="loggut.php">
             <input type="submit" name="Logg Ut" value="Logg ut">
-
+            </form>
     </div>
 EOT;
     }
@@ -40,7 +40,7 @@ EOT;
         echo<<< EOT
     }
     <div class="loginn">
-        <form method="POST" action=<?php loggUt() ?>>
+        <form method="POST" action=<"loggut.php">>
         <input type="text" name="bruker" id="Brukernavn"  style="width: 75px; height: 15px">
         <br>
         <input type="password" name="passord" id="pass"

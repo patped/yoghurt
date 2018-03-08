@@ -18,17 +18,12 @@
 	$adm = $_SESSION['adm'];
 	$fornavn = $_SESSION['fornavn'];
 	if($_SESSION["loggetInn"]==true){
-	if($adm==false)
-		echo "Du har ikke tilgang";
-	else{
-	//$brukerNavn = mysqli_query($dblink, $sql);
 	echo <<<EOT
-
 	
 
 	<h2>Velkommen $fornavn </h2>
 	<p> legg til en ny bruker</p>
-	<form method="POST" action="leggtilNy()">
+	<form method="POST" action="registrert.php">
 		<p>brukerId</p>
 		<input type="bruker" name="brukerID" value="brukerID">
 		<br><p>fornavn</p><br>
@@ -40,7 +35,7 @@
 		<br><p>telefonnummer</p><br>
 		<input type="text" name="tlf" value="tlf">
 		<br><p>adminrettighet?</p><br>
-		<input type="checkbox" name="admi" value="adm rett">
+		<input type="checkbox" name="admi" value="admRett">
 		<br>
 		<input type="submit" name="registrer" value="registrer"></p>
 
@@ -48,7 +43,7 @@
  
 	
 EOT;
-}
+
 }
 	?>	
 
