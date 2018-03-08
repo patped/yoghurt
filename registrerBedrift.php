@@ -46,6 +46,9 @@ EOF;
 	       		
 	       		
 	       	}
+	       	else{
+	       		echo "feil med insetting mot db";
+	       	}
 	    	}
 	    	else {
 	    		echo "Alle feltene må mære fylt ut!";
@@ -64,3 +67,6 @@ EOF;
 
 </body>
 </html>
+<?php
+	lukk($db);
+?>
