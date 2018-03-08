@@ -27,7 +27,7 @@
 
 	sjekkInnlogg();
 	if($_SESSION['adm']){
-		$sql=("INSERT INTO BrukerDatabase(BrukerID, Passord, fornavn, etternavn, telefonnummer, adminrettighet) VALUES ($brukerID,
+		$sql=("INSERT INTO BrukerDatabase(BrukerID, fornavn, etternavn, Passord, telefonnummer, adminrettighet) VALUES ($brukerID,
 			'$fornavn','$etternavn','$passord',$tlf,$admrett);");
 
 		$resultat = mysqli_query($db,$sql);
