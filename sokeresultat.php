@@ -77,7 +77,7 @@ $db = kobleOpp($tilsynrapportConfig);
                 $svar = mysqli_query($db, $sqlSpørring);
                 $rad = mysqli_fetch_assoc($svar);
                 if ($rad) {                    
-                    echo "<table name='resultatTabell'><th>Navn</th><th>Adresse</th><th>Postnummer</th><th>Poststed</th>";
+                    echo "<table name='resultatTabell'><th>Navn</th><th>Adresse</th><th>Postnummer</th><th>Poststed</th><th>Smilefjes</th>";
                     while ($rad) {
                         $id = $rad['tilsynsobjektid'];
                         $rNavn = $rad['navn'];
@@ -86,11 +86,50 @@ $db = kobleOpp($tilsynrapportConfig);
                         $rPoststed = $rad['poststed'];
                         $orgnummer = $rad['orgnummer'];
                         $rad= mysqli_fetch_assoc($svar);
+
+                        $sqlSpørringHenteKarakter = (
+		                "SELECT t.total_karakter FROM
+		                    Restauranter AS r,
+		                    Poststed AS p,
+		                    Tilsynsrapporter AS t
+		                WHERE p.postnr = r.postnr
+		                AND t.tilsynsobjektid = r.tilsynsobjektid
+		                AND r.tilsynsobjektid
+		                LIKE '$id'
+		                ORDER BY MOD(t.dato, 10) DESC, MOD((t.dato/10000), 100) DESC, t.dato/1000000 DESC" 
+		            	);
+		            	$utførSpørringMedKarakter = mysqli_query($db, $sqlSpørringHenteKarakter);
+		            	$svarKarakter = mysqli_fetch_assoc($utførSpørringMedKarakter);
+		            	$karakterSisteTilsyn = 0;
+		            	$teller = 0;
+		            	while ($svarKarakter) {
+		            	$karakterSisteTilsyn = $karakterSisteTilsyn + $svarKarakter['total_karakter'];
+		            	$teller = $teller + 1;
+		            	$svarKarakter = mysqli_fetch_assoc($utførSpørringMedKarakter);
+		            	}
+		            	$karakterSisteTilsynSnitt = $karakterSisteTilsyn/$teller;
+		            	switch ($karakterSisteTilsynSnitt) {
+                    	case 0:
+                       	$bilde = './bilder/smileys/storSmil.png';
+                        break;
+                    	case 1:
+                        $bilde = './bilder/smileys/liteSmil.png';
+                        break;
+                        case 2:
+                        $bilde = './bilder/smileys/ingenSmil.png';
+                        break;
+                    	default:
+                        $bilde = './bilder/smileys/spySmil.png';
+                		}
+
+                        /*Legger til alle resultater i en tabell*/
                         echo "<tr class='radMedLink'>";
                         echo "<td><a href='restaurantVisning.php?res=$id'>$rNavn</td>";
                         echo "<td><a href='restaurantVisning.php?res=$id'>$rAdresse</td>";
                         echo "<td><a href='restaurantVisning.php?res=$id'>$rPostnr</td>";
                         echo "<td><a href='restaurantVisning.php?res=$id'>$rPoststed</td>";
+                        echo "<td><a href='restaurantVisning.php?res=$id'><img id ='karakterSmil' src='$bilde' title='smilefjes' width= '30px' height='30px'</td>";
+                        echo "<td>$karakterSisteTilsynSnitt</td>";
                         echo "</tr>";
                     }
                 } else {
