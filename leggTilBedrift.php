@@ -77,15 +77,7 @@ EOT;
 	else {
 		echo "du har ikke adminrettigheter";
 	}
-
-	function leggTilNY(){
-		$TilsynsobjektID = $_Request['TilsynsobjektID'];
-		echo $TilsynsobjektID;
-	}
 	?>
 
 </body>
 </html>
-<?php
-	lukk(db);
-?>

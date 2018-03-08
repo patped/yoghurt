@@ -14,7 +14,8 @@
 </head>
 <body>
 	<?php
-	if(isset($_POST['bruker'])){
+	//denne løsninga her kan kanskje omgjøres?
+	if(isset($_POST['innlogg'])){
 		$_SESSION['loggetInn'] = loggInn($db, $_POST['bruker'] , $_POST['passord']);
 	}
 	

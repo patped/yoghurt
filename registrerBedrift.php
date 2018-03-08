@@ -21,7 +21,6 @@
 			$Adresselinje1 = $_POST["Adresselinje1"];
 			$Adresselinje2 = $_POST["Adresselinje2"];
 			$Postnummer = $_POST["Postnummer"];
-
 			if(null != $TilsynsobjektID  && null != $Organisasjonsnummer && null != $Navn && null != $Adresselinje1 && null != $Postnummer){
 	       		 $sql = ("INSERT INTO Restauranter (tilsynsobjektid, orgnummer, navn, adrlinje1, adrlinje2, postnr)
 	        	    VALUES('$TilsynsobjektID', '$Organisasjonsnummer','$Navn','$Adresselinje1', '$Adresselinje2','$Postnummer');");
@@ -46,6 +45,8 @@ EOF;
 	       		
 	       		
 	       	}
+	       	else
+	       		echo "hei";
 	    	}
 	    	else {
 	    		echo "Alle feltene må mære fylt ut!";
@@ -59,6 +60,8 @@ EOF;
 
 
         }
+        else
+        	echo "her";
     ?>
 
 
