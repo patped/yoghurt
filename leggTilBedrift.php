@@ -87,5 +87,5 @@ EOT;
 </body>
 </html>
 <?php
-	lukk(db);
+	lukk($db);
 ?>
