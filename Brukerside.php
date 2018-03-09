@@ -29,9 +29,9 @@
 	<h2>Velkommen $navn</h2> 
 	<a href="leggTilBedrift.php">Legg til ny Bedrift</a>
 	<br>
-	<a href="leggTilNyTilsynsRapport.php">Legg til ny tilsynsrapport</a>
+	<a href="leggTilNyTilsynsrapport.php">Legg til ny tilsynsrapport</a>
 	<br>
-	<a href="oppdaterTilsynsRapport.php">Oppdater tilsynsrapport</a>
+	<a href="oppdaterTilsynsrapport.php">Oppdater tilsynsrapport</a>
 	<br>
 
 	<a href="nyBruker.php">Legg til ny bruker(krever adminrettigheter)</a>
