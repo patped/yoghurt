@@ -32,7 +32,7 @@
 	        $karakter4 = $_POST["karakter4"];
 
 			if(null != $tilsynsobjektid  && null != $tilsynid && null != $sakref && null != $status && null != $dato && null != $total_karakter && null != $tema1_no && null != $karakter1 && null != $tema2_no && null != $karakter2 && null != $tema3_no && null != $karakter3 && null != $tema4_no && null != $karakter4){
-				echo "kom inn i if";
+				
 	       		 $sql = ("INSERT INTO Tilsynsrapporter(tilsynsobjektid, tilsynid, sakref, status, dato, total_karakter, tilsynsbesoektype, tema1_no, karakter1, tema2_no, karakter2, tema3_no, karakter3, tema4_no, karakter4)
 	        	    VALUES($tilsynsobjektid, $tilsynid,$sakref,$status, $dato,$total_karakter, $tema1_no, $karakter1, $tema2_no, $karakter2, $ tema3_no, $karakter3, $tema4_no, $karakter4);");
 	       		 $resultat = mysqli_query( $db, $sql );
