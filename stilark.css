@@ -13,13 +13,14 @@ table {
 
 .loginn {
     position: absolute;
-    right: 10px;
-    top: 15;
-    font-size: 7px;
+    right: 20px;
+    top: 15px;
+    font-size: 10px;
 }
+
 #map {
-        height: 400px;
-        width: 35%;
-        margin: auto;
-       }
+    height: 400px;
+    width: 35%;
+    margin: auto;
+}
 

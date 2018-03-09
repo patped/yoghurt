@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="stilark.css" type="text/css">
 </head>
 <body>
+	<?php include_once 'header.php'; ?>
 	<?php
 	if(isset($_POST['bruker'])){
 		$_SESSION['loggetInn'] = loggInn($db, $_POST['bruker'] , $_POST['passord']);

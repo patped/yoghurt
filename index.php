@@ -13,15 +13,13 @@
         <link rel="stylesheet" href="stilark.css" type="text/css">
     </head>
     <body>
-
-
 	      <div class="loginn">
 		        <form method="POST" action="Brukerside.php">
-		            <input type="text" name="bruker" id="Brukernavn"  style="width: 75px; height: 15px">
+		            <input type="text" name="bruker" id="Brukernavn" placeholder="BrukerID" style="width: 75px; height: 15px">
 		            <br>
-		            <input type="password" name="passord" id="pass" style="width: 75px; height: 15px">
+		            <input type="password" name="passord" id="pass" placeholder="Passord" style="width: 75px; height: 15px">
 		            <br>
-		            <input type="submit" name="" value="logg inn" style=" width: 65px; height: 20px">
+		            <input type="submit" name="" value="Logg inn" style=" width: 65px; height: 20px">
 		        </form>
         </div>
         
@@ -46,91 +44,10 @@
 
         <br>
 
-        <script type="text/javascript">
-        	function sjekkForm(){
-        		var orgInnhold = document.getElementById("sokeFelt").value;
-        		if (document.getElementById("orgnr").checked && orgInnhold =="") {
-        			alert("Du må fylle inn organisasjonsnummer");
-        			return false;
-        		}
-        	}
-			function orgKlikk(){
-				if(document.getElementById("orgnr").checked) {
-					document.getElementById("sokeFelt").pattern = "[0-9]{9}";
-					document.getElementById("sokeFelt").title = "Et organisasjonsnummer består av 9 siffer"
-					document.getElementById("adresse").checked = false;
-					document.getElementById("restaurant").checked = false;
-					document.getElementById("sokeFelt").placeholder="Søk på orgnummer";
-					document.getElementById("sokeFelt").hidden = false;
-					document.getElementById("poststedLabel").hidden = true;
-					document.getElementById("poststedInput").hidden = true;
-					document.getElementById("adresse").disabled = true;
-					document.getElementById("restaurant").disabled = true;
-					document.getElementById("utforSok").disabled = false;
-				}
-				else{
-					document.getElementById("sokeFelt").placeholder="Søk på navnet til spisested";
-					document.getElementById("sokeFelt").value = "";
-					document.getElementById("restaurant").disabled = false;
-					document.getElementById("adresse").disabled = false;
-					document.getElementById("sokeFelt").hidden = true;
-					document.getElementById("utforSok").disabled = true;
-					document.getElementById("sokeFelt").removeAttribute("pattern");
-					document.getElementById("sokeFelt").removeAttribute("title");
-				}
-			}
-			function adresseKlikk(){
-				if(document.getElementById("adresse").checked) {
-					document.getElementById("orgnr").checked = false;
-					document.getElementById("sokeFelt").placeholder="Søk på adresse";
-					document.getElementById("sokeFelt").hidden = false;
-					document.getElementById("poststedLabel").hidden = false;
-					document.getElementById("adresseLabel").hidden = false;
-					document.getElementById("poststedInput").hidden = false;
-					document.getElementById("orgnr").disabled = true;
-					document.getElementById("utforSok").disabled = false;
-				}else{
-					if (!document.getElementById("restaurant").checked) {
-						document.getElementById("orgnr").disabled = false;
-					}
-					document.getElementById("sokeFelt").placeholder="Søk på navnet til spisested";
-					document.getElementById("poststedLabel").hidden = true;
-					document.getElementById("poststedInput").hidden = true;
-					document.getElementById("sokeFelt").hidden = true;
-					document.getElementById("sokeFelt").value = "";
-					document.getElementById("poststedInput").value = "";
-					document.getElementById("adresseLabel").hidden = true;
-					if (!document.getElementById("restaurant").checked && !document.getElementById("orgnr").checked) {
-						document.getElementById("utforSok").disabled = true;
-					}
-				}
-			}
-			function restaurantKlikk(){
-				if(document.getElementById("restaurant").checked) {
-					document.getElementById("orgnr").checked = false;
-					document.getElementById("spisestedLabel").hidden = false;
-					document.getElementById("spisestedSokefelt").hidden = false;
-					document.getElementById("spisestedSokefelt").placeholder="Søk på navnet til spisested";
-					document.getElementById("orgnr").disabled = true;
-					document.getElementById("utforSok").disabled = false;
-				}
-				else{
-					if (!document.getElementById("adresse").checked) {
-						document.getElementById("orgnr").disabled = false;
-					}
-					document.getElementById("spisestedSokefelt").value = "";
-					document.getElementById("spisestedLabel").hidden = true;
-					document.getElementById("spisestedSokefelt").hidden = true;
-					if (!document.getElementById("adresse").checked && !document.getElementById("orgnr").checked) {
-						document.getElementById("utforSok").disabled = true;
-					}
-					
-				}
-			}
-        </script>
         <script src="bibloteker/jquery/jquery-3.3.1.js"></script>
-        <script src="bibloteker/bootstrap-4.0.0-dist/js/bootstrap.bundle.js"></script>
         <script src="js/index.js"></script>
+        <script src="bibloteker/bootstrap-4.0.0-dist/js/bootstrap.bundle.js"></script>
+        
     </body>
 </html>
 

@@ -13,6 +13,7 @@
 	<link rel="stylesheet" href="stilark.css" type="text/css">
 </head>
 <body>
+	<?php include_once 'header.php'; ?>
 	<?php
 	sjekkInnlogg();
 	$adm = $_SESSION['adm'];

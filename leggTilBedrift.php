@@ -14,11 +14,7 @@
 	<link rel="stylesheet" href="stilark.css" type="text/css">
 </head>
 <body>
-	<div class="loginn">
-		<form method="POST" action="index.php">
-			<input type="submit" name="Logg Ut" value="Logg ut">
-		</form>
-	</div>
+	<?php include_once 'header.php'; ?>
 
 	<h1>Legg til ny bedrift</h1>
 

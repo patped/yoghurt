@@ -10,14 +10,7 @@ $db = kobleOpp($tilsynrapportConfig);
         <link rel="stylesheet" href="stilark.css" type="text/css">
     </head>
     <body>
-        <div class="loginn">
-                <input type="text" name="" id="Brukernavn" style="width: 75px; height: 15px">
-                <br>
-                <input type="passord" name="" id="passord"
-                style="width: 75px; height: 15px">
-                <br>
-                <input type="submit" name="" value="logg inn" style=" width: 65px; height: 20px">
-        </div>
+        <?php include_once 'header.php'; ?>
         <?php
         $status = mysqli_set_charset($db, "utf8");
         if (!$status) {
