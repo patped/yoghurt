@@ -63,17 +63,11 @@
 	    			<td>Total karakter:</td>
 	    			<td><input type="text" name="total_karakter" ></td>
 	  			</tr> 
-
-	  			<tr>
-	    			<td>Tilsynsbesoektype:</td>
-	    			<td><input type="text" name="tilsynsbesoektype" ></td>
-	  			</tr> 
-
+	  			
 	  			<tr>
 	    			<td>tema1_no:</td>
 	    			<td><input type="text" name="tema1_no" ></td>
 	  			</tr> 
-
 
 	  			<tr>
 	    			<td>karakter1:</td>
@@ -85,7 +79,6 @@
 	    			<td><input type="text" name="tema2_no" ></td>
 	  			</tr> 
 
-
 	  			<tr>
 	    			<td>karakter2:</td>
 	    			<td><input type="text" name="karakter2" ></td>
@@ -93,9 +86,8 @@
 
 	  			<tr>
 	    			<td>tema3_no:</td>
-	    			<td><input type="text" name="tema4_no" ></td>
+	    			<td><input type="text" name="tema3_no" ></td>
 	  			</tr> 
-
 
 	  			<tr>
 	    			<td>karakter3:</td>
@@ -106,7 +98,6 @@
 	    			<td>tema4_no:</td>
 	    			<td><input type="text" name="tema4_no" ></td>
 	  			</tr> 
-
 
 	  			<tr>
 	    			<td>karakter4:</td>
