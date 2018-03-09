@@ -48,15 +48,17 @@
 	   				<td>$fornavn</td>
 	  			</tr>
 
-	  			<tr>
-	    			<td>Fornavn:</td>
-	   				 <td>$fornavn</td>
-	  			</tr>
+
 
 	  			<tr>
 	   				 <td>etternavn</td>
 	   				 <td>$etternavn</td>
-	 			 </tr>
+	 			</tr>
+
+	 			<tr>
+	    			<td>Telefonnummer:</td>
+	   				<td>$tlf</td>
+	  			</tr>
 	 			
 	 			 <tr>
 	    			<td>passord</td>
