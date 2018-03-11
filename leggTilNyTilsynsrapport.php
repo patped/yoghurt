@@ -33,11 +33,42 @@
 	<div>
 		<form method="POST" action="registrerTilsynsraport.php">
 			<table>
+
+				<tr>
+	    			<td>status:</td>
+	    			<td>
+		    			<select name="status">
+				    		<option value="0">0</option>
+				    		<option value="1">1</option>
+		  				</select>
+	  				</td>
+	  			</tr>
+
+				<tr>
+	    			<td>TilsynsBesøksType:</td>
+	    			<td>
+		    			<select name="TilsynsBesøksType">
+				    		<option value="0">0</option>
+				    		<option value="1">1</option>
+		  				</select>
+	  				</td>
+	  			</tr>
+
+				<tr>
+	    			<td>dato:</td>
+	    			<td><input type="text" name="dato"></td>
+	  			</tr>
 			
+				<tr>
+	    			<td>Kravpunkt:</td>
+	    			<td>Karakter:</td>
+	    			<td>Beskrivelse:</td>
+	  			</tr>
+
 	  			<tr>
 	    			<td>Synlig rapport for smilefjes:</td>
 	    			<td>
-		    			<select name="1.1 karakter">
+		    			<select name="karakter1_1">
 				    		<option value="0">0</option>
 				    		<option value="1">1</option>
 				    		<option value="2">2</option>
@@ -46,13 +77,13 @@
 				    		<option value="5">5</option>
 		  				</select>
 	  				</td>
-	    			<td><input type="text" name="1.1 beskrivelse" ></td>
+	    			<td><input type="text" name="beskrivelse1_1" ></td>
 	  			</tr>
 
 	  			<tr>
 	    			<td>Meldeplikt for virksomheten:</td>
 	   				<td>
-	   					<select name="1.2 karakter">
+	   					<select name="karakter1_2">
 				    		<option value="0">0</option>
 				    		<option value="1">1</option>
 				    		<option value="2">2</option>
@@ -61,13 +92,13 @@
 				    		<option value="5">5</option>
 		  				</select>
 	   				</td>
-	   				<td><input type="text" name="1.2 beskrivelse" ></td>
+	   				<td><input type="text" name="beskrivelse1_2" ></td>
 	  			</tr>
 
 	  			<tr>
 	    			<td>Ansvaret til driftsansvarlige:</td>
 	    			<td>
-	   					<select name="1.3 karakter">
+	   					<select name="karakter1_3">
 				    		<option value="0">0</option>
 				    		<option value="1">1</option>
 				    		<option value="2">2</option>
@@ -76,13 +107,13 @@
 				    		<option value="5">5</option>
 		  				</select>
 	   				</td>
-	   				<td><input type="text" name="1.3 beskrivelse" ></td>
+	   				<td><input type="text" name="beskrivelse1_3" ></td>
 	  			</tr>
 
 	  			<tr>
 	   				 <td>Internkontroll:</td>
 	   				 <td>
-	   					<select name="1.4 karakter">
+	   					<select name="karakter1_4">
 				    		<option value="0">0</option>
 				    		<option value="1">1</option>
 				    		<option value="2">2</option>
@@ -91,13 +122,13 @@
 				    		<option value="5">5</option>
 		  				</select>
 	   				</td>
-	   				 <td><input type="text" name="1.4 beskrivelse" ></td>
+	   				 <td><input type="text" name="beskrivelse1_4" ></td>
 	 			 </tr>
 	 			
 	 			 <tr>
 	    			<td>Farevurdering og styringstiltak:</td>
 	    			<td>
-	   					<select name="1.5 karakter">
+	   					<select name="karakter1_5">
 				    		<option value="0">0</option>
 				    		<option value="1">1</option>
 				    		<option value="2">2</option>
@@ -106,13 +137,13 @@
 				    		<option value="5">5</option>
 		  				</select>
 	   				</td>
-	    			<td><input type="text" name="1.5 beskrivelse" ></td>
+	    			<td><input type="text" name="beskrivelse1_5" ></td>
 	  			</tr> 
 
 	 			<tr>
 	    			<td>Opplæring og kompetanse:</td>
 	    			<td>
-	   					<select name="1.6 karakter">
+	   					<select name="karakter1_6">
 				    		<option value="0">0</option>
 				    		<option value="1">1</option>
 				    		<option value="2">2</option>
@@ -121,13 +152,13 @@
 				    		<option value="5">5</option>
 		  				</select>
 	   				</td>
-	    			<td><input type="text" name="1.6 beskrivelse" ></td>
+	    			<td><input type="text" name="beskrivelse1_6" ></td>
 	  			</tr> 
 	  			
 	  			<tr>
 	    			<td>Generelt - planløsning, standard og vedlikehold:</td>
 	    			<td>
-	   					<select name="2.1 karakter">
+	   					<select name="karakter2_1">
 				    		<option value="0">0</option>
 				    		<option value="1">1</option>
 				    		<option value="2">2</option>
@@ -136,13 +167,13 @@
 				    		<option value="5">5</option>
 		  				</select>
 	   				</td>
-	    			<td><input type="text" name="2.1 beskrivelse" ></td>
+	    			<td><input type="text" name="beskrivelse2_1" ></td>
 	  			</tr> 
 
 	  			<tr>
 	    			<td>Lokaler - spesielle krav ved tilberedning, bearbeiding og foredling:</td>
 	    			<td>
-	   					<select name="2.2 karakter">
+	   					<select name="karakter2_2">
 				    		<option value="0">0</option>
 				    		<option value="1">1</option>
 				    		<option value="2">2</option>
@@ -151,13 +182,13 @@
 				    		<option value="5">5</option>
 		  				</select>
 	   				</td>
-	    			<td><input type="text" name="2.2 beskrivelse" ></td>
+	    			<td><input type="text" name="beskrivelse2_2" ></td>
 	  			</tr> 
 
 	  			<tr>
 	    			<td>Renhold:</td>
 	    			<td>
-	   					<select name="2.3 karakter">
+	   					<select name="karakter2_3">
 				    		<option value="0">0</option>
 				    		<option value="1">1</option>
 				    		<option value="2">2</option>
@@ -166,13 +197,13 @@
 				    		<option value="5">5</option>
 		  				</select>
 	   				</td>
-	    			<td><input type="text" name="2.3 beskrivelse" ></td>
+	    			<td><input type="text" name="beskrivelse2_3" ></td>
 	  			</tr> 
 
 	  			<tr>
 	    			<td>Håndtering av avfall:</td>
 	    			<td>
-	   					<select name="2.4 karakter">
+	   					<select name="karakter2_4">
 				    		<option value="0">0</option>
 				    		<option value="1">1</option>
 				    		<option value="2">2</option>
@@ -181,13 +212,13 @@
 				    		<option value="5">5</option>
 		  				</select>
 	   				</td>
-	    			<td><input type="text" name="2.4 beskrivelse" ></td>
+	    			<td><input type="text" name="beskrivelse2_4" ></td>
 	  			</tr> 
 
 	  			<tr>
 	    			<td>Bekjempe skadedyr:</td>
 	    			<td>
-	   					<select name="2.5 karakter">
+	   					<select name="karakter2_5">
 				    		<option value="0">0</option>
 				    		<option value="1">1</option>
 				    		<option value="2">2</option>
@@ -196,13 +227,13 @@
 				    		<option value="5">5</option>
 		  				</select>
 	   				</td>
-	    			<td><input type="text" name="2.5 beskrivelse" ></td>
+	    			<td><input type="text" name="beskrivelse2_5" ></td>
 	  			</tr> 
 
 	  			<tr>
 	    			<td>Håndvask:</td>
 	    			<td>
-	   					<select name="2.6 karakter">
+	   					<select name="karakter2_6">
 				    		<option value="0">0</option>
 				    		<option value="1">1</option>
 				    		<option value="2">2</option>
@@ -211,13 +242,13 @@
 				    		<option value="5">5</option>
 		  				</select>
 	   				</td>
-	    			<td><input type="text" name="2.6 beskrivelse" ></td>
+	    			<td><input type="text" name="beskrivelse2_6" ></td>
 	  			</tr> 
 
 	  			<tr>
 	    			<td>Personaltoalett og garderobe:</td>
 	    			<td>
-	   					<select name="2.7 karakter">
+	   					<select name="karakter2_7">
 				    		<option value="0">0</option>
 				    		<option value="1">1</option>
 				    		<option value="2">2</option>
@@ -226,13 +257,13 @@
 				    		<option value="5">5</option>
 		  				</select>
 	   				</td>
-	    			<td><input type="text" name="2.7 beskrivelse" ></td>
+	    			<td><input type="text" name="beskrivelse2_7" ></td>
 	  			</tr> 
 
 	  			<tr>
 	    			<td>Råvarer:</td>
 	    			<td>
-	   					<select name="3.1 karakter">
+	   					<select name="karakter3_1">
 				    		<option value="0">0</option>
 				    		<option value="1">1</option>
 				    		<option value="2">2</option>
@@ -241,13 +272,13 @@
 				    		<option value="5">5</option>
 		  				</select>
 	   				</td>
-	    			<td><input type="text" name="3.1 beskrivelse" ></td>
+	    			<td><input type="text" name="beskrivelse3_1" ></td>
 	  			</tr> 
 
 	  			<tr>
 	    			<td>Vann og is:</td>
 	    			<td>
-	   					<select name="3.2 karakter">
+	   					<select name="karakter3_2">
 				    		<option value="0">0</option>
 				    		<option value="1">1</option>
 				    		<option value="2">2</option>
@@ -256,13 +287,13 @@
 				    		<option value="5">5</option>
 		  				</select>
 	   				</td>
-	    			<td><input type="text" name="3.2 beskrivelse" ></td>
+	    			<td><input type="text" name="3_2beskrivelse" ></td>
 	  			</tr> 
 
 	  			<tr>
 	    			<td>Forurensningsfare:</td>
 	    			<td>
-	   					<select name="3.3 karakter">
+	   					<select name="3_3karakter">
 				    		<option value="0">0</option>
 				    		<option value="1">1</option>
 				    		<option value="2">2</option>
@@ -271,13 +302,13 @@
 				    		<option value="5">5</option>
 		  				</select>
 	   				</td>
-	    			<td><input type="text" name="3.3 beskrivelse" ></td>
+	    			<td><input type="text" name="beskrivelse3_3" ></td>
 	  			</tr> 
 
 	  			<tr>
 	    			<td>Lagring:</td>
 	    			<td>
-	   					<select name="3.4 karakter">
+	   					<select name="karakter3_4">
 				    		<option value="0">0</option>
 				    		<option value="1">1</option>
 				    		<option value="2">2</option>
@@ -286,13 +317,13 @@
 				    		<option value="5">5</option>
 		  				</select>
 	   				</td>
-	    			<td><input type="text" name="3.4 beskrivelse" ></td>
+	    			<td><input type="text" name="beskrivelse3_4" ></td>
 	  			</tr> 
 
 	  			<tr>
 	    			<td>Transport:</td>
 	    			<td>
-	   					<select name="3.5 karakter">
+	   					<select name="karakter3_5">
 				    		<option value="0">0</option>
 				    		<option value="1">1</option>
 				    		<option value="2">2</option>
@@ -301,13 +332,13 @@
 				    		<option value="5">5</option>
 		  				</select>
 	   				</td>
-	    			<td><input type="text" name="3.5 beskrivelse" ></td>
+	    			<td><input type="text" name="beskrivelse3_5" ></td>
 	  			</tr> 
 
 	  			<tr>
 	    			<td>Personalets helse og hygiene:</td>
 	    			<td>
-	   					<select name="3.6 karakter">
+	   					<select name="karakter3_6">
 				    		<option value="0">0</option>
 				    		<option value="1">1</option>
 				    		<option value="2">2</option>
@@ -316,13 +347,13 @@
 				    		<option value="5">5</option>
 		  				</select>
 	   				</td>
-	    			<td><input type="text" name="3.6 beskrivelse" ></td>
+	    			<td><input type="text" name="beskrivelse3_6" ></td>
 	  			</tr> 
 
 	  			<tr>
 	    			<td>Kjølekjeden:</td>
 	    			<td>
-	   					<select name="3.7 karakter">
+	   					<select name="karakter3_7">
 				    		<option value="0">0</option>
 				    		<option value="1">1</option>
 				    		<option value="2">2</option>
@@ -331,13 +362,13 @@
 				    		<option value="5">5</option>
 		  				</select>
 	   				</td>
-	    			<td><input type="text" name="3.7 beskrivelse" ></td>
+	    			<td><input type="text" name="beskrivelse3_7" ></td>
 	  			</tr> 
 
 	  			<tr>
 	    			<td>Varmebehandling:</td>
 	    			<td>
-	   					<select name="3.8 karakter">
+	   					<select name="karakter3_8">
 				    		<option value="0">0</option>
 				    		<option value="1">1</option>
 				    		<option value="2">2</option>
@@ -346,13 +377,13 @@
 				    		<option value="5">5</option>
 		  				</select>
 	   				</td>
-	    			<td><input type="text" name="3.8 beskrivelse" ></td>
+	    			<td><input type="text" name="beskrivelse3_8" ></td>
 	  			</tr> 
 
 	  			<tr>
 	    			<td>Nedkjøling:</td>
 	    			<td>
-	   					<select name="3.9 karakter">
+	   					<select name="karakter3_9">
 				    		<option value="0">0</option>
 				    		<option value="1">1</option>
 				    		<option value="2">2</option>
@@ -361,13 +392,13 @@
 				    		<option value="5">5</option>
 		  				</select>
 	   				</td>
-	    			<td><input type="text" name="3.9 beskrivelse" ></td>
+	    			<td><input type="text" name="beskrivelse3_9" ></td>
 	  			</tr> 
 
 	  			<tr>
 	    			<td>Tining:</td>
 	    			<td>
-	   					<select name="3.10 karakter">
+	   					<select name="0karakter3_10">
 				    		<option value="0">0</option>
 				    		<option value="1">1</option>
 				    		<option value="2">2</option>
@@ -376,13 +407,13 @@
 				    		<option value="5">5</option>
 		  				</select>
 	   				</td>
-	    			<td><input type="text" name="3.10 beskrivelse" ></td>
+	    			<td><input type="text" name="beskrivelse3_10" ></td>
 	  			</tr> 
 
 	  			<tr>
 	    			<td>porbarhet og merking:</td>
 	    			<td>
-	   					<select name="4.1 karakter">
+	   					<select name="karakter4_1">
 				    		<option value="0">0</option>
 				    		<option value="1">1</option>
 				    		<option value="2">2</option>
@@ -391,13 +422,13 @@
 				    		<option value="5">5</option>
 		  				</select>
 	   				</td>
-	    			<td><input type="text" name="4.1 beskrivelse" ></td>
+	    			<td><input type="text" name="beskrivelse4_1" ></td>
 	  			</tr> 
 
 	  			<tr>
 	    			<td>Merking av allergeningredienser;:</td>
 	    			<td>
-	   					<select name="4.2 karakter">
+	   					<select name="karakter4_2">
 				    		<option value="0">0</option>
 				    		<option value="1">1</option>
 				    		<option value="2">2</option>
@@ -406,7 +437,7 @@
 				    		<option value="5">5</option>
 		  				</select>
 	   				</td>
-	    			<td><input type="text" name="4.2 beskrivelse" ></td>
+	    			<td><input type="text" name="beskrivelse4_2" ></td>
 	  			</tr> 
 
 				<td></td><td></td><td><input type="submit" name="send"></td>

@@ -16,20 +16,9 @@
 	<?php
         if (isset($_POST["send"])) {
 
-	        $tilsynsobjektid = $_POST["tilsynsobjektid"];
-	        $tilsynid = $_POST["tilsynid"];
-	        $sakref = $_POST["sakref"];
-	        $status = $_POST["status"];
-	        $dato = $_POST["dato"];
-	        $total_karakter = $_POST["total_karakter"];
-	        $tema1_no = $_POST["tema1_no"];
-	        $karakter1 = $_POST["karakter1"];
-	        $tema2_no = $_POST["tema2_no"];
-	        $karakter2 = $_POST["karakter2"];
-	        $tema3_no = $_POST["tema3_no"];
-	        $karakter3 = $_POST["karakter3"];
-	        $tema4_no = $_POST["tema4_no"];
-	        $karakter4 = $_POST["karakter4"];
+	       $karakter1_1 = $_POST["karakter1_1"];
+	       echo $karakter1_1;
+	        
 
 			if(null != $tilsynsobjektid  && null != $tilsynid && null != $sakref && null != $status && null != $dato && null != $total_karakter && null != $tema1_no && null != $karakter1 && null != $tema2_no && null != $karakter2 && null != $tema3_no && null != $karakter3 && null != $tema4_no && null != $karakter4){
 				
