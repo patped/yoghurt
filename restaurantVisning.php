@@ -56,7 +56,7 @@ $db = kobleOpp($tilsynrapportConfig);
                         <th>Adresse</th>
                         <th>Postnummer</th>
                         <th>Poststed</th>
-                        <th>Smilefjes-Karakter</th>
+                        <th>Smilefjes-Karakter<br>(siste rapport)</th>
                         <tr>
                             <td>$orgnummer</td>
                             <td>$adresse</td>
