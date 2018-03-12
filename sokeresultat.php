@@ -89,39 +89,29 @@ $db = kobleOpp($tilsynrapportConfig);
 
                         $sqlSpørringHenteKarakter = (
 		                "SELECT t.total_karakter FROM
-		                    Restauranter AS r,
-		                    Poststed AS p,
 		                    Tilsynsrapporter AS t
-		                WHERE p.postnr = r.postnr
-		                AND t.tilsynsobjektid = r.tilsynsobjektid
-		                AND r.tilsynsobjektid
-		                LIKE '$id'
+		                WHERE t.tilsynsobjektid LIKE '$id'
 		                ORDER BY MOD(t.dato, 10) DESC, MOD((t.dato/10000), 100) DESC, t.dato/1000000 DESC" 
 		            	);
 		            	$utførSpørringMedKarakter = mysqli_query($db, $sqlSpørringHenteKarakter);
 		            	$svarKarakter = mysqli_fetch_assoc($utførSpørringMedKarakter);
 		            	$karakterSisteTilsyn = 0;
 		            	$teller = 0;
-		            	while ($svarKarakter) {
+		            	while ($svarKarakter && $teller<3) {
 		            	$karakterSisteTilsyn = $karakterSisteTilsyn + $svarKarakter['total_karakter'];
 		            	$teller = $teller + 1;
 		            	$svarKarakter = mysqli_fetch_assoc($utførSpørringMedKarakter);
 		            	}
 		            	$karakterSisteTilsynSnitt = $karakterSisteTilsyn/$teller;
-		            	switch ($karakterSisteTilsynSnitt) {
-                    	case 0:
-                       	$bilde = './bilder/smileys/storSmil.png';
-                        break;
-                    	case 1:
-                        $bilde = './bilder/smileys/liteSmil.png';
-                        break;
-                        case 2:
-                        $bilde = './bilder/smileys/ingenSmil.png';
-                        break;
-                    	default:
-                        $bilde = './bilder/smileys/spySmil.png';
-                		}
-
+		            	if ($karakterSisteTilsynSnitt<0.5) {
+                             $bilde = './bilder/smileys/storSmil.png';
+                         }else if ($karakterSisteTilsynSnitt<=1) {
+                             $bilde = './bilder/smileys/liteSmil.png';
+                         }else if ($karakterSisteTilsynSnitt<=1.5) {
+                             $bilde = './bilder/smileys/ingenSmil.png';
+                         }else{
+                             $bilde = './bilder/smileys/spySmil.png';
+                         }
                         /*Legger til alle resultater i en tabell*/
                         echo "<tr class='radMedLink'>";
                         echo "<td><a href='restaurantVisning.php?res=$id'>$rNavn</td>";
