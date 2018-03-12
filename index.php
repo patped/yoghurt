@@ -28,9 +28,9 @@
         <h2>Velg hva du vil søke på</h2>
 
         <form action="sokeresultat.php" method="POST" onsubmit="return sjekkForm()">
-            <label><input type="checkbox" onclick="orgKlikk()" name="orgnr" id="orgnr" value="">Søk på organisasjonsnummer</label>
+            <label><input type="checkbox" onclick="orgKlikk()" name="orgnr" id="orgnr" value=""> Søk på organisasjonsnummer</label>
             <label><input type="checkbox" onclick="adresseKlikk()" name="adresse" id="adresse" value="">Søk på adresse</label>
-            <label><input type="checkbox" onclick="restaurantKlikk()" name="restaurant" id="restaurant" value="">Søk på spisested</label>
+            <label><input type="checkbox" onclick="restaurantKlikk()" name="restaurant" id="restaurant" value=""> Søk på spisested</label>
 
             <br><br>
             <label hidden="true" id="spisestedLabel">Navn på spisested: </label><input type="text" id="spisestedSokefelt" name="spisestedSokefelt" value="" placeholder="Søk på navnet til spisested" hidden="true">

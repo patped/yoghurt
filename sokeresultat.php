@@ -9,8 +9,9 @@ $db = kobleOpp($tilsynrapportConfig);
     <title>Forside youghurt</title>
         <link rel="stylesheet" href="stilark.css" type="text/css">
     </head>
+    <?php include_once 'header.php'; ?>
     <body>
-        <?php include_once 'header.php'; ?>
+        
 
         <?php
         $header = "Resultat";
@@ -200,6 +201,8 @@ $db = kobleOpp($tilsynrapportConfig);
             }
         </script>
         </form>
-
+        
+        
     </body>
+    <?php include_once 'footer.php'; ?>
 </html>

@@ -1,6 +1,8 @@
 body {
+    margin-top: 70px;
+    margin-bottom: 50px;
     text-align: center;
-    background-color: #B11111;
+    background-color: lightgrey;
 }
 
 table {
