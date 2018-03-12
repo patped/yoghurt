@@ -35,6 +35,17 @@
 			<table>
 
 				<tr>
+	    			<td>TilsynsobjektID:</td>
+	    			<td><input type="text" name="tilsynsobjektid"></td>
+	  			</tr>
+
+	  			<tr>
+	    			<td>TilsynsID:</td>
+	    			<td><input type="text" name="tilsynid"></td>
+	  			</tr>
+
+
+				<tr>
 	    			<td>status:</td>
 	    			<td>
 		    			<select name="status">
