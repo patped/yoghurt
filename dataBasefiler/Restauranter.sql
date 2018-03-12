@@ -6,6 +6,8 @@ CREATE TABLE Restauranter (
 	adrlinje1 VARCHAR(100),
 	adrlinje2 VARCHAR(100),
 	postnr CHAR(5),
+	latitude DECIMAL(12,7),
+	longitude DECIMAL(12,7),
 	PRIMARY KEY (tilsynsobjektid),
 	FOREIGN KEY (postnr) REFERENCES Poststed(postnr)
 )Engine = INNODB;
