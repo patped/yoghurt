@@ -73,12 +73,21 @@ $db = kobleOpp($tilsynrapportConfig);
                 echo "Feil i pålogging";
                 exit;
             } else {
+                $svar;
+                $resultat;
+                if (isset($_POST["geolokasjon"])) {
+                    require_once "geoResultat.php";
+                    $latitude = $_POST["latitude"];
+                    $longitude = $_POST["longitude"];
+                    $resultat = iNaerheten($db, $latitude, $longitude);
+                } else {
+                    $svar = mysqli_query($db, $sqlSpørring);
+                    $resultat = $svar->fetch_all(MYSQLI_ASSOC);
+                }
                 echo "<h1>$header</h1>";
-                $svar = mysqli_query($db, $sqlSpørring);
-                $rad = mysqli_fetch_assoc($svar);
-                if ($rad) {                    
+                if (count($resultat) > 0) {                    
                     echo "<table name='resultatTabell'><th>Navn</th><th>Adresse</th><th>Postnummer</th><th>Poststed</th><th>Smilefjes</th>";
-                    while ($rad) {
+                    foreach ($resultat as $rad) {
                         $id = $rad['tilsynsobjektid'];
                         $rNavn = $rad['navn'];
                         $rPostnr = $rad['postnr'];
@@ -140,7 +149,9 @@ $db = kobleOpp($tilsynrapportConfig);
             <label><input type="checkbox" onclick="orgKlikk()" name="orgnr" id="orgnr" value="">Søk på organisasjonsnummer</label>
             <label><input type="checkbox" onclick="adresseKlikk()" name="adresse" id="adresse" value="">Søk på adresse</label>
             <label><input type="checkbox" onclick="restaurantKlikk()" name="restaurant" id="restaurant" value="">Søk på spisested</label>
-
+			<label><input type="checkbox" onclick="geoKlikk()" name="geolokasjon" id="geolokasjon" value="">Søk på spisested i nærheten</label>
+			<input type="hidden" name="latitude" id="latitude" value="">
+			<input type="hidden" name="longitude" id="longitude" value="">
             <br><br>
             <label hidden="true" id="spisestedLabel">Navn på spisested: </label><input type="text" id="spisestedSokefelt" name="spisestedSokefelt" value="" placeholder="Søk på navnet til spisested" hidden="true">
             <br>
@@ -174,6 +185,7 @@ $db = kobleOpp($tilsynrapportConfig);
                     document.getElementById("adresse").disabled = true;
                     document.getElementById("restaurant").disabled = true;
                     document.getElementById("utforSok").disabled = false;
+                    document.getElementById("geolokasjon").checked = false;
                 }
                 else{
                     document.getElementById("sokeFelt").placeholder="Søk på navnet til spisested";
@@ -196,6 +208,7 @@ $db = kobleOpp($tilsynrapportConfig);
                     document.getElementById("poststedInput").hidden = false;
                     document.getElementById("orgnr").disabled = true;
                     document.getElementById("utforSok").disabled = false;
+                    document.getElementById("geolokasjon").checked = false;
                 }else{
                     if (!document.getElementById("restaurant").checked) {
                         document.getElementById("orgnr").disabled = false;
@@ -220,6 +233,7 @@ $db = kobleOpp($tilsynrapportConfig);
                     document.getElementById("spisestedSokefelt").placeholder="Søk på navnet til spisested";
                     document.getElementById("orgnr").disabled = true;
                     document.getElementById("utforSok").disabled = false;
+                    document.getElementById("geolokasjon").checked = false;
                 }
                 else{
                     if (!document.getElementById("adresse").checked) {
@@ -234,6 +248,45 @@ $db = kobleOpp($tilsynrapportConfig);
                     
                 }
             }
+
+            function geoKlikk() {
+				if(document.getElementById("geolokasjon").checked) {
+					document.getElementById("orgnr").checked = false;
+					document.getElementById("orgnr").disabled = false;
+					document.getElementById("adresse").checked = false;
+					document.getElementById("adresse").disable = false;
+					document.getElementById("restaurant").checked = false;
+					document.getElementById("restaurant").disable = false;
+					document.getElementById("utforSok").disabled = false;
+					document.getElementById("spisestedSokefelt").value = "";
+					document.getElementById("spisestedLabel").hidden = true;
+					document.getElementById("spisestedSokefelt").hidden = true;
+					document.getElementById("poststedLabel").hidden = true;
+					document.getElementById("poststedInput").hidden = true;
+					document.getElementById("sokeFelt").hidden = true;
+					document.getElementById("sokeFelt").value = "";
+					document.getElementById("poststedInput").value = "";
+					document.getElementById("adresseLabel").hidden = true;
+					getLocation();
+				} else {
+					document.getElementById("utforSok").disabled = true;
+				}
+				
+			}
+			
+			function getLocation() {
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(showPosition);
+				} else { 
+					lokasjon = "Geolocation is not supported by this browser.";
+				}
+			}
+				
+			function showPosition(position) {
+				latitude.value = position.coords.latitude; 
+				longitude.value = position.coords.longitude;
+			}
+
         </script>
         </form>
 
