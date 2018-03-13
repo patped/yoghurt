@@ -33,7 +33,9 @@
             <label><input type="checkbox" onclick="orgKlikk()" name="orgnr" id="orgnr" value="">Søk på organisasjonsnummer</label>
             <label><input type="checkbox" onclick="adresseKlikk()" name="adresse" id="adresse" value="">Søk på adresse</label>
             <label><input type="checkbox" onclick="restaurantKlikk()" name="restaurant" id="restaurant" value="">Søk på spisested</label>
-
+			<label><input type="checkbox" onclick="geoKlikk()" name="geolokasjon" id="geolokasjon" value="">Søk på spisested i nærheten</label>
+			<input type="hidden" name="latitude" id="latitude" value="">
+			<input type="hidden" name="longitude" id="longitude" value="">
             <br><br>
             <label hidden="true" id="spisestedLabel">Navn på spisested: </label><input type="text" id="spisestedSokefelt" name="spisestedSokefelt" value="" placeholder="Søk på navnet til spisested" hidden="true">
             <br>
@@ -67,6 +69,7 @@
 					document.getElementById("adresse").disabled = true;
 					document.getElementById("restaurant").disabled = true;
 					document.getElementById("utforSok").disabled = false;
+					document.getElementById("geolokasjon").checked = false;
 				}
 				else{
 					document.getElementById("sokeFelt").placeholder="Søk på navnet til spisested";
@@ -89,6 +92,7 @@
 					document.getElementById("poststedInput").hidden = false;
 					document.getElementById("orgnr").disabled = true;
 					document.getElementById("utforSok").disabled = false;
+					document.getElementById("geolokasjon").checked = false;
 				}else{
 					if (!document.getElementById("restaurant").checked) {
 						document.getElementById("orgnr").disabled = false;
@@ -113,6 +117,7 @@
 					document.getElementById("spisestedSokefelt").placeholder="Søk på navnet til spisested";
 					document.getElementById("orgnr").disabled = true;
 					document.getElementById("utforSok").disabled = false;
+					document.getElementById("geolokasjon").checked = false;
 				}
 				else{
 					if (!document.getElementById("adresse").checked) {
@@ -127,6 +132,45 @@
 					
 				}
 			}
+
+			function geoKlikk() {
+				if(document.getElementById("geolokasjon").checked) {
+					document.getElementById("orgnr").checked = false;
+					document.getElementById("orgnr").disabled = false;
+					document.getElementById("adresse").checked = false;
+					document.getElementById("adresse").disable = false;
+					document.getElementById("restaurant").checked = false;
+					document.getElementById("restaurant").disable = false;
+					document.getElementById("utforSok").disabled = false;
+					document.getElementById("spisestedSokefelt").value = "";
+					document.getElementById("spisestedLabel").hidden = true;
+					document.getElementById("spisestedSokefelt").hidden = true;
+					document.getElementById("poststedLabel").hidden = true;
+					document.getElementById("poststedInput").hidden = true;
+					document.getElementById("sokeFelt").hidden = true;
+					document.getElementById("sokeFelt").value = "";
+					document.getElementById("poststedInput").value = "";
+					document.getElementById("adresseLabel").hidden = true;
+					getLocation();
+				} else {
+					document.getElementById("utforSok").disabled = true;
+				}
+				
+			}
+			
+			function getLocation() {
+				if (navigator.geolocation) {
+					navigator.geolocation.getCurrentPosition(showPosition);
+				} else { 
+					lokasjon = "Geolocation is not supported by this browser.";
+				}
+			}
+				
+			function showPosition(position) {
+				latitude.value = position.coords.latitude; 
+				longitude.value = position.coords.longitude;
+			}
+
         </script>
         <script src="bibloteker/jquery/jquery-3.3.1.js"></script>
         <script src="bibloteker/bootstrap-4.0.0-dist/js/bootstrap.bundle.js"></script>
