@@ -56,7 +56,7 @@ $db = kobleOpp($tilsynrapportConfig);
                         <th>Adresse</th>
                         <th>Postnummer</th>
                         <th>Poststed</th>
-                        <th>Smilefjes-Karakter</th>
+                        <th>Smilefjes-Karakter<br>(siste rapport)</th>
                         <tr>
                             <td>$orgnummer</td>
                             <td>$adresse</td>
@@ -67,23 +67,57 @@ $db = kobleOpp($tilsynrapportConfig);
                     </table>
                     ";
                     /* Legger til Smilefjes-karakter*/
-                    switch ($totalkarakter) {
-                    case 0:
-                       $bilde = './bilder/smilSmil.jpg';
-                        break;
-                    case 1:
-                        $bilde = './bilder/mellomSmil.jpg';
-                        break;
-                    default:
-                        $bilde = './bilder/surSmil.jpg';
-                }
+                    $sqlSpørringHenteKarakter = (
+                        "SELECT t.total_karakter FROM
+                            Tilsynsrapporter AS t
+                        WHERE t.tilsynsobjektid LIKE '$id'
+                        ORDER BY MOD(t.dato, 10) DESC, MOD((t.dato/10000), 100) DESC, t.dato/1000000 DESC" 
+                        );
+                        $utførSpørringMedKarakter = mysqli_query($db, $sqlSpørringHenteKarakter);
+                        $svarKarakter = mysqli_fetch_assoc($utførSpørringMedKarakter);
+                        $karakterSisteTilsyn = 0;
+                        $teller = 0;
+                        while ($svarKarakter && $teller<3) {
+                        $karakterSisteTilsyn = $karakterSisteTilsyn + $svarKarakter['total_karakter'];
+                        $teller = $teller + 1;
+                        $svarKarakter = mysqli_fetch_assoc($utførSpørringMedKarakter);
+                        }
+                        $karakterSisteTilsynSnitt = $karakterSisteTilsyn/$teller;
+                        if ($karakterSisteTilsynSnitt<0.5) {
+                             $bilde = './bilder/smileys/storSmil.png';
+                         }else if ($karakterSisteTilsynSnitt<=1) {
+                             $bilde = './bilder/smileys/liteSmil.png';
+                         }else if ($karakterSisteTilsynSnitt<=1.5) {
+                             $bilde = './bilder/smileys/ingenSmil.png';
+                         }else{
+                             $bilde = './bilder/smileys/spySmil.png';
+                         }
                     
                     echo "
-                      <img id ='smileBilde' src='$bilde' title='smilefjes' width= '30%'>
+                      <img id ='smileBilde' src='$bilde' title='smilefjes' width= '25%'>
                       <div id='map'></div>
                     ";
                     
-
+                    //Legger til siste 3 tilsynsrapporter dersom det eksisterer:
+                    $sqlSpørringHenteTilsynsrapport = (
+                        "SELECT * FROM
+                            Tilsynsrapporter AS t
+                        WHERE t.tilsynsobjektid LIKE '$id'
+                        ORDER BY MOD(t.dato, 10) DESC, MOD((t.dato/10000), 100) DESC, t.dato/1000000 DESC" 
+                        );
+                    $utførSpørringHenteTilsynsRapport = mysqli_query($db, $sqlSpørringHenteTilsynsrapport);
+                    $svarTilsynsrapport = mysqli_fetch_assoc($utførSpørringHenteTilsynsRapport);
+                    echo "<table name='tilsynTabell'><th>Tilsynsrapporter</th>";
+                    $teller = 0;
+                    while ($svarTilsynsrapport && $teller<3) {
+                        $tilsynsobjektid = $svarTilsynsrapport['tilsynsobjektid'];
+                        echo "<tr><td>";
+                        echo "<a href='Mathias_sin_nettside_om_Tilsynsrapporter'>$tilsynsobjektid</td>";
+                        $svarTilsynsrapport = mysqli_fetch_assoc($utførSpørringHenteTilsynsRapport);
+                        $teller++;
+                        echo "</td></tr>";
+                        }
+                        echo "</table>";
 
 
                     /*Legger til script for å vise Google Map*/
@@ -91,7 +125,7 @@ $db = kobleOpp($tilsynrapportConfig);
                     <script>
                       function initMap() {
                       var map = new google.maps.Map(document.getElementById('map'), {
-                        zoom: 15,
+                        zoom: 17,
                         center: {lat: 0, lng: 0}
                       });
                       var geocoder = new google.maps.Geocoder();
