@@ -9,7 +9,6 @@ function iNaerheten($db, $userLat, $userLong) {
         $latitude = $rad['latitude'];
         $longitude = $rad['longitude'];
         $distanse = distanse($userLat, $userLong, $latitude, $longitude);
-        echo $distanse;
         if ($distanse < 5) {
             $resultat[] = $rad;
         }
