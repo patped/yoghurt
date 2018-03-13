@@ -31,7 +31,7 @@
 		echo <<<EOT
 
 	<div>
-		<form method="POST" action="registrerBedrift.php">
+		<form method="POST" action="registrerTilsynsraport.php">
 			<table>
 			
 	  			<tr>
@@ -63,68 +63,43 @@
 	    			<td>Total karakter:</td>
 	    			<td><input type="text" name="total_karakter" ></td>
 	  			</tr> 
-
-	  			tr>
-	    			<td>Tilsynsbesoektype:</td>
-	    			<td><input type="text" name="tilsynsbesoektype" ></td>
-	  			</tr> 
-
-	  			tr>
+	  			
+	  			<tr>
 	    			<td>tema1_no:</td>
 	    			<td><input type="text" name="tema1_no" ></td>
 	  			</tr> 
 
-	  			tr>
-	    			<td>tema1_nn:</td>
-	    			<td><input type="text" name="tema1_nn" ></td>
-	  			</tr> 
-
-	  			tr>
+	  			<tr>
 	    			<td>karakter1:</td>
 	    			<td><input type="text" name="karakter1" ></td>
 	  			</tr> 
 
-	  			tr>
+	  			<tr>
 	    			<td>tema2_no:</td>
 	    			<td><input type="text" name="tema2_no" ></td>
 	  			</tr> 
 
-	  			tr>
-	    			<td>tema2_nn:</td>
-	    			<td><input type="text" name="tema2_nn" ></td>
-	  			</tr> 
-
-	  			tr>
+	  			<tr>
 	    			<td>karakter2:</td>
 	    			<td><input type="text" name="karakter2" ></td>
 	  			</tr> 
 
-	  			tr>
+	  			<tr>
 	    			<td>tema3_no:</td>
-	    			<td><input type="text" name="tema4_no" ></td>
+	    			<td><input type="text" name="tema3_no" ></td>
 	  			</tr> 
 
-	  			tr>
-	    			<td>tema3_nn:</td>
-	    			<td><input type="text" name="tema3_nn" ></td>
-	  			</tr> 
-
-	  			tr>
+	  			<tr>
 	    			<td>karakter3:</td>
 	    			<td><input type="text" name="karakter3" ></td>
 	  			</tr> 
 
-	  			tr>
+	  			<tr>
 	    			<td>tema4_no:</td>
 	    			<td><input type="text" name="tema4_no" ></td>
 	  			</tr> 
 
-	  			tr>
-	    			<td>tema4_nn:</td>
-	    			<td><input type="text" name="tema4_nn" ></td>
-	  			</tr> 
-
-	  			tr>
+	  			<tr>
 	    			<td>karakter4:</td>
 	    			<td><input type="text" name="karakter4" ></td>
 	  			</tr> 
