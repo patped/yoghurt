@@ -107,12 +107,18 @@ $db = kobleOpp($tilsynrapportConfig);
                         );
                     $utførSpørringHenteTilsynsRapport = mysqli_query($db, $sqlSpørringHenteTilsynsrapport);
                     $svarTilsynsrapport = mysqli_fetch_assoc($utførSpørringHenteTilsynsRapport);
-                    echo "<table name='tilsynTabell'><th>Tilsynsrapporter</th>";
+                    echo "<table name='tilsynTabell'><th>Dato for rapport</th><th></th><th></th><th></th>";
                     $teller = 0;
                     while ($svarTilsynsrapport && $teller<3) {
-                        $tilsynsobjektid = $svarTilsynsrapport['tilsynsobjektid'];
+                        $dato = $svarTilsynsrapport['dato'];
+                        $dag = round($dato/1000000);
+                        $måned = round(fmod($dato, 1000000)/10000);
+                        $år = fmod($dato, 100);
+                        if ($måned<10) {
+                            $måned = "0" . $måned;
+                        }
                         echo "<tr><td>";
-                        echo "<a href='Mathias_sin_nettside_om_Tilsynsrapporter'>$tilsynsobjektid</td>";
+                        echo "<a href='Mathias_sin_nettside_om_Tilsynsrapporter'>$dag.$måned.$år</td>";
                         $svarTilsynsrapport = mysqli_fetch_assoc($utførSpørringHenteTilsynsRapport);
                         $teller++;
                         echo "</td></tr>";
