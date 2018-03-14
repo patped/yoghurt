@@ -1,6 +1,6 @@
 <?php
 	include_once 'database.php';
-	$db = kobleOpp($tilsynrapportConfig);
+	$db = kobleOpp();
 	session_start();
 	sjekkInnlogging();
 ?>
