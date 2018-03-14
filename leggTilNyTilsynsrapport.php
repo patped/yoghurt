@@ -298,13 +298,13 @@
 				    		<option value="5">5</option>
 		  				</select>
 	   				</td>
-	    			<td><input type="text" name="3_2beskrivelse" ></td>
+	    			<td><input type="text" name="beskrivelse3_2" ></td>
 	  			</tr> 
 
 	  			<tr>
 	    			<td>Forurensningsfare:</td>
 	    			<td>
-	   					<select name="3_3karakter">
+	   					<select name="karakter3_3">
 				    		<option value="0">0</option>
 				    		<option value="1">1</option>
 				    		<option value="2">2</option>
@@ -409,7 +409,7 @@
 	  			<tr>
 	    			<td>Tining:</td>
 	    			<td>
-	   					<select name="0karakter3_10">
+	   					<select name="karakter3_10">
 				    		<option value="0">0</option>
 				    		<option value="1">1</option>
 				    		<option value="2">2</option>
