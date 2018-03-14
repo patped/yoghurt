@@ -1,22 +1,19 @@
 <link rel="stylesheet" type="text/css" href="header.css">
-<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
 <script>
 	function goBack() {
 		window.history.back();
 	}
 </script>
 
-<div id="container">
-	<div class="jumbotron">
+<div class="container">
 
 		<div class="venstreKnapper">
-		<button onClick="window.location='index.php'" class="homeButton">Home</button>
-		<button onClick="goBack()" class="backButton">Tilbake</button>
+		<button onClick="window.location='index.php'" class="homeButton"><img style="height: 30px;" src="bilder/homeButton.png"></button>
+		<button onClick="goBack()" class="backButton"><img style="height: 30px;" src="bilder/backButton.svg"></button>
 		</div>
 
-		<img src="bilder/tempLogo.jpg" href="yogurt/index.php">
-
-	</div>
+		<img id="logo" src="bilder/tempLogo.jpg" href="yogurt/index.php">
 
 </div>
 
