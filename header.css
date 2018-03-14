@@ -1,3 +1,6 @@
+body {
+  background-color: lightblue;
+}
 
 img {
 	float: left;
@@ -8,22 +11,28 @@ img {
 
 .homeButton {
 	background-color: green;
+  float: left;
+}
+
+.backButton {
+  background-color: blue;
+  float: left;
 }
 
 .venstreKnapper {
-	height: 100%;
+	height: 30px;
 }
 
-#nav {
-  background-color: #333;
+.jumbotron {
   overflow: hidden;
   position: fixed;
   top: 0;
   left:0;
   width: 100%;
+  height: 30px;
 }
 
-#nav button {
+.jumbotron button {
   float: left;
   height: 50px;
   display: block;
@@ -34,7 +43,7 @@ img {
   font-size: 17px;
 }
 
-#nav button:hover {
+.jumbotron button:hover {
   background-color: #ddd;
   color: black;
 }
