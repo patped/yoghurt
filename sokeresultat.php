@@ -94,7 +94,6 @@ $db = kobleOpp();
                         $rAdresse = $rad['adrlinje1'];
                         $rPoststed = $rad['poststed'];
                         $orgnummer = $rad['orgnummer'];
-                        $rad= mysqli_fetch_assoc($svar);
 
                         $sqlSpørringHenteKarakter = (
 		                "SELECT t.total_karakter FROM
