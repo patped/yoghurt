@@ -1,6 +1,6 @@
 <?php
 require_once 'database.php';
-$db = kobleOpp($tilsynrapportConfig);
+$db = kobleOpp();
 ?>
 <!doctype html>
 <html>
