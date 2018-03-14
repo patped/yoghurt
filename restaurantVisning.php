@@ -107,7 +107,7 @@ $db = kobleOpp($tilsynrapportConfig);
                         );
                     $utførSpørringHenteTilsynsRapport = mysqli_query($db, $sqlSpørringHenteTilsynsrapport);
                     $svarTilsynsrapport = mysqli_fetch_assoc($utførSpørringHenteTilsynsRapport);
-                    echo "<table name='tilsynTabell'><th>Dato for rapport</th><th></th><th></th><th></th>";
+                    echo "<table name='tilsynTabell'><th>Dato for rapport</th><th>Mattilsynets smilefjes</th>";
                     $teller = 0;
                     while ($svarTilsynsrapport && $teller<3) {
                         $dato = $svarTilsynsrapport['dato'];
@@ -117,11 +117,32 @@ $db = kobleOpp($tilsynrapportConfig);
                         if ($måned<10) {
                             $måned = "0" . $måned;
                         }
+                        if ($dag<10) {
+                            $dag = "0" . $dag;
+                        }
+                        switch ($svarTilsynsrapport['total_karakter']) {
+                            case '0':
+                                $mattilsynetSmil = './bilder/smileys/storSmil.png';
+                                break;
+                            case '1':
+                                $mattilsynetSmil = './bilder/smileys/liteSmil.png';
+                                break;
+                            case '2':
+                                $mattilsynetSmil = './bilder/smileys/ingenSmil.png';
+                                break;
+                            case '3':
+                                $mattilsynetSmil = './bilder/smileys/storSmil.png';
+                                break;
+                            default:
+                                $mattilsynetSmil = './bilder/smileys/spySmil.png';
+                                break;
+                        }
                         echo "<tr><td>";
                         echo "<a href='Mathias_sin_nettside_om_Tilsynsrapporter'>$dag.$måned.$år</td>";
+                        echo "<td><a href='Mathias_sin_nettside_om_Tilsynsrapporter'><img id ='smileBilde' src='$mattilsynetSmil' title='smilefjes' width= '5%'></td>";
                         $svarTilsynsrapport = mysqli_fetch_assoc($utførSpørringHenteTilsynsRapport);
                         $teller++;
-                        echo "</td></tr>";
+                        echo "</tr>";
                         }
                         echo "</table>";
 
