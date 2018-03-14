@@ -15,7 +15,7 @@
 	
 	<?php
         if (isset($_POST["send"])) {
-           $tilsynsobjektid = $_POST["tilsynsobjektids"];
+           $tilsynsobjektid = $_POST["tilsynsobjektid"];
 	       $tilsynid = $_POST["tilsynid"];
 	       $status = $_POST["status"];
 	       $tilsynsbesoektype = $_POST["tilsynsbesoektype"];
@@ -75,17 +75,45 @@
 	       $formSvarTab[24][1] = $_POST["karakter4_2"];
 
 	       //opretter tom tilsynsraport	
-		   $sql = ("INSERT INTO Tilsynsrapporter (tilsynsobjektid, tilsynid) VALUES ('$tilsynsobjektid', '$tilsynid');");
+		   $sql = ("INSERT INTO Tilsynsrapporter (tilsynsobjektid, tilsynid) 
+		   			VALUES ('$tilsynsobjektid', '$tilsynid');");
 
 		   $resultat = mysqli_query( $db, $sql);
 		   if($resultat){
 	       		echo "velykket insetting av tilsynsraport";	
 	       		
 	       	}
-	       	else
+	       	else{
 	       		echo "insetting feilet";
+	       	}
 
-		  
+	       	//henter kravpunktnavn og ordningsverdi fra kravpunkter
+			$sqlspørring = ("SELECT DISTINCT ordingsverdi,kravpunktnavn_no
+							 FROM Kravpunkter;");
+			$svar = mysqli_query( $db, $sqlspørring );
+			if($sqlspørring){
+	       		echo "  velykket spørring";		
+	       	}
+
+			//bygger opp og sender 25 spøringer for å sette inn i kravpunkter
+			$rad = mysqli_fetch_assoc($svar);
+			$teller = 0;
+			while ($rad) {
+                        $ordingsverdi = $rad['ordingsverdi'];
+                        $kravpunktnavn_no = $rad['kravpunktnavn_no'];
+                        $karakter = $formSvarTab[$teller][0];
+                        $tekst_no = $formSvarTab[$teller][1];
+                        $sql2 = ("INSERT INTO Kravpunkter (tilsynid, dato, ordingsverdi, kravpunktnavn_no, karakter, tekst_no) 
+	       			 			 VALUES ('$tilsynid', '$dato', '$ordingsverdi', '$kravpunktnavn_no', '$karakter', '$tekst_no');");
+                        $svar2 = mysqli_query( $db, $sql2);
+                        $rad= mysqli_fetch_assoc($svar);
+                        $teller++;
+                        echo "$teller";
+
+				       	if($svar2){
+				       		//echo "velykket insetting av kravpunkt $ordingsverdi";		
+				       	}
+			}
 		}
 
     ?>
