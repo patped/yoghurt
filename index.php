@@ -17,8 +17,7 @@
 
 
 	     <?php 
-	     $loginnBoolean = false;
-	     logginn($loginnBoolean);
+	     logginn();
 	     ?>
         
         <h1>Hvilken smiley har bedriften fått?</h1>
