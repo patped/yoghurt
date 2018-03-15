@@ -8,7 +8,7 @@ $db = kobleOpp();
     <meta charset="utf-8">
     <title>Forside youghurt</title>
         <link rel="stylesheet" href="stilark.css" type="text/css">
-        <link rel="stylesheet" href="bibloteker/bootstrap-4.0.0-dist/css/bootstrap.css">
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     </head>
     <body>
         <div class="loginn">
@@ -50,16 +50,17 @@ $db = kobleOpp();
                 $totalkarakter = $rad['total_karakter'];
                 $fullAdresse = $rad['adrlinje1'] . ' ' . $rad['poststed'];
                 echo "
-                    <div class='container-fluid'>
-                    <div class='navbar-header'>   
+                    
+                    <div class='jumbotron text-center'>
                     <h1>$navn</h1>
                     <h2>$fullAdresse</h2>
                 </div>
+                <div class='container'>
 
-                    <div class='col-lg-4'>
-                    
+                    <div class='table-responsive'>
+                    <div class='col-md-4'>
 
-                    <table name='resultatTabell'>
+                    <table class='table table-bordered'>
                         <th>Adresse: </th>
                         <th>$adresse</th>
                     <tr>
@@ -72,7 +73,6 @@ $db = kobleOpp();
                     </tr>
                         <th>Smilefjes-Karakter<br>(siste rapport)</th>
                         
-                    </table>
 
 
                     
@@ -106,7 +106,8 @@ $db = kobleOpp();
                     
                     echo "
                     
-                      <img id ='smileBilde' src='$bilde' title='smilefjes' width= '25%'>
+                     <th><img id ='smileBilde' src='$bilde' title='smilefjes' width= '25%'></th>
+                    </table>
                       </div>
                       
                       
@@ -124,7 +125,7 @@ $db = kobleOpp();
                     $svarTilsynsrapport = mysqli_fetch_assoc($utførSpørringHenteTilsynsRapport);
 
 
-                    echo "<div class='col-lg-4'> <table name='tilsynTabell'><th>Dato for rapport</th><th>Mattilsynets smilefjes</th>";
+                    echo "<div class='col-md-4'> <table class='table table-bordered'><th><h2>Dato for rapport</h2></th><th><h2>Mattilsynets smilefjes</h2></th>";
                     $teller = 0;
                     while ($svarTilsynsrapport && $teller<3) {
                         $dato = $svarTilsynsrapport['dato'];
@@ -165,10 +166,13 @@ $db = kobleOpp();
                         }
                         echo "</table>
                     </div>
-
-                      <div class='col-md-6'>
-                      <div id='map'></div>
+                        
+                    <div class='col-md-4'>
+                      <div id='map' style='width: 300px; height: 400px;'></div>
                   </div>
+                  
+
+                        
                     ";
 
 
@@ -201,7 +205,7 @@ $db = kobleOpp();
                       });
                     }
                                         </script>
-                                        </div>
+                                        
                                     </div>
                 ";
             } else {
@@ -219,6 +223,6 @@ $db = kobleOpp();
     </script>
     </script>
         <script src="bibloteker/jquery/jquery-3.3.1.js"></script>
-        <script src="bibloteker/bootstrap-4.0.0-dist/js/bootstrap.bundle.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </body>
 </html>
