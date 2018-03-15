@@ -3,10 +3,6 @@ require_once "tilsynsrapportKontroller.php";
 
 $dato = hentDato();
 
-function tema(){
-
-}
-
 function kravpunkter($ordningsverdi) {
     $kravpunkter = hentKravpunkter($ordningsverdi);
     foreach ($kravpunkter as $data) {
