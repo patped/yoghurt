@@ -5,7 +5,7 @@ session_start();
 //hentTemaer();
 hentDato();
 hentKravpunkter();
-header('Location: tilsynsrapport.php');
+//header('Location: tilsynsrapport.php');
 
 // Funksjoner
 function hentTemaer() {

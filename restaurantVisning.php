@@ -140,8 +140,8 @@ $db = kobleOpp();
                         }
                         $tilsynid = $svarTilsynsrapport['tilsynid'];
                         echo "<tr><td>";
-                        echo "<a href='tilsynsrapport/tilsynsrapportKontroller.php?tilsynid=$tilsynid&dato=$dato'>$dato</td>";
-                        echo "<td><a href='tilsynsrapport/tilsynsrapportKontroller.php?tilsynid=$tilsynid&dato=$dato'><img id ='smileBilde' src='$mattilsynetSmil' title='smilefjes' width= '5%'></td>";
+                        echo "<a href='tilsynsrapport/tilsynsrapport.php?tilsynid=$tilsynid&dato=$dato'>$dato</td>";
+                        echo "<td><a href='tilsynsrapport/tilsynsrapport.php?tilsynid=$tilsynid&dato=$dato'><img id ='smileBilde' src='$mattilsynetSmil' title='smilefjes' width= '5%'></td>";
                         $svarTilsynsrapport = mysqli_fetch_assoc($utførSpørringHenteTilsynsRapport);
                         $teller++;
                         echo "</tr>";
