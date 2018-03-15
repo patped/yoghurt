@@ -75,8 +75,8 @@
 	       $formSvarTab[24][1] = $_POST["karakter4_2"];
 
 	       //opretter tom tilsynsraport	
-		   $sql = ("INSERT INTO Tilsynsrapporter (tilsynsobjektid, tilsynid) 
-		   			VALUES ('$tilsynsobjektid', '$tilsynid');");
+		   $sql = ("INSERT INTO Tilsynsrapporter (tilsynsobjektid, tilsynid,tema1_no, tema2_no, tema3_no, tema4_no) 
+		   			VALUES ('$tilsynsobjektid', '$tilsynid', 'Rutiner og ledelse,', 'Lokaler og utstyr', 'Mat-håndtering og tilberedning', 'Merking og sporbarhet');");
 
 		   $resultat = mysqli_query( $db, $sql);
 		   if($resultat){
@@ -98,22 +98,68 @@
 			//bygger opp og sender 25 spøringer for å sette inn i kravpunkter
 			$rad = mysqli_fetch_assoc($svar);
 			$teller = 0;
+			$karakter1 = 0;
+            $karakter2 = 0;
+            $karakter3 = 0;
+            $karakter4 = 0;
+            $totalkarakter = 0;
 			while ($rad) {
                         $ordingsverdi = $rad['ordingsverdi'];
                         $kravpunktnavn_no = $rad['kravpunktnavn_no'];
-                        $karakter = $formSvarTab[$teller][0];
-                        $tekst_no = $formSvarTab[$teller][1];
+                        $tekst_no = $formSvarTab[$teller][0];
+                        $karakter = $formSvarTab[$teller][1];
                         $sql2 = ("INSERT INTO Kravpunkter (tilsynid, dato, ordingsverdi, kravpunktnavn_no, karakter, tekst_no) 
 	       			 			 VALUES ('$tilsynid', '$dato', '$ordingsverdi', '$kravpunktnavn_no', '$karakter', '$tekst_no');");
                         $svar2 = mysqli_query( $db, $sql2);
                         $rad= mysqli_fetch_assoc($svar);
-                        $teller++;
-                        echo "$teller";
 
-				       	if($svar2){
-				       		//echo "velykket insetting av kravpunkt $ordingsverdi";		
-				       	}
+                        $tema = substr( $ordingsverdi, 0, 1 );
+                        
+
+                        switch ($tema) {
+						    case '1':
+						        if ($karakter > $karakter1) {
+						        	$karakter1 = $karakter;
+						        }
+						        break;
+						    case '2':
+						        if($karakter > $karakter2) {
+						        	$karakter2 = $karakter;
+						        }
+						        break;
+						    case '3':
+						        if($karakter > $karakter3) {
+						        	$karakter3 = $karakter;
+						        }
+						        break;
+						    case '4':
+						        if ($karakter > $karakter4) {
+						        	$karakter4 = $karakter;
+						        }
+						        break;
+						}
+						if ($karakter > $totalkarakter) {
+							$totalkarakter = $karakter;						}
+                        
+                        $teller++;
+
 			}
+				       	if($svar2){
+				       		echo "velykket insetting av kravpunkt $ordingsverdi";		
+				       	}
+
+				       	$sql3 = ("UPDATE Tilsynsrapporter
+								SET karakter1 ='$karakter1', karakter2 ='$karakter2', karakter3='$karakter3', karakter4 = '$karakter4', total_karakter = '$totalkarakter'
+								WHERE tilsynid = '$tilsynid';");
+				       	$svar3 = mysqli_query( $db, $sql3);
+
+				       	if($svar3){
+				       		echo "    velykket insetting av tilsynsraport andre gang";		
+				       	}
+
+
+
+
 		}
 
     ?>
