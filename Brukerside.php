@@ -17,7 +17,9 @@
 	<?php
 	//denne løsninga her kan kanskje omgjøres?
 	if (isset($_POST['submit'])) {
-		$_SESSION['loggetInn'] = sjekkInnlogg($db, $_POST['brukernavn'] , $_POST['passord']);
+		$brukernavn = $_POST['brukernavn'];
+		$passord = $_POST['passord'];
+		$_SESSION['loggetInn'] = sjekkInnlogg($db, $brukernavn, $passord);
 		if ($_SESSION['loggetInn'] == true) {
 			loggInn();
 			echo <<<EOT
@@ -51,6 +53,9 @@
 EOT;
 		}else{
 			echo "Innlogging feilet, prøv igjen!";
+			$passordTest = $_POST['passord'];
+			$passordTestKryptert = crypt($passordTest, "a1k9sg2kg $52dm2mvøa'¨213'¨11£$1dcwqegg543@€{2 sd3");
+			echo "$passordTestKryptert";
 		}
 	}
 
