@@ -8,6 +8,7 @@ $db = kobleOpp($tilsynrapportConfig);
     <meta charset="utf-8">
     <title>Forside youghurt</title>
         <link rel="stylesheet" href="stilark.css" type="text/css">
+        <link rel="stylesheet" href="bibloteker/bootstrap-4.0.0-dist/css/bootstrap.css">
     </head>
     <body>
         <div class="loginn">
@@ -49,22 +50,32 @@ $db = kobleOpp($tilsynrapportConfig);
                 $totalkarakter = $rad['total_karakter'];
                 $fullAdresse = $rad['adrlinje1'] . ' ' . $rad['poststed'];
                 echo "
+                    <div class='container-fluid'>
+                    <div class='navbar-header'>   
                     <h1>$navn</h1>
                     <h2>$fullAdresse</h2>
+                </div>
+
+                    <div class='col-lg-4'>
+                    
+
                     <table name='resultatTabell'>
-                        <th>Organisasjonsnummer</th>
-                        <th>Adresse</th>
-                        <th>Postnummer</th>
-                        <th>Poststed</th>
+                        <th>Adresse: </th>
+                        <th>$adresse</th>
+                    <tr>
+                        <th>Postnummer: </th>
+                        <th>$postnummer</th>
+                    </tr>
+                    <tr>
+                        <th>Orgnummer: </th>
+                        <th>$orgnummer</th>
+                    </tr>
                         <th>Smilefjes-Karakter<br>(siste rapport)</th>
-                        <tr>
-                            <td>$orgnummer</td>
-                            <td>$adresse</td>
-                            <td>$postnummer</td>
-                            <td>$poststed</td>
-                            <td>$totalkarakter</td>
-                        </tr>
+                        
                     </table>
+
+
+                    
                     ";
                     /* Legger til Smilefjes-karakter*/
                     $sqlSpørringHenteKarakter = (
@@ -94,8 +105,12 @@ $db = kobleOpp($tilsynrapportConfig);
                          }
                     
                     echo "
+                    
                       <img id ='smileBilde' src='$bilde' title='smilefjes' width= '25%'>
-                      <div id='map'></div>
+                      </div>
+                      
+                      
+                      
                     ";
                     
                     //Legger til siste 3 tilsynsrapporter dersom det eksisterer:
@@ -107,7 +122,9 @@ $db = kobleOpp($tilsynrapportConfig);
                         );
                     $utførSpørringHenteTilsynsRapport = mysqli_query($db, $sqlSpørringHenteTilsynsrapport);
                     $svarTilsynsrapport = mysqli_fetch_assoc($utførSpørringHenteTilsynsRapport);
-                    echo "<table name='tilsynTabell'><th>Dato for rapport</th><th>Mattilsynets smilefjes</th>";
+
+
+                    echo "<div class='col-lg-4'> <table name='tilsynTabell'><th>Dato for rapport</th><th>Mattilsynets smilefjes</th>";
                     $teller = 0;
                     while ($svarTilsynsrapport && $teller<3) {
                         $dato = $svarTilsynsrapport['dato'];
@@ -138,13 +155,20 @@ $db = kobleOpp($tilsynrapportConfig);
                                 break;
                         }
                         echo "<tr><td>";
-                        echo "<a href='Mathias_sin_nettside_om_Tilsynsrapporter'>$dag.$måned.$år</td>";
-                        echo "<td><a href='Mathias_sin_nettside_om_Tilsynsrapporter'><img id ='smileBilde' src='$mattilsynetSmil' title='smilefjes' width= '5%'></td>";
+                        echo "<a href='Mathias_sin_nettside_om_Tilsynsrapporter'>$dag.$måned.$år</a></td>";
+                        echo "<td><a href='Mathias_sin_nettside_om_Tilsynsrapporter'><img id ='smileBilde' src='$mattilsynetSmil' title='smilefjes' width= '5%'></a></td>";
                         $svarTilsynsrapport = mysqli_fetch_assoc($utførSpørringHenteTilsynsRapport);
                         $teller++;
                         echo "</tr>";
                         }
-                        echo "</table>";
+                        echo "</table>
+                    </div>
+
+                      <div class='col-md-6'>
+                      <div id='map'></div>
+                  </div>
+                    ";
+
 
 
                     /*Legger til script for å vise Google Map*/
@@ -175,6 +199,8 @@ $db = kobleOpp($tilsynrapportConfig);
                       });
                     }
                                         </script>
+                                        </div>
+                                    </div>
                 ";
             } else {
                 echo "<h1>Resultatet av SQL-spørringen ga 0 rader</h1>";
@@ -189,5 +215,8 @@ $db = kobleOpp($tilsynrapportConfig);
         <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCG_9QaZStF7k76o_tBYtuA3J89WnQXedQ&callback=initMap">
     </script>
+    </script>
+        <script src="bibloteker/jquery/jquery-3.3.1.js"></script>
+        <script src="bibloteker/bootstrap-4.0.0-dist/js/bootstrap.bundle.js"></script>
     </body>
 </html>
