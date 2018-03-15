@@ -17,7 +17,10 @@
 
 
 	     <?php 
-	     logginn();
+	     starAlertInnlogg();
+	     $side = 'Location: index.php';
+	     logginn($side);
+	     
 	     ?>
         
         <h1>Hvilken smiley har bedriften fått?</h1>

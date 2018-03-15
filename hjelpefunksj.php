@@ -1,5 +1,6 @@
 <?php 
-function logginn(){
+function logginn($sideSkalJegTil){
+    $_SESSION['sideJegSkalTil'] = $sideSkalJegTil;
     if(isset($_SESSION['loggetInn'])){
         if ($_SESSION['loggetInn'] == true) {
             echo<<< EOT
@@ -37,7 +38,7 @@ EOT;
     }
 }
 function sjekkInnLogg($db, $brukernavn, $passord){
-
+    $_SESSION['brukernavn'] = $brukernavn;
     $sqlSpørring = 
                 ("SELECT b.passord
                     FROM Brukere AS b
@@ -50,10 +51,33 @@ function sjekkInnLogg($db, $brukernavn, $passord){
 
     if ($passordFraBruker == $passordFraBase) {
         return true;
+        $_SESSION['loggInnAlert'] = true;
     }
-    else{ return false;}
+    return false;
+    $_SESSION['loggInnAlert'] = false;
     }
     
 
 }
+function starAlertInnlogg(){
+    if (isset($_SESSION['loggInnAlert'])) {
+            if ($_SESSION['loggInnAlert'] == true) {
+                $_SESSION['loggInnAlert'] = false;
+                echo '<script language="javascript">';
+                echo 'alert("Du er nå logget inn som administrator på nettsiden!")';
+                echo '</script>';
+            }
+        }
+    if (isset($_SESSION['altertFeilInnLogg'])) {
+    
+        if ($_SESSION['altertFeilInnLogg'] == true) {
+            $_SESSION['altertFeilInnLogg'] = false;
+            echo '<script language="javascript">';
+            echo 'alert("Du tastet feil brukernavn eller passord!")';
+            echo '</script>';
+        }
+    }
+    
+}
+
  ?>
