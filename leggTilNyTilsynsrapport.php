@@ -27,6 +27,7 @@
 	<?php 
 	$fornavn= $_SESSION['fornavn'];
 	$adm = $_SESSION['adm'];
+	$_SESSION['loggetInn']=true;
 	if($_SESSION['loggetInn']==true){
 		echo '
 
