@@ -14,20 +14,21 @@ function hentTemaer() {
     $db = kobleOpp();
     $svar = mysqli_query($db, $sql);
     lukk($db);
-    $rad = mysqli_fetch_assoc($svar);
-    if ($rad) {
-        //TODO!
+    $svar = mysqli_fetch_assoc($svar);
+    if ($svar) {
+        return $svar;
     } else {
         echo "OBS! Det skjedde en feil!";
     }
 }
 
-function hentKravpunkter() {
+function hentKravpunkter($ordningsverdi) {
     $tilsynid = $_GET['tilsynid'];
     $sql = (
         "SELECT `ordingsverdi`, `kravpunktnavn_no`, `karakter`, `tekst_no` 
         FROM `Kravpunkter` 
-        WHERE `tilsynid` LIKE '$tilsynid'"
+        WHERE `tilsynid` LIKE '$tilsynid' 
+        AND `ordingsverdi`LIKE '$ordningsverdi%'"
     );
     $db = kobleOpp();
     $svar = mysqli_query($db, $sql);

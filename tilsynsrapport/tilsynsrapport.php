@@ -19,19 +19,9 @@ require "tilsynsrapportModell.php";
   </div>
 
   <div class="container">
-    <div class="page-header"> <h3>Tilsynsrapport for dato: <?php echo $dato; ?> </h3> </div>
+    <div class="page-header"> <h2>Tilsynsrapport for dato: <?php echo $dato; ?> </h2> </div>
     <div class="table-responsive">
-      <table class="table">
-        <thead>
-        <th>#</th>
-          <th>Kravpunktnavn</th>
-          <th>Karakter</th>
-          <th>Kommentar</th>
-        </thead>
-        <tbody>
-            <?php kravpunkter(); ?>
-        </tbody>
-      </table>
+      <?php tilsynsrapport(); ?>
     </div>
   </div>
 
