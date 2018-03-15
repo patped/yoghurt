@@ -8,6 +8,7 @@ $db = kobleOpp();
     <meta charset="utf-8">
     <title>Forside youghurt</title>
         <link rel="stylesheet" href="stilark.css" type="text/css">
+          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     </head>
     <body>
         <div class="loginn">
@@ -49,22 +50,32 @@ $db = kobleOpp();
                 $totalkarakter = $rad['total_karakter'];
                 $fullAdresse = $rad['adrlinje1'] . ' ' . $rad['poststed'];
                 echo "
+                    
+                    <div class='jumbotron text-center'>
                     <h1>$navn</h1>
                     <h2>$fullAdresse</h2>
-                    <table name='resultatTabell'>
-                        <th>Organisasjonsnummer</th>
-                        <th>Adresse</th>
-                        <th>Postnummer</th>
-                        <th>Poststed</th>
+                </div>
+                <div class='container'>
+
+                    <div class='table-responsive'>
+                    <div class='col-md-4'>
+
+                    <table class='table table-bordered'>
+                        <th>Adresse: </th>
+                        <th>$adresse</th>
+                    <tr>
+                        <th>Postnummer: </th>
+                        <th>$postnummer</th>
+                    </tr>
+                    <tr>
+                        <th>Orgnummer: </th>
+                        <th>$orgnummer</th>
+                    </tr>
                         <th>Smilefjes-Karakter<br>(siste rapport)</th>
-                        <tr>
-                            <td>$orgnummer</td>
-                            <td>$adresse</td>
-                            <td>$postnummer</td>
-                            <td>$poststed</td>
-                            <td>$totalkarakter</td>
-                        </tr>
-                    </table>
+                        
+
+
+                    
                     ";
                     /* Legger til Smilefjes-karakter*/
                     $sqlSpørringHenteKarakter = (
@@ -94,8 +105,13 @@ $db = kobleOpp();
                          }
                     
                     echo "
-                      <img id ='smileBilde' src='$bilde' title='smilefjes' width= '25%'>
-                      <div id='map'></div>
+                    
+                     <th><img id ='smileBilde' src='$bilde' title='smilefjes' width= '25%'></th>
+                    </table>
+                      </div>
+                      
+                      
+                      
                     ";
                     
                     //Legger til siste 3 tilsynsrapporter dersom det eksisterer:
@@ -107,7 +123,9 @@ $db = kobleOpp();
                         );
                     $utførSpørringHenteTilsynsRapport = mysqli_query($db, $sqlSpørringHenteTilsynsrapport);
                     $svarTilsynsrapport = mysqli_fetch_assoc($utførSpørringHenteTilsynsRapport);
-                    echo "<table name='tilsynTabell'><th>Dato for rapport</th><th>Mattilsynets smilefjes</th>";
+
+
+                    echo "<div class='col-md-4'> <table class='table table-bordered'><th><h2>Dato for rapport</h2></th><th><h2>Mattilsynets smilefjes</h2></th>";
                     $teller = 0;
                     while ($svarTilsynsrapport && $teller<3) {
                         $dato = $svarTilsynsrapport['dato'];
@@ -146,7 +164,17 @@ $db = kobleOpp();
                         $teller++;
                         echo "</tr>";
                         }
-                        echo "</table>";
+                        echo "</table>
+                    </div>
+                        
+                    <div class='col-md-4'>
+                      <div id='map' style='width: 300px; height: 400px;'></div>
+                  </div>
+                  
+
+                        
+                    ";
+
 
 
                     /*Legger til script for å vise Google Map*/
@@ -177,6 +205,8 @@ $db = kobleOpp();
                       });
                     }
                                         </script>
+                                        
+                                    </div>
                 ";
             } else {
                 echo "<h1>Resultatet av SQL-spørringen ga 0 rader</h1>";
@@ -191,5 +221,8 @@ $db = kobleOpp();
         <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCG_9QaZStF7k76o_tBYtuA3J89WnQXedQ&callback=initMap">
     </script>
+    </script>
+        <script src="bibloteker/jquery/jquery-3.3.1.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </body>
 </html>
