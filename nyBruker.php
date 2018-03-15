@@ -14,6 +14,8 @@
 </head>
 <body>
 	<?php include_once 'header.php'; ?>
+	<main>
+	
 	<?php
 	sjekkInnlogg();
 	$adm = $_SESSION['adm'];
@@ -53,7 +55,8 @@ EOT;
 }
 	?>	
 
-
+</main>
+<?php include_once 'footer.php'; ?>
 </body>
 </html>
 <?php

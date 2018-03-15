@@ -7,10 +7,15 @@ $db = kobleOpp($tilsynrapportConfig);
     <head>
     <meta charset="utf-8">
     <title>Forside youghurt</title>
+                <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="stilark.css" type="text/css">
     </head>
-    <?php include_once 'header.php'; ?>
+    
     <body>
+        <?php include_once 'header.php'; ?>
+        <main>
         
 
         <?php
@@ -71,7 +76,7 @@ $db = kobleOpp($tilsynrapportConfig);
                 $svar = mysqli_query($db, $sqlSpørring);
                 $rad = mysqli_fetch_assoc($svar);
                 if ($rad) {                    
-                    echo "<table name='resultatTabell'><th>Navn</th><th>Adresse</th><th>Postnummer</th><th>Poststed</th>";
+                    echo "<table name='resultatTabell' id='resultatTabell'><col width='300'><col width='300'><col width='60'><col width='120'><tr><th>Navn</th><th>Adresse</th><th>Postnummer</th><th>Poststed</th></tr>";
                     while ($rad) {
                         $id = $rad['tilsynsobjektid'];
                         $rNavn = $rad['navn'];
@@ -199,10 +204,10 @@ $db = kobleOpp($tilsynrapportConfig);
                     
                 }
             }
-        </script>
-        </form>
+        </script>   
         
-        
+        </main>
+        <?php include_once 'footer.php'; ?>
     </body>
-    <?php include_once 'footer.php'; ?>
+    
 </html>

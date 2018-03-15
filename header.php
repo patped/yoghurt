@@ -5,8 +5,8 @@
 		window.history.back();
 	}
 </script>
-
-<div class="container">
+<div id="wrapper">
+<header>
 
 		<div class="venstreKnapper">
 		<button onClick="window.location='index.php'" class="homeButton"><img style="height: 30px;" src="bilder/homeButton.png"></button>
@@ -15,5 +15,5 @@
 
 		<img id="logo" src="bilder/tempLogo.jpg" href="yogurt/index.php">
 
-</div>
+</header>
 

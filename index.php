@@ -12,8 +12,11 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" href="stilark.css" type="text/css">
     </head>
+    
     <body>
-	      <div class="loginn">
+        <?php include_once 'header.php'; ?>
+        <main>
+	<!--   <div class="loginn">
 		        <form method="POST" action="Brukerside.php">
 		            <input type="text" name="bruker" id="Brukernavn" placeholder="BrukerID" style="width: 75px; height: 15px">
 		            <br>
@@ -21,7 +24,7 @@
 		            <br>
 		            <input type="submit" name="" value="Logg inn" style=" width: 65px; height: 20px">
 		        </form>
-        </div>
+        </div> -->
         
         <h1>Hvilken smiley har bedriften fått?</h1>
         
@@ -47,8 +50,10 @@
         <script src="js/index.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        
+        </main>
+        <?php include_once 'footer.php'; ?>
     </body>
+    
 </html>
 
 <?php

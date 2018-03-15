@@ -14,6 +14,8 @@
 </head>
 <body>
 	<?php include_once 'header.php'; ?>
+	<main>
+	
 	<?php
 	if(isset($_POST['bruker'])){
 		$_SESSION['loggetInn'] = loggInn($db, $_POST['bruker'] , $_POST['passord']);
@@ -44,7 +46,8 @@ EOT;
 
 	?>	
 
-
+</main>
+<?php include_once 'footer.php'; ?>
 </body>
 </html>
 <?php

@@ -13,6 +13,8 @@
 </head>
 <body>
 	<?php include_once 'header.php'; ?>
+	<main>
+	
 	<?php
         if (isset($_POST["send"])) {
 	        $TilsynsobjektID = $_POST["TilsynsobjektID"];
@@ -61,6 +63,7 @@ EOF;
         }
     ?>
 
-
+</main>
+<?php include_once 'footer.php'; ?>
 </body>
 </html>

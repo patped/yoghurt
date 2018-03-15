@@ -4,8 +4,9 @@
 <footer> 
 
 <p>
-Hei hei her skal det stå masse rart! Her kan du bla. logge inn hvis du er admin. 
+Oppgave av Ola, Mathias, Patrick, Kim og Ingeborg. Er du admin: logg inn <a href="loggInn.php">her.</a> 
 </p>
 
 
 </footer>
+</div> <!-- Slutt på div`en wrapper> -->

@@ -11,6 +11,8 @@ $db = kobleOpp($tilsynrapportConfig);
     </head>
     <body>
         <?php include_once 'header.php'; ?>
+        <main>
+        
         <?php
         $status = mysqli_set_charset($db, "utf8");
         if (!$status) {
@@ -121,5 +123,7 @@ $db = kobleOpp($tilsynrapportConfig);
         <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCG_9QaZStF7k76o_tBYtuA3J89WnQXedQ&callback=initMap">
     </script>
-    </body>
+</main>
+<?php include_once 'footer.php'; ?>
+</body>
 </html>
