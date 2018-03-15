@@ -15,7 +15,6 @@ require_once 'sok/sok.php';
     if (!isset($_POST["søkeKnapp"])) {
         header("Location: index.php");
     }
-    $header = "Resultat";
     $db = kobleOpp();
     $status = mysqli_set_charset($db, "utf8");
     if (isset($_POST["søkeKnapp"])) {
@@ -63,7 +62,12 @@ require_once 'sok/sok.php';
             AND r.navn LIKE '%$restaurantSøkekriterie%'
             ORDER BY r.navn");
         }
-        
+
+        echo "<div class='container text-center'>";
+        echo "<h2>Søk på nytt?</h2>";
+        sok();
+        echo "</div>";
+
         if (!$status) {
             echo "Feil i pålogging";
             exit;
@@ -79,9 +83,19 @@ require_once 'sok/sok.php';
                 $svar = mysqli_query($db, $sqlSpørring);
                 $resultat = $svar->fetch_all(MYSQLI_ASSOC);
             }
-            echo "<h1>$header</h1>";
+            echo "<div class='container'>";
+            echo "<div class='page-header'> <h3>Resultat</h3> </div>";
             if (count($resultat) > 0) {                    
-                echo "<table name='resultatTabell'><th>Navn</th><th>Adresse</th><th>Postnummer</th><th>Poststed</th><th>Smilefjes</th>";
+                echo (
+                    "<table class='table table-hover'>
+                        <thead>
+                            <th>Navn</th>
+                            <th>Adresse</th>
+                            <th>Postnummer</th>
+                            <th>Poststed</th>
+                            <th>Smilefjes</th>
+                        </thead>"
+                );
                 foreach ($resultat as $rad) {
                     $id = $rad['tilsynsobjektid'];
                     $rNavn = $rad['navn'];
@@ -116,29 +130,37 @@ require_once 'sok/sok.php';
                             $bilde = './bilder/smileys/spySmil.png';
                         }
                     /*Legger til alle resultater i en tabell*/
-                    echo "<tr class='radMedLink'>";
-                    echo "<td><a href='restaurantVisning.php?res=$id'>$rNavn</td>";
-                    echo "<td><a href='restaurantVisning.php?res=$id'>$rAdresse</td>";
-                    echo "<td><a href='restaurantVisning.php?res=$id'>$rPostnr</td>";
-                    echo "<td><a href='restaurantVisning.php?res=$id'>$rPoststed</td>";
-                    echo "<td><a href='restaurantVisning.php?res=$id'><img id ='karakterSmil' src='$bilde' title='smilefjes' width= '30px' height='30px'</td>";
-                    echo "<td>$karakterSisteTilsynSnitt</td>";
-                    echo "</tr>";
+                    echo "<tbody>";
+                    echo    "<tr class='clickable-link' data-href='restaurantVisning.php?res=$id'>";
+                    echo        "<td>$rNavn</td>";
+                    echo        "<td>$rAdresse</td>";
+                    echo        "<td>$rPostnr</td>";
+                    echo        "<td>$rPoststed</td>";
+                    echo        "<td><img id ='karakterSmil' src='$bilde' title='smilefjes' width= '30px' height='30px'</td>";
+                    echo        "<td>$karakterSisteTilsynSnitt</td>";
+                    echo    "</tr>";
+                    echo "</tbody>";
                 }
             } else {
                 echo"<p>Ingen resultat matcher ditt søk</p>";
             }
             echo "</table>";
+            echo "</div>";
             mysqli_close($db);
         }
     }
     ?>
-    <h1>Søk på nytt?</h1>
-    <?php sok(); ?>
 
     <script src="sok/sok.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $(".clickable-link").click(function() {
+                window.location = $(this).data("href");
+            });
+        });
+    </script>
 
 </body>
 </html>
