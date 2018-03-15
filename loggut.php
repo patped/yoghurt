@@ -1,5 +1,8 @@
 <?php
-	$_SESSION['loggetInn']=false;
+	session_start();
+	$sideSkalJegTil = $_SESSION['sideJegSkalTil'];
+    $_SESSION = array();
+    session_unset();
     session_destroy();
-    header('Location: index.php');
+    header($sideSkalJegTil);
     ?>

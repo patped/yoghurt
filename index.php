@@ -1,4 +1,5 @@
 <?php
+	session_start();
     require_once 'database.php';
     $db = kobleOpp();
     $_SESSION["loggetInn"]=false;
@@ -15,15 +16,12 @@
     <body>
 
 
-	      <div class="loginn">
-		        <form method="POST" action="Brukerside.php">
-		            <input type="text" name="bruker" id="Brukernavn"  style="width: 75px; height: 15px">
-		            <br>
-		            <input type="password" name="passord" id="pass" style="width: 75px; height: 15px">
-		            <br>
-		            <input type="submit" name="innlogg" value="logg inn" style=" width: 65px; height: 20px">
-		        </form>
-        </div>
+	     <?php 
+	     starAlertInnlogg();
+	     $side = 'Location: index.php';
+	     logginn($side);
+	     
+	     ?>
         
         <h1>Hvilken smiley har bedriften fått?</h1>
         
@@ -49,6 +47,14 @@
         <br>
 
         <script type="text/javascript">
+        function sjekkInnhold(){
+        if (document.getElementById("pass").value.length > 0 && document.getElementById("brukernavn").value.length > 0) {
+            return true;
+        }else{
+            alert("Du har glemt å fylle ut passord eller brukernavn!")
+            return false;
+            }
+    	}	
         	function sjekkForm(){
         		var orgInnhold = document.getElementById("sokeFelt").value;
         		if (document.getElementById("orgnr").checked && orgInnhold =="") {

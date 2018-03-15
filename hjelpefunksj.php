@@ -1,57 +1,83 @@
 <?php 
-
-
-
-function logginn($dblink,$nr,$pass){
-    $ok = false;
-    $sql = "SELECT * FROM
-    BrukerDatabase WHERE BrukerID = $nr";
-    $res = mysqli_query($dblink, $sql);
-    $antall = mysqli_num_rows($res);
-    if($antall==1){
-        $ret = mysqli_fetch_assoc($res);
-        $kryptert = $ret['Passord'];
-    }
-    else if($antall==0){
-        echo "finner ikke bruker";
-        return false;
-    }
-
-    if($pass == $kryptert){
-        $_SESSION['BrukerID'] = $ret['BrukerID'];
-        $_SESSION['fornavn'] = $ret['fornavn'];
-        $_SESSION['etternavn'] = $ret['etternavn'];
-        $_SESSION['adm'] = $ret['adminrettighet'];
-        return true;
-    }
-    return false;
-}
-function sjekkInnLogg(){
-    $_SESSION['loggetInn']=true;
-    if($_SESSION['loggetInn']==true){
-        echo<<< EOT
+function logginn($sideSkalJegTil){
+    $_SESSION['sideJegSkalTil'] = $sideSkalJegTil;
+    if(isset($_SESSION['loggetInn'])){
+        if ($_SESSION['loggetInn'] == true) {
+            echo<<< EOT
         <div class="loginn">
-        <<form method="POST" action="loggut.php">
+        <form method="POST" action="loggut.php">
             <input type="submit" name="Logg Ut" value="Logg ut">
             </form>
-    </div>
+        </div>
 EOT;
-    }
-    else{
+        }else{
         echo<<< EOT
-    }
     <div class="loginn">
-        <form method="POST" action=<"loggut.php">>
-        <input type="text" name="bruker" id="Brukernavn"  style="width: 75px; height: 15px">
+        <form method="POST" action="Brukerside.php" onsubmit="return sjekkInnhold()">
+        <input type="text" name="brukernavn" id="brukernavn"  style="width: 75px; height: 15px">
         <br>
-        <input type="password" name="passord" id="pass"
-        style="width: 75px; height: 15px">
+        <input type="password" name="passord" id="pass" style="width: 75px; height: 15px">
         <br>
-        <input type="submit" name="" value="logg inn" style=" width: 65px; height: 20px">
+        <input type="submit" name="submit" value="logg inn" style=" width: 65px; height: 20px">
         </form>
     </div>
 EOT;
 }
+    }else{
+            echo<<< EOT
+        <div class="loginn">
+            <form method="POST" action="Brukerside.php" onsubmit="return sjekkInnhold()">
+            <input type="text" name="brukernavn" id="brukernavn"  style="width: 75px; height: 15px">
+            <br>
+            <input type="password" name="passord" id="pass" style="width: 75px; height: 15px">
+            <br>
+            <input type="submit" name="submit" value="logg inn" style=" width: 65px; height: 20px">
+            </form>
+        </div>
+EOT;
+    }
+}
+function sjekkInnLogg($db, $brukernavn, $passord){
+    $_SESSION['brukernavn'] = $brukernavn;
+    $sqlSpørring = 
+                ("SELECT b.passord
+                    FROM Brukere AS b
+                    WHERE b.brukernavn LIKE '$brukernavn'");
+    $spørringSvar = mysqli_query($db, $sqlSpørring);
+    if ($spørringSvar) {
+        $passordFraBaseSvar = mysqli_fetch_assoc($spørringSvar);
+        $passordFraBase = $passordFraBaseSvar['passord'];
+    $passordFraBruker = crypt($passord, "a1k9sg2kg $52dm2mvøa'¨213'¨11£$1dcwqegg543@€{2 sd3");
+
+    if ($passordFraBruker == $passordFraBase) {
+        return true;
+        $_SESSION['loggInnAlert'] = true;
+    }
+    return false;
+    $_SESSION['loggInnAlert'] = false;
+    }
+    
+
+}
+function starAlertInnlogg(){
+    if (isset($_SESSION['loggInnAlert'])) {
+            if ($_SESSION['loggInnAlert'] == true) {
+                $_SESSION['loggInnAlert'] = false;
+                echo '<script language="javascript">';
+                echo 'alert("Du er nå logget inn som administrator på nettsiden!")';
+                echo '</script>';
+            }
+        }
+    if (isset($_SESSION['altertFeilInnLogg'])) {
+    
+        if ($_SESSION['altertFeilInnLogg'] == true) {
+            $_SESSION['altertFeilInnLogg'] = false;
+            echo '<script language="javascript">';
+            echo 'alert("Du tastet feil brukernavn eller passord!")';
+            echo '</script>';
+        }
+    }
+    
 }
 
  ?>
