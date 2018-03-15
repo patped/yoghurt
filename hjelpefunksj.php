@@ -27,6 +27,7 @@ function logginn($dblink,$nr,$pass){
     return false;
 }
 function sjekkInnLogg(){
+    $_SESSION['loggetInn']=true;
     if($_SESSION['loggetInn']==true){
         echo<<< EOT
         <div class="loginn">
