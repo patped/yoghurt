@@ -5,20 +5,12 @@ $db = kobleOpp();
 <!doctype html>
 <html>
     <head>
-    <meta charset="utf-8">
-    <title>Forside youghurt</title>
-        <link rel="stylesheet" href="stilark.css" type="text/css">
-          <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    </head>
+  <title>Yoghurt</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
     <body>
-        <div class="loginn">
-                <input type="text" name="" id="Brukernavn" style="width: 75px; height: 15px">
-                <br>
-                <input type="passord" name="" id="passord"
-                style="width: 75px; height: 15px">
-                <br>
-                <input type="submit" name="" value="logg inn" style=" width: 65px; height: 20px">
-        </div>
         <?php
         $status = mysqli_set_charset($db, "utf8");
         if (!$status) {
@@ -55,12 +47,14 @@ $db = kobleOpp();
                     <h1>$navn</h1>
                     <h2>$fullAdresse</h2>
                 </div>
-                <div class='container'>
+                <div class='container-fluid'>
+
+                    
+                    <div class='col-md-3'>
+                    <div class='col-md-5; col-md-offset-1'>
 
                     <div class='table-responsive'>
-                    <div class='col-md-4'>
-
-                    <table class='table table-bordered'>
+                    <table class='table table-hover'>
                         <th>Adresse: </th>
                         <th>$adresse</th>
                     <tr>
@@ -71,7 +65,7 @@ $db = kobleOpp();
                         <th>Orgnummer: </th>
                         <th>$orgnummer</th>
                     </tr>
-                        <th>Smilefjes-Karakter<br>(siste rapport)</th>
+                        <th>Smilefjes</th>
                         
 
 
@@ -108,8 +102,9 @@ $db = kobleOpp();
                     
                      <th><img id ='smileBilde' src='$bilde' title='smilefjes' width= '25%'></th>
                     </table>
+                    </div>
                       </div>
-                      
+                      </div>
                       
                       
                     ";
@@ -123,9 +118,25 @@ $db = kobleOpp();
                         );
                     $utførSpørringHenteTilsynsRapport = mysqli_query($db, $sqlSpørringHenteTilsynsrapport);
                     $svarTilsynsrapport = mysqli_fetch_assoc($utførSpørringHenteTilsynsRapport);
+                        $tema1 = $svarTilsynsrapport['tema1_no'];
+                        $karakter1=$svarTilsynsrapport['karakter1'];
+                        $tema2 = $svarTilsynsrapport['tema2_no'];
+                        $karakter2=$svarTilsynsrapport['karakter2'];
+                        $tema3 = $svarTilsynsrapport['tema3_no'];
+                        $karakter3=$svarTilsynsrapport['karakter3'];
+                        $tema4 = $svarTilsynsrapport['tema4_no'];
+                        $karakter4=$svarTilsynsrapport['karakter4'];
 
-
-                    echo "<div class='col-md-4'> <table class='table table-bordered'><th><h2>Dato for rapport</h2></th><th><h2>Mattilsynets smilefjes</h2></th>";
+                    echo "<div class='col-md-4'><table class='table table-hover;'>
+                    <div class='table-responsive'>
+                    <th><h4>Dato for rapport</h4></th><th><h4>Mattilsynets smilefjes</h4></th><th><h4>
+                    $tema1</h4></th>
+                    <th><h4>
+                    $tema2</h4></th>
+                    <th><h4>
+                    $tema3</h4></th>
+                    <th><h4>
+                    $tema4</h4></th>";
                     $teller = 0;
                     while ($svarTilsynsrapport && $teller<3) {
                         $dato = $svarTilsynsrapport['dato'];
@@ -159,16 +170,20 @@ $db = kobleOpp();
                         $tilsynid = $svarTilsynsrapport['tilsynid'];
                         echo "<tr><td>";
                         echo "<a href='tilsynsrapport/tilsynsrapport.php?tilsynid=$tilsynid&dato=$dato'>$dato</td>";
-                        echo "<td><a href='tilsynsrapport/tilsynsrapport.php?tilsynid=$tilsynid&dato=$dato'><img id ='smileBilde' src='$mattilsynetSmil' title='smilefjes' width= '5%'></td>";
+                        echo "<td><a href='tilsynsrapport/tilsynsrapport.php?tilsynid=$tilsynid&dato=$dato'><img id ='smileBilde' src='$mattilsynetSmil' title='smilefjes' width= '20%'></td>";
+                        echo "<td>$karakter1</td><td>$karakter2</td><td>$karakter3</td><td>$karakter4</td>";
                         $svarTilsynsrapport = mysqli_fetch_assoc($utførSpørringHenteTilsynsRapport);
                         $teller++;
                         echo "</tr>";
                         }
                         echo "</table>
                     </div>
+                    
+                    
                         
                     <div class='col-md-4'>
-                      <div id='map' style='width: 300px; height: 400px;'></div>
+                      <div id='map' style='width: 100%; height: 450px;'></div>
+                      </div>
                   </div>
                   
 
@@ -206,7 +221,6 @@ $db = kobleOpp();
                     }
                                         </script>
                                         
-                                    </div>
                 ";
             } else {
                 echo "<h1>Resultatet av SQL-spørringen ga 0 rader</h1>";
