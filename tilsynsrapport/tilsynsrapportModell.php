@@ -1,9 +1,10 @@
 <?php
-session_start();
-$dato = $_SESSION['dato'];
+require_once "tilsynsrapportKontroller.php";
+
+$dato = hentDato();
 
 function kravpunkter() {
-    $kravpunkter = $_SESSION['kravpunkter'];
+    $kravpunkter = hentKravpunkter();
     foreach ($kravpunkter as $data) {
         $ordningsverdi = $data['ordingsverdi'];
         $kravpunktnavn_no = $data['kravpunktnavn_no'];

@@ -1,12 +1,6 @@
 <?php
 require_once "../database.php";
 
-session_start();
-//hentTemaer();
-hentDato();
-hentKravpunkter();
-//header('Location: tilsynsrapport.php');
-
 // Funksjoner
 function hentTemaer() {
     $sql = (
@@ -22,10 +16,7 @@ function hentTemaer() {
     lukk($db);
     $rad = mysqli_fetch_assoc($svar);
     if ($rad) {
-        $_SESSION["tema1_no"] = $rad["tema1_no"];
-        $_SESSION["tema2_no"] = $rad["tema2_no"];
-        $_SESSION["tema3_no"] = $rad["tema3_no"];
-        $_SESSION["tema4_no"] = $rad["tema4_no"];
+        //TODO!
     } else {
         echo "OBS! Det skjedde en feil!";
     }
@@ -43,14 +34,13 @@ function hentKravpunkter() {
     lukk($db);
     $kravpunkter = $svar->fetch_all(MYSQLI_ASSOC);
     if ($kravpunkter) {
-        $_SESSION["kravpunkter"] = $kravpunkter;
+        return $kravpunkter;
     } else {
         echo "OBS! Det skjedde en feil!";
     }
-
 }
 
 function hentDato() {
-    $_SESSION['dato'] = $_GET['dato'];
+    return $_GET['dato'];
 }
 ?>
