@@ -44,23 +44,12 @@
 	    			<td><input type="text" name="tilsynid"></td>
 	  			</tr>
 
-
-				<tr>
-	    			<td>status:</td>
-	    			<td>
-		    			<select name="status">
-				    		<option value="0">0</option>
-				    		<option value="1">1</option>
-		  				</select>
-	  				</td>
-	  			</tr>
-
 				<tr>
 	    			<td>TilsynsBesøksType:</td>
 	    			<td>
-		    			<select name="TilsynsBesøksType">
-				    		<option value="0">0</option>
-				    		<option value="1">1</option>
+		    			<select name="tilsynsbesoektype">
+				    		<option value="0">Ordinært</option>
+				    		<option value="1">oppfølgings -tilsyn</option>
 		  				</select>
 	  				</td>
 	  			</tr>
@@ -450,6 +439,16 @@
 	   				</td>
 	    			<td><input type="text" name="beskrivelse4_2" ></td>
 	  			</tr> 
+
+	  			<tr>
+	    			<td>status:</td>
+	    			<td>
+		    			<select name="status">
+				    		<option value="0">utestående avvik finnes</option>
+				    		<option value="1">alle avvik lukket</option>
+		  				</select>
+	  				</td>
+	  			</tr>
 
 				<td></td><td></td><td><input type="submit" name="send"></td>
 			 

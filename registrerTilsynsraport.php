@@ -2,7 +2,7 @@
 	include_once 'database.php';
 	$db = kobleOpp($tilsynrapportConfig);
 	session_start();
-	sjekkInnlogging();
+	//sjekkInnlogging();
 ?>
 <!DOCTYPE html>
 <html>
@@ -75,8 +75,11 @@
 	       $formSvarTab[24][1] = $_POST["karakter4_2"];
 
 	       //opretter tom tilsynsraport	
-		   $sql = ("INSERT INTO Tilsynsrapporter (tilsynsobjektid, tilsynid,tema1_no, tema2_no, tema3_no, tema4_no) 
-		   			VALUES ('$tilsynsobjektid', '$tilsynid', 'Rutiner og ledelse,', 'Lokaler og utstyr', 'Mat-håndtering og tilberedning', 'Merking og sporbarhet');");
+	       echo "status    ". $status;
+	       echo "dato     ". $dato;
+	       echo "    tilsynsbesoektype    ". $tilsynsbesoektype;
+		   $sql = ("INSERT INTO Tilsynsrapporter (tilsynsobjektid, tilsynid,tema1_no, tema2_no, tema3_no, tema4_no, dato, status, tilsynsbesoektype) 
+		   			VALUES ('$tilsynsobjektid', '$tilsynid', 'Rutiner og ledelse,', 'Lokaler og utstyr', 'Mat-håndtering og tilberedning', 'Merking og sporbarhet', '$dato', '$status', '$tilsynsbesoektype');");
 
 		   $resultat = mysqli_query( $db, $sql);
 		   if($resultat){
