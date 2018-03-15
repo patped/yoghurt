@@ -1,6 +1,6 @@
 <?php
 require_once 'database.php';
-$db = kobleOpp($tilsynrapportConfig);
+$db = kobleOpp();
 ?>
 <!doctype html>
 <html>
@@ -21,7 +21,7 @@ $db = kobleOpp($tilsynrapportConfig);
         </div>
         <?php
         $header = "Resultat";
-            $db = kobleOpp($tilsynrapportConfig);
+            $db = kobleOpp();
             $status = mysqli_set_charset($db, "utf8");
         if (isset($_POST["søkeKnapp"])) {
             if (isset($_POST["orgnr"])) {
@@ -94,7 +94,6 @@ $db = kobleOpp($tilsynrapportConfig);
                         $rAdresse = $rad['adrlinje1'];
                         $rPoststed = $rad['poststed'];
                         $orgnummer = $rad['orgnummer'];
-                        $rad= mysqli_fetch_assoc($svar);
 
                         $sqlSpørringHenteKarakter = (
 		                "SELECT t.total_karakter FROM
