@@ -1,25 +1,30 @@
-body {
-    text-align: center;
-    background-color: #B11111;
-}
-
 table {
     margin: auto;
 }
 
-.radMedLink {
-    color: green;
-}
-
 .loginn {
     position: absolute;
-    right: 10px;
-    top: 15;
-    font-size: 7px;
+    right: 20px;
+    top: 15px;
+    font-size: 10px;
 }
-#map {
-        height: 400px;
-        width: 35%;
-        margin: auto;
-       }
 
+#map {
+    height: 400px;
+    width: 35%;
+    margin: auto;
+}
+
+main {
+    width: 80%;
+    background-color: lightgrey;
+    margin: auto;
+    border-radius: 5px;
+    text-align: center;
+    padding-bottom: 40px;
+}
+#resultatTabell{
+    text-align: left;
+    border-spacing: 10px;
+    border-collapse: separate;
+}

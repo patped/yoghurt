@@ -1,0 +1,49 @@
+html{
+  margin: 0;
+  padding: 0;
+  height: 100%
+}
+body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  margin-top: -2px;
+}
+
+header {
+  height: 50px;
+  width: calc(100% - 3px);
+  padding-left: 3px;
+  padding-top: 3px;
+}
+
+#logo {
+	margin: auto;
+	height: 50px;
+	display: block;
+}
+
+.homeButton {
+  float: left;
+}
+
+.backButton {
+  float: left;
+}
+
+
+header button {
+  float: left;
+  height: 30px;
+  display: block;
+  border: none;
+  text-align: center;
+  padding: 5px 6px;
+  text-decoration: none;
+  background-color: unset;
+}
+
+#wrapper {
+  min-height: 100%;
+  position: relative;
+}

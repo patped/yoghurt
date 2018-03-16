@@ -14,6 +14,9 @@
 	<link rel="stylesheet" href="stilark.css" type="text/css">
 </head>
 <body>
+	<?php include_once 'header.php'; ?>
+	<main>
+	
 	<?php
 	//denne løsninga her kan kanskje omgjøres?
 	if (isset($_POST['submit'])) {
@@ -47,7 +50,8 @@
 
 	?>	
 
-
+</main>
+<?php include_once 'footer.php'; ?>
 </body>
 </html>
 <?php

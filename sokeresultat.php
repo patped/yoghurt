@@ -11,6 +11,8 @@ require_once 'sok/sok.php';
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
+    <?php include_once 'header.php'; ?>
+    
     <?php
     if (!isset($_POST["søkeKnapp"])) {
         header("Location: index.php");
@@ -150,6 +152,9 @@ require_once 'sok/sok.php';
         }
     }
     ?>
+
+    </main>
+    <?php include_once 'footer.php'; ?>
 
     <script src="sok/sok.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

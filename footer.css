@@ -1,0 +1,17 @@
+footer {
+	left: 0;
+	height: 30px;
+	bottom: 0;
+	position: absolute;
+	color: lightgrey;
+	background-color: #558ebf;
+	width: 100%;
+	text-align: center;
+}
+footer a{
+	text-decoration: none;
+	color: white;
+	text-decoration: underline;
+	font-weight: bolder;
+	font-size: 110%;
+}

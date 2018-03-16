@@ -14,11 +14,9 @@
 	<link rel="stylesheet" href="stilark.css" type="text/css">
 </head>
 <body>
-	<div class="loginn">
-		<form method="POST" action="index.php">
-			<input type="submit" name="Logg Ut" value="Logg ut">
-		</form>
-	</div>
+	<?php include_once 'header.php'; ?>
+	<main>
+	
 
 	<h1>Legg til ny bedrift</h1>
 
@@ -78,7 +76,8 @@ EOT;
 		echo "du har ikke adminrettigheter";
 	}
 	?>
-
+</main>
+<?php include_once 'footer.php'; ?>
 </body>
 </html>
 <?php
