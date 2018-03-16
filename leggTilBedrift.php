@@ -14,6 +14,11 @@
 	<link rel="stylesheet" href="stilark.css" type="text/css">
 </head>
 <body>
+	<?php
+	starAlertInnlogg();
+    $side = 'Location: leggTilBedrift.php';
+    logginn($side);
+    ?>
 	<?php include_once 'header.php'; ?>
 	<main>
 	
@@ -22,10 +27,9 @@
 
 	<h2>Fyll ut skjema</h2>
 	
-	<?php 
-	$fornavn= $_SESSION['fornavn'];
-	$adm = $_SESSION['adm'];
-	if($_SESSION['loggetInn']==true){
+	    <?php 
+   
+
 		echo <<<EOT
 
 
@@ -70,11 +74,8 @@
     </div>
 
 EOT;
-	}
+	
 
-	else {
-		echo "du har ikke adminrettigheter";
-	}
 	?>
 </main>
 <?php include_once 'footer.php'; ?>

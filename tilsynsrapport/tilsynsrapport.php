@@ -1,5 +1,7 @@
 <?php
 require "tilsynsrapportModell.php";
+require_once '../hjelpefunksj.php';
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -11,6 +13,11 @@ require "tilsynsrapportModell.php";
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
+  <?php 
+    starAlertInnlogg();
+    $side = 'Location: /tilsynsrapport/tilsynsrapport.php?tilsynid=' . $_GET['tilsynid'] . '&dato=' . $_GET['dato'];
+    logginn($side);
+    ?>
 
   <div class="container">
     <div class="jumbotron">

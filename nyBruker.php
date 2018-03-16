@@ -13,18 +13,15 @@
 	<link rel="stylesheet" href="stilark.css" type="text/css">
 </head>
 <body>
+	    <?php 
+    starAlertInnlogg();
+    $side = 'Location: index.php';
+    logginn($side);
 	<?php include_once 'header.php'; ?>
 	<main>
-	
-	<?php
-	sjekkInnlogg();
-	$adm = $_SESSION['adm'];
-	$fornavn = $_SESSION['fornavn'];
-	if($_SESSION["loggetInn"]==true){
 	echo <<<EOT
 	
 
-	<h2>Velkommen $fornavn </h2>
 	<p> legg til en ny bruker</p>
 	<form method="POST" action="registrert.php">
 		<p>brukerId</p>
@@ -47,7 +44,7 @@
 	
 EOT;
 
-}
+
 	?>	
 
 </main>
