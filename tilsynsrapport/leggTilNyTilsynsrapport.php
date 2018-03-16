@@ -39,7 +39,7 @@
 	                	<td>$ordingsverdi:</td>
 		    			<td>$kravpunktnavn_no:</td>
 		    			<td>
-			    			<select name='karakter$temaOrdingsverdi'>
+			    			<select class='karakter' name='karakter$temaOrdingsverdi'>
 					    		<option value='0'>0</option>
 					    		<option value='1'>1</option>
 					    		<option value='2'>2</option>
@@ -69,64 +69,65 @@
 		<div class="table-responsive">
 			
 			<div class="col-xs-4">
-				<table class="table">
-					<thead>
-						<th></th>
-						<th></th>
-					</thead>
-					<tbody>
-						<tr>
-			    			<td>TilsynsobjektID:</td>
-			    			<td><input type="text" name="tilsynsobjektid"></td>
-			  			</tr>
+				<form method="POST" action="registrerTilsynsraport.php">
+					<table class="table">
+						<thead>
+							<th></th>
+							<th></th>
+						</thead>
+						<tbody>
+							<tr>
+				    			<td>TilsynsobjektID:</td>
+				    			<td><input type="text" name="tilsynsobjektid"></td>
+				  			</tr>
 
-			  			<tr>
-			    			<td>TilsynsID:</td>
-			    			<td><input type="text" name="tilsynid"></td>
-			  			</tr>
+				  			<tr>
+				    			<td>TilsynsID:</td>
+				    			<td><input type="text" name="tilsynid"></td>
+				  			</tr>
 
-						<tr>
-			    			<td>TilsynsBesøksType:</td>
-			    			<td>
-				    			<select name="tilsynsbesoektype">
-						    		<option value="0">Ordinært</option>
-						    		<option value="1">oppfølgings -tilsyn</option>
-				  				</select>
-			  				</td>
-			  			</tr>
+							<tr>
+				    			<td>TilsynsBesøksType:</td>
+				    			<td>
+					    			<select name="tilsynsbesoektype">
+							    		<option value="0">Ordinært</option>
+							    		<option value="1">oppfølgings -tilsyn</option>
+					  				</select>
+				  				</td>
+				  			</tr>
 
-						<tr>
-			    			<td>dato:</td>
-			    			<td><input type="text" name="dato"></td>
-			  			</tr>
-		  			</tbody>
+							<tr>
+				    			<td>dato:</td>
+				    			<td><input type="text" name="dato"></td>
+				  			</tr>
+			  			</tbody>
+			  		</table>
+		  		</div>	
+		  		<table class="table">
+		  				<thead>
+		  					<th class="col-xs-1">#</th>
+		  					<th class="col-xs-5">Kravpunkt</th>
+		  					<th class="col-xs-1">Karakter</th>
+		  					<th class="col-xs-5">Komentar</th>
+		  				</thead>
+		  				<tbody>
+							<?php kravpunkter(); ?>
+							<tr>
+				    			<td></td>
+				    			<td></td>
+				  				<td>Status:</td>    
+				  				<td> 
+				  					<select name="status">
+							    		<option value="0">utestående avvik finnes</option>
+							    		<option value="1">alle avvik lukket</option>
+					  				</select>
+
+					  				<input type="submit" name="submit" class="pull-right" >	
+				  				</td>
+				  			</tr>
+		  				</tbody>
 		  		</table>
-	  		</div>	
-	  		<table class="table">
-	  				<thead>
-	  					<th class="col-xs-1">#</th>
-	  					<th class="col-xs-5">Kravpunkt</th>
-	  					<th class="col-xs-1">Karakter</th>
-	  					<th class="col-xs-5">Komentar</th>
-	  				</thead>
-	  				<tbody>
-						<?php kravpunkter(); ?>
-						<tr>
-			    			<td></td>
-			    			<td></td>
-			  				<td>Status:</td>    
-			  				<td> 
-			  					<select name="status">
-						    		<option value="0">utestående avvik finnes</option>
-						    		<option value="1">alle avvik lukket</option>
-				  				</select>
-
-				  				<input type="submit" name="submit" class="pull-right" >	
-			  				</td>
-
-			  			</tr>
-	  				</tbody>
-	  		</table>
+		  	</form>
   		</div>
 	</div>
 
@@ -137,7 +138,7 @@
 		}
 		function sjekkForm(){
         		if (this.value ==5) {
-        			this.nextElementSibling.text = "heihiehiei";
+        			this.nextElementSibling.value = "heihiehiei";
         			return false;
         		}
         	}	

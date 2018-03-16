@@ -1,5 +1,5 @@
 <?php
-	include_once 'database.php';
+	include_once '../database.php';
 	$db = kobleOpp();
 	session_start();
 	//sjekkInnlogging();
@@ -9,12 +9,11 @@
 <head>
 	<meta charset="utf-8">
 	<title>velykket</title>
-	<link rel="stylesheet" href="stilark.css" type="text/css">
 </head>
 <body>
 	
 	<?php
-        if (isset($_POST["send"])) {
+        if (isset($_POST["submit"])) {
            $tilsynsobjektid = $_POST["tilsynsobjektid"];
 	       $tilsynid = $_POST["tilsynid"];
 	       $status = $_POST["status"];
@@ -79,7 +78,7 @@
 	       echo "dato     ". $dato;
 	       echo "    tilsynsbesoektype    ". $tilsynsbesoektype;
 		   $sql = ("INSERT INTO Tilsynsrapporter (tilsynsobjektid, tilsynid,tema1_no, tema2_no, tema3_no, tema4_no, dato, status, tilsynsbesoektype) 
-		   			VALUES ('$tilsynsobjektid', '$tilsynid', 'Rutiner og ledelse,', 'Lokaler og utstyr', 'Mat-håndtering og tilberedning', 'Merking og sporbarhet', '$dato', '$status', '$tilsynsbesoektype');");
+		   			VALUES ('$tilsynsobjektid', '$tilsynid', 'Rutiner og ledelse', 'Lokaler og utstyr', 'Mat-håndtering og tilberedning', 'Merking og sporbarhet', '$dato', '$status', '$tilsynsbesoektype');");
 
 		   $resultat = mysqli_query( $db, $sql);
 		   if($resultat){
