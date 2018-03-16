@@ -41,7 +41,7 @@
 			}
 		}else{
 			$_SESSION['altertFeilInnLogg'] = true;
-			header('Location: index.php');
+			//header('Location: index.php');
 		}
 	}
 

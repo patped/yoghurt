@@ -14,22 +14,18 @@
 	<link rel="stylesheet" href="stilark.css" type="text/css">
 </head>
 <body>
-	<div class="loginn">
-		<form method="POST" action="index.php">
-			<input type="submit" name="Logg Ut" value="Logg ut">
-		</form>
-	</div>
+	 <?php 
+    starAlertInnlogg();
+    $side = 'Location: leggTilNyTilsynsrapport.php';
+    logginn($side);
+    ?>
+
 
 	<h1>Legg til ny Tilsynsrapport</h1>
 
 	<h2>Fyll ut skjema</h2>
 	
-	<?php 
-	$fornavn= $_SESSION['fornavn'];
-	$adm = $_SESSION['adm'];
-	$_SESSION['loggetInn']=true;
-	if($_SESSION['loggetInn']==true){
-		echo '
+	   
 
 	<div>
 		<form method="POST" action="registrerTilsynsraport.php">

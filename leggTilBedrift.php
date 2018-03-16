@@ -14,20 +14,19 @@
 	<link rel="stylesheet" href="stilark.css" type="text/css">
 </head>
 <body>
-	<div class="loginn">
-		<form method="POST" action="index.php">
-			<input type="submit" name="Logg Ut" value="Logg ut">
-		</form>
-	</div>
+	<?php
+	starAlertInnlogg();
+    $side = 'Location: leggTilBedrift.php';
+    logginn($side);
+    ?>
 
 	<h1>Legg til ny bedrift</h1>
 
 	<h2>Fyll ut skjema</h2>
 	
-	<?php 
-	$fornavn= $_SESSION['fornavn'];
-	$adm = $_SESSION['adm'];
-	if($_SESSION['loggetInn']==true){
+	    <?php 
+   
+
 		echo <<<EOT
 
 
@@ -72,11 +71,8 @@
     </div>
 
 EOT;
-	}
+	
 
-	else {
-		echo "du har ikke adminrettigheter";
-	}
 	?>
 
 </body>

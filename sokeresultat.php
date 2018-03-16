@@ -1,6 +1,8 @@
 <?php
 require_once 'database.php';
 require_once 'sok/sok.php';
+require_once 'hjelpefunksj.php';
+session_start();
 ?>
 <!doctype html>
 <html>
@@ -9,11 +11,17 @@ require_once 'sok/sok.php';
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="stilark.css" type="text/css">
 </head>
 <body>
+    <?php 
+    starAlertInnlogg();
+    $side = 'Location: index.php';
+    logginn($side);
+    ?>
     <?php
     if (!isset($_POST["søkeKnapp"])) {
-        header("Location: index.php");
+        header("Location: sokeresultat.php");
     }
     $db = kobleOpp();
     $status = mysqli_set_charset($db, "utf8");

@@ -1,6 +1,8 @@
 <?php
 require_once 'database.php';
+require_once 'hjelpefunksj.php';
 $db = kobleOpp();
+session_start();
 ?>
 <!doctype html>
 <html>
@@ -9,6 +11,7 @@ $db = kobleOpp();
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="stilark.css" type="text/css">
 </head>
     <body>
         <?php
@@ -16,8 +19,12 @@ $db = kobleOpp();
         if (!$status) {
             echo "Feil i pålogging";
             exit;
+            //legger nå innlogg inn under for at jeg er avhengig av variabel $id for å få opp hver forskjellige side
         } else if (isset($_GET["res"])) {
             $id = $_GET["res"];
+            starAlertInnlogg();
+            $side = 'Location: restaurantVisning.php?res=' . $id;
+            loggInn($side);
             $sqlSpørring = (
                 "SELECT * FROM
                     Restauranter AS r,
@@ -226,7 +233,9 @@ $db = kobleOpp();
                 echo "<h1>Resultatet av SQL-spørringen ga 0 rader</h1>";
             }
         }
+        
         mysqli_close($db);
+
         ?>
 
 
