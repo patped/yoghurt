@@ -469,18 +469,20 @@
 		echo $TilsynsobjektID;
 	}
 
-	function dropdown($navn){
-		echo '
-			<select name=$navn>
-		    	<option value="0">0</option>
-		    	<option value="1">1</option>
-		    	<option value="2">2</option>
-		    	<option value="3">3</option>
-		    	<option value="4">4</option>
-		    	<option value="5">5</option>
-	  		</select>';
-	}
 	?>
+
+	<script type="text/javascript">
+		var karakter = document.getElementsByClassName("karakter");
+		for (var i = karakter.length - 1; i >= 0; i--) {
+			karakter[i].addEventListener("change", sjekkForm);
+		}
+		function sjekkForm(){
+        		if (this.value ==5) {
+        			this.nextElementSibling.value = "heihiehiei";
+        			return false;
+        		}
+        	}	
+	</script>
 
 </body>
 </html>
