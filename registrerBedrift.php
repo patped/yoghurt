@@ -2,7 +2,6 @@
 	include_once 'database.php';
 	$db = kobleOpp();
 	session_start();
-	sjekkInnlogging();
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,9 +24,13 @@
 			$Postnummer = $_POST["Postnummer"];
 			if(null != $TilsynsobjektID  && null != $Organisasjonsnummer && null != $Navn && null != $Adresselinje1 && null != $Postnummer){
 	       		 $sql = ("INSERT INTO Restauranter (tilsynsobjektid, orgnummer, navn, adrlinje1, adrlinje2, postnr)
-	        	    VALUES('$TilsynsobjektID', '$Organisasjonsnummer','$Navn','$Adresselinje1', '$Adresselinje2','$Postnummer');");
-	       		 $resultat = mysqli_query( $db, $sql );
-	       	if($resultat == 1){
+	        	    VALUES(?, ?, ?, ?, ?, ?);");
+	       		 //'$TilsynsobjektID', '$Organisasjonsnummer','$Navn','$Adresselinje1', '$Adresselinje2','$Postnummer'
+	       		$stmt = mysqli_prepare($db, $sql);
+	            mysqli_stmt_bind_param($stmt, 'sissss' , $TilsynsobjektID, $Organisasjonsnummer, $Navn, $Adresselinje1, $Adresselinje2, $Postnummer);
+	            mysqli_stmt_execute($stmt);
+	       		$error = mysqli_stmt_error($stmt);
+	       	if(!$error){
 	       		
 	       		echo nl2br ("Vellykket inlegging av bedrift \n 
 	       					Du har lagt inn følgende data; \n
