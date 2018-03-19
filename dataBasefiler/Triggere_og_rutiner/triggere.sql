@@ -1,0 +1,7 @@
+CREATE TRIGGER Brukere_dato BEFORE INSERT ON Brukere
+FOR EACH ROW 
+SET NEW.startDato = NOW();
+
+CREATE TRIGGER Brukere_slutt_dato BEFORE INSERT ON Brukere
+FOR EACH ROW 
+SET NEW.sluttDato = NOW() + INTERVAL 30 DAY;
