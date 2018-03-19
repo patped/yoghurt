@@ -79,18 +79,25 @@
 	       echo "dato     ". $dato;
 	       echo "    tilsynsbesoektype    ". $tilsynsbesoektype;
 		   $sql = ("INSERT INTO Tilsynsrapporter (tilsynsobjektid, tilsynid,tema1_no, tema2_no, tema3_no, tema4_no, dato, status, tilsynsbesoektype) 
-		   			VALUES ('$tilsynsobjektid', '$tilsynid', 'Rutiner og ledelse,', 'Lokaler og utstyr', 'Mat-håndtering og tilberedning', 'Merking og sporbarhet', '$dato', '$status', '$tilsynsbesoektype');");
+		   			VALUES (?, ?, 'Rutiner og ledelse', 'Lokaler og utstyr', 'Mat-håndtering og tilberedning', 'Merking og sporbarhet', ?, ?, ?);");
+		   	$stmt = mysqli_prepare($db, $sql);
+           mysqli_stmt_bind_param($stmt, 'ssiii' , $tilsynsobjektid, $tilsynid, $dato, $status, $tilsynsbesoektype);
+           mysqli_stmt_execute($stmt);
+		   $error = mysqli_stmt_error($stmt);
 
-		   $resultat = mysqli_query( $db, $sql);
-		   if($resultat){
+		   
+		
+		   if(!$error){
 	       		echo "velykket insetting av tilsynsraport";	
+
 	       		
 	       	}
 	       	else{
 	       		echo "insetting feilet";
+	       		echo "$error";
 	       	}
 
-	       	//henter kravpunktnavn og ordningsverdi fra kravpunkter
+	       	//henter kravpunktnavn og ordningsverdi fra kravpunkter. Trenger ikke forhindre SQL-inj. på denne
 			$sqlspørring = ("SELECT DISTINCT ordingsverdi,kravpunktnavn_no
 							 FROM Kravpunkter;");
 			$svar = mysqli_query( $db, $sqlspørring );
@@ -112,8 +119,13 @@
                         $tekst_no = $formSvarTab[$teller][0];
                         $karakter = $formSvarTab[$teller][1];
                         $sql2 = ("INSERT INTO Kravpunkter (tilsynid, dato, ordingsverdi, kravpunktnavn_no, karakter, tekst_no) 
-	       			 			 VALUES ('$tilsynid', '$dato', '$ordingsverdi', '$kravpunktnavn_no', '$karakter', '$tekst_no');");
-                        $svar2 = mysqli_query( $db, $sql2);
+	       			 			 VALUES (?, ?, ?, ?, ?, ?);");
+                        // '$tilsynid', '$dato', '$ordingsverdi', '$kravpunktnavn_no', '$karakter', '$tekst_no'
+                        $stmt = mysqli_prepare($db, $sql2);
+				        mysqli_stmt_bind_param($stmt, 'sissis' , $tilsynid, $dato, $ordingsverdi, $kravpunktnavn_no, $karakter, $tekst_no);
+				        mysqli_stmt_execute($stmt);
+						$error2 = mysqli_stmt_error($stmt);
+
                         $rad= mysqli_fetch_assoc($svar);
 
                         $tema = substr( $ordingsverdi, 0, 1 );
@@ -147,16 +159,25 @@
                         $teller++;
 
 			}
-				       	if($svar2){
+				       	if(!$error){
 				       		echo "velykket insetting av kravpunkt $ordingsverdi";		
+				       	}else{
+				       		echo "Error i Kravpunkter-innsetting: $error2";
 				       	}
 
 				       	$sql3 = ("UPDATE Tilsynsrapporter
-								SET karakter1 ='$karakter1', karakter2 ='$karakter2', karakter3='$karakter3', karakter4 = '$karakter4', total_karakter = '$totalkarakter'
-								WHERE tilsynid = '$tilsynid';");
-				       	$svar3 = mysqli_query( $db, $sql3);
+								SET karakter1 =?, karakter2 =?, karakter3=?, karakter4 = ?, total_karakter = ?
+								WHERE tilsynid LIKE ?");
+				       	//SET karakter1 ='$karakter1', karakter2 ='$karakter2', karakter3='$karakter3', karakter4 = '$karakter4', total_karakter = '$totalkarakter'
+				       	$stmt = mysqli_prepare($db, $sql3);
+				        mysqli_stmt_bind_param($stmt, 'iiiiis' , $karakter1, $karakter2, $karakter3, $karakter4, $totalkarakter, $tilsynid);
+				        mysqli_stmt_execute($stmt);
+						$error3 = mysqli_stmt_error($stmt);
 
-				       	if($svar3){
+
+				       
+
+				       	if(!$error3){
 				       		echo "    velykket insetting av tilsynsraport andre gang";		
 				       	}
 

@@ -35,12 +35,15 @@ session_start();
                 WHERE p.postnr = r.postnr
                 AND t.tilsynsobjektid = r.tilsynsobjektid
                 AND r.tilsynsobjektid
-                LIKE '$id'
-                ORDER BY MOD(t.dato, 10) DESC, MOD((t.dato/10000), 100) DESC, t.dato/1000000 DESC" 
+                LIKE ?
+                ORDER BY MOD(t.dato, 10) DESC, MOD((t.dato/10000), 100) DESC, t.dato/1000000 DESC"
             ); /* Legger til ORDER BY her for at den første linjen skal være den som er sist utført mtp DATO. 
             Dato er lagret som Integer, ettersom databasen fra Mattilsynet ikke hadde lagret 0'ere i en av de to 
             databasefilene sine. Jeg har løst problemet med å sortere etter år, så måned og så dag.*/
-            $svar = mysqli_query($db, $sqlSpørring);
+            $stmt = mysqli_prepare($db, $sqlSpørring);
+            mysqli_stmt_bind_param($stmt, 's' , $id);
+            mysqli_stmt_execute($stmt);
+            $svar = mysqli_stmt_get_result($stmt);
             $rad = mysqli_fetch_assoc($svar);
             if ($rad) {
                 $navn = $rad['navn'];
@@ -84,28 +87,32 @@ session_start();
                     $sqlSpørringHenteKarakter = (
                         "SELECT t.total_karakter FROM
                             Tilsynsrapporter AS t
-                        WHERE t.tilsynsobjektid LIKE '$id'
+                        WHERE t.tilsynsobjektid LIKE ?
                         ORDER BY MOD(t.dato, 10) DESC, MOD((t.dato/10000), 100) DESC, t.dato/1000000 DESC" 
                         );
-                        $utførSpørringMedKarakter = mysqli_query($db, $sqlSpørringHenteKarakter);
-                        $svarKarakter = mysqli_fetch_assoc($utførSpørringMedKarakter);
-                        $karakterSisteTilsyn = 0;
-                        $teller = 0;
-                        while ($svarKarakter && $teller<3) {
-                        $karakterSisteTilsyn = $karakterSisteTilsyn + $svarKarakter['total_karakter'];
-                        $teller = $teller + 1;
-                        $svarKarakter = mysqli_fetch_assoc($utførSpørringMedKarakter);
-                        }
-                        $karakterSisteTilsynSnitt = $karakterSisteTilsyn/$teller;
-                        if ($karakterSisteTilsynSnitt<0.5) {
-                             $bilde = './bilder/smileys/storSmil.png';
-                         }else if ($karakterSisteTilsynSnitt<=1) {
-                             $bilde = './bilder/smileys/liteSmil.png';
-                         }else if ($karakterSisteTilsynSnitt<=1.5) {
-                             $bilde = './bilder/smileys/ingenSmil.png';
-                         }else{
-                             $bilde = './bilder/smileys/spySmil.png';
-                         }
+                    $stmt = mysqli_prepare($db, $sqlSpørringHenteKarakter);
+                    mysqli_stmt_bind_param($stmt, 's' , $id);
+                    mysqli_stmt_execute($stmt);
+                    $svar = mysqli_stmt_get_result($stmt);
+                    $svarKarakter  = mysqli_fetch_assoc($svar);
+                    
+                    $karakterSisteTilsyn = 0;
+                    $teller = 0;
+                    while ($svarKarakter && $teller<3) {
+                    $karakterSisteTilsyn = $karakterSisteTilsyn + $svarKarakter['total_karakter'];
+                    $teller = $teller + 1;
+                    $svarKarakter = mysqli_fetch_assoc($svar);
+                    }
+                    $karakterSisteTilsynSnitt = $karakterSisteTilsyn/$teller;
+                    if ($karakterSisteTilsynSnitt<0.5) {
+                         $bilde = './bilder/smileys/storSmil.png';
+                     }else if ($karakterSisteTilsynSnitt<=1) {
+                         $bilde = './bilder/smileys/liteSmil.png';
+                     }else if ($karakterSisteTilsynSnitt<=1.5) {
+                         $bilde = './bilder/smileys/ingenSmil.png';
+                     }else{
+                         $bilde = './bilder/smileys/spySmil.png';
+                     }
                     
                     echo "
                     
@@ -122,11 +129,14 @@ session_start();
                     $sqlSpørringHenteTilsynsrapport = (
                         "SELECT * FROM
                             Tilsynsrapporter AS t
-                        WHERE t.tilsynsobjektid LIKE '$id'
+                        WHERE t.tilsynsobjektid LIKE ?
                         ORDER BY MOD(t.dato, 10) DESC, MOD((t.dato/10000), 100) DESC, t.dato/1000000 DESC" 
                         );
-                    $utførSpørringHenteTilsynsRapport = mysqli_query($db, $sqlSpørringHenteTilsynsrapport);
-                    $svarTilsynsrapport = mysqli_fetch_assoc($utførSpørringHenteTilsynsRapport);
+                    $stmt = mysqli_prepare($db, $sqlSpørringHenteTilsynsrapport);
+                    mysqli_stmt_bind_param($stmt, 's' , $id);
+                    mysqli_stmt_execute($stmt);
+                    $svar = mysqli_stmt_get_result($stmt);
+                    $svarTilsynsrapport = mysqli_fetch_assoc($svar);
                         $tema1 = $svarTilsynsrapport['tema1_no'];
                         $karakter1=$svarTilsynsrapport['karakter1'];
                         $tema2 = $svarTilsynsrapport['tema2_no'];
@@ -181,7 +191,7 @@ session_start();
                         echo "<a href='tilsynsrapport/tilsynsrapport.php?tilsynid=$tilsynid&dato=$dato'>$dato</td>";
                         echo "<td><a href='tilsynsrapport/tilsynsrapport.php?tilsynid=$tilsynid&dato=$dato'><img id ='smileBilde' src='$mattilsynetSmil' title='smilefjes' width= '20%'></td>";
                         echo "<td>$karakter1</td><td>$karakter2</td><td>$karakter3</td><td>$karakter4</td>";
-                        $svarTilsynsrapport = mysqli_fetch_assoc($utførSpørringHenteTilsynsRapport);
+                        $svarTilsynsrapport = mysqli_fetch_assoc($svar);
                         $teller++;
                         echo "</tr>";
                         }

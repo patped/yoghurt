@@ -13,7 +13,7 @@ EOT;
         }else{
         echo<<< EOT
     <div class="loginn">
-        <form method="POST" action="/Brukerside.php" onsubmit="return sjekkInnhold()">
+        <form method="POST" action="brukerside.php" onsubmit="return sjekkInnhold()">
         <input type="text" name="brukernavn" id="brukernavn"  style="width: 75px; height: 15px">
         <br>
         <input type="password" name="passord" id="pass" style="width: 75px; height: 15px">
@@ -26,7 +26,7 @@ EOT;
     }else{
             echo<<< EOT
         <div class="loginn">
-            <form method="POST" action="/Brukerside.php" onsubmit="return sjekkInnhold()">
+            <form method="POST" action="brukerside.php" onsubmit="return sjekkInnhold()">
             <input type="text" name="brukernavn" id="brukernavn"  style="width: 75px; height: 15px">
             <br>
             <input type="password" name="passord" id="pass" style="width: 75px; height: 15px">
@@ -42,8 +42,11 @@ function sjekkInnLogg($db, $brukernavn, $passord){
     $sqlSpørring = 
                 ("SELECT b.passord
                     FROM Brukere AS b
-                    WHERE b.brukernavn LIKE '$brukernavn'");
-    $spørringSvar = mysqli_query($db, $sqlSpørring);
+                    WHERE b.brukernavn LIKE ?");
+    $stmt = mysqli_prepare($db, $sqlSpørring);
+    mysqli_stmt_bind_param($stmt, 's' , $brukernavn);
+    mysqli_stmt_execute($stmt);
+    $spørringSvar = mysqli_stmt_get_result($stmt);
     if ($spørringSvar) {
         $passordFraBaseSvar = mysqli_fetch_assoc($spørringSvar);
         $passordFraBase = $passordFraBaseSvar['passord'];

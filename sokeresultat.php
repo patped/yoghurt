@@ -27,6 +27,7 @@ session_start();
     }
     $db = kobleOpp();
     $status = mysqli_set_charset($db, "utf8");
+    $stmt;
     if (isset($_POST["søkeKnapp"])) {
         if (isset($_POST["orgnr"])) {
             $søkeverdi = $_POST["Søkefelt"];
@@ -34,43 +35,55 @@ session_start();
             ("SELECT r.tilsynsobjektid, r.navn, r.adrlinje1, r.postnr, p.poststed, r.orgnummer
                 FROM Restauranter AS r, Poststed AS p
                 WHERE p.postnr = r.postnr
-                AND r.orgnummer LIKE '%$søkeverdi%'
+                AND r.orgnummer LIKE ?
                 ORDER BY r.navn");
+            $stmt = mysqli_prepare($db, $sqlSpørring);
+            mysqli_stmt_bind_param($stmt, 's' , $søkeverdi);
+            mysqli_stmt_execute($stmt);
         }
         else if (isset($_POST["adresse"])) {
             if (isset($_POST["restaurant"])) {
-                $adresseSøkekriterie = $_POST["Søkefelt"];
-                $poststedSøkekriterie = $_POST["poststedInput"];
-                $restaurantSøkekriterie = $_POST["spisestedSokefelt"];
+                $adresseSøkekriterie = "%" . $_POST["Søkefelt"] . "%";
+                $poststedSøkekriterie = "%" . $_POST["poststedInput"] . "%";
+                $restaurantSøkekriterie = "%" . $_POST["spisestedSokefelt"] . "%";
                 $sqlSpørring = 
                 ("SELECT r.tilsynsobjektid, r.navn, r.adrlinje1, r.postnr, p.poststed, r.orgnummer
                 FROM Restauranter AS r, Poststed AS p
                 WHERE p.postnr = r.postnr
-                AND p.poststed LIKE '%$poststedSøkekriterie%'
-                AND r.adrlinje1 LIKE '%$adresseSøkekriterie%'
-                AND r.navn LIKE '%$restaurantSøkekriterie%'
+                AND p.poststed LIKE ?
+                AND r.adrlinje1 LIKE ?
+                AND r.navn LIKE ?
                 ORDER BY r.navn");
+                $stmt = mysqli_prepare($db, $sqlSpørring);
+                mysqli_stmt_bind_param($stmt, 'sss', $poststedSøkekriterie, $adresseSøkekriterie, $restaurantSøkekriterie);
+                mysqli_stmt_execute($stmt);
             }
             else{
-                $adresseSøkekriterie = $_POST["Søkefelt"];
-                $poststedSøkekriterie = $_POST["poststedInput"];
+                $adresseSøkekriterie = "%" . $_POST["Søkefelt"] . "%";
+                $poststedSøkekriterie = "%" . $_POST["poststedInput"] . "%";
                 $sqlSpørring = 
                 ("SELECT r.tilsynsobjektid, r.navn, r.adrlinje1, r.postnr, p.poststed, r.orgnummer
                 FROM Restauranter AS r, Poststed AS p
                 WHERE p.postnr = r.postnr
-                AND p.poststed LIKE '%$poststedSøkekriterie%'
-                AND r.adrlinje1 LIKE '%$adresseSøkekriterie%'
+                AND p.poststed LIKE ?
+                AND r.adrlinje1 LIKE ?
                 ORDER BY r.navn");
+                $stmt = mysqli_prepare($db, $sqlSpørring);
+                mysqli_stmt_bind_param($stmt, 'ss' , $poststedSøkekriterie, $adresseSøkekriterie);
+                mysqli_stmt_execute($stmt);
 
             }
         }else if (isset($_POST["restaurant"])) {
-            $restaurantSøkekriterie = $_POST["spisestedSokefelt"];
+            $restaurantSøkekriterie = "%" . $_POST["spisestedSokefelt"] . "%";
             $sqlSpørring = 
             ("SELECT r.tilsynsobjektid, r.navn, r.adrlinje1, r.postnr, p.poststed, r.orgnummer
             FROM Restauranter AS r, Poststed AS p
             WHERE p.postnr = r.postnr
-            AND r.navn LIKE '%$restaurantSøkekriterie%'
+            AND r.navn LIKE ?
             ORDER BY r.navn");
+            $stmt = mysqli_prepare($db, $sqlSpørring);
+            mysqli_stmt_bind_param($stmt, 's' , $restaurantSøkekriterie);
+            mysqli_stmt_execute($stmt);
         }
 
         echo "<div class='container text-center'>";
@@ -88,9 +101,10 @@ session_start();
                 require_once "geoResultat.php";
                 $latitude = $_POST["latitude"];
                 $longitude = $_POST["longitude"];
+                //Trenger ikke hindre sql-injection her, ettersom metoden ikke bruker brukers "input" til noe annet enn sjekk i forhold til allerede eksisterende long, lat.
                 $resultat = iNaerheten($db, $latitude, $longitude);
             } else {
-                $svar = mysqli_query($db, $sqlSpørring);
+                $svar = mysqli_stmt_get_result($stmt);
                 $resultat = $svar->fetch_all(MYSQLI_ASSOC);
             }
             echo "<div class='container'>";
@@ -114,6 +128,7 @@ session_start();
                     $rPoststed = $rad['poststed'];
                     $orgnummer = $rad['orgnummer'];
 
+                    //Trenger ikke hindre SQL-injection her, ettersom det er hindret på laget over, der vi henter '$id' fra.
                     $sqlSpørringHenteKarakter = (
                     "SELECT t.total_karakter FROM
                         Tilsynsrapporter AS t
