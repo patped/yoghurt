@@ -3,7 +3,6 @@
 	include_once 'database.php';
 	include_once 'hjelpefunksj.php';
 	$db = kobleOpp();
-	session_start();
 ?>
 
 <!doctype html>
@@ -27,8 +26,11 @@
 			$sqlSpørring = ("
 					SELECT b.adminrettighet
                     FROM Brukere AS b
-                    WHERE b.brukernavn LIKE '$brukernavn'");
-    		$spørringSvar = mysqli_query($db, $sqlSpørring);
+                    WHERE b.brukernavn LIKE ?");
+			$stmt = mysqli_prepare($db, $sqlSpørring);
+		    mysqli_stmt_bind_param($stmt, 's' , $brukernavn);
+		    mysqli_stmt_execute($stmt);
+		    $spørringSvar = mysqli_stmt_get_result($stmt);
     		if ($spørringSvar) {
     			$adminrettighet = mysqli_fetch_assoc($spørringSvar);
     			$adminrettighetSvar = $adminrettighet['adminrettighet'];
@@ -40,11 +42,13 @@
     		}else{
     			$sideSkalJegTil = $_SESSION['sideJegSkalTil'];
     			$_SESSION['loggInnAlert'] = true;
-			header($sideSkalJegTil);
+				header($sideSkalJegTil);
 			}
 		}else{
+			$side = $_SESSION['sideJegSkalTil'];
+			echo "$side";
 			$_SESSION['altertFeilInnLogg'] = true;
-			//header('Location: index.php');
+			header($side);
 		}
 	}
 
