@@ -3,9 +3,9 @@ table {
 }
 
 .loginn {
-    position: absolute;
-    right: 20px;
-    top: 15px;
+    position: fixed;
+    right: 10px;
+    top: 20px;
     font-size: 10px;
 }
 

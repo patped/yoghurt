@@ -5,34 +5,50 @@ function logginn($sideSkalJegTil){
         if ($_SESSION['loggetInn'] == true) {
             echo<<< EOT
         <div class="loginn">
-        <form method="POST" action="loggut.php">
-            <input type="submit" name="Logg Ut" value="Logg ut">
-            </form>
-        </div>
+        <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+        <form method="POST" action="Brukerside.php" onsubmit="return sjekkInnhold()">
+        <li role="presentation"><input type="text" name="brukernavn" id="brukernavn"  style="width: 75px; height: 15px"></li>
+        <br>
+        <input type="password" name="passord" id="pass" class="sr-only">
+        <br>
+        <input type="submit" name="submit" value="logg inn" style=" width: 65px; height: 20px">
+        </form>
+    </li>
+    </div>
 EOT;
         }else{
         echo<<< EOT
     <div class="loginn">
+        <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
         <form method="POST" action="Brukerside.php" onsubmit="return sjekkInnhold()">
-        <input type="text" name="brukernavn" id="brukernavn"  style="width: 75px; height: 15px">
+        <li role="presentation"><input type="text" name="brukernavn" id="brukernavn"  style="width: 75px; height: 15px"></li>
         <br>
-        <input type="password" name="passord" id="pass" style="width: 75px; height: 15px">
+        <input type="password" name="passord" id="pass" class="sr-only">
         <br>
         <input type="submit" name="submit" value="logg inn" style=" width: 65px; height: 20px">
         </form>
+    </li>
     </div>
 EOT;
 }
     }else{
             echo<<< EOT
         <div class="loginn">
+            <li class="dropdown">
+             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Logg Inn </a>
+             <ul class="dropdown-menu">
+            <h4>Logg inn</h4>
             <form method="POST" action="Brukerside.php" onsubmit="return sjekkInnhold()">
-            <input type="text" name="brukernavn" id="brukernavn"  style="width: 75px; height: 15px">
+            <input type="text" name="brukernavn" id="sp_uname"  style="margin-top: 5px">
             <br>
-            <input type="password" name="passord" id="pass" style="width: 75px; height: 15px">
+            <input type="password" name="passord" id="sp_ps" style="margin-top: 5px">
             <br>
-            <input type="submit" name="submit" value="logg inn" style=" width: 65px; height: 20px">
+            <input type="submit" name="submit" value="logg inn" style=" width: 150px; height: 50px">
             </form>
+        </ul>
+        </li>
         </div>
 EOT;
     }
