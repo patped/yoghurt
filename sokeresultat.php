@@ -16,7 +16,7 @@ session_start();
 <body>
     <?php 
     starAlertInnlogg();
-    $side = 'Location: index.php';
+    $side = 'Location: sokeresultat.php';
     logginn($side);
     ?>
     <?php include_once 'header.php'; ?>
