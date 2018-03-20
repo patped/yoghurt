@@ -34,7 +34,7 @@
 		       		$ordingsverdi = $rad['ordingsverdi'];
 	                $kravpunktnavn_no = $rad['kravpunktnavn_no'];
 	                $temaOrdingsverdi = substr($ordingsverdi,0,1).'_'.substr($ordingsverdi,2,3);
-	                echo "
+	                echo"
 	                <tr>
 	                	<td>$ordingsverdi:</td>
 		    			<td>$kravpunktnavn_no:</td>
@@ -68,8 +68,8 @@
     	<div class="page-header"> <h2>bedrift...</h2> </div>
 		<div class="table-responsive">
 			
-			<div class="col-xs-4">
-				<form method="POST" action="registrerTilsynsraport.php">
+			<form method="POST" action="registrerTilsynsraport.php">
+				<div class="col-xs-4">
 					<table class="table">
 						<thead>
 							<th></th>
@@ -138,9 +138,15 @@
 		}
 		function sjekkForm(){
         		if (this.value ==5) {
-        			this.nextElementSibling.value = "heihiehiei";
+                    var tekstfelt = this.parentElement.nextElementSibling.firstChild;
+                    tekstfelt.value = "Ikke vurdert";
         			return false;
         		}
+        		if (this.value ==4) {
+                    var tekstfelt = this.parentElement.nextElementSibling.firstChild;
+                    tekstfelt.value = "Ikke aktuelt";
+        			return false;
+        		}	
         	}	
 	</script>
 
