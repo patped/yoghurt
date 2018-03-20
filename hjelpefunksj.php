@@ -13,7 +13,7 @@ EOT;
         }else{
         echo<<< EOT
     <div class="loginn">
-        <form method="POST" action="brukerside.php" onsubmit="return sjekkInnhold()">
+        <form method="POST" action="Brukerside.php" onsubmit="return sjekkInnhold()">
         <input type="text" name="brukernavn" id="brukernavn"  style="width: 75px; height: 15px">
         <br>
         <input type="password" name="passord" id="pass" style="width: 75px; height: 15px">
@@ -26,7 +26,7 @@ EOT;
     }else{
             echo<<< EOT
         <div class="loginn">
-            <form method="POST" action="brukerside.php" onsubmit="return sjekkInnhold()">
+            <form method="POST" action="Brukerside.php" onsubmit="return sjekkInnhold()">
             <input type="text" name="brukernavn" id="brukernavn"  style="width: 75px; height: 15px">
             <br>
             <input type="password" name="passord" id="pass" style="width: 75px; height: 15px">
