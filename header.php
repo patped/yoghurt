@@ -9,7 +9,7 @@
 <header>
 
 		<div class="venstreKnapper">
-		<button onClick="window.location='index.php'" class="homeButton"><img style="height: 30px;" src="/bilder/homeButton.png"></button>
+		<button onClick="window.location='/index.php'" class="homeButton"><img style="height: 30px;" src="/bilder/homeButton.png"></button>
 		<button onClick="goBack()" class="backButton"><img style="height: 30px;" src="/bilder/backButton.svg"></button>
 		</div>
 
