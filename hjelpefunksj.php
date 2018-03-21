@@ -21,20 +21,18 @@ EOT;
         }else{
         echo<<< EOT
         <div class="loginn">
-            <li class="dropdown">
-             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Logg Inn
+            <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Logg Inn
   <span class="caret"></span></button>
-            <ul class="dropdown-menu">
+             <ul class="dropdown-menu">
             <h4>Logg inn</h4>
-            <form method="POST" action="Brukerside.php" onsubmit="return sjekkInnhold()">
-            <input type="text" name="brukernavn" id="sp_uname"  style="margin-top: 5px">
-            <br>
+            <li><form method="POST" action="Brukerside.php" onsubmit="return sjekkInnhold()"></li>
+            <li><input type="text" name="brukernavn" id="sp_uname"  style="margin-top: 5px"></li>
             <input type="password" name="passord" id="sp_ps" style="margin-top: 5px">
-            <br>
-            <input type="submit" name="submit" value="logg inn" style=" width: 150px; height: 50px">
+            <li><input type="submit" name="submit" value="logg inn" style=" width: 150px; height: 50px"></li>
             </form>
         </ul>
-        </li>
+        </div>
         </div>
 EOT;
 }

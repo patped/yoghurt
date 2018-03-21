@@ -14,12 +14,13 @@ session_start();
   <link rel="stylesheet" href="stilark.css" type="text/css">
 </head>
 <body>
+    
+    <?php include_once 'header.php'; ?>
     <?php 
     starAlertInnlogg();
     $side = 'Location: sokeresultat.php';
     logginn($side);
     ?>
-    <?php include_once 'header.php'; ?>
     
     <?php
     if (!isset($_POST["søkeKnapp"])) {
