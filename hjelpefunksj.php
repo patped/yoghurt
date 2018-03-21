@@ -1,40 +1,15 @@
+<link rel="stylesheet" href="/stilark.css" type="text/css">
 <?php 
 function logginn($sideSkalJegTil){
     $_SESSION['sideJegSkalTil'] = $sideSkalJegTil;
     if(isset($_SESSION['loggetInn'])){
         if ($_SESSION['loggetInn'] == true) {
-            echo<<< EOT
-        <div class="loginn">
-        <form method="POST" action="loggut.php">
-            <input type="submit" name="Logg Ut" value="Logg ut">
-            </form>
-        </div>
-EOT;
+            admin();
         }else{
-        echo<<< EOT
-    <div class="loginn">
-        <form method="POST" action="brukerside.php" onsubmit="return sjekkInnhold()">
-        <input type="text" name="brukernavn" id="brukernavn"  style="width: 75px; height: 15px">
-        <br>
-        <input type="password" name="passord" id="pass" style="width: 75px; height: 15px">
-        <br>
-        <input type="submit" name="submit" value="logg inn" style=" width: 65px; height: 20px">
-        </form>
-    </div>
-EOT;
+        loggeinn();
 }
     }else{
-            echo<<< EOT
-        <div class="loginn">
-            <form method="POST" action="brukerside.php" onsubmit="return sjekkInnhold()">
-            <input type="text" name="brukernavn" id="brukernavn"  style="width: 75px; height: 15px">
-            <br>
-            <input type="password" name="passord" id="pass" style="width: 75px; height: 15px">
-            <br>
-            <input type="submit" name="submit" value="logg inn" style=" width: 65px; height: 20px">
-            </form>
-        </div>
-EOT;
+        loggeinn();
     }
 }
 function sjekkInnLogg($db, $brukernavn, $passord){
@@ -79,6 +54,41 @@ function starAlertInnlogg(){
         }
     }
     
+}
+function admin(){
+    echo<<< EOT
+        <div class="loginn">
+        <div class="dropdown">
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Admin
+  <span class="caret"></span></button>
+        <ul class="dropdown-menu">
+        <li><a href="/leggTilBedrift.php">Legg til Bedrift</a></li>
+        <li><a href="/leggTilNyTilsynsrapport.php">Legg til TilynsRapport</a></li>
+        <form method="POST" action="/loggut.php">
+            <li><input type="submit" name="Logg Ut" value="Logg ut">
+            </form></li>
+        </ul>
+        </div>
+        </div>
+EOT;
+}
+function loggeinn(){
+    echo<<< EOT
+        <div class="loginn">
+            <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Logg Inn
+  <span class="caret"></span></button>
+             <ul class="dropdown-menu">
+            <h4>Logg inn</h4>
+            <li><form method="POST" action="/Brukerside.php" onsubmit="return sjekkInnhold()"></li>
+            <li><input type="text" name="brukernavn" id="sp_uname"  style="margin-top: 5px"></li>
+            <input type="password" name="passord" id="sp_ps" style="margin-top: 5px">
+            <li><input type="submit" name="submit" value="logg inn" style=" width: 150px; height: 50px"></li>
+            </form>
+        </ul>
+        </div>
+        </div>
+EOT;
 }
 
  ?>

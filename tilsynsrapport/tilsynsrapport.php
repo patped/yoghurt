@@ -13,6 +13,7 @@ session_start();
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
+  <?php include_once '../header.php'; ?>
   <?php 
     starAlertInnlogg();
     $side = 'Location: /tilsynsrapport/tilsynsrapport.php?tilsynid=' . $_GET['tilsynid'] . '&dato=' . $_GET['dato'];
