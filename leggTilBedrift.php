@@ -9,18 +9,22 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>Forside youghurt</title>
-	<link rel="stylesheet" href="stilark.css" type="text/css">
+	<meta charset="utf-8">
+	<title>Forside youghurt</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="stilark.css" type="text/css">
 </head>
 <body>
+	
+	<?php 
+	include_once 'header.php'; 
+	?>
 	<?php
 	starAlertInnlogg();
     $side = 'Location: leggTilBedrift.php';
     logginn($side);
     ?>
-	<?php include_once 'header.php'; ?>
 	<main>
 	
 
@@ -79,8 +83,9 @@ EOT;
 
 	?>
 </main>
-<script src="bibloteker/jquery/jquery-3.3.1.js"></script>
+
 <?php include_once 'footer.php'; ?>
+<script src="bibloteker/jquery/jquery-3.3.1.js"></script>
 </body>
 
 </html>
