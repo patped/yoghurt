@@ -40,7 +40,7 @@ EOT;
 function sjekkInnLogg($db, $brukernavn, $passord){
     $_SESSION['brukernavn'] = $brukernavn;
     $sqlSpørring = 
-                ("SELECT b.passord,
+                ("SELECT b.passord
                     FROM Brukere AS b
                     WHERE b.brukernavn LIKE ?");
     $stmt = mysqli_prepare($db, $sqlSpørring);
@@ -50,7 +50,6 @@ function sjekkInnLogg($db, $brukernavn, $passord){
     if ($spørringSvar) {
         $passordFraBaseSvar = mysqli_fetch_assoc($spørringSvar);
         $passordFraBase = $passordFraBaseSvar['passord'];
-        $brukersAdminTall = $passordFraBaseSvar['adminrettighet'];
     $passordFraBruker = crypt($passord, "a1k9sg2kg $52dm2mvøa'¨213'¨11£$1dcwqegg543@€{2 sd3");
 
     if ($passordFraBruker == $passordFraBase) {
