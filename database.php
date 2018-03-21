@@ -39,13 +39,6 @@ function kobleOpp() {
     return $dblink;
 }
 
-function sjekkInnlogging(){
-    if(!isset($_SESSION['BrukerID'])){
-        header("Location: index.php");
-        return true;
-}
-}
-
 function leggInnBed($dblink){
 
 }

@@ -54,10 +54,8 @@ function sjekkInnLogg($db, $brukernavn, $passord){
 
     if ($passordFraBruker == $passordFraBase) {
         return true;
-        $_SESSION['loggInnAlert'] = true;
     }
     return false;
-    $_SESSION['loggInnAlert'] = false;
     }
     
 

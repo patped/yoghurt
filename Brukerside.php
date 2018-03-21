@@ -23,22 +23,21 @@
 		$passord = $_POST['passord'];
 		$_SESSION['loggetInn'] = sjekkInnlogg($db, $brukernavn, $passord);
 		if ($_SESSION['loggetInn'] == true) {
-			$sqlSpørring = ("
-					SELECT b.adminrettighet
-                    FROM Brukere AS b
-                    WHERE b.brukernavn LIKE ?");
-			$stmt = mysqli_prepare($db, $sqlSpørring);
-		    mysqli_stmt_bind_param($stmt, 's' , $brukernavn);
-		    mysqli_stmt_execute($stmt);
-		    $spørringSvar = mysqli_stmt_get_result($stmt);
-    		if ($spørringSvar) {
-    			$adminrettighet = mysqli_fetch_assoc($spørringSvar);
-    			$adminrettighetSvar = $adminrettighet['adminrettighet'];
-    		}else{
-    			echo "<p>Noe gikk galt på siden! <a href='index.php'>Tilbake til søkesiden</a></p>";
-    		}
-    		if ($adminrettighetSvar == false) {
-    			echo "$brukernavn har ikke administratorrettighet på denne nettsiden. Kontakt sjefen ;)" ;
+			$sqlCall = ("CALL rettighet_sjekk(?, @admin)");
+			$stmtCall = mysqli_prepare($db, $sqlCall);
+		    mysqli_stmt_bind_param($stmtCall, 's' , $brukernavn);
+		    mysqli_stmt_execute($stmtCall);
+		    $sqlSpørring = ("
+					SELECT @admin");
+		    $utførAdminRes = mysqli_query($db, $sqlSpørring);
+		    $svarAdminRes = mysqli_fetch_assoc($utførAdminRes);
+		    $testSvar = $svarAdminRes['@admin'];
+
+    		if ($testSvar == false) {
+    			echo "<p><b>$brukernavn</b> har ikke administratorrettighet på denne nettsiden. Kontakt sjefen ;)</p>
+    				<p>Administrasjonsrettighet til <b>$brukernavn</b> er nå: $testSvar </p>
+    				<br><br><p><b>DET KAN VÆRE FORDI SLUTTDATOEN DIN HAR GÅTT UT PÅ PASSORDET I BASEN<b></p>" ;
+    				$_SESSION['loggetInn'] = false;
     		}else{
     			$sideSkalJegTil = $_SESSION['sideJegSkalTil'];
     			$_SESSION['loggInnAlert'] = true;
@@ -46,7 +45,6 @@
 			}
 		}else{
 			$side = $_SESSION['sideJegSkalTil'];
-			echo "$side";
 			$_SESSION['altertFeilInnLogg'] = true;
 			header($side);
 		}
