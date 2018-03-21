@@ -10,7 +10,7 @@ function logginn($sideSkalJegTil){
   <span class="caret"></span></button>
         <ul class="dropdown-menu">
         <li><a href="leggTilBedrift.php">Legg til Bedrift</a></li>
-        <li><a href="registrerTilysnsraport.php">Legg til TilynsRapport</a></li>
+        <li><a href="leggTilNyTilsynsrapport.php">Legg til TilynsRapport</a></li>
         <form method="POST" action="loggut.php">
             <li><input type="submit" name="Logg Ut" value="Logg ut">
             </form></li>
