@@ -18,7 +18,7 @@ session_start();
     <?php 
     include_once 'header.php';
     starAlertInnlogg();
-    $side = 'Location: index.php';
+    $side = 'Location: sokeresultat.php?start=0';
     logginn($side);
     $db = kobleOpp();
    
