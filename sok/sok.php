@@ -1,7 +1,7 @@
 <?php
 function sok() {
     echo (
-        "<form action='sokeresultat.php' method='POST' onsubmit='return sjekkForm()'>
+        "<form action='sokeresultat.php?start=0' method='POST' onsubmit='return sjekkForm()'>
             <label><input type='checkbox' onclick='orgKlikk()' name='orgnr' id='orgnr' value=''>Søk på organisasjonsnummer</label>
             <label><input type='checkbox' onclick='adresseKlikk()' name='adresse' id='adresse' value=''>Søk på adresse</label>
             <label><input type='checkbox' onclick='restaurantKlikk()' name='restaurant' id='restaurant' value=''>Søk på spisested</label>
@@ -13,7 +13,7 @@ function sok() {
             <br>
             <label hidden='true' id='adresseLabel'>Adresse: </label><input type='text' id='sokeFelt' name='Søkefelt' value='' placeholder='Søk på navnet til spisested' hidden='true'>
             <br>
-            <label hidden='true' id='poststedLabel'>Poststed: <input type='text' id='poststedInput' name='poststedInput' value='' placeholder='Poststed' hidden='true'></label>
+            <label hidden='true' id='poststedLabel'>Poststed: </label><input type='text' id='poststedInput' name='poststedInput' value='' placeholder='Poststed' hidden='true'>
             <br>
             <input type='submit' id='utforSok' name='søkeKnapp' value='Utfør søk' disabled='true'>
         </form>"
