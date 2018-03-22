@@ -22,7 +22,7 @@
 	?>
 	<?php
 	starAlertInnlogg();
-    $side = 'Location: leggTilBedrift.php';
+    $side = 'Location: /leggTilBedrift.php';
     logginn($side);
     ?>
 	<main>

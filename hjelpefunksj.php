@@ -55,15 +55,17 @@ function starAlertInnlogg(){
     }
     
 }
+
 function admin(){
+    $bruker = $_SESSION['bruker'];
     echo<<< EOT
         <div class="loginn">
         <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Admin
+        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">$bruker
   <span class="caret"></span></button>
         <ul class="dropdown-menu">
         <li><a href="/leggTilBedrift.php">Legg til Bedrift</a></li>
-        <li><a href="/leggTilNyTilsynsrapport.php">Legg til TilynsRapport</a></li>
+        <li><a href="tilsynsrapport/leggTilNyTilsynsrapport.php">Legg til TilynsRapport</a></li>
         <form method="POST" action="/loggut.php">
             <li><input type="submit" name="Logg Ut" value="Logg ut">
             </form></li>
