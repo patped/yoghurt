@@ -14,11 +14,11 @@
 </head>
 <body>
 	<?php
-	include_once 'header.php';
+	include_once '../header.php';
 	?>
 	 <?php 
     starAlertInnlogg();
-    $side = 'Location: leggTilNyTilsynsrapport.php';
+    $side = 'Location: /tilsynsrapport/leggTilNyTilsynsrapport.php';
     logginn($side);
     ?>
 

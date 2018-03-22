@@ -2,43 +2,39 @@
 	include_once 'database.php';
 	include_once 'hjelpefunksj.php';
 	$db = kobleOpp();
-	session_start();
-	
+	session_start();	
 ?>
-
 <!doctype html>
-<html>
+<html lang="no">
 <head>
-	<meta charset="utf-8">
-	<title>Forside youghurt</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" href="stilark.css" type="text/css">
+	<title>Yoghurt</title>
+  	<meta charset="utf-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
 	
 	<?php 
 	include_once 'header.php'; 
 	?>
-	<?php
-	starAlertInnlogg();
-    $side = 'Location: leggTilBedrift.php';
+	<?php 
+    starAlertInnlogg();
+    $side = 'Location: /leggTilBedrift.php';
     logginn($side);
     ?>
-	<main>
-	
+    <main>
 
-	<h1>Legg til ny bedrift</h1>
-
-	<h2>Fyll ut skjema</h2>
 	
 	    <?php 
    
 
 		echo <<<EOT
+		<h1>Legg til ny bedrift</h1>
+
+		<h2>Fyll ut skjema</h2>
 
 
-	<div>
+	
 		<form method="POST" action="registrerBedrift.php">
 			<table>
 			
@@ -76,7 +72,6 @@
 			 
 			</table>
 		</form>
-    </div>
 
 EOT;
 	
@@ -86,6 +81,7 @@ EOT;
 
 <?php include_once 'footer.php'; ?>
 <script src="bibloteker/jquery/jquery-3.3.1.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 
 </html>
