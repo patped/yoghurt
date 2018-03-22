@@ -22,20 +22,25 @@ session_start();
     logginn($side);
     $db = kobleOpp();
    
+   if (!isset($_GET['start'])) {
+   	header("Location: index.php");
+   }
     $startSøk = $_GET['start'];
     $sluttSøk = $startSøk + 10;
     $søkTeller = 0;
     if (!isset($_POST["søkeKnapp"])) {
         if (!isset($_SESSION['tidligereSøk'])) {
-            header("Location: sokeresultat.php");
+            header("Location: index.php");
         }
         
     }
     $status = mysqli_set_charset($db, "utf8");
     $stmt;
     $hvordanSøk;
-    $nesteSøk = $startSøk + 10;
-    $nesteSide = 'http://localhost/sokeresultat.php?start=' . $nesteSøk;
+    $nesteSøkTall = $startSøk + 10;
+    $forrigeSøkTall = $startSøk-10;
+    $nesteSide = 'http://localhost/sokeresultat.php?start=' . $nesteSøkTall;
+    $forrigeSide = 'http://localhost/sokeresultat.php?start=' . $forrigeSøkTall;
     if (isset($_POST["søkeKnapp"])) {
         if (isset($_POST["orgnr"])) {
             $søkeverdi = $_POST["Søkefelt"];
@@ -126,6 +131,7 @@ session_start();
                 $longitude = $_POST["longitude"];
                 //Trenger ikke hindre sql-injection her, ettersom metoden ikke bruker brukers "input" til noe annet enn sjekk i forhold til allerede eksisterende long, lat.
                 $resultat = iNaerheten($db, $latitude, $longitude);
+                $hvordanSøk = 'geo';
             } else {
                 $svar = mysqli_stmt_get_result($stmt);
                 $resultat = $svar->fetch_all(MYSQLI_ASSOC);
@@ -150,7 +156,7 @@ session_start();
                         if ($søkTeller >= $sluttSøk) {
                             break;
                         }
-                        if ($søkTeller<= $startSøk) {
+                        if ($søkTeller< $startSøk) {
                         $søkTeller++;
                         }
                         else{
@@ -203,10 +209,17 @@ session_start();
                     }
                     //Legger til neste, knapp og initierer at det er utført et søk før
                     $_SESSION['hvordanSøk'] = $hvordanSøk;
-                    $_SESSION['spørringen'] = $sqlSpørring;
-                    if ($søkTeller >= $sluttSøk) {
-                        echo "<tr><td><a href='$nesteSide'><button type='button'>10 neste resultater</button></a><td></tr>";
+                    if (isset($sqlSpørring)) {
+                    	$_SESSION['spørringen'] = $sqlSpørring;
                     }
+                    $_SESSION['tidligereSøk'] = true;
+                    if (count($resultat) > $sluttSøk){
+                        echo "<tr><td><a href='$nesteSide'><button type='button'>10 neste resultater</button></a><td>";
+                        if ($sluttSøk>10) {
+                        	echo "<td><a href='$forrigeSide'><button type='button'>10 forrige resultater</button></a><td>";
+                        }
+                    }
+                    echo "</tr>";
             } else {
                 echo"<p>Ingen resultat matcher ditt søk</p>";
             }
@@ -217,6 +230,10 @@ session_start();
     }
 if (!isset($_POST["søkeKnapp"])) {
     if (isset($_SESSION['tidligereSøk'])) {
+    	echo "<div class='container text-center'>";
+        echo "<h2>Søk på nytt?</h2>";
+        sok();
+        echo "</div>";
         $sqlSpørring = $_SESSION['spørringen'];
         $stmt = mysqli_prepare($db, $sqlSpørring);
         $hvordanSøk = $_SESSION['hvordanSøk'];
@@ -239,7 +256,11 @@ if (!isset($_POST["søkeKnapp"])) {
                 mysqli_stmt_bind_param($stmt, 'ss' , $poststedSøkekriterie, $adresseSøkekriterie);
                 mysqli_stmt_execute($stmt);
                 break;
-            
+            case 'rest':
+             	$restaurantSøkekriterie = $_SESSION['restaurantSøkekriterie'];
+                mysqli_stmt_bind_param($stmt, 's' , $restaurantSøkekriterie);
+                mysqli_stmt_execute($stmt);
+                break;
             default:
                 # code...
                 break;
@@ -265,7 +286,7 @@ if (!isset($_POST["søkeKnapp"])) {
                         if ($søkTeller >= $sluttSøk) {
                             break;
                         }
-                        if ($søkTeller<= $startSøk) {
+                        if ($søkTeller< $startSøk) {
                         $søkTeller++;
                         }
                         else{
@@ -316,9 +337,16 @@ if (!isset($_POST["søkeKnapp"])) {
                         echo "</tbody>";
                     }
                     }
-                if ($søkTeller >= $sluttSøk) {
-                        echo "<tr><td><a href='$nesteSide'><button type='button'>10 neste resultater</button></a><td></tr>";
-                }   
+                if (count($resultat) > $sluttSøk){
+                        echo "<tr><td><a href='$nesteSide'><button type='button'>10 neste resultater</button></a><td>";
+                        if ($sluttSøk>10) {
+                        	echo "<td><a href='$forrigeSide'><button type='button'>10 forrige resultater</button></a><td>";
+                        }
+                        echo "</tr>";
+                }
+                else if ($sluttSøk>10) {
+                        	echo "<tr><td><a href='$forrigeSide'><button type='button'>10 forrige resultater</button></a><td></tr>";
+                        } 
     }
 }
     ?>
