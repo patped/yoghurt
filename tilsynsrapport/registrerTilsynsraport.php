@@ -2,16 +2,7 @@
 	include_once '../database.php';
 	$db = kobleOpp();
 	session_start();
-	//sjekkInnlogging();
-?>
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<title>velykket</title>
-</head>
-<body>
-	<?php
+
 	if (isset($_POST["submit"])) {
 		$tilsynsobjektid = $_POST["tilsynsobjektid"];
 		$tilsynid = $_POST["tilsynid"];
@@ -135,7 +126,9 @@
 					break;
 			}
 			if ($karakter > $totalkarakter) {
-				$totalkarakter = $karakter;
+				if($karakter <4){
+					$totalkarakter = $karakter;
+				}
 			}
 			
 			$teller++;
@@ -161,10 +154,8 @@
 		} else {
 			mysqli_rollback($db);
 		}
+		lukk($db);		
+		header("Location: tilsynsrapport.php?tilsynid=$tilsynid&dato=$dato");
 	}
     ?>
-</body>
-</html>
-<?php
-	lukk($db);
-?>
+	

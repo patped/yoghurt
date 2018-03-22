@@ -98,7 +98,7 @@
 
 							<tr>
 				    			<td>dato:</td>
-				    			<td><input type="text" name="dato"></td>
+				    			<td><input type="text" name="dato" pattern="[0-3]{1}[0-9]{1}[.]{1}[0-1]{1}[0-9]{1}[.]{1}[1-9]{2}" value = "dd.mm.åå"></td>
 				  			</tr>
 			  			</tbody>
 			  		</table>
@@ -140,11 +140,13 @@
         		if (this.value ==5) {
                     var tekstfelt = this.parentElement.nextElementSibling.firstChild;
                     tekstfelt.value = "Ikke vurdert";
+					tekstfelt.disabled = true;
         			return false;
         		}
         		if (this.value ==4) {
                     var tekstfelt = this.parentElement.nextElementSibling.firstChild;
                     tekstfelt.value = "Ikke aktuelt";
+					tekstfelt.disabled = true;
         			return false;
         		}	
         	}	
