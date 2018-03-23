@@ -65,7 +65,7 @@ function admin(){
   <span class="caret"></span></button>
         <ul class="dropdown-menu dropdown-menu-right pull-right">
         <li><a href="/leggTilBedrift.php">Legg til Bedrift</a></li>
-        <li><a href="/tilsynsrapport/endre-tilsyn.php">Legg til TilynsRapport</a></li>
+        <li><a href="/tilsynsrapport/endre.php">Legg til TilynsRapport</a></li>
         <form method="POST" action="/loggut.php">
             <li><input id="luBtn" type="submit" name="Logg Ut" value="Logg ut">
             </form></li>

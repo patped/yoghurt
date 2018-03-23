@@ -4,7 +4,7 @@ include_once '../database.php';
 $db = kobleOpp();
 if (isset($_POST["submit"])) {
 	$tilsynsobjektid = $_POST["tilsynsobjektid"];
-	$tilsynid = $_POST["tilsynid"];
+	$tilsynid = htmlentities($_POST["tilsynid"]);
 	$status = $_POST["status"];
 	$tilsynsbesoektype = $_POST["tilsynsbesoektype"];
 	$dato = $_POST["dato"];
@@ -87,7 +87,7 @@ if (isset($_POST["submit"])) {
 	while ($rad) {
 		$ordingsverdi = $rad['ordingsverdi'];
 		$kravpunktnavn_no = $rad['kravpunktnavn_no'];
-		$tekst_no = $formSvarTab[$teller][0];
+		$tekst_no = htmlentities($formSvarTab[$teller][0]);
 		$karakter = $formSvarTab[$teller][1];
 		$sql2 = ("INSERT INTO Kravpunkter (tilsynid, dato, ordingsverdi, kravpunktnavn_no, karakter, tekst_no) 
 					VALUES (?, ?, ?, ?, ?, ?);");
@@ -153,6 +153,6 @@ if (isset($_POST["submit"])) {
 		mysqli_rollback($db);
 	}
 	lukk($db);		
-	header("Location: tilsynsrapport.php?tilsynid=$tilsynid&dato=$dato");
+	header("Location: tilsyn.php?tilsynid=$tilsynid&dato=$dato");
 }
 ?>
