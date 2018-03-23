@@ -137,11 +137,8 @@ session_start();
                     $svar = mysqli_stmt_get_result($stmt);
                     $svarTilsynsrapport = mysqli_fetch_assoc($svar);
                         $tema1 = $svarTilsynsrapport['tema1_no'];
-                        $karakter1=$svarTilsynsrapport['karakter1'];
-                        $tema2 = $svarTilsynsrapport['tema2_no'];
-                        $karakter2=$svarTilsynsrapport['karakter2'];
+                        $tema2 = $svarTilsynsrapport['tema2_no'];   
                         $tema3 = $svarTilsynsrapport['tema3_no'];
-                        $karakter3=$svarTilsynsrapport['karakter3'];
                         $tema4 = $svarTilsynsrapport['tema4_no'];
                         $karakter4=$svarTilsynsrapport['karakter4'];
 
@@ -157,6 +154,11 @@ session_start();
                     $tema4</h4></th>";
                     $teller = 0;
                     while ($svarTilsynsrapport && $teller<3) {
+                        $karakter1=$svarTilsynsrapport['karakter1'];
+                        $karakter2=$svarTilsynsrapport['karakter2'];
+                        $karakter3=$svarTilsynsrapport['karakter3'];
+                        $karakter4=$svarTilsynsrapport['karakter4'];
+
                         $dato = $svarTilsynsrapport['dato'];
                         $dag = round($dato/1000000);
                         $måned = round(fmod($dato, 1000000)/10000);
