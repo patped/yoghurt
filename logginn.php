@@ -80,7 +80,7 @@ function loggeinn(){
             <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Logg Inn <span class="caret"></span></button>
             <ul class="dropdown-menu dropdown-menu-right pull-right">
-            <h4 class="mgli"> Logg inn</h4>
+            <h4 id="mgli"> Logg inn</h4>
             <li><form method="POST" action="/Brukerside.php" onsubmit="return sjekkInnhold()"></li>
             <li><input type="text" name="brukernavn" placeholder="Brukernavn" id="sp_uname"  style="margin-top: 5px"></li>
             <input type="password" name="passord" placeholder="Passord" id="sp_ps" style="margin-top: 5px">
