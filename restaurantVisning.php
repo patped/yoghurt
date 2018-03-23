@@ -202,7 +202,7 @@ session_start();
                     
                         
                     <div class='col-md-4'>
-                      <div id='map' style='width: 100%; height: 450px;'></div>
+                      <div id='map' hidden='true' style='width: 100%; height: 450px;'></div>
                       </div>
                   </div>
                   
@@ -229,13 +229,14 @@ session_start();
                       var address = '$fullAdresse';
                       geocoder.geocode({'address': address}, function(results, status) {
                         if (status === 'OK') {
+                        	document.getElementById('map').hidden=false;
                           resultsMap.setCenter(results[0].geometry.location);
                           var marker = new google.maps.Marker({
                             map: resultsMap,
                             position: results[0].geometry.location
                           });
                         } else {
-                          alert('Geocode was not successful for the following reason: ' + status);
+                          document.getElementById('map').hidden=true;
                         }
                       });
                     }
