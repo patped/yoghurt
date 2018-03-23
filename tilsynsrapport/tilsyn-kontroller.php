@@ -1,5 +1,5 @@
 <?php
-require_once "../database.php";
+require_once "../div/database.php";
 
 // Funksjoner
 function hentTemaer() {

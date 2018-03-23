@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once '../database.php';
+require_once '../div/database.php';
 require_once 'sok.php';
 require_once '../logginn/logginn.php';
 ?>
@@ -16,7 +16,7 @@ require_once '../logginn/logginn.php';
     
      
     <?php 
-    include_once '../header-footer/header.php';
+    include_once '../div/header.php';
     starAlertInnlogg();
     $side = 'Location: /sok/sokeresultat.php?start=0';
     logginn($side);
@@ -352,7 +352,7 @@ if (!isset($_POST["søkeKnapp"])) {
     ?>
 
     </main>
-    <?php include_once 'header-footer/footer.php'; ?>
+    <?php include_once '../div/footer.php'; ?>
 
     <script src="sok.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

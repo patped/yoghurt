@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'database.php';
+require_once 'div/database.php';
 require_once 'logginn/logginn.php';
 $db = kobleOpp();
 ?>
@@ -13,7 +13,7 @@ $db = kobleOpp();
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
     <body>
-        <?php include_once 'header-footer/header.php'; ?>
+        <?php include_once 'div/header.php'; ?>
 
         <?php
         $status = mysqli_set_charset($db, "utf8");
@@ -255,7 +255,7 @@ $db = kobleOpp();
 
 
         </main>
-        <?php include_once 'header-footer/footer.php'; ?>
+        <?php include_once 'div/footer.php'; ?>
 
 
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCG_9QaZStF7k76o_tBYtuA3J89WnQXedQ&callback=initMap"></script>

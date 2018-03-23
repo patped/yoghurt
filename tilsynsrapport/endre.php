@@ -1,9 +1,9 @@
 <?php
 session_start();
 if(!$_SESSION['adminrett']) {
-	header("Location: ../401.php");
+	header("Location: ../div/401.php");
 }
-include_once '../database.php';
+include_once '../div/database.php';
 include_once '../logginn/logginn.php';
 include_once 'endre-modell.php';
 $tilsynid = $_SESSION['tilsynid'];
@@ -28,7 +28,7 @@ $status = $tilsynsrapport['status'];
 </head>
 <body>
 	<?php
-	include_once '../header-footer/header.php';
+	include_once '../div/header.php';
     starAlertInnlogg();
     $side = 'Location: /tilsynsrapport/endre.php';
 	logginn($side);

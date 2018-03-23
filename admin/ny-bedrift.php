@@ -1,9 +1,9 @@
 <?php
 session_start();
 if(!$_SESSION['adminrett']) {
-	header("Location: /401.php");
+	header("Location: /div/401.php");
 }
-include_once '../database.php';
+include_once '../div/database.php';
 include_once '../logginn/logginn.php';
 ?>
 <!doctype html>
@@ -17,7 +17,7 @@ include_once '../logginn/logginn.php';
 <body>
 	
 	<?php
-	include_once '../header-footer/header.php'; 
+	include_once '../div/header.php'; 
     starAlertInnlogg();
     $side = 'Location: /admin/ny-bedrift.php';
     logginn($side);
@@ -78,7 +78,7 @@ include_once '../logginn/logginn.php';
 		</form>
 	</div>
 
-	<?php include_once '../header-footer/footer.php'; ?>
+	<?php include_once '../div/footer.php'; ?>
 	
 
 	<script src="/bibloteker/jquery/jquery-3.3.1.js"></script>

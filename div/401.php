@@ -13,7 +13,7 @@ require_once 'logginn/logginn.php';
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-    <?php include_once 'header-footer/header.php'; ?>
+    <?php include_once 'header.php'; ?>
     <div class="container">
         <?php 
         starAlertInnlogg();
@@ -25,10 +25,8 @@ require_once 'logginn/logginn.php';
             <h2>Tilbake til <a href="/index.php">Hovedside</a></h2>
         </main>
     </div>
-    <?php include_once 'header-footer/footer.php'; ?>
+    <?php include_once 'footer.php'; ?>
 
-
-    <script src="sok/sok.js"></script>
     <script src="/bibloteker/jquery/jquery-3.3.1.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
