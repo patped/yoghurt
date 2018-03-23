@@ -39,8 +39,8 @@ session_start();
     $hvordanSøk;
     $nesteSøkTall = $startSøk + 10;
     $forrigeSøkTall = $startSøk-10;
-    $nesteSide = 'http://localhost/sokeresultat.php?start=' . $nesteSøkTall;
-    $forrigeSide = 'http://localhost/sokeresultat.php?start=' . $forrigeSøkTall;
+    $nesteSide = 'sokeresultat.php?start=' . $nesteSøkTall;
+    $forrigeSide = 'sokeresultat.php?start=' . $forrigeSøkTall;
     if (isset($_POST["søkeKnapp"])) {
         if (isset($_POST["orgnr"])) {
             $søkeverdi = $_POST["Søkefelt"];
