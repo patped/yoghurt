@@ -1,7 +1,7 @@
 <?php
+session_start();
 require "tilsynsrapportModell.php";
 require_once '../hjelpefunksj.php';
-session_start();
 ?>
 
 <!DOCTYPE html>

@@ -23,7 +23,6 @@ function hentTemaer() {
 }
 
 function hentKravpunkter($ordningsverdi) {
-    session_start();
     $tilsynid = $_GET['tilsynid'];
     $_SESSION['tilsynid'] = $tilsynid;
     $sql = (

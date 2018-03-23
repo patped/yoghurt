@@ -1,11 +1,12 @@
+<?php
+session_start();
+?>
  <?php
 	include_once '../database.php';
 	include_once '../hjelpefunksj.php';
-	session_start();
-	// SJEKKE OM DENNE OGSÅ FUNGERER!!!
 	$tilsynid = $_SESSION['tilsynid'];
 	echo $tilsynid;
-	$tilsynsrapport;
+	$tilsynsrapport = false;
 	if ($tilsynid) {
 		$tilsynsrapport = tilsynsrapport($tilsynid);
 	}
