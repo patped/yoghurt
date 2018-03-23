@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="/header.css">
+<link rel="stylesheet" type="text/css" href="/header-footer/header.css">
 
 <script>
 	function goBack() {
