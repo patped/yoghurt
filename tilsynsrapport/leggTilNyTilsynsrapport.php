@@ -2,6 +2,22 @@
 	include_once '../database.php';
 	include_once '../hjelpefunksj.php';
 	session_start();
+	// SJEKKE OM DENNE OGSÅ FUNGERER!!!
+	$tilsynid = $_SESSION['tilsynid'];
+	echo $tilsynid;
+	$tilsynsrapport;
+	if ($tilsynid) {
+		$tilsynsrapport = tilsynsrapport($tilsynid);
+	}
+	// TODO
+	// SJEKKE OM VARIABLER FORTSATT FUNGERER MED TRUE FALSE
+	//
+	//
+	//
+	$tilsynsobjektid = $tilsynsrapport['tilsynsobjektid'];
+	$dato = $tilsynsrapport['dato'];
+	$tilsynsbesoektype = $tilsynsrapport['tilsynsbesoektype'];
+	$status = $tilsynsrapport['status'];
 ?>
 
 <!doctype html>
@@ -15,49 +31,77 @@
 <body>
 	<?php
 	include_once '../header.php';
-	?>
-	 <?php 
+
     starAlertInnlogg();
     $side = 'Location: /tilsynsrapport/leggTilNyTilsynsrapport.php';
-    logginn($side);
-    ?>
-
-	<?php
+	logginn($side);
+	
 	//henter kravpunktnavn og ordningsverdi fra kravpunkter
 
-	       	function kravpunkter(){
-	       		$db = kobleOpp();
-				$sqlspørring = ("SELECT DISTINCT ordingsverdi,kravpunktnavn_no
-								 FROM Kravpunkter;");
-				$svar = mysqli_query( $db, $sqlspørring );
-				lukk($db);
+	function tilsynsbesoektype($tilsynsbesoektype) {
+		if($tilsynsbesoektype == 0) {
+			echo "<option value='0'>Ordinært</option>";
+		} else if ($tilsynsbesoektype == 1) {
+			echo "<option value='1'>oppfølgings -tilsyn</option>";
+		}
+	}
 
-		       	$rad = mysqli_fetch_assoc($svar);
-		       	while ($rad) {
-		       		$ordingsverdi = $rad['ordingsverdi'];
-	                $kravpunktnavn_no = $rad['kravpunktnavn_no'];
-	                $temaOrdingsverdi = substr($ordingsverdi,0,1).'_'.substr($ordingsverdi,2,3);
-	                echo"
-	                <tr>
-	                	<td>$ordingsverdi:</td>
-		    			<td>$kravpunktnavn_no:</td>
-		    			<td>
-			    			<select class='karakter' name='karakter$temaOrdingsverdi'>
-					    		<option value='0'>0</option>
-					    		<option value='1'>1</option>
-					    		<option value='2'>2</option>
-					    		<option value='3'>3</option>
-					    		<option value='4'>4</option>
-					    		<option value='5'>5</option>
-			  				</select>
-		  				</td>
-		    			<td><input type='text' name='beskrivelse$temaOrdingsverdi' style='width: 100%;'></td>
-		  			</tr>
-		  			";
-	                $rad= mysqli_fetch_assoc($svar);
+	function status($status) {
+		if ($status == 0) {
+			echo "<option value='0'>utestående avvik finnes</option>";
+		} else if ($status == 1) {
+			echo "<option value='1'>alle avvik lukket</option>";
+		}
+	}
 
-	       		}
-	       }
+	function kravpunkter(){
+		$db = kobleOpp();
+		if($tilsynid){
+			$sqlspørring = ("SELECT * FROM `Kravpunkter` WHERE `tilsynid` like '$tilsynid';");
+
+		}
+		else{
+			$sqlspørring = ("SELECT DISTINCT ordingsverdi,kravpunktnavn_no
+							FROM Kravpunkter;");
+		}
+		
+		$svar = mysqli_query( $db, $sqlspørring );
+		lukk($db);
+
+		$rad = mysqli_fetch_assoc($svar);
+		while ($rad) {
+			$ordingsverdi = $rad['ordingsverdi'];
+			$kravpunktnavn_no = $rad['kravpunktnavn_no'];
+			$karakter;
+			$tekst_no;
+			if($tilsynid){
+				$karakter = $rad['karakter'];
+				$tekst_no = $rad['tekst_no'];
+			}
+
+			$temaOrdingsverdi = substr($ordingsverdi,0,1).'_'.substr($ordingsverdi,2,3);
+			echo"
+			<tr>
+				<td>$ordingsverdi:</td>
+				<td>$kravpunktnavn_no:</td>
+				<td>
+					<select class='karakter' name='karakter$temaOrdingsverdi'>
+						<option value='' selected disabled hidden>$karakter</option>
+						<option value='0'>0</option>
+						<option value='1'>1</option>
+						<option value='2'>2</option>
+						<option value='3'>3</option>
+						<option value='4'>4</option>
+						<option value='5'>5</option>
+					</select>
+				</td>
+				<td><input type='text' name='beskrivelse$temaOrdingsverdi' style='width: 100%;' value = '$tekst_no'></td>
+			</tr>
+			";
+			$rad= mysqli_fetch_assoc($svar);
+
+		}
+	}
 
 	?>
 
@@ -81,18 +125,20 @@
 						<tbody>
 							<tr>
 				    			<td>TilsynsobjektID:</td>
-				    			<td><input type="text" name="tilsynsobjektid"></td>
+				    			<td><input type="text" name="tilsynsobjektid" <?php if($tilsynsobjektid) echo "value='$tilsynsobjektid'"; ?>></td>
 				  			</tr>
 
 				  			<tr>
 				    			<td>TilsynsID:</td>
-				    			<td><input type="text" name="tilsynid"></td>
+				    			<td>
+								<input type="text" name="tilsynid" <?php if($tilsynid) {echo "value='$tilsynid'";} ?>></td>
 				  			</tr>
 
 							<tr>
 				    			<td>TilsynsBesøksType:</td>
 				    			<td>
 					    			<select name="tilsynsbesoektype">
+										<?php tilsynsbesoektype($tilsynsbesoektype); ?>
 							    		<option value="0">Ordinært</option>
 							    		<option value="1">oppfølgings -tilsyn</option>
 					  				</select>
@@ -121,6 +167,7 @@
 				  				<td>Status:</td>    
 				  				<td> 
 				  					<select name="status">
+									  	<?php status($status); ?>
 							    		<option value="0">utestående avvik finnes</option>
 							    		<option value="1">alle avvik lukket</option>
 					  				</select>

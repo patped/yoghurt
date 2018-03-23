@@ -27,7 +27,7 @@ session_start();
   </div>
 
   <div class="container">
-    <div class="page-header"> <h2>Tilsynsrapport for dato: <?php echo $dato; ?> </h2> </div>
+    <div class="page-header"> <h2>Tilsynsrapport for dato: <?php echo $dato; ?> <a href="leggTilNyTilsynsrapport.php"><button type="button">Oppdater</button></a></h2> </div>
     <div class="table-responsive">
       <?php tilsynsrapport(); ?>
     </div>
