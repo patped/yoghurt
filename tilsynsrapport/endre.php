@@ -1,20 +1,21 @@
 <?php
 session_start();
-?>
- <?php
-	include_once '../database.php';
-	include_once '../hjelpefunksj.php';
-	include_once 'endre-modell.php';
-	$tilsynid = $_SESSION['tilsynid'];
-	$tilsynsrapport = false;
-	if ($tilsynid) {
-		$tilsynsrapport = tilsynsrapport($tilsynid);
-	}
-	$tilsynsobjektid = $tilsynsrapport['tilsynsobjektid'];
-	$dato = $tilsynsrapport['dato'];
-	$dato = substr($dato,0,2).".".substr($dato,2,2).".".substr($dato,4,4);
-	$tilsynsbesoektype = $tilsynsrapport['tilsynsbesoektype'];
-	$status = $tilsynsrapport['status'];
+if(!$_SESSION['adminrett']) {
+	header("Location: ../401.php");
+}
+include_once '../database.php';
+include_once '../hjelpefunksj.php';
+include_once 'endre-modell.php';
+$tilsynid = $_SESSION['tilsynid'];
+$tilsynsrapport = false;
+if ($tilsynid) {
+	$tilsynsrapport = tilsynsrapport($tilsynid);
+}
+$tilsynsobjektid = $tilsynsrapport['tilsynsobjektid'];
+$dato = $tilsynsrapport['dato'];
+$dato = substr($dato,0,2).".".substr($dato,2,2).".".substr($dato,4,4);
+$tilsynsbesoektype = $tilsynsrapport['tilsynsbesoektype'];
+$status = $tilsynsrapport['status'];
 ?>
 
 <!doctype html>
