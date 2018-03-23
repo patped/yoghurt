@@ -196,7 +196,7 @@ require_once '../logginn/logginn.php';
                             }
                         /*Legger til alle resultater i en tabell*/
                         echo "<tbody>";
-                        echo    "<tr class='clickable-link' data-href='/restaurantVisning.php?res=$id' style='cursor:pointer'>";
+                        echo    "<tr class='clickable-link' data-href='/restaurant.php?res=$id' style='cursor:pointer'>";
                         echo        "<td>$rNavn</td>";
                         echo        "<td>$rAdresse</td>";
                         echo        "<td>$rPostnr</td>";
@@ -326,7 +326,7 @@ if (!isset($_POST["søkeKnapp"])) {
                             }
                         /*Legger til alle resultater i en tabell*/
                         echo "<tbody>";
-                        echo    "<tr class='clickable-link' data-href='/restaurantVisning.php?res=$id' style='cursor:pointer'>";
+                        echo    "<tr class='clickable-link' data-href='/restaurant.php?res=$id' style='cursor:pointer'>";
                         echo        "<td>$rNavn</td>";
                         echo        "<td>$rAdresse</td>";
                         echo        "<td>$rPostnr</td>";

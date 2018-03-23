@@ -6,7 +6,7 @@ $db = kobleOpp();
 ?>
 <!doctype html>
 <html>
-    <head>
+<head>
   <title>Yoghurt</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -24,7 +24,7 @@ $db = kobleOpp();
         } else if (isset($_GET["res"])) {
             $id = $_GET["res"];
             starAlertInnlogg();
-            $side = 'Location: /restaurantVisning.php?res=' . $id;
+            $side = 'Location: /restaurant.php?res=' . $id;
             loggInn($side);
             $sqlSpørring = (
                 "SELECT * FROM
