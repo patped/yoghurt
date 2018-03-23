@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="/logginn.css" type="text/css">
-<?php 
+<?php
+ 
 function logginn($sideSkalJegTil){
     $_SESSION['sideJegSkalTil'] = $sideSkalJegTil;
     if(isset($_SESSION['loggetInn'])){
@@ -12,6 +13,7 @@ function logginn($sideSkalJegTil){
         loggeinn();
     }
 }
+
 function sjekkInnLogg($db, $brukernavn, $passord){
     $_SESSION['brukernavn'] = $brukernavn;
     $sqlSpørring = 
@@ -32,9 +34,8 @@ function sjekkInnLogg($db, $brukernavn, $passord){
     }
     return false;
     }
-    
-
 }
+
 function starAlertInnlogg(){
     if (isset($_SESSION['loggInnAlert'])) {
             if ($_SESSION['loggInnAlert'] == true) {
@@ -74,6 +75,7 @@ function admin(){
         </div>
 EOT;
 }
+
 function loggeinn(){
     echo<<< EOT
         <div id="logginn">
@@ -92,4 +94,4 @@ function loggeinn(){
 EOT;
 }
 
- ?>
+?>

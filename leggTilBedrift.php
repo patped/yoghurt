@@ -15,8 +15,9 @@ $db = kobleOpp();
 <body>
 	
 	<?php
-	if($_SESSION['adminrett'])
-	{
+	if(!$_SESSION['adminrett']) {
+		header("Location: /401.php");
+	}
 	include_once 'header.php'; 
 	?>
 	<?php 
@@ -76,10 +77,6 @@ $db = kobleOpp();
 		</form>
 
 EOT;
-	
-}else{
- 	header("Location: /401.php");
- }
 	?>
 </main>
 
