@@ -13,13 +13,16 @@ include_once 'logginn.php';
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-	<?php 
-    starAlertInnlogg();
-    $side = 'Location: index.php';
-    logginn($side);
-	include_once 'header.php';
-	?>
+	
+	<?php include_once 'header-footer/header.php'; ?>
 	<div class="container text-center">
+		
+		<?php 
+		starAlertInnlogg();
+		$side = 'Location: index.php';
+		logginn($side);
+		?>
+		
 		<p>Legg til en ny bruker</p>
 		<form method="POST" action="registrert.php">
 			<br><p>fornavn</p><br>
