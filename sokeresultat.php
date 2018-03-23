@@ -196,7 +196,7 @@ require_once 'hjelpefunksj.php';
                             }
                         /*Legger til alle resultater i en tabell*/
                         echo "<tbody>";
-                        echo    "<tr class='clickable-link' data-href='restaurantVisning.php?res=$id'>";
+                        echo    "<tr class='clickable-link' data-href='restaurantVisning.php?res=$id' style='cursor:pointer'>";
                         echo        "<td>$rNavn</td>";
                         echo        "<td>$rAdresse</td>";
                         echo        "<td>$rPostnr</td>";
