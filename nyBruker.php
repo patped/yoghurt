@@ -36,7 +36,7 @@ include_once 'logginn.php';
 			<input type="submit" name="registrer" value="registrer"></p>
 		</form> 
 	<div>
-	<?php include_once 'footer.php'; ?>
+	<?php include_once 'header-footer/footer.php'; ?>
 
 	<script src="sok/sok.js"></script>
     <script src="bibloteker/jquery/jquery-3.3.1.js"></script>

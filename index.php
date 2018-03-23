@@ -15,7 +15,7 @@ require_once 'sok/sok.php';
 </head>
 <body>
     
-    <?php include_once 'header.php'; ?>
+    <?php include_once 'header-footer/header.php'; ?>
     <div class="container text-center">
         <?php 
         starAlertInnlogg();
@@ -26,7 +26,7 @@ require_once 'sok/sok.php';
         <h2>Velg hva du vil søke på</h2>
         <?php sok(); ?>
     </div>
-    <?php include_once 'footer.php'; ?>
+    <?php include_once 'header-footer/footer.php'; ?>
 
     <script src="sok/sok.js"></script>
     <script src="bibloteker/jquery/jquery-3.3.1.js"></script>

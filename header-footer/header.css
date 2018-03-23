@@ -25,15 +25,6 @@ header {
 	display: block;
 }
 
-.homeButton {
-  float: left;
-}
-
-.backButton {
-  float: left;
-}
-
-
 header button {
   float: left;
   height: 30px;
@@ -48,4 +39,15 @@ header button {
 #wrapper {
   min-height: 100%;
   position: relative;
+}
+
+footer {
+	left: 0;
+	height: 30px;
+	bottom: 0;
+	position: absolute;
+	color: lightgrey;
+	background-color: #558ebf;
+	width: 100%;
+	text-align: center;
 }

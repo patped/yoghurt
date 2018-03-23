@@ -11,7 +11,7 @@ $db = kobleOpp();
 	<link rel="stylesheet" href="stilark.css" type="text/css">
 </head>
 <body>
-	<?php include_once 'header.php'; ?>
+	<?php include_once 'header-footer/header.php'; ?>
 	<main>
 	
 	<?php
@@ -71,7 +71,7 @@ EOF;
     ?>
 
 </main>
-<?php include_once 'footer.php'; ?>
+<?php include_once 'header-footer/footer.php'; ?>
 </body>
 </html>
 <?php
