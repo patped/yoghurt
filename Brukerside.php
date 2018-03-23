@@ -33,6 +33,7 @@
 		    $utførAdminRes = mysqli_query($db, $sqlSpørring);
 		    $svarAdminRes = mysqli_fetch_assoc($utførAdminRes);
 		    $testSvar = $svarAdminRes['@admin'];
+		    $_SESSION['adminrett'] = $testSvar;
 
     		if ($testSvar == false) {
     			echo "<p><b>$brukernavn</b> har ikke administratorrettighet på denne nettsiden. Kontakt sjefen ;)</p>

@@ -14,6 +14,8 @@
 </head>
 <body>
 	<?php
+	if($_SESSION['adminrett'])
+	{
 	include_once '../header.php';
 	?>
 	 <?php 
@@ -154,6 +156,13 @@
         		}	
         	}	
 	</script>
+	<?php
+	}else{
+		header("Location: /err.php?e=401");
+
+	}
+
+ 	?>
 	<script src="bibloteker/jquery/jquery-3.3.1.js"></script>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
