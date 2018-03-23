@@ -13,19 +13,17 @@ $db = kobleOpp();
 	<link rel="stylesheet" href="stilark.css" type="text/css">
 </head>
 <body>
-	    <?php 
+	<?php 
     starAlertInnlogg();
     $side = 'Location: index.php';
     logginn($side);
-	<?php include_once 'header.php'; ?>
-	<main>
+	include_once 'header.php';
 	echo <<<EOT
+	<main>
 	
 
 	<p> legg til en ny bruker</p>
 	<form method="POST" action="registrert.php">
-		<p>brukerId</p>
-		<input type="bruker" name="brukerID" value="brukerID">
 		<br><p>fornavn</p><br>
 		<input type="text" name="fornavn" value="Fornavn">
 		<br><p>etternavn</p><br>
