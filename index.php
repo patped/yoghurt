@@ -29,7 +29,7 @@ require_once 'sok/sok.php';
     <?php include_once 'header-footer/footer.php'; ?>
 
     <script src="sok/sok.js"></script>
-    <script src="bibloteker/jquery/jquery-3.3.1.js"></script>
+    <script src="/bibloteker/jquery/jquery-3.3.1.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

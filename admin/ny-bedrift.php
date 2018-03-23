@@ -3,8 +3,8 @@ session_start();
 if(!$_SESSION['adminrett']) {
 	header("Location: /401.php");
 }
-include_once 'database.php';
-include_once 'logginn/logginn.php';
+include_once '../database.php';
+include_once '../logginn/logginn.php';
 ?>
 <!doctype html>
 <html lang="no">
@@ -17,9 +17,9 @@ include_once 'logginn/logginn.php';
 <body>
 	
 	<?php
-	include_once 'header-footer/header.php'; 
+	include_once '../header-footer/header.php'; 
     starAlertInnlogg();
-    $side = 'Location: /leggTilBedrift.php';
+    $side = 'Location: /admin/ny-bedrift.php';
     logginn($side);
 	?>
 
@@ -28,7 +28,7 @@ include_once 'logginn/logginn.php';
 		<h1>Legg til ny bedrift</h1>
 		<h2>Fyll ut skjema</h2>
 
-		<form method="POST" action="registrerBedrift.php">
+		<form method="POST" action="ny-bedrift-kontroller.php">
 			<div class="table-responsive">
 				<div class="col-xs-4 col-xs-offset-4">
 					<table class="table">
@@ -78,10 +78,10 @@ include_once 'logginn/logginn.php';
 		</form>
 	</div>
 
-	<?php include_once 'header-footer/footer.php'; ?>
+	<?php include_once '../header-footer/footer.php'; ?>
 	
 
-	<script src="bibloteker/jquery/jquery-3.3.1.js"></script>
+	<script src="/bibloteker/jquery/jquery-3.3.1.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

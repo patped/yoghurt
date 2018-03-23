@@ -1,7 +1,7 @@
 <?php
 session_start();
-include_once 'database.php';
-include_once 'logginn/logginn.php';
+include_once '../div/database.php';
+include_once '../logginn/logginn.php';
 ?>
 
 <!doctype html>
@@ -14,7 +14,7 @@ include_once 'logginn/logginn.php';
 </head>
 <body>
 	
-	<?php include_once 'header-footer/header.php'; ?>
+	<?php include_once '../div/header.php'; ?>
 	<div class="container text-center">
 		
 		<?php 
@@ -24,7 +24,7 @@ include_once 'logginn/logginn.php';
 		?>
 		
 		<p>Legg til en ny bruker</p>
-		<form method="POST" action="registrert.php">
+		<form method="POST" action="ny-bruker-landingside.php">
 			<br><p>fornavn</p><br>
 			<input type="text" name="fornavn" value="Fornavn">
 			<br><p>etternavn</p><br>
@@ -39,10 +39,9 @@ include_once 'logginn/logginn.php';
 			<input type="submit" name="registrer" value="registrer"></p>
 		</form> 
 	<div>
-	<?php include_once 'header-footer/footer.php'; ?>
+	<?php include_once '../div/footer.php'; ?>
 
-	<script src="sok/sok.js"></script>
-    <script src="bibloteker/jquery/jquery-3.3.1.js"></script>
+    <script src="/bibloteker/jquery/jquery-3.3.1.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>

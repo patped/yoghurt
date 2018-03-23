@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once 'database.php';
+include_once '../div/database.php';
 $db = kobleOpp();
 ?>
 <!DOCTYPE html>
@@ -8,10 +8,9 @@ $db = kobleOpp();
 <head>
 	<meta charset="utf-8">
 	<title>velykket</title>
-	<link rel="stylesheet" href="stilark.css" type="text/css">
 </head>
 <body>
-	<?php include_once 'header-footer/header.php'; ?>
+	<?php include_once '../div/header.php'; ?>
 	<main>
 	
 	<?php
@@ -43,7 +42,7 @@ $db = kobleOpp();
 
 	       			");
 	       		echo <<< EOF
-	    		<form action="leggTilBedrift.php">
+	    		<form action="ny-bedrift.php">
     				<input type="submit" value="Går tilbake" />
 				</form>
 EOF;
@@ -57,7 +56,7 @@ EOF;
 	    	else {
 	    		echo "Alle feltene må mære fylt ut!";
 	 			echo <<< EOF
-	    		<form action="leggTilBedrift.php">
+	    		<form action="ny-bedrift.php">
     				<input type="submit" value="Går tilbake" />
 				</form>
 EOF;
@@ -71,7 +70,7 @@ EOF;
     ?>
 
 </main>
-<?php include_once 'header-footer/footer.php'; ?>
+<?php include_once '../div/footer.php'; ?>
 </body>
 </html>
 <?php

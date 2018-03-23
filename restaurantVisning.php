@@ -259,7 +259,7 @@ $db = kobleOpp();
 
 
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCG_9QaZStF7k76o_tBYtuA3J89WnQXedQ&callback=initMap"></script>
-        <script src="bibloteker/jquery/jquery-3.3.1.js"></script>
+        <script src="/bibloteker/jquery/jquery-3.3.1.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </body>
 </html>
