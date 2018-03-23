@@ -1,7 +1,7 @@
 <?php
 
 function tilsynsrapport($tilsynid) {
-	require_once '../database.php';
+	require_once '../div/database.php';
 	$db = kobleOpp();
 	$sql = "SELECT tilsynsobjektid, status, dato, tilsynsbesoektype FROM Tilsynsrapporter WHERE tilsynid LIKE ?;";
 	$stmt = mysqli_prepare($db, $sql);

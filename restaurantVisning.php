@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once 'database.php';
-require_once 'logginn.php';
+require_once 'div/database.php';
+require_once 'logginn/logginn.php';
 $db = kobleOpp();
 ?>
 <!doctype html>
@@ -13,7 +13,7 @@ $db = kobleOpp();
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
     <body>
-        <?php include_once 'header-footer/header.php'; ?>
+        <?php include_once 'div/header.php'; ?>
 
         <?php
         $status = mysqli_set_charset($db, "utf8");
@@ -24,7 +24,7 @@ $db = kobleOpp();
         } else if (isset($_GET["res"])) {
             $id = $_GET["res"];
             starAlertInnlogg();
-            $side = 'Location: restaurantVisning.php?res=' . $id;
+            $side = 'Location: /restaurantVisning.php?res=' . $id;
             loggInn($side);
             $sqlSpørring = (
                 "SELECT * FROM
@@ -255,11 +255,11 @@ $db = kobleOpp();
 
 
         </main>
-        <?php include_once 'header-footer/footer.php'; ?>
+        <?php include_once 'div/footer.php'; ?>
 
 
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCG_9QaZStF7k76o_tBYtuA3J89WnQXedQ&callback=initMap"></script>
-        <script src="bibloteker/jquery/jquery-3.3.1.js"></script>
+        <script src="/bibloteker/jquery/jquery-3.3.1.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </body>
 </html>

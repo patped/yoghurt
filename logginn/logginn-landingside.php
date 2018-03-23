@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once 'database.php';
+include_once '../div/database.php';
 include_once 'logginn.php';
 $db = kobleOpp();
 ?>
@@ -10,10 +10,9 @@ $db = kobleOpp();
 <head>
 <meta charset="utf-8">
 <title>Forside youghurt</title>
-	<link rel="stylesheet" href="stilark.css" type="text/css">
 </head>
 <body>
-	<?php include_once 'header-footer/header.php'; ?>
+	<?php include_once '../div/header.php'; ?>
 	<main>
 	
 	<?php
@@ -55,7 +54,7 @@ $db = kobleOpp();
 	?>	
 
 </main>
-<?php include_once 'header-footer/footer.php'; ?>
+<?php include_once '../div/footer.php'; ?>
 </body>
 </html>
 <?php

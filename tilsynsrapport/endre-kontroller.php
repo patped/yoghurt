@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once '../database.php';
+include_once '../div/database.php';
 $db = kobleOpp();
 if (isset($_POST["submit"])) {
 	$tilsynsobjektid = $_POST["tilsynsobjektid"];

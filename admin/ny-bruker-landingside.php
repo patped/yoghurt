@@ -1,16 +1,15 @@
 <?php
 session_start();
-include_once 'database.php';
-include_once 'logginn.php';
+include_once '../div/database.php';
+include_once '../logginn/logginn.php';
 $db = kobleOpp();
 ?>
 
 <!doctype html>
 <html>
 <head>
-<meta charset="utf-8">
-<title>Forside youghurt</title>
-	<link rel="stylesheet" href="stilark.css" type="text/css">
+	<meta charset="utf-8">
+	<title>Forside youghurt</title>
 </head>
 <body>
 	<?php
@@ -66,27 +65,15 @@ $db = kobleOpp();
 
 			 
 			</table>
-			<a href="nyBruker.php">Registrer en ny</a>
-			<br>
-			<a href="Brukerside.php">Hjem</a>
- 
-	
+			<a href="ny-bruker.php">Registrer en ny</a>	
 EOT;
 }
 else if($resultat==0){
 	echo <<<EOT
 	<p>Ikke registrert</p>
-	<a href="nyBruker.php">Prøv på nytt</a>
-	<br>
-	<a href="Brukerside.php">Hjem</a>
+	<a href="ny-bruker.php">Prøv på nytt</a>
 EOT;
 }
-}
-else{
-	echo <<<EOT
-	<p>Dette krever admintilgang</p>
-	<a href="Brukerside.php">Hjem</a>
-EOT;
 }
 
 	?>	

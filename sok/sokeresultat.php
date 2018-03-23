@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once 'database.php';
-require_once 'sok/sok.php';
-require_once 'logginn.php';
+require_once '../div/database.php';
+require_once 'sok.php';
+require_once '../logginn/logginn.php';
 ?>
 <!doctype html>
 <html>
@@ -16,21 +16,21 @@ require_once 'logginn.php';
     
      
     <?php 
-    include_once 'header-footer/header.php';
+    include_once '../div/header.php';
     starAlertInnlogg();
-    $side = 'Location: sokeresultat.php?start=0';
+    $side = 'Location: /sok/sokeresultat.php?start=0';
     logginn($side);
     $db = kobleOpp();
    
    if (!isset($_GET['start'])) {
-   	header("Location: index.php");
+   	header("Location: /index.php");
    }
     $startSøk = $_GET['start'];
     $sluttSøk = $startSøk + 10;
     $søkTeller = 0;
     if (!isset($_POST["søkeKnapp"])) {
         if (!isset($_SESSION['tidligereSøk'])) {
-            header("Location: index.php");
+            header("Location: /index.php");
         }
         
     }
@@ -39,8 +39,8 @@ require_once 'logginn.php';
     $hvordanSøk;
     $nesteSøkTall = $startSøk + 10;
     $forrigeSøkTall = $startSøk-10;
-    $nesteSide = 'sokeresultat.php?start=' . $nesteSøkTall;
-    $forrigeSide = 'sokeresultat.php?start=' . $forrigeSøkTall;
+    $nesteSide = '/sok/sokeresultat.php?start=' . $nesteSøkTall;
+    $forrigeSide = '/sok/sokeresultat.php?start=' . $forrigeSøkTall;
     if (isset($_POST["søkeKnapp"])) {
         if (isset($_POST["orgnr"])) {
             $søkeverdi = $_POST["Søkefelt"];
@@ -126,7 +126,7 @@ require_once 'logginn.php';
             $svar;
             $resultat;
             if (isset($_POST["geolokasjon"])) {
-                require_once "geoResultat.php";
+                require_once "geo-resultat.php";
                 $latitude = $_POST["latitude"];
                 $longitude = $_POST["longitude"];
                 //Trenger ikke hindre sql-injection her, ettersom metoden ikke bruker brukers "input" til noe annet enn sjekk i forhold til allerede eksisterende long, lat.
@@ -186,17 +186,17 @@ require_once 'logginn.php';
                         }
                         $karakterSisteTilsynSnitt = $karakterSisteTilsyn/$teller;
                         if ($karakterSisteTilsynSnitt<0.5) {
-                                $bilde = './bilder/smileys/storSmil.png';
+                                $bilde = '/bilder/smileys/storSmil.png';
                             }else if ($karakterSisteTilsynSnitt<=1) {
-                                $bilde = './bilder/smileys/liteSmil.png';
+                                $bilde = '/bilder/smileys/liteSmil.png';
                             }else if ($karakterSisteTilsynSnitt<=1.5) {
-                                $bilde = './bilder/smileys/ingenSmil.png';
+                                $bilde = '/bilder/smileys/ingenSmil.png';
                             }else{
-                                $bilde = './bilder/smileys/spySmil.png';
+                                $bilde = '/bilder/smileys/spySmil.png';
                             }
                         /*Legger til alle resultater i en tabell*/
                         echo "<tbody>";
-                        echo    "<tr class='clickable-link' data-href='restaurantVisning.php?res=$id' style='cursor:pointer'>";
+                        echo    "<tr class='clickable-link' data-href='/restaurantVisning.php?res=$id' style='cursor:pointer'>";
                         echo        "<td>$rNavn</td>";
                         echo        "<td>$rAdresse</td>";
                         echo        "<td>$rPostnr</td>";
@@ -316,17 +316,17 @@ if (!isset($_POST["søkeKnapp"])) {
                         }
                         $karakterSisteTilsynSnitt = $karakterSisteTilsyn/$teller;
                         if ($karakterSisteTilsynSnitt<0.5) {
-                                $bilde = './bilder/smileys/storSmil.png';
+                                $bilde = '/bilder/smileys/storSmil.png';
                             }else if ($karakterSisteTilsynSnitt<=1) {
-                                $bilde = './bilder/smileys/liteSmil.png';
+                                $bilde = '/bilder/smileys/liteSmil.png';
                             }else if ($karakterSisteTilsynSnitt<=1.5) {
-                                $bilde = './bilder/smileys/ingenSmil.png';
+                                $bilde = '/bilder/smileys/ingenSmil.png';
                             }else{
-                                $bilde = './bilder/smileys/spySmil.png';
+                                $bilde = '/bilder/smileys/spySmil.png';
                             }
                         /*Legger til alle resultater i en tabell*/
                         echo "<tbody>";
-                        echo    "<tr class='clickable-link' data-href='restaurantVisning.php?res=$id'>";
+                        echo    "<tr class='clickable-link' data-href='/restaurantVisning.php?res=$id' style='cursor:pointer'>";
                         echo        "<td>$rNavn</td>";
                         echo        "<td>$rAdresse</td>";
                         echo        "<td>$rPostnr</td>";
@@ -352,9 +352,9 @@ if (!isset($_POST["søkeKnapp"])) {
     ?>
 
     </main>
-    <?php include_once 'header-footer/footer.php'; ?>
+    <?php include_once '../div/footer.php'; ?>
 
-    <script src="sok/sok.js"></script>
+    <script src="sok.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript">

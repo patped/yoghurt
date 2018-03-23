@@ -1,7 +1,7 @@
 <?php
 session_start();
 require "tilsyn-modell.php";
-require_once '../hjelpefunksj.php';
+require_once '../logginn/logginn.php';
 ?>
 
 <!DOCTYPE html>
@@ -13,7 +13,7 @@ require_once '../hjelpefunksj.php';
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-  <?php include_once '../header-footer/header.php'; ?>
+  <?php include_once '..div/header.php'; ?>
   <?php 
     starAlertInnlogg();
     $side = 'Location: /tilsynsrapport/tilsyn.php?tilsynid=' . $_GET['tilsynid'] . '&dato=' . $_GET['dato'];

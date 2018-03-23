@@ -1,7 +1,7 @@
 <?php
 session_start();
-require_once 'database.php';
-require_once 'logginn.php';
+require_once 'div/database.php';
+require_once 'logginn/logginn.php';
 require_once 'sok/sok.php';
 ?>
 
@@ -15,21 +15,21 @@ require_once 'sok/sok.php';
 </head>
 <body>
     
-    <?php include_once 'header-footer/header.php'; ?>
+    <?php include_once 'div/header.php'; ?>
     <div class="container text-center">
         <?php 
         starAlertInnlogg();
-        $side = 'Location: index.php';
+        $side = 'Location: /index.php';
         logginn($side);
         ?>
         <h1>Hvilken smiley har bedriften fått?</h1>
         <h2>Velg hva du vil søke på</h2>
         <?php sok(); ?>
     </div>
-    <?php include_once 'header-footer/footer.php'; ?>
+    <?php include_once 'div/footer.php'; ?>
 
     <script src="sok/sok.js"></script>
-    <script src="bibloteker/jquery/jquery-3.3.1.js"></script>
+    <script src="/bibloteker/jquery/jquery-3.3.1.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>
 </html>
