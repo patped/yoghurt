@@ -1,8 +1,8 @@
 <?php
+session_start();
 require_once 'database.php';
 require_once 'hjelpefunksj.php';
 $db = kobleOpp();
-session_start();
 ?>
 <!doctype html>
 <html>
@@ -189,8 +189,8 @@ session_start();
                         }
                         $tilsynid = $svarTilsynsrapport['tilsynid'];
                         echo "<tr><td>";
-                        echo "<a href='tilsynsrapport/tilsynsrapport.php?tilsynid=$tilsynid&dato=$dato'>$dato</td>";
-                        echo "<td><a href='tilsynsrapport/tilsynsrapport.php?tilsynid=$tilsynid&dato=$dato'><img id ='smileBilde' src='$mattilsynetSmil' title='smilefjes' width= '20%'></td>";
+                        echo "<a href='tilsynsrapport/tilsyn.php?tilsynid=$tilsynid&dato=$dato'>$dato</td>";
+                        echo "<td><a href='tilsynsrapport/tilsyn.php?tilsynid=$tilsynid&dato=$dato'><img id ='smileBilde' src='$mattilsynetSmil' title='smilefjes' width= '20%'></td>";
                         echo "<td>$karakter1</td><td>$karakter2</td><td>$karakter3</td><td>$karakter4</td>";
                         $svarTilsynsrapport = mysqli_fetch_assoc($svar);
                         $teller++;

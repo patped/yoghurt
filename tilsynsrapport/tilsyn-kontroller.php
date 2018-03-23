@@ -24,6 +24,7 @@ function hentTemaer() {
 
 function hentKravpunkter($ordningsverdi) {
     $tilsynid = $_GET['tilsynid'];
+    $_SESSION['tilsynid'] = $tilsynid;
     $sql = (
         "SELECT `ordingsverdi`, `kravpunktnavn_no`, `karakter`, `tekst_no` 
         FROM `Kravpunkter` 

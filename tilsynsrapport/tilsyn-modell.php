@@ -1,5 +1,5 @@
 <?php
-require_once "tilsynsrapportKontroller.php";
+require_once "tilsyn-kontroller.php";
 
 $dato = hentDato();
 

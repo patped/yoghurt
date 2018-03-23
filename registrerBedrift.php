@@ -1,7 +1,7 @@
 <?php
-	include_once 'database.php';
-	$db = kobleOpp();
-	session_start();
+session_start();
+include_once 'database.php';
+$db = kobleOpp();
 ?>
 <!DOCTYPE html>
 <html>

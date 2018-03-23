@@ -1,8 +1,8 @@
 <?php
+session_start();
 require_once 'database.php';
 require_once 'sok/sok.php';
 require_once 'hjelpefunksj.php';
-session_start();
 ?>
 <!doctype html>
 <html>

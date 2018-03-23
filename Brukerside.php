@@ -1,8 +1,8 @@
 <?php
-	session_start();
-	include_once 'database.php';
-	include_once 'hjelpefunksj.php';
-	$db = kobleOpp();
+session_start();
+include_once 'database.php';
+include_once 'hjelpefunksj.php';
+$db = kobleOpp();
 ?>
 
 <!doctype html>
