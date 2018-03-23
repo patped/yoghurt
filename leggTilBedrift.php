@@ -78,7 +78,7 @@
 EOT;
 	
 }else{
- 	header("Location: /err.php?e=401");
+ 	header("Location: /401.php");
  }
 	?>
 </main>
