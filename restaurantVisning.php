@@ -57,7 +57,7 @@ session_start();
                     <div class='jumbotron text-center'>
                     <h1>$navn</h1>
                     <h2>$fullAdresse</h2>
-                </div>
+                    </div>
                 <div class='container-fluid'>
 
                     
@@ -142,7 +142,7 @@ session_start();
                         $tema4 = $svarTilsynsrapport['tema4_no'];
                         $karakter4=$svarTilsynsrapport['karakter4'];
 
-                    echo "<div class='col-md-4'><table class='table table-hover;'>
+                    echo "<div class='col-md-5'><table class='table table-hover;'>
                     <div class='table-responsive'>
                     <th><h4>Dato for rapport</h4></th><th><h4>Mattilsynets smilefjes</h4></th><th><h4>
                     $tema1</h4></th>
