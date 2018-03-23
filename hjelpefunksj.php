@@ -65,9 +65,9 @@ function admin(){
   <span class="caret"></span></button>
         <ul class="dropdown-menu dropdown-menu-right pull-right">
         <li><a href="/leggTilBedrift.php">Legg til Bedrift</a></li>
-        <li><a href="tilsynsrapport/leggTilNyTilsynsrapport.php">Legg til TilynsRapport</a></li>
+        <li><a href="tilsynsrapport/leggTilNyTilsynsrapport.php">Legg til Tilsynsrapport</a></li>
         <form method="POST" action="/loggut.php">
-            <li><input type="submit" name="Logg Ut" value="Logg ut">
+            <li><input id="luBtn" type="submit" name="Logg Ut" value="Logg ut">
             </form></li>
         </ul>
         </div>
@@ -78,14 +78,13 @@ function loggeinn(){
     echo<<< EOT
         <div class="loginn">
             <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Logg Inn
-  <span class="caret"></span></button>
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Logg Inn <span class="caret"></span></button>
             <ul class="dropdown-menu dropdown-menu-right pull-right">
-            <h4>Logg inn</h4>
+            <h4 class="mgli"> Logg inn</h4>
             <li><form method="POST" action="/Brukerside.php" onsubmit="return sjekkInnhold()"></li>
-            <li><input type="text" name="brukernavn" id="sp_uname"  style="margin-top: 5px"></li>
-            <input type="password" name="passord" id="sp_ps" style="margin-top: 5px">
-            <li><input type="submit" name="submit" value="logg inn" style=" width: 150px; height: 50px"></li>
+            <li><input type="text" name="brukernavn" placeholder="Brukernavn" id="sp_uname"  style="margin-top: 5px"></li>
+            <input type="password" name="passord" placeholder="Passord" id="sp_ps" style="margin-top: 5px">
+            <li><input id="liBtn" type="submit" name="submit" value=" Logg inn " style=" width: 80px; height: 30px"></li>
             </form>
             </ul>
         </div>
