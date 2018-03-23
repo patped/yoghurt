@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once 'database.php';
-include_once 'logginn.php';
+include_once 'logginn/logginn.php';
 $db = kobleOpp();
 ?>
 

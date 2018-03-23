@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once 'database.php';
-require_once 'logginn.php';
+require_once 'logginn/logginn.php';
 $db = kobleOpp();
 ?>
 <!doctype html>
@@ -24,7 +24,7 @@ $db = kobleOpp();
         } else if (isset($_GET["res"])) {
             $id = $_GET["res"];
             starAlertInnlogg();
-            $side = 'Location: restaurantVisning.php?res=' . $id;
+            $side = 'Location: /restaurantVisning.php?res=' . $id;
             loggInn($side);
             $sqlSpørring = (
                 "SELECT * FROM

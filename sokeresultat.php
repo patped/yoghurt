@@ -2,7 +2,7 @@
 session_start();
 require_once 'database.php';
 require_once 'sok/sok.php';
-require_once 'logginn.php';
+require_once 'logginn/logginn.php';
 ?>
 <!doctype html>
 <html>
@@ -18,19 +18,19 @@ require_once 'logginn.php';
     <?php 
     include_once 'header-footer/header.php';
     starAlertInnlogg();
-    $side = 'Location: sokeresultat.php?start=0';
+    $side = 'Location: /sokeresultat.php?start=0';
     logginn($side);
     $db = kobleOpp();
    
    if (!isset($_GET['start'])) {
-   	header("Location: index.php");
+   	header("Location: /index.php");
    }
     $startSøk = $_GET['start'];
     $sluttSøk = $startSøk + 10;
     $søkTeller = 0;
     if (!isset($_POST["søkeKnapp"])) {
         if (!isset($_SESSION['tidligereSøk'])) {
-            header("Location: index.php");
+            header("Location: /index.php");
         }
         
     }
@@ -326,7 +326,7 @@ if (!isset($_POST["søkeKnapp"])) {
                             }
                         /*Legger til alle resultater i en tabell*/
                         echo "<tbody>";
-                        echo    "<tr class='clickable-link' data-href='restaurantVisning.php?res=$id'>";
+                        echo    "<tr class='clickable-link' data-href='restaurantVisning.php?res=$id' style='cursor:pointer'>";
                         echo        "<td>$rNavn</td>";
                         echo        "<td>$rAdresse</td>";
                         echo        "<td>$rPostnr</td>";

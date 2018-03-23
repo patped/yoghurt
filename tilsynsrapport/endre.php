@@ -4,7 +4,7 @@ if(!$_SESSION['adminrett']) {
 	header("Location: ../401.php");
 }
 include_once '../database.php';
-include_once '../hjelpefunksj.php';
+include_once '../logginn/logginn.php';
 include_once 'endre-modell.php';
 $tilsynid = $_SESSION['tilsynid'];
 $tilsynsrapport = false;

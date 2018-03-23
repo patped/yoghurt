@@ -1,7 +1,7 @@
 <?php
 session_start();
 require "tilsyn-modell.php";
-require_once '../hjelpefunksj.php';
+require_once '../logginn/logginn.php';
 ?>
 
 <!DOCTYPE html>

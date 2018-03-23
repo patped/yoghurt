@@ -17,7 +17,7 @@ require_once 'logginn/logginn.php';
     <div class="container">
         <?php 
         starAlertInnlogg();
-        $side = 'Location: index.php';
+        $side = 'Location: /index.php';
         logginn($side);
         ?>
         <main>    

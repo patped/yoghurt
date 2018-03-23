@@ -1,7 +1,7 @@
 <?php
 session_start();
 include_once 'database.php';
-include_once 'logginn.php';
+include_once 'logginn/logginn.php';
 ?>
 
 <!doctype html>
@@ -19,7 +19,7 @@ include_once 'logginn.php';
 		
 		<?php 
 		starAlertInnlogg();
-		$side = 'Location: index.php';
+		$side = 'Location: /index.php';
 		logginn($side);
 		?>
 		

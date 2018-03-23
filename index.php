@@ -19,7 +19,7 @@ require_once 'sok/sok.php';
     <div class="container text-center">
         <?php 
         starAlertInnlogg();
-        $side = 'Location: index.php';
+        $side = 'Location: /index.php';
         logginn($side);
         ?>
         <h1>Hvilken smiley har bedriften fått?</h1>
