@@ -14,7 +14,9 @@
 </head>
 <body>
 	
-	<?php 
+	<?php
+	if($_SESSION['adminrett'])
+	{
 	include_once 'header.php'; 
 	?>
 	<?php 
@@ -75,7 +77,9 @@
 
 EOT;
 	
-
+}else{
+ 	header("Location: /401.php");
+ }
 	?>
 </main>
 
