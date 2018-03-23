@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/stilark.css" type="text/css">
+<link rel="stylesheet" href="/logginn.css" type="text/css">
 <?php 
 function logginn($sideSkalJegTil){
     $_SESSION['sideJegSkalTil'] = $sideSkalJegTil;
@@ -59,7 +59,7 @@ function starAlertInnlogg(){
 function admin(){
     $bruker = $_SESSION['bruker'];
     echo<<< EOT
-        <div class="loginn">
+        <div id="logginn">
         <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">$bruker
   <span class="caret"></span></button>
@@ -76,7 +76,7 @@ EOT;
 }
 function loggeinn(){
     echo<<< EOT
-        <div class="loginn">
+        <div id="logginn">
             <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Logg Inn <span class="caret"></span></button>
             <ul class="dropdown-menu dropdown-menu-right pull-right">
