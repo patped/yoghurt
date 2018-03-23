@@ -66,27 +66,15 @@ $db = kobleOpp();
 
 			 
 			</table>
-			<a href="nyBruker.php">Registrer en ny</a>
-			<br>
-			<a href="Brukerside.php">Hjem</a>
- 
-	
+			<a href="nyBruker.php">Registrer en ny</a>	
 EOT;
 }
 else if($resultat==0){
 	echo <<<EOT
 	<p>Ikke registrert</p>
 	<a href="nyBruker.php">Prøv på nytt</a>
-	<br>
-	<a href="Brukerside.php">Hjem</a>
 EOT;
 }
-}
-else{
-	echo <<<EOT
-	<p>Dette krever admintilgang</p>
-	<a href="Brukerside.php">Hjem</a>
-EOT;
 }
 
 	?>	

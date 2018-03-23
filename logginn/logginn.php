@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="/logginn.css" type="text/css">
+<link rel="stylesheet" href="/logginn/logginn.css" type="text/css">
 <?php
  
 function logginn($sideSkalJegTil){
@@ -83,7 +83,7 @@ function loggeinn(){
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Logg Inn <span class="caret"></span></button>
             <ul class="dropdown-menu dropdown-menu-right pull-right">
             <h4 id="mgli"> Logg inn</h4>
-            <li><form method="POST" action="/logginn-landingsside.php" onsubmit="return sjekkInnhold()"></li>
+            <li><form method="POST" action="/logginn-landingside.php" onsubmit="return sjekkInnhold()"></li>
             <li><input type="text" name="brukernavn" placeholder="Brukernavn" id="sp_uname"  style="margin-top: 5px"></li>
             <input type="password" name="passord" placeholder="Passord" id="sp_ps" style="margin-top: 5px">
             <li><input id="liBtn" type="submit" name="submit" value=" Logg inn " style=" width: 80px; height: 30px"></li>
