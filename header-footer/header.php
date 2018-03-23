@@ -9,5 +9,5 @@
 	<header>
 		<button onClick="window.location='/index.php'"><img style="height: 30px;" src="/bilder/homeButton.png"></button>
 		<button onClick="goBack()"><img style="height: 30px;" src="/bilder/backButton.svg"></button>
-		<img id="logo" src="/bilder/tempLogo.jpg" onClick="index.php" href="/yogurt/index.php">
+		<img id="logo" src="/bilder/tempLogo.jpg">
 	</header>
