@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once 'database.php';
-require_once 'hjelpefunksj.php';
+require_once 'logginn.php';
 ?>
 
 <!doctype html>
@@ -13,7 +13,7 @@ require_once 'hjelpefunksj.php';
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-    <?php include_once 'header.php'; ?>
+    <?php include_once 'header-footer/header.php'; ?>
     <div class="container">
         <?php 
         starAlertInnlogg();
@@ -25,7 +25,7 @@ require_once 'hjelpefunksj.php';
             <h2>Tilbake til <a href="/index.php">Hovedside</a></h2>
         </main>
     </div>
-    <?php include_once 'footer.php'; ?>
+    <?php include_once 'header-footer/footer.php'; ?>
 
 
     <script src="sok/sok.js"></script>

@@ -28,7 +28,7 @@ $status = $tilsynsrapport['status'];
 </head>
 <body>
 	<?php
-	include_once '../header.php';
+	include_once '../header-footer/header.php';
     starAlertInnlogg();
     $side = 'Location: /tilsynsrapport/endre.php';
 	logginn($side);

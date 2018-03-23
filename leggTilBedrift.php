@@ -1,7 +1,7 @@
 <?php
 session_start();	
 include_once 'database.php';
-include_once 'hjelpefunksj.php';
+include_once 'logginn.php';
 $db = kobleOpp();
 ?>
 <!doctype html>
@@ -15,9 +15,10 @@ $db = kobleOpp();
 <body>
 	
 	<?php
-	if($_SESSION['adminrett'])
-	{
-	include_once 'header.php'; 
+	if(!$_SESSION['adminrett']) {
+		header("Location: /401.php");
+	}
+	include_once 'header-footer/header.php'; 
 	?>
 	<?php 
     starAlertInnlogg();
@@ -76,14 +77,10 @@ $db = kobleOpp();
 		</form>
 
 EOT;
-	
-}else{
- 	header("Location: /401.php");
- }
 	?>
 </main>
 
-<?php include_once 'footer.php'; ?>
+<?php include_once 'header-footer/footer.php'; ?>
 <script src="bibloteker/jquery/jquery-3.3.1.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>

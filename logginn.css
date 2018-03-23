@@ -1,28 +1,10 @@
-table {
-    margin: auto;
-}
-
-.loginn {
+#logginn {
     position: fixed;
     right: 10px;
     top: 20px;
     font-size: 10px;
 }
 
-#map {
-    height: 400px;
-    width: 35%;
-    margin-right: 10px;
-}
-
-main {
-    width: 80%;
-    background-color: lightgrey;
-    margin: auto;
-    border-radius: 5px;
-    text-align: center;
-    padding-bottom: 40px;
-}
 #resultatTabell{
     text-align: left;
     border-spacing: 10px;
@@ -39,6 +21,6 @@ main {
     display: block;
 }
 
-.mgli {
+#mgli {
     margin-left: 5px;
 }

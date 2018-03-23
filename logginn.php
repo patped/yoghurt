@@ -1,5 +1,6 @@
-<link rel="stylesheet" href="/stilark.css" type="text/css">
-<?php 
+<link rel="stylesheet" href="/logginn.css" type="text/css">
+<?php
+ 
 function logginn($sideSkalJegTil){
     $_SESSION['sideJegSkalTil'] = $sideSkalJegTil;
     if(isset($_SESSION['loggetInn'])){
@@ -12,6 +13,7 @@ function logginn($sideSkalJegTil){
         loggeinn();
     }
 }
+
 function sjekkInnLogg($db, $brukernavn, $passord){
     $_SESSION['brukernavn'] = $brukernavn;
     $sqlSpørring = 
@@ -32,9 +34,8 @@ function sjekkInnLogg($db, $brukernavn, $passord){
     }
     return false;
     }
-    
-
 }
+
 function starAlertInnlogg(){
     if (isset($_SESSION['loggInnAlert'])) {
             if ($_SESSION['loggInnAlert'] == true) {
@@ -59,7 +60,7 @@ function starAlertInnlogg(){
 function admin(){
     $bruker = $_SESSION['bruker'];
     echo<<< EOT
-        <div class="loginn">
+        <div id="logginn">
         <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">$bruker
   <span class="caret"></span></button>
@@ -74,13 +75,14 @@ function admin(){
         </div>
 EOT;
 }
+
 function loggeinn(){
     echo<<< EOT
-        <div class="loginn">
+        <div id="logginn">
             <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Logg Inn <span class="caret"></span></button>
             <ul class="dropdown-menu dropdown-menu-right pull-right">
-            <h4 class="mgli"> Logg inn</h4>
+            <h4 id="mgli"> Logg inn</h4>
             <li><form method="POST" action="/Brukerside.php" onsubmit="return sjekkInnhold()"></li>
             <li><input type="text" name="brukernavn" placeholder="Brukernavn" id="sp_uname"  style="margin-top: 5px"></li>
             <input type="password" name="passord" placeholder="Passord" id="sp_ps" style="margin-top: 5px">
@@ -92,4 +94,4 @@ function loggeinn(){
 EOT;
 }
 
- ?>
+?>
