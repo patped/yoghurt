@@ -13,7 +13,7 @@ require_once '../logginn/logginn.php';
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-  <?php include_once '..div/header.php'; ?>
+  <?php include_once '../div/header.php'; ?>
   <?php 
     starAlertInnlogg();
     $side = 'Location: /tilsynsrapport/tilsyn.php?tilsynid=' . $_GET['tilsynid'] . '&dato=' . $_GET['dato'];
