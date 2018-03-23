@@ -15,16 +15,18 @@ require_once 'sok/sok.php';
 </head>
 <body>
     <?php include_once 'header.php'; ?>
-    <?php 
-    starAlertInnlogg();
-    $side = 'Location: index.php';
-    logginn($side);
-    ?>
-    <main>    
-        <h1>Hvilken smiley har bedriften fått?</h1>
-        <h2>Velg hva du vil søke på</h2>
-        <?php sok(); ?>
-    </main>
+    <div class="container">
+        <?php 
+        starAlertInnlogg();
+        $side = 'Location: index.php';
+        logginn($side);
+        ?>
+        <main>    
+            <h1>Hvilken smiley har bedriften fått?</h1>
+            <h2>Velg hva du vil søke på</h2>
+            <?php sok(); ?>
+        </main>
+    </div>
     <?php include_once 'footer.php'; ?>
 
 

@@ -1,0 +1,12 @@
+
+
+-- Tilbaketasten fungerer ikkje alltid.
+
+-- Feilmeldinger på søkeresultater etter søk i nærheten.
+
+-- Sentrere "10 nesre resultater" og "10 forrige resultater", og ha forrige FØR neste.
+
+-- endre tilsynsrapport?
+
+-- Logginn er for langt til høyre når logget inn.
+

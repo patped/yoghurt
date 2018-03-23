@@ -63,7 +63,7 @@ function admin(){
         <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">$bruker
   <span class="caret"></span></button>
-        <ul class="dropdown-menu">
+        <ul class="dropdown-menu dropdown-menu-right pull-right">
         <li><a href="/leggTilBedrift.php">Legg til Bedrift</a></li>
         <li><a href="tilsynsrapport/leggTilNyTilsynsrapport.php">Legg til TilynsRapport</a></li>
         <form method="POST" action="/loggut.php">
@@ -80,14 +80,14 @@ function loggeinn(){
             <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Logg Inn
   <span class="caret"></span></button>
-             <ul class="dropdown-menu">
+            <ul class="dropdown-menu dropdown-menu-right pull-right">
             <h4>Logg inn</h4>
             <li><form method="POST" action="/Brukerside.php" onsubmit="return sjekkInnhold()"></li>
             <li><input type="text" name="brukernavn" id="sp_uname"  style="margin-top: 5px"></li>
             <input type="password" name="passord" id="sp_ps" style="margin-top: 5px">
             <li><input type="submit" name="submit" value="logg inn" style=" width: 150px; height: 50px"></li>
             </form>
-        </ul>
+            </ul>
         </div>
         </div>
 EOT;

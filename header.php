@@ -13,7 +13,7 @@
 		<button onClick="goBack()" class="backButton"><img style="height: 30px;" src="/bilder/backButton.svg"></button>
 		</div>
 
-		<img id="logo" src="/bilder/tempLogo.jpg" href="/yogurt/index.php">
+		<img id="logo" src="/bilder/tempLogo.jpg" onClick="index.php" href="/yogurt/index.php">
 
 </header>
 
