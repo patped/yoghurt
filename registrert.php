@@ -14,11 +14,10 @@ $db = kobleOpp();
 </head>
 <body>
 	<?php
-	$brukerID = $_POST['brukerID'];
-	$fornavn = $_POST['fornavn'];
-	$etternavn = $_POST['etternavn'];
-	$passord = $_POST['passord'];
-	$tlf = $_POST['tlf'];
+	$fornavn = htmlentities($_POST['fornavn']);
+	$etternavn = htmlentities($_POST['etternavn']);
+	$passord = htmlentities($_POST['passord']);
+	$tlf = htmlentities($_POST['tlf']);
 	if(isset($_REQUEST['admi']))
 		$admrett = 1;
 	else
@@ -97,4 +96,4 @@ EOT;
 </html>
 <?php
 	lukk($db)
-	?>
+?>
