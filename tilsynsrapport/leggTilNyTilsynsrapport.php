@@ -4,8 +4,8 @@ session_start();
  <?php
 	include_once '../database.php';
 	include_once '../hjelpefunksj.php';
+	include_once 'oppdaterTilsynsrapport.php';
 	$tilsynid = $_SESSION['tilsynid'];
-	echo $tilsynid;
 	$tilsynsrapport = false;
 	if ($tilsynid) {
 		$tilsynsrapport = tilsynsrapport($tilsynid);
@@ -17,6 +17,7 @@ session_start();
 	//
 	$tilsynsobjektid = $tilsynsrapport['tilsynsobjektid'];
 	$dato = $tilsynsrapport['dato'];
+	$dato = substr($dato,0,2).".".substr($dato,2,2).".".substr($dato,4,4);
 	$tilsynsbesoektype = $tilsynsrapport['tilsynsbesoektype'];
 	$status = $tilsynsrapport['status'];
 ?>
@@ -55,7 +56,7 @@ session_start();
 		}
 	}
 
-	function kravpunkter(){
+	function kravpunkter($tilsynid){
 		$db = kobleOpp();
 		if($tilsynid){
 			$sqlspørring = ("SELECT * FROM `Kravpunkter` WHERE `tilsynid` like '$tilsynid';");
@@ -148,7 +149,7 @@ session_start();
 
 							<tr>
 				    			<td>dato:</td>
-				    			<td><input type="text" name="dato" pattern="[0-3]{1}[0-9]{1}[.]{1}[0-1]{1}[0-9]{1}[.]{1}[1-9]{2}" value = "dd.mm.åå"></td>
+				    			<td><input type="text" name="dato" pattern="[0-3]{1}[0-9]{1}[.]{1}[0-1]{1}[0-9]{1}[.]{1}[1-9]{4}" placeholder="dd.mm.åååå" <?php if($tilsynid) {echo "value='$dato'";} ?>></td>
 				  			</tr>
 			  			</tbody>
 			  		</table>
@@ -161,7 +162,7 @@ session_start();
 		  					<th class="col-xs-5">Komentar</th>
 		  				</thead>
 		  				<tbody>
-							<?php kravpunkter(); ?>
+							<?php kravpunkter($tilsynid); ?>
 							<tr>
 				    			<td></td>
 				    			<td></td>
