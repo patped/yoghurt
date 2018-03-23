@@ -153,6 +153,6 @@ if (isset($_POST["submit"])) {
 		mysqli_rollback($db);
 	}
 	lukk($db);		
-	header("Location: tilsynsrapport.php?tilsynid=$tilsynid&dato=$dato");
+	header("Location: tilsyn.php?tilsynid=$tilsynid&dato=$dato");
 }
 ?>
