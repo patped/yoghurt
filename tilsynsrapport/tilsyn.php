@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "tilsynsrapportModell.php";
+require "tilsyn-modell.php";
 require_once '../hjelpefunksj.php';
 ?>
 
@@ -16,7 +16,7 @@ require_once '../hjelpefunksj.php';
   <?php include_once '../header.php'; ?>
   <?php 
     starAlertInnlogg();
-    $side = 'Location: /tilsynsrapport/tilsynsrapport.php?tilsynid=' . $_GET['tilsynid'] . '&dato=' . $_GET['dato'];
+    $side = 'Location: /tilsynsrapport/tilsyn.php?tilsynid=' . $_GET['tilsynid'] . '&dato=' . $_GET['dato'];
     logginn($side);
     ?>
 
@@ -27,7 +27,7 @@ require_once '../hjelpefunksj.php';
   </div>
 
   <div class="container">
-    <div class="page-header"> <h2>Tilsynsrapport for dato: <?php echo $dato; ?> <a href="leggTilNyTilsynsrapport.php"><button type="button">Oppdater</button></a></h2> </div>
+    <div class="page-header"> <h2>Tilsynsrapport for dato: <?php echo $dato; ?> <a href="endre.php"><button type="button">Oppdater</button></a></h2> </div>
     <div class="table-responsive">
       <?php tilsynsrapport(); ?>
     </div>

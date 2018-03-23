@@ -63,9 +63,7 @@ if (isset($_POST["submit"])) {
 	$formSvarTab[24][0] = $_POST["beskrivelse4_2"];
 	$formSvarTab[24][1] = $_POST["karakter4_2"];
 
-
-	//opretter tom tilsynsraport
-	mysqli_begin_transaction($db); // KAN HENDEJEG TRENGER WRITE READ ISH ASHA!
+	mysqli_begin_transaction($db);
 	$querys = [];
 	$sql = ("INSERT INTO Tilsynsrapporter (tilsynsobjektid, tilsynid,tema1_no, tema2_no, tema3_no, tema4_no, dato, status, tilsynsbesoektype) 
 			VALUES (?, ?, 'Rutiner og ledelse', 'Lokaler og utstyr', 'Mat-håndtering og tilberedning', 'Merking og sporbarhet', ?, ?, ?);");

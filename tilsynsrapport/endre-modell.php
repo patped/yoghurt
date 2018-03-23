@@ -1,4 +1,5 @@
 <?php
+
 function tilsynsrapport($tilsynid) {
 	require_once '../database.php';
 	$db = kobleOpp();
@@ -74,6 +75,15 @@ function kravpunkter($tilsynid){
         $rad= mysqli_fetch_assoc($svar);
         
     }
+}
+
+function bedrift($tilsynsobjektid) {
+    $sql = "SELECT navn FROM Restauranter WHERE tilsynsobjektid like '$tilsynsobjektid';";
+    $db = kobleOpp();
+    $svar = mysqli_query($db, $sql);
+    $rad = mysqli_fetch_assoc($svar);
+    $bedrift = $rad['navn'];
+    echo "$bedrift";
 }
 
 ?>
