@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once '../div/session-kapring.php';
 if(!$_SESSION['adminrett']) {
 	header("Location: /div/401.php");
 }
