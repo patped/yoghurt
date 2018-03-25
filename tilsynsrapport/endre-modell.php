@@ -60,7 +60,7 @@ function kravpunkter($tilsynid){
         <td>$kravpunktnavn_no:</td>
         <td>
         <select class='karakter' name='karakter$temaOrdingsverdi'>
-        <option value='' selected disabled hidden>$karakter</option>
+        <option value='$karakter' selected disabled hidden>$karakter</option>
         <option value='0'>0</option>
         <option value='1'>1</option>
         <option value='2'>2</option>

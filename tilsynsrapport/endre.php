@@ -109,27 +109,8 @@ $status = $tilsynsrapport['status'];
   		</div>
 	</div>
 
-	<script type="text/javascript">
-		var karakter = document.getElementsByClassName("karakter");
-		for (var i = karakter.length - 1; i >= 0; i--) {
-			karakter[i].addEventListener("change", sjekkForm);
-		}
-		function sjekkForm(){
-            if (this.value ==5) {
-                var tekstfelt = this.parentElement.nextElementSibling.firstChild;
-                tekstfelt.value = "Ikke vurdert";
-                tekstfelt.disabled = true;
-                return false;
-            }
-            if (this.value ==4) {
-                var tekstfelt = this.parentElement.nextElementSibling.firstChild;
-                tekstfelt.value = "Ikke aktuelt";
-                tekstfelt.disabled = true;
-                return false;
-            }
-        }	
-	</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="endre.js"></script>
 </body>
 </html>
