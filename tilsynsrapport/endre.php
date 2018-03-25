@@ -74,7 +74,7 @@ $status = $tilsynsrapport['status'];
 				  			</tr>
 
 							<tr>
-				    			<td>dato:</td>
+				    			<td>Dato:</td>
 				    			<td><input type="text" name="dato" pattern="[0-3]{1}[0-9]{1}[.]{1}[0-1]{1}[0-9]{1}[.]{1}[0-9]{4}" placeholder="dd.mm.åååå" <?php if($tilsynid) {echo "value='$dato'";} ?>></td>
 				  			</tr>
 			  			</tbody>
