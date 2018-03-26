@@ -30,20 +30,19 @@ require_once '../logginn/logginn.php';
   <div class="container">
     <?php 
     echo <<<EOT
-    <div class="page-header"> <h2>Tilsynsrapport for dato: $dato</h2>
+    <div class='page-header'> <h2>Tilsynsrapport for dato: $dato</h2>
 EOT;
       if(isset($_SESSION['adminrett']))
         if(($_SESSION['adminrett'])){
           echo <<< EOT
           <h3>ID: $til</h3><br>
-          <a href='endre.php'><button type='button'>Oppdater</button></a></h2>
-          <br>
+          <a href='endre.php'><button type='button'>Oppdater</button></a></h2><br>
 EOT;
 }
 
   
       ?> </div>
-    <div class="table-responsive">"
+    <div class="table-responsive">
       <?php tilsynsrapport(); ?>
     </div>
   </div>
