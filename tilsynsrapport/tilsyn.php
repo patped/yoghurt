@@ -15,8 +15,9 @@ require_once '../logginn/logginn.php';
 <body>
   <?php include_once '../div/header.php'; ?>
   <?php 
+    $tilsynsID = $_GET['tilsynid'];
     starAlertInnlogg();
-    $side = 'Location: /tilsynsrapport/tilsyn.php?tilsynid=' . $_GET['tilsynid'] . '&dato=' . $_GET['dato'];
+    $side = 'Location: /tilsynsrapport/tilsyn.php?tilsynid=' . $tilsynsID . '&dato=' . $dato;
     logginn($side);
     ?>
 
@@ -27,7 +28,9 @@ require_once '../logginn/logginn.php';
   </div>
 
   <div class="container">
-    <div class="page-header"> <h2>Tilsynsrapport for dato: <?php echo $dato; ?> <a href="endre.php"><button type="button">Oppdater</button></a></h2> </div>
+    <div class='page-header'> <h2>Tilsynsrapport for dato: <?php echo $dato; ?></h2>
+      <?php adminrett($tilsynsID); ?>
+    </div>
     <div class="table-responsive">
       <?php tilsynsrapport(); ?>
     </div>
