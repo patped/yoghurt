@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(!$_SESSION['adminrett']) {
+	header("Location: /div/401.php");
+}
 include_once '../div/database.php';
 include_once '../logginn/logginn.php';
 ?>
@@ -14,10 +17,7 @@ include_once '../logginn/logginn.php';
 </head>
 <body>
 	
-	<?php
-	if($_SESSION['adminrett'])
-	{ 
-	include_once '../div/header.php'; ?>
+	<?php include_once '../div/header.php'; ?>
 	<div class="container text-center">
 		
 		<?php 
@@ -41,12 +41,7 @@ include_once '../logginn/logginn.php';
 			<input type="submit" name="registrer" value="registrer"></p>
 		</form> 
 	<div>
-	<?php include_once '../div/footer.php';
-
-	}else{
- 	header("Location: /div/401.php");
- }
-	 ?>
+	<?php include_once '../div/footer.php';	 ?>
 
     <script src="/bibloteker/jquery/jquery-3.3.1.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
