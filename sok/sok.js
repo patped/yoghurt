@@ -131,6 +131,7 @@ function showPosition(position) {
 }
 
 function error() {
+    sessionStorage.geoSupport = false;
     alert("Kunne ikke hente geolokasjonen din");
     document.getElementById("geolokasjon").checked = false;
     document.getElementById("geolokasjon").hidden = true;
@@ -139,7 +140,16 @@ function error() {
 }
 
 function geolocationSupport() {
-    if (!navigator.geolocation) {
+    var geoSupport;
+    if (typeof sessionStorage.geoSupport === 'undefined') {
+        if (navigator.geolocation) {
+            geoSupport = true;
+        } else {
+            geoSupport = false;
+        }    
+        sessionStorage.geoSupport = geoSupport;
+    }
+    if (!geoSupport) {
         document.getElementById("geolokasjon").hidden = true;
         document.getElementById("geolokasjonTekst").hidden = true;
     }
