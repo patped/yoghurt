@@ -3,6 +3,34 @@ session_start();
 require_once '../div/database.php';
 require_once 'sok.php';
 require_once '../logginn/logginn.php';
+function finnKategori(){
+	if (isset($_POST["kategori"])) {
+		return $_POST["kategori"];
+	}
+	return;
+}
+function finnTabellEllerView($kat){
+	switch ($kat) {
+		case 'Italiensk':
+			return 'katItalia';
+			break;
+		case 'Indisk':
+			return 'katIndia';
+			break;
+		case 'Kinesisk':
+			return 'katKina';
+			break;
+		case 'Annen Asiatisk':
+			return 'katAsia';
+			break;
+		case 'Burger og Kebab':
+			return 'katBurger';
+			break;		
+		default:
+			return 'Restauranter';
+			break;
+	}
+}
 ?>
 <!doctype html>
 <html>
@@ -31,8 +59,7 @@ require_once '../logginn/logginn.php';
     if (!isset($_POST["søkeKnapp"])) {
         if (!isset($_SESSION['tidligereSøk'])) {
             header("Location: /index.php");
-        }
-        
+        }  
     }
     $status = mysqli_set_charset($db, "utf8");
     $stmt;
@@ -41,13 +68,15 @@ require_once '../logginn/logginn.php';
     $forrigeSøkTall = $startSøk-10;
     $nesteSide = '/sok/sokeresultat.php?start=' . $nesteSøkTall;
     $forrigeSide = '/sok/sokeresultat.php?start=' . $forrigeSøkTall;
+    $kategori = finnKategori();
+    $tabellEllerView = finnTabellEllerView($kategori);
     if (isset($_POST["søkeKnapp"])) {
         if (isset($_POST["orgnr"])) {
             $søkeverdi = $_POST["Søkefelt"];
             $_SESSION['søkeverdi'] = $søkeverdi;
             $sqlSpørring = 
             ("SELECT r.tilsynsobjektid, r.navn, r.adrlinje1, r.postnr, p.poststed, r.orgnummer
-                FROM Restauranter AS r, Poststed AS p
+                FROM $tabellEllerView AS r, Poststed AS p
                 WHERE p.postnr = r.postnr
                 AND r.orgnummer LIKE ?
                 ORDER BY r.navn");
@@ -67,7 +96,7 @@ require_once '../logginn/logginn.php';
                 $_SESSION['restaurantSøkekriterie'] = "%" . $_POST["spisestedSokefelt"] . "%";
                 $sqlSpørring = 
                 ("SELECT r.tilsynsobjektid, r.navn, r.adrlinje1, r.postnr, p.poststed, r.orgnummer
-                FROM Restauranter AS r, Poststed AS p
+                FROM $tabellEllerView AS r, Poststed AS p
                 WHERE p.postnr = r.postnr
                 AND p.poststed LIKE ?
                 AND r.adrlinje1 LIKE ?
@@ -86,7 +115,7 @@ require_once '../logginn/logginn.php';
                 $_SESSION['poststedSøkekriterie'] = "%" . $_POST["poststedInput"] . "%";
                 $sqlSpørring = 
                 ("SELECT r.tilsynsobjektid, r.navn, r.adrlinje1, r.postnr, p.poststed, r.orgnummer
-                FROM Restauranter AS r, Poststed AS p
+                FROM $tabellEllerView AS r, Poststed AS p
                 WHERE p.postnr = r.postnr
                 AND p.poststed LIKE ?
                 AND r.adrlinje1 LIKE ?
@@ -103,7 +132,7 @@ require_once '../logginn/logginn.php';
             $_SESSION['restaurantSøkekriterie'] = "%" . $_POST["spisestedSokefelt"] . "%";
             $sqlSpørring = 
             ("SELECT r.tilsynsobjektid, r.navn, r.adrlinje1, r.postnr, p.poststed, r.orgnummer
-            FROM Restauranter AS r, Poststed AS p
+            FROM $tabellEllerView AS r, Poststed AS p
             WHERE p.postnr = r.postnr
             AND r.navn LIKE ?
             ORDER BY r.navn");
@@ -130,7 +159,7 @@ require_once '../logginn/logginn.php';
                 $latitude = $_POST["latitude"];
                 $longitude = $_POST["longitude"];
                 //Trenger ikke hindre sql-injection her, ettersom metoden ikke bruker brukers "input" til noe annet enn sjekk i forhold til allerede eksisterende long, lat.
-                $resultat = iNaerheten($db, $latitude, $longitude);
+                $resultat = iNaerheten($tabellEllerView, $db, $latitude, $longitude);
                 $hvordanSøk = 'geo';
             } else {
                 $svar = mysqli_stmt_get_result($stmt);

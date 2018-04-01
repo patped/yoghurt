@@ -1,8 +1,8 @@
 <?php
 
-function iNaerheten($db, $userLat, $userLong) {
+function iNaerheten($tabellEllerView, $db, $userLat, $userLong) {
     $resultat = [];
-    $sql = ("SELECT * FROM Restauranter WHERE latitude IS NOT NULL;");
+    $sql = ("SELECT * FROM $tabellEllerView WHERE latitude IS NOT NULL;");
     $result = mysqli_query($db, $sql);
 
     while ($rad = mysqli_fetch_assoc($result)) {
