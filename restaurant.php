@@ -77,7 +77,7 @@ $db = kobleOpp();
                         <th>Orgnummer: </th>
                         <th>$orgnummer</th>
                     </tr>
-                        <th>Smilefjes</th>
+                        <th>Total Kvalitet:</th>
                         
 
 
@@ -173,7 +173,7 @@ $db = kobleOpp();
                         $dato = "$dag.$måned.$år";
                         switch ($svarTilsynsrapport['total_karakter']) {
                             case '0':
-                                $mattilsynetSmil = './bilder/smileys/storSmil.png';
+                                $mattilsynetSmil = './bilder/smileys/liteSmil.png';
                                 break;
                             case '1':
                                 $mattilsynetSmil = './bilder/smileys/liteSmil.png';
@@ -182,7 +182,7 @@ $db = kobleOpp();
                                 $mattilsynetSmil = './bilder/smileys/ingenSmil.png';
                                 break;
                             case '3':
-                                $mattilsynetSmil = './bilder/smileys/storSmil.png';
+                                $mattilsynetSmil = './bilder/smileys/spySmil.png';
                                 break;
                             default:
                                 $mattilsynetSmil = './bilder/smileys/spySmil.png';

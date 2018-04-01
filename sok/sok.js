@@ -17,6 +17,28 @@ function sjekkForm(){
     }
 }
 
+function katKlikk(){
+    if (document.getElementById("kategoriCheckbox").checked) {
+        document.getElementById("italiensk").disabled = false;
+        document.getElementById("indisk").disabled = false;
+        document.getElementById("kinesisk").disabled = false;
+        document.getElementById("asiatisk").disabled = false;
+        document.getElementById("burger").disabled = false;
+    }
+    else{
+        document.getElementById("italiensk").checked = false;
+        document.getElementById("indisk").checked = false;
+        document.getElementById("kinesisk").checked = false;
+        document.getElementById("asiatisk").checked = false;
+        document.getElementById("burger").checked = false;
+        document.getElementById("italiensk").disabled = true;
+        document.getElementById("indisk").disabled = true;
+        document.getElementById("kinesisk").disabled = true;
+        document.getElementById("asiatisk").disabled = true;
+        document.getElementById("burger").disabled = true;
+    }
+}
+
 function orgKlikk(){
     if(document.getElementById("orgnr").checked) {
         document.getElementById("sokeFelt").pattern = "[0-9]{9}";
@@ -31,6 +53,9 @@ function orgKlikk(){
         document.getElementById("restaurant").disabled = true;
         document.getElementById("utforSok").disabled = false;
         document.getElementById("geolokasjon").checked = false;
+        document.getElementById("kategoriCheckbox").disabled = true;
+        document.getElementById("kategoriCheckbox").checked = false;
+        katKlikk();
     }
     else{
         document.getElementById("sokeFelt").placeholder="Søk på navnet til spisested";
@@ -41,7 +66,10 @@ function orgKlikk(){
         document.getElementById("utforSok").disabled = true;
         document.getElementById("sokeFelt").removeAttribute("pattern");
         document.getElementById("sokeFelt").removeAttribute("title");
+        document.getElementById("kategoriCheckbox").disabled = false;
+        katKlikk();
     }
+
 }
 
 function adresseKlikk(){
