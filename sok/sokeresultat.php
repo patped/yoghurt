@@ -49,18 +49,6 @@ function finnTabellEllerView($kat){
     $side = 'Location: /sok/sokeresultat.php?start=0';
     logginn($side);
     $db = kobleOpp();
-    echo "<table>";
-    foreach ($_POST as $key => $value) {
-        echo "<tr>";
-        echo "<td>";
-        echo $key;
-        echo "</td>";
-        echo "<td>";
-        echo $value;
-        echo "</td>";
-        echo "</tr>";
-    }
-    echo "</table>";
    
    if (!isset($_GET['start'])) {
    	header("Location: /index.php");
