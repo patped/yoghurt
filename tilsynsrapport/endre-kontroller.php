@@ -9,7 +9,6 @@ if (isset($_POST["submit"])) {
 	$tilsynsbesoektype = $_POST["tilsynsbesoektype"];
 	$dato = $_POST["dato"];
 	$dato = substr($dato,0,2).substr($dato,3,2).substr($dato,6,4);
-	echo $dato;
 	$formSvarTab = array(array());
 
 	$formSvarTab[0][0] = $_POST["beskrivelse1_1"];
