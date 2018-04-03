@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once '../div/session-kapring.php';
 require_once '../div/database.php';
 require_once 'sok.php';
 require_once '../logginn/logginn.php';

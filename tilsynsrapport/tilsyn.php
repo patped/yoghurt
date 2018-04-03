@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once '../div/session-kapring.php';
 require "tilsyn-modell.php";
 require_once '../logginn/logginn.php';
 ?>
