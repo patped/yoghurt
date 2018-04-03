@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once '../div/session-kapring.php';
 include_once '../div/database.php';
 $db = kobleOpp();
 if (isset($_POST["submit"])) {
