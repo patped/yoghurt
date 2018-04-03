@@ -7,13 +7,11 @@ if(!$_SESSION['adminrett']) {
 include_once '../div/database.php';
 include_once '../logginn/logginn.php';
 include_once 'endre-modell.php';
-$tilsynid = $_SESSION['tilsynid'];
-unset($_SESSION['tilsynid']);
+$tilsynid = $_GET['tilsynid'];
 $tilsynsobjektid = $_GET['tilsynsobjektid'];
 $tilsynsrapport = false;
 if ($tilsynid) {
 	$tilsynsrapport = tilsynsrapport($tilsynid);
-
 	$tilsynsobjektid = $tilsynsrapport['tilsynsobjektid'];
 	$dato = $tilsynsrapport['dato'];
 	$dato = substr($dato,0,2).".".substr($dato,2,2).".".substr($dato,4,4);
