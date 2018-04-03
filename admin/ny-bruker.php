@@ -28,17 +28,14 @@ include_once '../logginn/logginn.php';
 		?>
 		<p>Legg til en ny bruker</p>
 		<form method="POST" action="ny-bruker-landingside.php">
-			<br><p>fornavn</p><br>
-			<input type="text" name="fornavn" value="Fornavn">
-			<br><p>etternavn</p><br>
-			<input type="text" name="etternavn" value="Etternavn">
-			<br><p>Passord</p><br>
+			<input type="text" name="Brukernavn" value="Brukernavn">
+			<br><p>Brukernavn</p><br>
 			<input type="password" name="passord" value="passord">
-			<br><p>telefonnummer</p><br>
+			<br><p>passord</p><br>
 			<input type="text" name="tlf" value="tlf">
-			<br><p>adminrettighet?</p><br>
+			<br><p>telefonnummer</p><br>
 			<input type="checkbox" name="admi" value="admRett">
-			<br>
+			<br><p>adminrett?</p>
 			<input type="submit" name="registrer" value="registrer"></p>
 		</form> 
 	<div>
