@@ -3,6 +3,9 @@ session_start();
 require_once '../div/session-kapring.php';
 include_once '../div/database.php';
 include_once '../logginn/logginn.php';
+if(!$_SESSION['adminrett']) {
+	header("Location: /div/401.php");
+	}
 $db = kobleOpp();
 ?>
 
@@ -15,6 +18,14 @@ $db = kobleOpp();
 </head>
 <body>
 	<?php
+
+	include_once '../div/header.php';
+		
+	starAlertInnlogg();
+	$side = 'Location: /admin/ny-bruker-landingside.php';
+	logginn($side);
+
+
 	$BrukerNavn = htmlentities($_POST['Brukernavn']);
 	$pass = htmlentities($_POST['passord']);
 	$passord = password_hash($pass, PASSWORD_DEFAULT);
@@ -24,22 +35,19 @@ $db = kobleOpp();
 	else
 		$admrett = 0;
 
-		include_once '../div/header.php';
 		
-		starAlertInnlogg();
-		$side = 'Location: /admin/ny-bruker¨-landingside.php';
-		logginn($side);
 		
 		$sql=("INSERT INTO Brukere(brukernavn , Passord, telefonnummer, adminrettighet) VALUES ('$BrukerNavn','$passord','$tlf','$admrett');");
 
 		$resultat = mysqli_query($db,$sql);
 		if($resultat == 1){
 		echo <<<EOT
-		<main>
+		<div class="container text-center">
 			<h1>Suksess</h1>
-			<p>Du har registrert følgende bruker: </p>
+			<table class='table table-hover'>
+			<h2>Du har registrert følgende bruker: </h2>
 
-				<table>
+				
 			
 	  			<tr>
 	    			<td>BrukerNavn:</td>
@@ -51,15 +59,11 @@ $db = kobleOpp();
 	   				<td>$tlf</td>
 	  			</tr>
 	 			
-	 			 <tr>
-	    			<td>passord</td>
-	    			<td>$passord</td>
-	  			</tr> 
 
 			 
 			</table>
 			<a href="ny-bruker.php">Registrer en ny</a>	
-			</main>
+			</div>
 EOT;
 }
 else if($resultat==0){
