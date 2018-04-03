@@ -85,8 +85,8 @@ function loggeinn(){
             <ul class="dropdown-menu dropdown-menu-right pull-right">
             <h4 id="mgli"> Logg inn</h4>
             <li><form method="POST" action="/logginn/logginn-landingside.php" onsubmit="return sjekkInnhold()"></li>
-            <li><input type="text" name="brukernavn" placeholder="Brukernavn" id="sp_uname"  style="margin-top: 5px"></li>
-            <input type="password" name="passord" placeholder="Passord" id="sp_ps" style="margin-top: 5px">
+            <li><input type="text" name="brukernavn" placeholder="Brukernavn" id="brukernavn"  style="margin-top: 5px"></li>
+            <input type="password" name="passord" placeholder="Passord" id="pass" style="margin-top: 5px">
             <li><input id="liBtn" type="submit" name="submit" value=" Logg inn " style=" width: 80px; height: 30px"></li>
             </form>
             </ul>
@@ -96,3 +96,4 @@ EOT;
 }
 
 ?>
+<script src="sok.js"></script>

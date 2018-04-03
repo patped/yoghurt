@@ -1,12 +1,3 @@
-function sjekkInnhold(){
-    if (document.getElementById("pass").value.length > 0 && document.getElementById("brukernavn").value.length > 0) {
-        return true;
-    } else {
-        alert("Du har glemt å fylle ut passord eller brukernavn!")
-        return false;
-    }
-}
-
 function sjekkForm(){
     var orgInnhold = document.getElementById("sokeFelt").value;
     if (document.getElementById("orgnr").checked && orgInnhold =="") {
