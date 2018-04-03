@@ -16,7 +16,6 @@ $db = kobleOpp();
 	<main>
 	
 	<?php
-	//denne løsninga her kan kanskje omgjøres?
 	if (isset($_POST['submit'])) {
 		$brukernavn = $_POST['brukernavn'];
 		$_SESSION['bruker'] = $brukernavn; 

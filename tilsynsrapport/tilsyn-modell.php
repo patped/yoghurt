@@ -3,6 +3,7 @@ require_once "tilsyn-kontroller.php";
 
 $dato = hentDato();
 
+
 function kravpunkter($ordningsverdi) {
     $kravpunkter = hentKravpunkter($ordningsverdi);
     foreach ($kravpunkter as $data) {
@@ -43,5 +44,14 @@ function tilsynsrapport() {
         );    
         $ordningsverdi++;
     }
+}
+function adminrett($tilsynsID){
+    if(isset($_SESSION['adminrett']))
+        if(($_SESSION['adminrett'])){
+          echo <<< EOT
+            <h3>ID: $tilsynsID</h3><br>
+            <a href='endre.php'><button type='button'>Oppdater</button></a></h2><br>
+EOT;
+        }
 }
 ?>

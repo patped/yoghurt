@@ -27,13 +27,8 @@ function sjekkInnLogg($db, $brukernavn, $passord){
     if ($spørringSvar) {
         $passordFraBaseSvar = mysqli_fetch_assoc($spørringSvar);
         $passordFraBase = $passordFraBaseSvar['passord'];
-    $passordFraBruker = crypt($passord, "a1k9sg2kg $52dm2mvøa'¨213'¨11£$1dcwqegg543@€{2 sd3");
-
-    if ($passordFraBruker == $passordFraBase) {
-        return true;
     }
-    return false;
-    }
+    return password_verify($passord, $passordFraBase);
 }
 
 function starAlertInnlogg(){
@@ -67,6 +62,7 @@ function admin(){
         <ul class="dropdown-menu dropdown-menu-right pull-right">
         <li><a href="/admin/ny-bedrift.php">Legg til Bedrift</a></li>
         <li><a href="/tilsynsrapport/endre.php">Legg til TilynsRapport</a></li>
+        <li><a href="/admin/ny-bruker.php">Legg til Ny bruker</a></li>
         <form method="POST" action="/logginn/loggut.php">
             <li><input id="luBtn" type="submit" name="Logg Ut" value="Logg ut">
             </form></li>

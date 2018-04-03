@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once 'database.php';
-require_once 'logginn/logginn.php';
+require_once '../logginn/logginn.php';
 ?>
 
 <!doctype html>

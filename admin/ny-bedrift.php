@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once '../div/session-kapring.php';
 if(!$_SESSION['adminrett']) {
 	header("Location: /div/401.php");
 }
@@ -39,32 +40,32 @@ include_once '../logginn/logginn.php';
 						<tbody>
 							<tr>
 								<td>TilsynsobjektID:</td>
-								<td><input type="text" name="TilsynsobjektID" ></td>
+								<td><input type="text" name="TilsynsobjektID" required></td>
 							</tr>
 
 							<tr>
-								<td>Organisasjonsnummer:</td>
-								<td><input type="text" name="Organisasjonsnummer" ></td>
+								<td>Organisasjonsnummer:</td> <!--  pattern="\d*" begrenser input til tall og gir finere feilmld enn type="number" -->
+								<td><input type="text" name="Organisasjonsnummer" pattern="\d*" minlength="9" maxlength="9" required></td>
 							</tr>
 
 							<tr>
 								<td>Navn:</td>
-									<td><input type="text" name="Navn" ></td>
+									<td><input type="text" name="Navn" required></td>
 							</tr>
 
 							<tr>
 								<td>Adresselinje1:</td>
-								<td><input type="text" name="Adresselinje1" ></td>
+								<td><input type="text" name="Adresselinje1" required></td>
 							</tr>
 							
 							<tr>
 								<td>Adresselinje2:</td>
-								<td><input type="text" name="Adresselinje2" ></td>
+								<td><input type="text" name="Adresselinje2"></td>
 							</tr> 
 
 							<tr>
 								<td>Postnummer:</td>
-								<td><input type="text" name="Postnummer" ></td>
+								<td><input type="text" name="Postnummer" pattern="\d*" minlength="4" maxlength="4" required></td>
 							</tr>
 
 							<tr>
