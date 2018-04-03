@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once '../div/session-kapring.php';
 include_once '../div/database.php';
 include_once 'logginn.php';
 $db = kobleOpp();
