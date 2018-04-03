@@ -168,16 +168,14 @@ function error() {
 }
 
 function geolocationSupport() {
-    var geoSupport;
     if (typeof sessionStorage.geoSupport === 'undefined') {
         if (navigator.geolocation) {
-            geoSupport = true;
+            sessionStorage.geoSupport = true;
         } else {
-            geoSupport = false;
-        }    
-        sessionStorage.geoSupport = geoSupport;
+            sessionStorage.geoSupport = false;
+        }
     }
-    if (!geoSupport) {
+    if (sessionStorage.geoSupport === 'false') {
         document.getElementById("geolokasjon").hidden = true;
         document.getElementById("geolokasjonTekst").hidden = true;
     }

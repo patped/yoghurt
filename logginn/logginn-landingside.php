@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once '../div/session-kapring.php';
 include_once '../div/database.php';
 include_once 'logginn.php';
 $db = kobleOpp();
@@ -16,7 +17,6 @@ $db = kobleOpp();
 	<main>
 	
 	<?php
-	//denne løsninga her kan kanskje omgjøres?
 	if (isset($_POST['submit'])) {
 		$brukernavn = $_POST['brukernavn'];
 		$_SESSION['bruker'] = $brukernavn; 

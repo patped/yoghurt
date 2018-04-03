@@ -1,6 +1,5 @@
 <?php
 session_start();
-require_once 'div/session-kapring.php';
 require_once 'div/database.php';
 require_once 'logginn/logginn.php';
 require_once 'sok/sok.php';
@@ -16,7 +15,7 @@ require_once 'sok/sok.php';
 </head>
 <body>
     
-    <?php include_once 'div/header.php'; ?>
+    <?php include_once 'div/header.php';?>
     <div class="container text-center">
         <?php 
         starAlertInnlogg();
