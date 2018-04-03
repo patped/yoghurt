@@ -15,7 +15,7 @@ require_once 'sok/sok.php';
 </head>
 <body>
     
-    <?php include_once 'div/header.php'; ?>
+    <?php include_once 'div/header.php';?>
     <div class="container text-center">
         <?php 
         starAlertInnlogg();
