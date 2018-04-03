@@ -1,3 +1,5 @@
+geolocationSupport();
+
 function sjekkInnhold(){
     if (document.getElementById("pass").value.length > 0 && document.getElementById("brukernavn").value.length > 0) {
         return true;
@@ -148,14 +150,33 @@ function geoKlikk() {
 }
 
 function getLocation() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showPosition);
-    } else { 
-        lokasjon = "Geolocation is not supported by this browser.";
-    }
+    navigator.geolocation.getCurrentPosition(showPosition, error);
 }
 
 function showPosition(position) {
     latitude.value = position.coords.latitude; 
     longitude.value = position.coords.longitude;
+}
+
+function error() {
+    sessionStorage.geoSupport = false;
+    alert("Kunne ikke hente geolokasjonen din");
+    document.getElementById("geolokasjon").checked = false;
+    document.getElementById("geolokasjon").hidden = true;
+    document.getElementById("geolokasjonTekst").hidden = true;
+    geoKlikk();
+}
+
+function geolocationSupport() {
+    if (typeof sessionStorage.geoSupport === 'undefined') {
+        if (navigator.geolocation) {
+            sessionStorage.geoSupport = true;
+        } else {
+            sessionStorage.geoSupport = false;
+        }
+    }
+    if (sessionStorage.geoSupport === 'false') {
+        document.getElementById("geolokasjon").hidden = true;
+        document.getElementById("geolokasjonTekst").hidden = true;
+    }
 }
