@@ -15,8 +15,9 @@ require_once 'sok/sok.php';
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
+<p></p>
     
-    <?php include_once 'div/header.php'; ?>
+    <?php include_once 'div/header.php';?>
     <div class="container text-center">
         <?php 
         starAlertInnlogg();
