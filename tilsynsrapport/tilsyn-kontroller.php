@@ -24,7 +24,6 @@ function hentTemaer() {
 
 function hentKravpunkter($ordningsverdi) {
     $tilsynid = $_GET['tilsynid'];
-    $_SESSION['tilsynid'] = $tilsynid;
     $sql = (
         "SELECT `ordingsverdi`, `kravpunktnavn_no`, `karakter`, `tekst_no` 
         FROM `Kravpunkter` 
@@ -43,6 +42,7 @@ function hentKravpunkter($ordningsverdi) {
 }
 
 function hentDato() {
-    return $_GET['dato'];
+   $dato = $_GET['dato'];
+   return $dato = substr($dato,0,2).".".substr($dato,2,2).".".substr($dato,4,4);
 }
 ?>

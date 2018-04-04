@@ -169,7 +169,6 @@ $db = kobleOpp();
                         if ($dag<10) {
                             $dag = "0" . $dag;
                         }
-                        $dato = "$dag.$måned.$år";
                         switch ($svarTilsynsrapport['total_karakter']) {
                             case '0':
                                 $mattilsynetSmil = './bilder/smileys/liteSmil.png';
@@ -189,7 +188,7 @@ $db = kobleOpp();
                         }
                         $tilsynid = $svarTilsynsrapport['tilsynid'];
                         echo "<tr><td>";
-                        echo "<a href='tilsynsrapport/tilsyn.php?tilsynid=$tilsynid&dato=$dato'>$dato</td>";
+                        echo "<a href='tilsynsrapport/tilsyn.php?tilsynid=$tilsynid&dato=$dato'>$dag.$måned.$år</td>";
                         echo "<td><a href='tilsynsrapport/tilsyn.php?tilsynid=$tilsynid&dato=$dato'><img id ='smileBilde' src='$mattilsynetSmil' title='smilefjes' width= '20%'></td>";
                         echo "<td>$karakter1</td><td>$karakter2</td><td>$karakter3</td><td>$karakter4</td>";
                         $svarTilsynsrapport = mysqli_fetch_assoc($svar);
