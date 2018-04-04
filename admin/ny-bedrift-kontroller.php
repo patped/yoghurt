@@ -4,23 +4,21 @@ include_once '../div/database.php';
 $db = kobleOpp();
 
 if (isset($_POST["send"])) {
-	$TilsynsobjektID = $_POST["TilsynsobjektID"];
-	$Organisasjonsnummer = $_POST["Organisasjonsnummer"];
-	$Navn = htmlentities($_POST["Navn"]);
-	$Adresselinje1 = htmlentities($_POST["Adresselinje1"]);
-	$Adresselinje2 = htmlentities($_POST["Adresselinje2"]);
-	$Postnummer = $_POST["Postnummer"];
+	$tilsynsobjektID = $_POST["tilsynsobjektID"];
+	$organisasjonsnummer = $_POST["organisasjonsnummer"];
+	$navn = htmlentities($_POST["navn"]);
+	$adresselinje1 = htmlentities($_POST["adresselinje1"]);
+	$adresselinje2 = htmlentities($_POST["adresselinje2"]);
+	$postnummer = $_POST["postnummer"];
 
-	if(null != $TilsynsobjektID  && null != $Organisasjonsnummer && null != $Navn && null != $Adresselinje1 && null != $Postnummer){
-			$sql = ("INSERT INTO Restauranter (tilsynsobjektid, orgnummer, navn, adrlinje1, adrlinje2, postnr)
-			VALUES(?, ?, ?, ?, ?, ?);");
-			//'$TilsynsobjektID', '$Organisasjonsnummer','$Navn','$Adresselinje1', '$Adresselinje2','$Postnummer'
-		$stmt = mysqli_prepare($db, $sql);
-		mysqli_stmt_bind_param($stmt, 'sissss' , $TilsynsobjektID, $Organisasjonsnummer, $Navn, $Adresselinje1, $Adresselinje2, $Postnummer);
-		mysqli_stmt_execute($stmt);
-		$error = mysqli_stmt_error($stmt);
-		lukk($db);
-		header("Location: ../tilsynsrapport/endre.php?tilsynsobjektid=$TilsynsobjektID");
-	}
+	$sql = ("INSERT INTO Restauranter (tilsynsobjektid, orgnummer, navn, adrlinje1, adrlinje2, postnr)
+	VALUES(?, ?, ?, ?, ?, ?);");
+	$stmt = mysqli_prepare($db, $sql);
+	mysqli_stmt_bind_param($stmt, 'sissss' , $tilsynsobjektID, $organisasjonsnummer, $navn, $adresselinje1, $adresselinje2, $postnummer);
+	mysqli_stmt_execute($stmt);
+	$error = mysqli_stmt_error($stmt);
+	lukk($db);
+	header("Location: ../tilsynsrapport/endre.php?tilsynsobjektid=$tilsynsobjektID");
+	
 }
 ?>;
