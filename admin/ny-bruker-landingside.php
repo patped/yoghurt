@@ -10,7 +10,6 @@ $db = kobleOpp();
 ?>
 
 <!doctype html>
-<html>
 <head>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -26,7 +25,7 @@ $db = kobleOpp();
 	logginn($side);
 
 
-	$BrukerNavn = htmlentities($_POST['Brukernavn']);
+	$brukerNavn = htmlentities($_POST['brukernavn']);
 	$pass = htmlentities($_POST['passord']);
 	$passord = password_hash($pass, PASSWORD_DEFAULT);
 	$tlf = htmlentities($_POST['tlf']);
@@ -35,43 +34,50 @@ $db = kobleOpp();
 	else
 		$admrett = 0;
 
-		
-		
-		$sql=("INSERT INTO Brukere(brukernavn , Passord, telefonnummer, adminrettighet) VALUES ('$BrukerNavn','$passord','$tlf','$admrett');");
+			if (sjekkBrukerNavn($brukerNavn, $db)){
+				$sql=("INSERT INTO Brukere(brukernavn , Passord, telefonnummer, adminrettighet) VALUES (?,?,?,'$admrett');");
+				$stmt = mysqli_prepare($db, $sql);
+				$resultat = mysqli_query($db,$sql);
+				mysqli_stmt_bind_param($stmt, 'sss' , $brukerNavn, $passord, $tlf);
+				mysqli_stmt_execute($stmt);
+				$error = mysqli_stmt_error($stmt);
+				if(!$error){
+				echo <<<EOT
+				<div class="container text-center">
+					<h1>Suksess</h1>
+					<table class='table table-hover'>
+					<h2>Du har registrert følgende bruker: </h2>
 
-		$resultat = mysqli_query($db,$sql);
-		if($resultat == 1){
-		echo <<<EOT
-		<div class="container text-center">
-			<h1>Suksess</h1>
-			<table class='table table-hover'>
-			<h2>Du har registrert følgende bruker: </h2>
+						
+					
+			  			<tr>
+			    			<td>BrukerNavn:</td>
+			    			<td>$brukerNavn</td>
+			  			</tr>
 
-				
-			
-	  			<tr>
-	    			<td>BrukerNavn:</td>
-	    			<td>$BrukerNavn</td>
-	  			</tr>
+			  			<tr>
+			    			<td>Telefon</td>
+			   				<td>$tlf</td>
+			  			</tr>
+			 			
 
-	  			<tr>
-	    			<td>Telefon</td>
-	   				<td>$tlf</td>
-	  			</tr>
-	 			
-
-			 
-			</table>
-			<a href="ny-bruker.php">Registrer en ny</a>	
-			</div>
+					 
+					</table>
+					<a href="ny-bruker.php">Registrer en ny</a>	
+					</div>
 EOT;
 }
-else if($resultat==0){
+else if($error){
 	echo <<<EOT
-	<p>Ikke registrert</p>
+	<p>Ooops, her skjedde det noe feil og bruker er ikke registrert</p>
 	<a href="ny-bruker.php">Prøv på nytt</a>
 EOT;
 }
+}
+else {
+	echo "<h3>En bruker med samme brukernavn eksisterer <a href='ny-bruker.php'>Registrer</a> med ett annet Brukernavn</h3>";
+	}
+
 
 
 		
@@ -83,5 +89,13 @@ EOT;
 </body>
 </html>
 <?php
-	lukk($db)
+function sjekkBrukerNavn($brukernavn, $db){
+	$sqlSjekkBruker = "SELECT brukernavn FROM Brukere WHERE brukernavn = ?";
+	$stmt = mysqli_prepare($db,$sqlSjekkBruker);
+	mysqli_stmt_bind_param($stmt, 's' , $brukernavn);
+	mysqli_stmt_execute($stmt);
+	$result = mysqli_stmt_get_result($stmt);
+	return !(mysqli_fetch_assoc($result));
+}
+lukk($db);
 ?>
