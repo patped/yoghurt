@@ -20,5 +20,7 @@ if (isset($_POST["send"])) {
 	lukk($db);
 	header("Location: ../tilsynsrapport/endre.php?tilsynsobjektid=$tilsynsobjektID");
 	
+} else {
+	header("Location: /index.php");
 }
 ?>;
