@@ -28,11 +28,11 @@ include_once '../logginn/logginn.php';
 		<h2>Legg til en ny bruker</h2>
 		<table class='table table-hover'>
 		<form method="POST" action="ny-bruker-landingside.php">
-			<tr><input type="required" name="brukernavn" value="Brukernavn"></tr>
+			<tr><input type="text" name="brukernavn" required value="Brukernavn"></tr>
 			<tr><p>Brukernavn</p></tr>
-			<tr><input type="password" name="passord" value="Passord"></tr>
+			<tr><input type="password" name="passord" required value="Passord"></tr>
 			<tr><p>Passord</p><tr>
-			<tr><input type="required" name="tlf" value="Telefonnummer"></tr>
+			<tr><input type="text" name="tlf" required value="Telefonnummer"></tr>
 			<tr><p>Telefonnummer</p><tr>
 			<tr><input type="checkbox" name="admi" value="admRett"></tr>
 			<tr><br><p>Adminrett?</p></tr>

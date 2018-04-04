@@ -35,10 +35,13 @@ $db = kobleOpp();
 		$admrett = 0;
 
 			if (sjekkBrukerNavn($brukerNavn, $db)){
-				$sql=("INSERT INTO Brukere(brukernavn , Passord, telefonnummer, adminrettighet) VALUES ('$brukerNavn','$passord','$tlf','$admrett');");
-
+				$sql=("INSERT INTO Brukere(brukernavn , Passord, telefonnummer, adminrettighet) VALUES (?,?,?,'$admrett');");
+				$stmt = mysqli_prepare($db, $sql);
 				$resultat = mysqli_query($db,$sql);
-				if($resultat == 1){
+				mysqli_stmt_bind_param($stmt, 'sss' , $brukerNavn, $passord, $tlf);
+				mysqli_stmt_execute($stmt);
+				$error = mysqli_stmt_error($stmt);
+				if(!$error){
 				echo <<<EOT
 				<div class="container text-center">
 					<h1>Suksess</h1>
@@ -64,15 +67,15 @@ $db = kobleOpp();
 					</div>
 EOT;
 }
-else if($resultat==0){
+else if($error){
 	echo <<<EOT
-	<p>Ikke registrert</p>
+	<p>Ooops, her skjedde det noe feil og bruker er ikke registrert</p>
 	<a href="ny-bruker.php">Prøv på nytt</a>
 EOT;
 }
 }
 else {
-	echo "samme brukernavn";
+	echo "<h3>En bruker med samme brukernavn eksisterer <a href='ny-bruker.php'>Registrer</a> med ett annet Brukernavn</h3>";
 	}
 
 
@@ -87,16 +90,12 @@ else {
 </html>
 <?php
 function sjekkBrukerNavn($brukernavn, $db){
-	$sqlSjekkBruker = "SELECT brukernavn FROM Brukere where brukernavn = '$brukernavn'";
-	$result = mysqli_query($db,$sqlSjekkBruker);
-	$finnes = mysqli_fetch_assoc($result);
-	if($finnes == 0)
-		return true;
-	else if ($finnes>0)
-		return false;
-
-
-	
+	$sqlSjekkBruker = "SELECT brukernavn FROM Brukere WHERE brukernavn = ?";
+	$stmt = mysqli_prepare($db,$sqlSjekkBruker);
+	mysqli_stmt_bind_param($stmt, 's' , $brukernavn);
+	mysqli_stmt_execute($stmt);
+	$result = mysqli_stmt_get_result($stmt);
+	return !(mysqli_fetch_assoc($result));
 }
 lukk($db);
 ?>
