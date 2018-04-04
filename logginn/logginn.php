@@ -91,4 +91,4 @@ EOT;
 }
 
 ?>
-<script src="sok.js"></script>
+<script src="loggut.js"></script>
