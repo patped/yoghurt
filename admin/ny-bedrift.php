@@ -40,32 +40,32 @@ include_once '../logginn/logginn.php';
 						<tbody>
 							<tr>
 								<td>TilsynsobjektID:</td>
-								<td><input type="text" name="TilsynsobjektID" required></td>
+								<td><input type="text" name="tilsynsobjektID" required></td>
 							</tr>
 
 							<tr>
 								<td>Organisasjonsnummer:</td> <!--  pattern="\d*" begrenser input til tall og gir finere feilmld enn type="number" -->
-								<td><input type="text" name="Organisasjonsnummer" pattern="\d*" minlength="9" maxlength="9" required></td>
+								<td><input type="text" name="organisasjonsnummer" pattern="\d*" minlength="9" maxlength="9" required></td>
 							</tr>
 
 							<tr>
 								<td>Navn:</td>
-									<td><input type="text" name="Navn" required></td>
+									<td><input type="text" name="navn" required></td>
 							</tr>
 
 							<tr>
 								<td>Adresselinje1:</td>
-								<td><input type="text" name="Adresselinje1" required></td>
+								<td><input type="text" name="adresselinje1" required></td>
 							</tr>
 							
 							<tr>
 								<td>Adresselinje2:</td>
-								<td><input type="text" name="Adresselinje2"></td>
+								<td><input type="text" name="adresselinje2"></td>
 							</tr> 
 
 							<tr>
 								<td>Postnummer:</td>
-								<td><input type="text" name="Postnummer" pattern="\d*" minlength="4" maxlength="4" required></td>
+								<td><input type="text" name="postnummer" pattern="\d*" minlength="4" maxlength="4" required></td>
 							</tr>
 
 							<tr>

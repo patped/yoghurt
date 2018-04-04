@@ -50,7 +50,7 @@ function adminrett($tilsynsID){
         if(($_SESSION['adminrett'])){
           echo <<< EOT
             <h3>ID: $tilsynsID</h3><br>
-            <a href='endre.php'><button type='button'>Oppdater</button></a></h2><br>
+            <a href='endre.php?tilsynid=$tilsynsID'><button type='button'>Oppdater</button></a></h2><br>
 EOT;
         }
 }
