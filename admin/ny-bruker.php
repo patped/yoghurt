@@ -9,7 +9,6 @@ include_once '../logginn/logginn.php';
 ?>
 
 <!doctype html>
-<html lang="no">
 
 <head>
 	<meta charset="utf-8">
@@ -26,21 +25,20 @@ include_once '../logginn/logginn.php';
 		$side = 'Location: /admin/ny-bruker.php';
 		logginn($side);
 		?>
-		<p>Legg til en ny bruker</p>
+		<h2>Legg til en ny bruker</h2>
+		<table class='table table-hover'>
 		<form method="POST" action="ny-bruker-landingside.php">
-			<br><p>fornavn</p><br>
-			<input type="text" name="fornavn" value="Fornavn">
-			<br><p>etternavn</p><br>
-			<input type="text" name="etternavn" value="Etternavn">
-			<br><p>Passord</p><br>
-			<input type="password" name="passord" value="passord">
-			<br><p>telefonnummer</p><br>
-			<input type="text" name="tlf" value="tlf">
-			<br><p>adminrettighet?</p><br>
-			<input type="checkbox" name="admi" value="admRett">
-			<br>
-			<input type="submit" name="registrer" value="registrer"></p>
+			<tr><input type="text" name="brukernavn" required value="Brukernavn"></tr>
+			<tr><p>Brukernavn</p></tr>
+			<tr><input type="password" name="passord" required value="Passord"></tr>
+			<tr><p>Passord</p><tr>
+			<tr><input type="text" name="tlf" required value="Telefonnummer"></tr>
+			<tr><p>Telefonnummer</p><tr>
+			<tr><input type="checkbox" name="admi" value="admRett"></tr>
+			<tr><br><p>Adminrett?</p></tr>
+			<tr><input type="submit" name="registrer" value="registrer"></p></tr>
 		</form> 
+	</table>
 	<div>
 	<?php include_once '../div/footer.php';	 ?>
 
