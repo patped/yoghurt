@@ -91,4 +91,4 @@ EOT;
 }
 
 ?>
-<script src="loggut.js"></script>
+<script src="/logginn/loginn.js"></script>
