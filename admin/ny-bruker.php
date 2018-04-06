@@ -13,6 +13,7 @@ include_once '../logginn/logginn.php';
 <head>
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="fellesStilAdmin.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
@@ -25,20 +26,41 @@ include_once '../logginn/logginn.php';
 		$side = 'Location: /admin/ny-bruker.php';
 		logginn($side);
 		?>
-		<h2>Legg til en ny bruker</h2>
-		<table class='table table-hover'>
+
+		
+		<thead><h2>Legg til en ny bruker</h2></thead>
+
+		
 		<form method="POST" action="ny-bruker-landingside.php">
-			<tr><input type="text" name="brukernavn" required value="Brukernavn"></tr>
-			<tr><p>Brukernavn</p></tr>
-			<tr><input type="password" name="passord" required value="Passord"></tr>
-			<tr><p>Passord</p><tr>
-			<tr><input type="text" name="tlf" required value="Telefonnummer"></tr>
-			<tr><p>Telefonnummer</p><tr>
-			<tr><input type="checkbox" name="admi" value="admRett"></tr>
-			<tr><br><p>Adminrett?</p></tr>
-			<tr><input type="submit" name="registrer" value="registrer"></p></tr>
+			<div class="table-responsive">
+				<div class="col-xs-4 col-xs-offset-4">
+					<table class="table">
+						<thead>
+							<th></th>
+							<th></th>
+						</thead>
+						<tbody>
+							<tr><td><p>Brukernavn</p></td>
+			<td><input type="text" name="brukernavn" required placeholder="Brukernavn"></td>
+			</tr>
+			<tr>
+				<td><p>Passord</p></td>
+				<td><input type="password" name="passord" required placeholder="Passord"></td>
+			</tr>
+			<tr>
+				<td><p>Telefonnummer</p></td>
+				<td><input type="text" name="tlf" required placeholder="Telefonnummer"></td>
+			</tr>
+			<tr>
+				<td><p>Adminrett?</p></td>
+				<td><input type="checkbox" name="admi" value="admRett"></td>
+			</tr>
+			<tr><td></td><td><input type="submit" name="registrer" value="Registrer"></p></td></tr>
 		</form> 
-	</table>
+	</tbody>
+</table>
+</div>
+</div>
 	<div>
 	<?php include_once '../div/footer.php';	 ?>
 
