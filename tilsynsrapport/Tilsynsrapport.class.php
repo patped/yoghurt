@@ -1,6 +1,6 @@
 <?php
 require_once 'div/database.php';
-require_once 'tilsynsrapport/Kravpunkter.class.php';
+require_once 'tilsynsrapport/Kravpunkt.class.php';
 
 class Tilsynsrapport
 {
@@ -27,7 +27,7 @@ class Tilsynsrapport
         $this->karakterer = $this->karakterer($data, $this->karakterer);
         $this->temabeskrivelser = $this->temabeskrivelser($data, $this->temabeskrivelser);
         $this->tilsynsbesoektype = $data['tilsynsbesoektype'];
-        $this->kravpunkter = new Kravpunkter($tilsynid);
+        $this->kravpunkter = $this->kravpunkter($tilsynid);
     }
 
     public function test()
@@ -42,6 +42,7 @@ class Tilsynsrapport
         );
         echo " karakter1 ", $this->karakterer['karakter1'];
         echo " tema1_no ", $this->temabeskrivelser['tema1_no'];
+        echo " kravpunkt1_1 ", $this->kravpunkter['1.1']->karakter;
     }
 
     private function hentData($tilsynid) 
@@ -89,6 +90,29 @@ class Tilsynsrapport
             $tmp["$keyNavn"] = $data["$keyNavn"];
         }
         return $tmp;
+    }
+
+    private function kravpunkter($tilsynid)
+    {
+        $kravpunkter = [];
+        $data = $this->hentKravpunkter($tilsynid);
+        foreach ($data as $kravpunkt) {
+            $kravpunkter[$kravpunkt['ordingsverdi']] = new Kravpunkt($kravpunkt);
+        }
+        return $kravpunkter;
+    }
+
+    private function hentKravpunkter($tilsynid)
+    {
+        $db = kobleOpp();
+        $sql = "SELECT * FROM Kravpunkter WHERE tilsynid LIKE ?";
+        $stmt = mysqli_prepare($db, $sql);
+        mysqli_stmt_bind_param($stmt, 's', $tilsynid);
+        mysqli_stmt_execute($stmt);
+        $data = mysqli_stmt_get_result($stmt);
+        $data = $data->fetch_all(MYSQLI_ASSOC);
+        lukk($db);
+        return $data;
     }
 }
 
