@@ -103,7 +103,7 @@ if ($tilsynid) {
                                     <option value="1">alle avvik lukket</option>
                                 </select>
 
-                                <input type="submit" name="submit" class="pull-right" >	
+                                <input type="submit" name="submit" value="Registrer" class="pull-right" >	
                             </td>
                         </tr>
                     </tbody>

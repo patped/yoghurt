@@ -71,7 +71,7 @@ include_once '../logginn/logginn.php';
 
 							<tr>
 								<td></td>
-								<td><input type="submit" name="send" class="pull-right"></td>
+								<td><input type="submit" name="send" value="Registrer" class="pull-right"></td>
 							</tr>
 						</tbody>
 					</table>
