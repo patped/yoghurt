@@ -1,5 +1,5 @@
 <?php
-require_once 'div/database.php';
+require_once '../div/database.php';
 
 class Kravpunkt
 {

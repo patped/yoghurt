@@ -1,19 +1,19 @@
 <?php
-require_once 'div/database.php';
-require_once 'tilsynsrapport/Kravpunkt.class.php';
+require_once '../div/database.php';
+require_once 'Kravpunkt.class.php';
 
 class Tilsynsrapport
 {
-    private $restaurant;
-    private $tilsynid;
-    private $sakref;
-    private $status;
-    private $dato;
-    private $total_karakter;
-    private $karakterer = "karakter";
-    private $temabeskrivelser = "tema";
-    private $tilsynsbesoektype;
-    private $kravpunkter;
+    public $restaurant;
+    public $tilsynid;
+    public $sakref;
+    public $status;
+    public $dato;
+    public $total_karakter;
+    public $karakterer = "karakter";
+    public $temaer = "tema";
+    public $tilsynsbesoektype;
+    public $kravpunkter;
     
     public function __construct($tilsynid)
     {
@@ -25,7 +25,7 @@ class Tilsynsrapport
         $this->dato = $data['dato'];
         $this->total_karakter = $data['total_karakter'];
         $this->karakterer = $this->karakterer($data, $this->karakterer);
-        $this->temabeskrivelser = $this->temabeskrivelser($data, $this->temabeskrivelser);
+        $this->temaer = $this->temaer($data, $this->temaer);
         $this->tilsynsbesoektype = $data['tilsynsbesoektype'];
         $this->kravpunkter = $this->kravpunkter($tilsynid);
     }
@@ -41,7 +41,7 @@ class Tilsynsrapport
             tilsynsbesøktype $this->tilsynsbesoektype"
         );
         echo " karakter1 ", $this->karakterer['karakter1'];
-        echo " tema1_no ", $this->temabeskrivelser['tema1_no'];
+        echo " tema1_no ", $this->temaer['tema1_no'];
         echo " kravpunkt1_1 ", $this->kravpunkter['1.1']->karakter;
     }
 
@@ -81,7 +81,7 @@ class Tilsynsrapport
         return $tmp;
     }
     
-    private function temabeskrivelser($data, $key)
+    private function temaer($data, $key)
     {
         $tmp = [];
         for ($i = 1; $i <=4; $i++) 
