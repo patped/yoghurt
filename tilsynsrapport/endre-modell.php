@@ -32,7 +32,6 @@ function kravpunkter($tilsynid){
     $db = kobleOpp();
     if($tilsynid){
         $sqlspørring = ("SELECT * FROM `Kravpunkter` WHERE `tilsynid` like '$tilsynid';");
-        
     }
     else{
         $sqlspørring = ("SELECT DISTINCT ordingsverdi,kravpunktnavn_no
@@ -46,8 +45,8 @@ function kravpunkter($tilsynid){
     while ($rad) {
         $ordingsverdi = $rad['ordingsverdi'];
         $kravpunktnavn_no = $rad['kravpunktnavn_no'];
-        $karakter;
-        $tekst_no;
+        $karakter = "";
+        $tekst_no = "";
         if($tilsynid){
             $karakter = $rad['karakter'];
             $tekst_no = $rad['tekst_no'];
