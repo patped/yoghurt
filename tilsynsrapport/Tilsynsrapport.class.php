@@ -30,19 +30,31 @@ class Tilsynsrapport
         $this->kravpunkter = $this->kravpunkter($tilsynid);
     }
 
+    public function dato()
+    {
+        $dato = $this->dato;
+        if (strlen($dato) > 7) {
+            $dato = substr($dato,0,2).".".substr($dato,2,2).".".substr($dato,4,4);
+        } else {
+            $tmp = substr($dato,0,1).".".substr($dato,1,2).".".substr($dato,3,4);
+            $dato = "0".$tmp;
+        }
+        return $dato;
+    }
+
     public function test()
     {
         echo (
             "restaurant $this->restaurant
             sakref $this->sakref, 
             status $this->status, 
-            dato $this->dato, 
             total_karakter $this->total_karakter, 
             tilsynsbesøktype $this->tilsynsbesoektype"
         );
         echo " karakter1 ", $this->karakterer['karakter1'];
         echo " tema1_no ", $this->temaer['tema1_no'];
         echo " kravpunkt1_1 ", $this->kravpunkter['1.1']->karakter;
+        echo " dato ", $this->dato();
     }
 
     private function hentData($tilsynid) 
