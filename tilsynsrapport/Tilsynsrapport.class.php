@@ -105,7 +105,8 @@ class Tilsynsrapport
     private function hentKravpunkter($tilsynid)
     {
         $db = kobleOpp();
-        $sql = "SELECT * FROM Kravpunkter WHERE tilsynid LIKE ?";
+        // Bruker ORDER BY LENGTH(k.ordingsverdi), k.ordingsverdi for å få ordningsverdiene i riktig rekkefølge.
+        $sql = "SELECT * FROM Kravpunkter AS k WHERE k.tilsynid LIKE ? ORDER BY LENGTH(k.ordingsverdi), k.ordingsverdi";
         $stmt = mysqli_prepare($db, $sql);
         mysqli_stmt_bind_param($stmt, 's', $tilsynid);
         mysqli_stmt_execute($stmt);
