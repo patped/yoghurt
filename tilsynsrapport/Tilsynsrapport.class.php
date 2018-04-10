@@ -5,6 +5,7 @@ require_once 'Kravpunkt.class.php';
 class Tilsynsrapport
 {
     public $restaurant;
+    public $tilsynsobjektid;
     public $tilsynid;
     public $sakref;
     public $status;
@@ -19,7 +20,8 @@ class Tilsynsrapport
     {
         $data = $this->hentData($tilsynid);
         $this->restaurant = $this->restaurant($data['tilsynsobjektid']);
-        $this->tilsyndid = $tilsynid;
+        $this->tilsynsobjektid = $data['tilsynsobjektid'];
+        $this->tilsynid = $tilsynid;
         $this->sakref = $data['sakref'];
         $this->status = $data['status'];
         $this->dato = $data['dato'];
