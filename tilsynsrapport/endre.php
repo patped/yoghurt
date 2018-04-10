@@ -4,19 +4,18 @@ require_once '../div/session-kapring.php';
 if(!$_SESSION['adminrett']) {
 	header("Location: ../div/401.php");
 }
-include_once '../div/database.php';
-include_once '../logginn/logginn.php';
-include_once 'endre-modell.php';
-$tilsynid = $_GET['tilsynid'];
-$tilsynsobjektid = $_GET['tilsynsobjektid'];
-$tilsynsrapport = false;
-if ($tilsynid) {
-	$tilsynsrapport = tilsynsrapport($tilsynid);
-	$tilsynsobjektid = $tilsynsrapport['tilsynsobjektid'];
-	$dato = $tilsynsrapport['dato'];
-	$dato = substr($dato,0,2).".".substr($dato,2,2).".".substr($dato,4,4);
-	$tilsynsbesoektype = $tilsynsrapport['tilsynsbesoektype'];
-	$status = $tilsynsrapport['status'];
+require_once '../div/database.php';
+require_once '../logginn/logginn.php';
+require_once 'endre-modell.php';
+require_once 'Tilsynsrapport.class.php';
+
+$tilsynid = false;
+$tilsynsobjektid = false;
+if (isset($_GET['tilsynid'])) {
+	$tilsynid = $_GET['tilsynid'];
+	$tilsynsrapport = new Tilsynsrapport($tilsynid);
+} else if (isset($_GET['tilsynsobjektid'])) {
+	$tilsynsobjektid = $_GET['tilsynsobjektid'];
 }
 
 ?>
@@ -44,7 +43,7 @@ if ($tilsynid) {
   	</div>
 
   	<div class="container">
-    	<div class="page-header"> <h2> <?php bedrift($tilsynsobjektid); ?> </h2> </div>
+    	<div class="page-header"> <h2> <?php if($tilsynid) echo $tilsynsrapport->restaurant; else if ($tilsynsobjektid) echo bedrift($tilsynsobjektid); ?> </h2> </div>
 		<div class="table-responsive">
 			<form method="POST" action="endre-kontroller.php">
 				<div class="col-xs-4">
@@ -56,20 +55,35 @@ if ($tilsynid) {
 						<tbody>
 							<tr>
 				    			<td>TilsynsobjektID:</td>
-				    			<td><input type="text" name="tilsynsobjektid" <?php if($tilsynsobjektid) echo "value='$tilsynsobjektid'"; ?>></td>
+				    			<td>
+									<input 
+										type="text" 
+										name="tilsynsobjektid" 
+										<?php 
+										if($tilsynid) 
+											echo "value='$tilsynsrapport->tilsynsobjektid'";
+										else if ($tilsynsobjektid) 
+											echo "value='$tilsynsobjektid'";
+										?>>
+									</td>
 				  			</tr>
 
 				  			<tr>
 				    			<td>TilsynsID:</td>
 				    			<td>
-								<input type="text" name="tilsynid" <?php if($tilsynid) echo "value='$tilsynid'"; ?>></td>
+									<input 
+										type="text" 
+										name="tilsynid" 
+										<?php if($tilsynid) echo "value='$tilsynsrapport->tilsynid'"; ?>
+									>
+								</td>
 				  			</tr>
 
 							<tr>
 				    			<td>TilsynsBesøksType:</td>
 				    			<td>
 					    			<select name="tilsynsbesoektype">
-										<?php tilsynsbesoektype($tilsynsbesoektype); ?>
+										<?php if($tilsynid) tilsynsbesoektype($tilsynsrapport->tilsynsbesoektype); ?>
 							    		<option value="0">Ordinært</option>
 							    		<option value="1">oppfølgings -tilsyn</option>
 					  				</select>
@@ -78,7 +92,15 @@ if ($tilsynid) {
 
 							<tr>
 				    			<td>Dato:</td>
-				    			<td><input type="text" name="dato" pattern="[0-3]{1}[0-9]{1}[.]{1}[0-1]{1}[0-9]{1}[.]{1}[0-9]{4}" placeholder="dd.mm.åååå" <?php if($tilsynid) {echo "value='$dato'";} ?>></td>
+				    			<td>
+									<input 
+										type="text" 
+										name="dato" 
+										pattern="[0-3]{1}[0-9]{1}[.]{1}[0-1]{1}[0-9]{1}[.]{1}[0-9]{4}" 
+										placeholder="dd.mm.åååå" 
+										<?php if($tilsynid) {echo "value='".$tilsynsrapport->dato()."'";} ?>
+									>
+								</td>
 				  			</tr>
 			  			</tbody>
 			  		</table>
@@ -91,14 +113,14 @@ if ($tilsynid) {
                         <th class="col-xs-5">Komentar</th>
                     </thead>
                     <tbody>
-                        <?php kravpunkter($tilsynid); ?>
+                        <?php if($tilsynid) kravpunkter($tilsynsrapport->tilsynid); ?>
                         <tr>
                             <td></td>
                             <td></td>
                             <td>Status:</td>    
                             <td> 
                                 <select name="status">
-                                    <?php status($status); ?>
+                                    <?php if($tilsynid) status($tilsynsrapport->status); ?>
                                     <option value="0">utestående avvik finnes</option>
                                     <option value="1">alle avvik lukket</option>
                                 </select>
