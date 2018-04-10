@@ -1,29 +1,30 @@
 <?php
 require_once "tilsyn-kontroller.php";
+require_once 'Tilsynsrapport.class.php';
 
 $dato = hentDato();
+$tilsynid = $_GET['tilsynid'];
+$tilsynsrapport = new Tilsynsrapport($tilsynid);
 
 
-function kravpunkter($ordningsverdi) {
-    $kravpunkter = hentKravpunkter($ordningsverdi);
-    foreach ($kravpunkter as $data) {
-        $ordningsverdi = $data['ordingsverdi'];
-        $kravpunktnavn_no = $data['kravpunktnavn_no'];
-        $karakter = $data['karakter'];
-        $tekst_no = $data['tekst_no'];
-        echo ("
-            <tr>
-                <td>$ordningsverdi</td>
-                <td>$kravpunktnavn_no</td>
-                <td>$karakter</td>
-                <td>$tekst_no</td>
-            </tr>
-        ");
+function kravpunkter($tilsynsrapport, $ordningsverdi) {
+    $kravpunkter = $tilsynsrapport->kravpunkter;
+    foreach ($kravpunkter as $kravpunkt) {
+        if (preg_match("/^$ordningsverdi/", $kravpunkt->ordningsverdi)) {
+            echo ("
+                <tr>
+                    <td>$kravpunkt->ordningsverdi</td>
+                    <td>$kravpunkt->kravpunktnavn</td>
+                    <td>$kravpunkt->karakter</td>
+                    <td>$kravpunkt->tekst</td>
+                </tr>
+            ");
+        }
     }
 }
 
-function tilsynsrapport() {
-    $temaer = hentTemaer();
+function tilsynsrapport($tilsynsrapport) {
+    $temaer = $tilsynsrapport->temaer;
     $ordningsverdi = 1;
     foreach ($temaer as $tema) {
         echo (
@@ -37,7 +38,7 @@ function tilsynsrapport() {
                 </thead>
                 <tbody>"
         );
-        kravpunkter($ordningsverdi);
+        kravpunkter($tilsynsrapport, $ordningsverdi);
         echo (
                 "</tbody>
             </table>"
@@ -45,12 +46,12 @@ function tilsynsrapport() {
         $ordningsverdi++;
     }
 }
-function adminrett($tilsynsID){
+function adminrett($tilsynid){
     if(isset($_SESSION['adminrett']))
         if(($_SESSION['adminrett'])){
           echo <<< EOT
-            <h3>ID: $tilsynsID</h3><br>
-            <a href='endre.php?tilsynid=$tilsynsID'><button type='button'>Oppdater</button></a></h2><br>
+            <h3>ID: $tilsynid</h3><br>
+            <a href='endre.php?tilsynid=$tilsynid'><button type='button'>Oppdater</button></a></h2><br>
 EOT;
         }
 }

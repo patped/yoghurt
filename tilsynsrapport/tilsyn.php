@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../div/session-kapring.php';
-require "tilsyn-modell.php";
+require_once 'tilsyn-modell.php';
 require_once '../logginn/logginn.php';
 ?>
 
@@ -20,7 +20,7 @@ require_once '../logginn/logginn.php';
     starAlertInnlogg();
     $side = 'Location: /tilsynsrapport/tilsyn.php?tilsynid=' . $tilsynsID . '&dato=' . $dato;
     logginn($side);
-    ?>
+  ?>
 
   <div class="container">
     <div class="jumbotron">
@@ -30,10 +30,10 @@ require_once '../logginn/logginn.php';
 
   <div class="container">
     <div class='page-header'> <h2>Tilsynsrapport for dato: <?php echo $dato; ?></h2>
-      <?php adminrett($tilsynsID); ?>
+      <?php adminrett($tilsynid); ?>
     </div>
     <div class="table-responsive">
-      <?php tilsynsrapport(); ?>
+      <?php tilsynsrapport($tilsynsrapport); ?>
     </div>
   </div>
 
