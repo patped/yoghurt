@@ -8,12 +8,19 @@ class Kravpunkt
     public $karakter;
     public $tekst;
 
-    public function __construct($data)
-    {
+    public function __construct($data) {
         $this->ordningsverdi = $data['ordingsverdi'];
         $this->kravpunktnavn = $data['kravpunktnavn_no'];
-        $this->karakter = $data['karakter'];
-        $this->tekst = $data['tekst_no'];
+        $this->karakter = "";
+        $this->tekst = "";
+    }
+
+    public static function medData($data)
+    {
+        $kravpunkt = new self($data);
+        $kravpunkt->karakter = $data['karakter'];
+        $kravpunkt->tekst = $data['tekst_no'];
+        return $kravpunkt;
     }
 
 }

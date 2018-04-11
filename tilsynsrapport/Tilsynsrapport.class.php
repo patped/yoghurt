@@ -2,8 +2,7 @@
 require_once '../div/database.php';
 require_once 'Kravpunkt.class.php';
 
-class Tilsynsrapport
-{
+class Tilsynsrapport {
     public $restaurant;
     public $tilsynsobjektid;
     public $tilsynid;
@@ -11,29 +10,46 @@ class Tilsynsrapport
     public $status;
     public $dato;
     public $total_karakter;
-    public $karakterer = "karakter";
-    public $temaer = "tema";
+    public $karakterer;
+    public $temaer;
     public $tilsynsbesoektype;
     public $kravpunkter;
+
+    public function __construct() {
+        $db = kobleOpp();
+        $sql = "SELECT DISTINCT ordingsverdi, `kravpunktnavn_no` FROM `Kravpunkter`";
+        $kravpunkter = mysqli_query($db, $sql);
+        $kravpunkter->fetch_all(MYSQLI_ASSOC);
+        lukk($db);
+
+        $this->karakterer = array(
+            "karakter1"=>"",
+            "karakter2"=>"",
+            "karakter3"=>"",
+            "karakter4"=>""
+        );
+
+        $this->temaer = $this->temaer();
+        $this->kravpunkter = $this->tomKravpunkter($kravpunkter);
+    }
     
-    public function __construct($tilsynid)
-    {
-        $data = $this->hentData($tilsynid);
-        $this->restaurant = $this->restaurant($data['tilsynsobjektid']);
-        $this->tilsynsobjektid = $data['tilsynsobjektid'];
-        $this->tilsynid = $tilsynid;
-        $this->sakref = $data['sakref'];
-        $this->status = $data['status'];
-        $this->dato = $data['dato'];
-        $this->total_karakter = $data['total_karakter'];
-        $this->karakterer = $this->karakterer($data, $this->karakterer);
-        $this->temaer = $this->temaer($data, $this->temaer);
-        $this->tilsynsbesoektype = $data['tilsynsbesoektype'];
-        $this->kravpunkter = $this->kravpunkter($tilsynid);
+    public static function medTilsynid($tilsynid) {
+        $tilsynsrapport = new self();
+        $data = $tilsynsrapport->hentData($tilsynid);
+        $tilsynsrapport->restaurant = $tilsynsrapport->restaurant($data['tilsynsobjektid']);
+        $tilsynsrapport->tilsynsobjektid = $data['tilsynsobjektid'];
+        $tilsynsrapport->tilsynid = $tilsynid;
+        $tilsynsrapport->sakref = $data['sakref'];
+        $tilsynsrapport->status = $data['status'];
+        $tilsynsrapport->dato = $data['dato'];
+        $tilsynsrapport->total_karakter = $data['total_karakter'];
+        $tilsynsrapport->karakterer = $tilsynsrapport->karakterer($data);
+        $tilsynsrapport->tilsynsbesoektype = $data['tilsynsbesoektype'];
+        $tilsynsrapport->kravpunkter = $tilsynsrapport->kravpunkter($tilsynid);
+        return $tilsynsrapport;
     }
 
-    public function dato()
-    {
+    public function dato() {
         $dato = $this->dato;
         if (strlen($dato) > 7) {
             $dato = substr($dato,0,2).".".substr($dato,2,2).".".substr($dato,4,4);
@@ -44,8 +60,7 @@ class Tilsynsrapport
         return $dato;
     }
 
-    public function test()
-    {
+    public function test() {
         echo (
             "restaurant $this->restaurant
             sakref $this->sakref, 
@@ -59,8 +74,7 @@ class Tilsynsrapport
         echo " dato ", $this->dato();
     }
 
-    private function hentData($tilsynid) 
-    {
+    private function hentData($tilsynid) {
         $db = kobleOpp();
         $sql = ("SELECT * FROM Tilsynsrapporter WHERE tilsynid LIKE ?;");
         $stmt = mysqli_prepare($db, $sql);
@@ -71,8 +85,7 @@ class Tilsynsrapport
         return mysqli_fetch_assoc($data);
     }
 
-    private function restaurant($tilsynsobjektid)
-    {
+    private function restaurant($tilsynsobjektid) {
         $db = kobleOpp();
         $sql = "SELECT navn FROM Restauranter WHERE tilsynsobjektid LIKE ?";
         $stmt = mysqli_prepare($db, $sql);
@@ -84,40 +97,38 @@ class Tilsynsrapport
         return $data['navn'];
     }
 
-    private function karakterer($data, $key)
-    {
-        $tmp = [];
-        for ($i = 1; $i <=4; $i++) 
-        {
-            $keyNavn = $key.$i;
-            $tmp["$keyNavn"] = $data["$keyNavn"];
-        }
-        return $tmp;
+    private function karakterer($data) {
+        $karakterer = array_intersect_key($data + $this->karakterer, $this->karakterer);
+        return $karakterer;
     }
     
-    private function temaer($data, $key)
-    {
-        $tmp = [];
-        for ($i = 1; $i <=4; $i++) 
-        {
-            $keyNavn = $key.$i."_no";
-            $tmp["$keyNavn"] = $data["$keyNavn"];
-        }
-        return $tmp;
+    private function temaer() {
+        $db = kobleOpp();
+        $sql = "SELECT DISTINCT `tema1_no`, `tema2_no`, `tema3_no`, `tema4_no` FROM `Tilsynsrapporter` WHERE `tema1_no` IS NOT NULL AND  `tema2_no` IS NOT NULL AND `tema3_no`  IS NOT NULL AND `tema4_no` IS NOT NULL";
+        $data = mysqli_query($db, $sql);
+        $data = mysqli_fetch_assoc($data);
+        lukk($db);
+        return $data;
     }
 
-    private function kravpunkter($tilsynid)
-    {
+    private function kravpunkter($tilsynid) {
         $kravpunkter = [];
         $data = $this->hentKravpunkter($tilsynid);
+        foreach ($data as $kravpunkt) {
+            $kravpunkter[$kravpunkt['ordingsverdi']] = Kravpunkt::medData($kravpunkt);
+        }
+        return $kravpunkter;
+    }
+
+    private function tomKravpunkter($data) {
+        $kravpunkter = [];
         foreach ($data as $kravpunkt) {
             $kravpunkter[$kravpunkt['ordingsverdi']] = new Kravpunkt($kravpunkt);
         }
         return $kravpunkter;
     }
 
-    private function hentKravpunkter($tilsynid)
-    {
+    private function hentKravpunkter($tilsynid) {
         $db = kobleOpp();
         // Bruker ORDER BY LENGTH(k.ordingsverdi), k.ordingsverdi for å få ordningsverdiene i riktig rekkefølge.
         $sql = "SELECT * FROM Kravpunkter AS k WHERE k.tilsynid LIKE ? ORDER BY LENGTH(k.ordingsverdi), k.ordingsverdi";

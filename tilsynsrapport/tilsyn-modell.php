@@ -4,7 +4,7 @@ require_once 'Tilsynsrapport.class.php';
 
 $dato = hentDato();
 $tilsynid = $_GET['tilsynid'];
-$tilsynsrapport = new Tilsynsrapport($tilsynid);
+$tilsynsrapport = Tilsynsrapport::medTilsynid($tilsynid);
 
 
 function kravpunkter($tilsynsrapport, $ordningsverdi) {
