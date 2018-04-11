@@ -13,9 +13,12 @@ $tilsynid = false;
 $tilsynsobjektid = false;
 if (isset($_GET['tilsynid'])) {
 	$tilsynid = $_GET['tilsynid'];
-	$tilsynsrapport = new Tilsynsrapport($tilsynid);
+	$tilsynsrapport = Tilsynsrapport::medTilsynid($tilsynid);
 } else if (isset($_GET['tilsynsobjektid'])) {
 	$tilsynsobjektid = $_GET['tilsynsobjektid'];
+	$tilsynsrapport = Tilsynsrapport::medTilsynsobjektid();
+} else {
+	$tilsynsrapport = new Tilsynsrapport();
 }
 
 ?>
@@ -43,7 +46,7 @@ if (isset($_GET['tilsynid'])) {
   	</div>
 
   	<div class="container">
-    	<div class="page-header"> <h2> <?php if($tilsynid) echo $tilsynsrapport->restaurant; else if ($tilsynsobjektid) echo bedrift($tilsynsobjektid); ?> </h2> </div>
+    	<div class="page-header"> <h2> <?php echo $tilsynsrapport->restaurant; ?> </h2> </div>
 		<div class="table-responsive">
 			<form method="POST" action="endre-kontroller.php">
 				<div class="col-xs-4">
@@ -55,35 +58,19 @@ if (isset($_GET['tilsynid'])) {
 						<tbody>
 							<tr>
 				    			<td>TilsynsobjektID:</td>
-				    			<td>
-									<input 
-										type="text" 
-										name="tilsynsobjektid" 
-										<?php 
-										if($tilsynid) 
-											echo "value='$tilsynsrapport->tilsynsobjektid'";
-										else if ($tilsynsobjektid) 
-											echo "value='$tilsynsobjektid'";
-										?>>
-									</td>
+				    			<td><input type="text" name="tilsynsobjektid" <?php echo "value='$tilsynsrapport->tilsynsobjektid'"; ?>></td>
 				  			</tr>
 
 				  			<tr>
 				    			<td>TilsynsID:</td>
-				    			<td>
-									<input 
-										type="text" 
-										name="tilsynid" 
-										<?php if($tilsynid) echo "value='$tilsynsrapport->tilsynid'"; ?>
-									>
-								</td>
+				    			<td><input type="text" name="tilsynid" <?php echo "value='$tilsynsrapport->tilsynid'"; ?> ></td>
 				  			</tr>
 
 							<tr>
 				    			<td>TilsynsBesøksType:</td>
 				    			<td>
 					    			<select name="tilsynsbesoektype">
-										<?php if($tilsynid) tilsynsbesoektype($tilsynsrapport->tilsynsbesoektype); ?>
+										<?php tilsynsbesoektype($tilsynsrapport->tilsynsbesoektype); ?>
 							    		<option value="0">Ordinært</option>
 							    		<option value="1">oppfølgings -tilsyn</option>
 					  				</select>
@@ -98,7 +85,7 @@ if (isset($_GET['tilsynid'])) {
 										name="dato" 
 										pattern="[0-3]{1}[0-9]{1}[.]{1}[0-1]{1}[0-9]{1}[.]{1}[0-9]{4}" 
 										placeholder="dd.mm.åååå" 
-										<?php if($tilsynid) {echo "value='".$tilsynsrapport->dato()."'";} ?>
+										<?php if ($tilsynid) echo "value='".$tilsynsrapport->dato()."'"; ?>
 									>
 								</td>
 				  			</tr>
@@ -113,7 +100,7 @@ if (isset($_GET['tilsynid'])) {
                         <th class="col-xs-5">Komentar</th>
                     </thead>
                     <tbody>
-                        <?php if($tilsynid) kravpunkter($tilsynsrapport->tilsynid); ?>
+                        <?php kravpunkter($tilsynsrapport, $tilsynid); ?>
                         <tr>
                             <td></td>
                             <td></td>

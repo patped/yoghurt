@@ -1,8 +1,7 @@
 <?php
 require_once '../div/database.php';
 
-class Kravpunkt
-{
+class Kravpunkt {
     public $ordningsverdi;
     public $kravpunktnavn;
     public $karakter;
@@ -15,8 +14,7 @@ class Kravpunkt
         $this->tekst = "";
     }
 
-    public static function medData($data)
-    {
+    public static function medData($data) {
         $kravpunkt = new self($data);
         $kravpunkt->karakter = $data['karakter'];
         $kravpunkt->tekst = $data['tekst_no'];

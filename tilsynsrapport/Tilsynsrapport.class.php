@@ -3,34 +3,28 @@ require_once '../div/database.php';
 require_once 'Kravpunkt.class.php';
 
 class Tilsynsrapport {
-    public $restaurant;
-    public $tilsynsobjektid;
-    public $tilsynid;
-    public $sakref;
-    public $status;
-    public $dato;
-    public $total_karakter;
+    public $restaurant = "";
+    public $tilsynsobjektid = "";
+    public $tilsynid = "";
+    public $sakref = "";
+    public $status = "";
+    public $dato = "";
+    public $total_karakter = "";
     public $karakterer;
     public $temaer;
-    public $tilsynsbesoektype;
+    public $tilsynsbesoektype = "";
     public $kravpunkter;
 
+    // Konstruktører og hjelpekunstruktører.
     public function __construct() {
-        $db = kobleOpp();
-        $sql = "SELECT DISTINCT ordingsverdi, `kravpunktnavn_no` FROM `Kravpunkter`";
-        $kravpunkter = mysqli_query($db, $sql);
-        $kravpunkter->fetch_all(MYSQLI_ASSOC);
-        lukk($db);
-
         $this->karakterer = array(
             "karakter1"=>"",
             "karakter2"=>"",
             "karakter3"=>"",
             "karakter4"=>""
         );
-
         $this->temaer = $this->temaer();
-        $this->kravpunkter = $this->tomKravpunkter($kravpunkter);
+        $this->kravpunkter = $this->tomKravpunkter();
     }
     
     public static function medTilsynid($tilsynid) {
@@ -49,6 +43,14 @@ class Tilsynsrapport {
         return $tilsynsrapport;
     }
 
+    public static function medTilsynobjektid($tilsynsobjektid) {
+        $tilsynsrapport = new self();
+        $tilsynsrapport->restaurant = $tilsynsrapport->restaurant($tilsynsobjektid);
+        $tilsynsrapport->tilsynsobjektid = $tilsynsobjektid;
+        return $tilsynsrapport;
+    }
+
+    //Aplikasjonsmetoder
     public function dato() {
         $dato = $this->dato;
         if (strlen($dato) > 7) {
@@ -74,6 +76,7 @@ class Tilsynsrapport {
         echo " dato ", $this->dato();
     }
 
+    // Private klassefunksjoner
     private function hentData($tilsynid) {
         $db = kobleOpp();
         $sql = ("SELECT * FROM Tilsynsrapporter WHERE tilsynid LIKE ?;");
@@ -120,11 +123,22 @@ class Tilsynsrapport {
         return $kravpunkter;
     }
 
-    private function tomKravpunkter($data) {
+    private function tomKravpunkter() {
+        $data = $this->hentTomKravpunkter();
         $kravpunkter = [];
         foreach ($data as $kravpunkt) {
             $kravpunkter[$kravpunkt['ordingsverdi']] = new Kravpunkt($kravpunkt);
         }
+        return $kravpunkter;
+    }
+
+    private function hentTomKravpunkter() {
+        $db = kobleOpp();
+        $sql = "SELECT DISTINCT ordingsverdi, `kravpunktnavn_no` FROM `Kravpunkter`";
+        $kravpunkter = mysqli_query($db, $sql);
+        $kravpunkter->fetch_all(MYSQLI_ASSOC);
+        lukk($db);
+        
         return $kravpunkter;
     }
 

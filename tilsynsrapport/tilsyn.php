@@ -16,20 +16,18 @@ require_once '../logginn/logginn.php';
 <body>
   <?php include_once '../div/header.php'; ?>
   <?php 
-    $tilsynsID = $_GET['tilsynid'];
+    $tilsynsid = $_GET['tilsynid'];
     starAlertInnlogg();
-    $side = 'Location: /tilsynsrapport/tilsyn.php?tilsynid=' . $tilsynsID . '&dato=' . $dato;
+    $side = 'Location: /tilsynsrapport/tilsyn.php?tilsynid=$tilsynsid';
     logginn($side);
   ?>
 
-  <div class="container">
-    <div class="jumbotron">
-      <h1 class="text-center">Tilsynsrapport</h1>
-    </div>
+  <div class="jumbotron">
+    <h1 class="text-center"><?php echo $tilsynsrapport->restaurant; ?></h1>
   </div>
 
   <div class="container">
-    <div class='page-header'> <h2>Tilsynsrapport for dato: <?php echo $dato; ?></h2>
+    <div class='page-header'> <h2>Tilsynsrapport for dato: <?php echo $tilsynsrapport->dato(); ?></h2>
       <?php adminrett($tilsynid); ?>
     </div>
     <div class="table-responsive">
