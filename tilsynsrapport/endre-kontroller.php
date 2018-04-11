@@ -87,7 +87,7 @@ if (isset($_POST["submit"])) {
 	while ($rad) {
 		$ordingsverdi = $rad['ordingsverdi'];
 		$kravpunktnavn_no = $rad['kravpunktnavn_no'];
-		$tekst_no = htmlentities($formSvarTab[$teller][0]);
+		$tekst_no = $formSvarTab[$teller][0];
 		$karakter = $formSvarTab[$teller][1];
 		$sql2 = ("INSERT INTO Kravpunkter (tilsynid, dato, ordingsverdi, kravpunktnavn_no, karakter, tekst_no) 
 					VALUES (?, ?, ?, ?, ?, ?);");

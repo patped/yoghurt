@@ -56,13 +56,13 @@ if ($tilsynid) {
 						<tbody>
 							<tr>
 				    			<td>TilsynsobjektID:</td>
-				    			<td><input type="text" name="tilsynsobjektid" <?php if($tilsynsobjektid) echo "value='$tilsynsobjektid'"; ?>></td>
+				    			<td><input type="text" name="tilsynsobjektid" pattern="[A-Za-z0-9_]+" <?php if($tilsynsobjektid) echo "value='$tilsynsobjektid'"; ?>></td>
 				  			</tr>
 
 				  			<tr>
 				    			<td>TilsynsID:</td>
 				    			<td>
-								<input type="text" name="tilsynid" <?php if($tilsynid) echo "value='$tilsynid'"; ?>></td>
+								<input type="text" name="tilsynid" pattern="[A-Za-z0-9_]+" <?php if($tilsynid) echo "value='$tilsynid'"; ?>></td>
 				  			</tr>
 
 							<tr>
