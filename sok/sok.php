@@ -1,4 +1,81 @@
 <?php
+function finnKategori(){
+    if (isset($_POST["kategori"])) {
+        return $_POST["kategori"];
+    }
+    return;
+}
+function finnTabellEllerView($kat){
+    switch ($kat) {
+        case 'Italiensk':
+            return 'katItalia';
+            break;
+        case 'Indisk':
+            return 'katIndia';
+            break;
+        case 'Kinesisk':
+            return 'katKina';
+            break;
+        case 'Annen Asiatisk':
+            return 'katAsia';
+            break;
+        case 'Burger og Kebab':
+            return 'katBurger';
+            break;      
+        default:
+            return 'Restauranter';
+            break;
+    }
+}
+function hentOrgSpørring($tabellEllerView){
+    return  ("SELECT r.tilsynsobjektid, r.navn, r.adrlinje1, r.postnr, p.poststed, r.orgnummer
+            FROM $tabellEllerView AS r, Poststed AS p
+            WHERE p.postnr = r.postnr
+            AND r.orgnummer LIKE ?
+            ORDER BY r.navn");
+}
+function hentAdresseSpisestedSpørring($tabellEllerView){
+    return  ("SELECT r.tilsynsobjektid, r.navn, r.adrlinje1, r.postnr, p.poststed, r.orgnummer
+            FROM $tabellEllerView AS r, Poststed AS p
+            WHERE p.postnr = r.postnr
+            AND p.poststed LIKE ?
+            AND r.adrlinje1 LIKE ?
+            AND r.navn LIKE ?
+            ORDER BY r.navn");
+}
+function hentAdresseSpørring($tabellEllerView){
+    return  ("SELECT r.tilsynsobjektid, r.navn, r.adrlinje1, r.postnr, p.poststed, r.orgnummer
+            FROM $tabellEllerView AS r, Poststed AS p
+            WHERE p.postnr = r.postnr
+            AND p.poststed LIKE ?
+            AND r.adrlinje1 LIKE ?
+            ORDER BY r.navn");
+}
+function hentSpisestedSpørring($tabellEllerView){
+    return  ("SELECT r.tilsynsobjektid, r.navn, r.adrlinje1, r.postnr, p.poststed, r.orgnummer
+            FROM $tabellEllerView AS r, Poststed AS p
+            WHERE p.postnr = r.postnr
+            AND r.navn LIKE ?
+            ORDER BY r.navn");
+}
+function hentKarakterSpørring($id){
+    return ("SELECT t.total_karakter FROM
+            Tilsynsrapporter AS t
+            WHERE t.tilsynsobjektid LIKE '$id'
+            ORDER BY MOD(t.dato, 10) DESC, MOD((t.dato/10000), 100) DESC, t.dato/1000000 DESC");
+}
+function smilefjesBilde($karakterSisteTilsynSnitt){
+    if ($karakterSisteTilsynSnitt<0.5) {
+        return '/bilder/smileys/storSmil.png';
+    }else if ($karakterSisteTilsynSnitt<=1) {
+        return '/bilder/smileys/liteSmil.png';
+    }else if ($karakterSisteTilsynSnitt<=1.5) {
+        return '/bilder/smileys/ingenSmil.png';
+    }else{
+        return '/bilder/smileys/spySmil.png';
+    }
+}
+
 function sok() {
     echo (
         "<form action='/sok/sokeresultat.php?start=0' method='POST' onsubmit='return sjekkForm()'>
