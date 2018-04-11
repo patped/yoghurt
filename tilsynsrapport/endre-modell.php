@@ -69,7 +69,7 @@ function kravpunkter($tilsynid){
         <option value='5'>5</option>
         </select>
         </td>
-        <td><input type='text' name='beskrivelse$temaOrdingsverdi' style='width: 100%;' value = '$tekst_no'></td>
+        <td><input class='Beskrivelse' type='text' name='beskrivelse$temaOrdingsverdi' style='width: 100%;' value = '$tekst_no'></td>
         </tr>
         ";
         $rad= mysqli_fetch_assoc($svar);
