@@ -110,12 +110,10 @@ function skrivUtSøkeresultat($rad, $db){
 }
 
 function nesteForrigeSideButton($resultat, $sluttSøk, $nesteSide, $forrigeSide){
-    if (count($resultat) > $sluttSøk){
                         echo "<tr><td><a href='$nesteSide'><button type='button'>10 neste resultater</button></a><td>";
                         if ($sluttSøk>10) {
                             echo "<td><a href='$forrigeSide'><button type='button'>10 forrige resultater</button></a><td>";
                         }
-                    }
 }
 
 

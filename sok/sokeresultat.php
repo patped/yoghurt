@@ -136,7 +136,7 @@ require_once '../logginn/logginn.php';
                     	$_SESSION['spørringen'] = $sqlSpørring; // Lagrer spørringen som er utført.
                     }
                     $_SESSION['tidligereSøk'] = true;
-                    nesteForrigeSideButton($resultat, $sluttSøk, $nesteSide, $nesteForrigeSideButton);
+                    nesteForrigeSideButton($resultat, $sluttSøk, $nesteSide, $forrigeSide);
                     echo "</tr>";
             } else {
                 echo"<p>Ingen resultat matcher ditt søk</p>";
@@ -205,7 +205,9 @@ if (!isset($_POST["søkeKnapp"])) {
                         skrivUtSøkeresultat($rad, $db); // Skriver ut en rad av resultat
                         }
                     }
-                nesteForrigeSideButton($resultat, $sluttSøk, $nesteSide, $nesteForrigeSideButton);
+                if (count($resultat) > $sluttSøk){
+                nesteForrigeSideButton($resultat, $sluttSøk, $nesteSide, $forrigeSide);
+                }
                 else if ($sluttSøk>10) {
                         	echo "<tr><td><a href='$forrigeSide'><button type='button'>10 forrige resultater</button></a><td></tr>";
                         } 
