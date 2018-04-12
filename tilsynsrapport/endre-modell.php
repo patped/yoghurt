@@ -1,5 +1,4 @@
 <?php
-
 function tilsynsrapport($tilsynid) {
 	require_once '../div/database.php';
 	$db = kobleOpp();
@@ -69,7 +68,7 @@ function kravpunkter($tilsynid){
         <option value='5'>5</option>
         </select>
         </td>
-        <td><input type='text' name='beskrivelse$temaOrdingsverdi' style='width: 100%;' value = '$tekst_no'></td>
+        <td><input class='xssKontroll' type='text' name='beskrivelse$temaOrdingsverdi' style='width: 100%;' value = '$tekst_no'></td>
         </tr>
         ";
         $rad= mysqli_fetch_assoc($svar);
