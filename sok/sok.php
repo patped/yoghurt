@@ -76,6 +76,49 @@ function smilefjesBilde($karakterSisteTilsynSnitt){
     }
 }
 
+function skrivUtSøkeresultat($rad, $db){
+    $id = $rad['tilsynsobjektid'];
+                        $rNavn = $rad['navn'];
+                        $rPostnr = $rad['postnr'];
+                        $rAdresse = $rad['adrlinje1'];
+                        $rPoststed = $rad['poststed'];
+                        $orgnummer = $rad['orgnummer'];
+                        //Trenger ikke hindre SQL-injection her, ettersom det er hindret på laget over, der vi henter '$id' fra.
+                        //Du kommer ikke inn i denne spørringen om du ikke har mottatt et resultat som har count>0. 
+                        $sqlSpørringHenteKarakter = hentKarakterSpørring($id);
+                        $utførSpørringMedKarakter = mysqli_query($db, $sqlSpørringHenteKarakter);
+                        $svarKarakter = mysqli_fetch_assoc($utførSpørringMedKarakter);
+                        $karakterSisteTilsyn = $teller = 0;
+                        while ($svarKarakter && $teller<3) {
+                        $karakterSisteTilsyn = $karakterSisteTilsyn + $svarKarakter['total_karakter'];
+                        $teller = $teller + 1;
+                        $svarKarakter = mysqli_fetch_assoc($utførSpørringMedKarakter);
+                        }
+                        $karakterSisteTilsynSnitt = $karakterSisteTilsyn/$teller;
+                        $bilde = smilefjesBilde($karakterSisteTilsynSnitt);
+                        /*Legger til alle resultater i en tabell*/
+                        echo "<tbody>";
+                        echo    "<tr class='clickable-link' data-href='/restaurant.php?res=$id' style='cursor:pointer'>";
+                        echo        "<td>$rNavn</td>";
+                        echo        "<td>$rAdresse</td>";
+                        echo        "<td>$rPostnr</td>";
+                        echo        "<td>$rPoststed</td>";
+                        echo        "<td><img id ='karakterSmil' src='$bilde' title='smilefjes' width= '30px' height='30px'</td>";
+                        echo        "<td>$karakterSisteTilsynSnitt</td>";
+                        echo    "</tr>";
+                        echo "</tbody>";
+}
+
+function nesteForrigeSideButton($resultat, $sluttSøk, $nesteSide, $forrigeSide){
+    if (count($resultat) > $sluttSøk){
+                        echo "<tr><td><a href='$nesteSide'><button type='button'>10 neste resultater</button></a><td>";
+                        if ($sluttSøk>10) {
+                            echo "<td><a href='$forrigeSide'><button type='button'>10 forrige resultater</button></a><td>";
+                        }
+                    }
+}
+
+
 function sok() {
     echo (
         "<form action='/sok/sokeresultat.php?start=0' method='POST' onsubmit='return sjekkForm()'>

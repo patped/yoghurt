@@ -15,8 +15,6 @@ require_once '../logginn/logginn.php';
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-    
-     
     <?php 
     include_once '../div/header.php';
     starAlertInnlogg();
@@ -120,6 +118,7 @@ require_once '../logginn/logginn.php';
                 );
                     
                     foreach ($resultat as $rad) {
+                        //søkTeller gjennomfører gjennomkjøringer slik at første resultat blir $startsøk.
                         if ($søkTeller >= $sluttSøk) {
                             break;
                         }
@@ -128,51 +127,16 @@ require_once '../logginn/logginn.php';
                         }
                         else{
                         $søkTeller++;
-                        $id = $rad['tilsynsobjektid'];
-                        $rNavn = $rad['navn'];
-                        $rPostnr = $rad['postnr'];
-                        $rAdresse = $rad['adrlinje1'];
-                        $rPoststed = $rad['poststed'];
-                        $orgnummer = $rad['orgnummer'];
-                        //Trenger ikke hindre SQL-injection her, ettersom det er hindret på laget over, der vi henter '$id' fra.
-                        //Du kommer ikke inn i denne spørringen om du ikke har mottatt et resultat som har count>0. 
-                        $sqlSpørringHenteKarakter = hentKarakterSpørring($id);
-                        $utførSpørringMedKarakter = mysqli_query($db, $sqlSpørringHenteKarakter);
-                        $svarKarakter = mysqli_fetch_assoc($utførSpørringMedKarakter);
-                        $karakterSisteTilsyn = $teller = 0;
-                        while ($svarKarakter && $teller<3) {
-                        $karakterSisteTilsyn = $karakterSisteTilsyn + $svarKarakter['total_karakter'];
-                        $teller = $teller + 1;
-                        $svarKarakter = mysqli_fetch_assoc($utførSpørringMedKarakter);
-                        }
-                        $karakterSisteTilsynSnitt = $karakterSisteTilsyn/$teller;
-                        $bilde = smilefjesBilde($karakterSisteTilsynSnitt);
-                        /*Legger til alle resultater i en tabell*/
-                        echo "<tbody>";
-                        echo    "<tr class='clickable-link' data-href='/restaurant.php?res=$id' style='cursor:pointer'>";
-                        echo        "<td>$rNavn</td>";
-                        echo        "<td>$rAdresse</td>";
-                        echo        "<td>$rPostnr</td>";
-                        echo        "<td>$rPoststed</td>";
-                        echo        "<td><img id ='karakterSmil' src='$bilde' title='smilefjes' width= '30px' height='30px'</td>";
-                        echo        "<td>$karakterSisteTilsynSnitt</td>";
-                        echo    "</tr>";
-                        echo "</tbody>";
+                        skrivUtSøkeresultat($rad, $db); // Skriver ut en rad av resultat
                         }
                     }
                     //Legger til neste, knapp og initierer at det er utført et søk før
-                    //Hit kom jeg med rydding
-                    $_SESSION['hvordanSøk'] = $hvordanSøk;
+                    $_SESSION['hvordanSøk'] = $hvordanSøk; // lagrer variabel om hvordan søk som er utført.
                     if (isset($sqlSpørring)) {
-                    	$_SESSION['spørringen'] = $sqlSpørring;
+                    	$_SESSION['spørringen'] = $sqlSpørring; // Lagrer spørringen som er utført.
                     }
                     $_SESSION['tidligereSøk'] = true;
-                    if (count($resultat) > $sluttSøk){
-                        echo "<tr><td><a href='$nesteSide'><button type='button'>10 neste resultater</button></a><td>";
-                        if ($sluttSøk>10) {
-                        	echo "<td><a href='$forrigeSide'><button type='button'>10 forrige resultater</button></a><td>";
-                        }
-                    }
+                    nesteForrigeSideButton($resultat, $sluttSøk, $nesteSide, $nesteForrigeSideButton);
                     echo "</tr>";
             } else {
                 echo"<p>Ingen resultat matcher ditt søk</p>";
@@ -193,26 +157,19 @@ if (!isset($_POST["søkeKnapp"])) {
         $hvordanSøk = $_SESSION['hvordanSøk'];
         switch ($hvordanSøk) {
             case 'org':
-                $søkeverdi = $_SESSION['søkeverdi'];
-                mysqli_stmt_bind_param($stmt, 's' , $søkeverdi);
+                mysqli_stmt_bind_param($stmt, 's' , $_SESSION['søkeverdi']);
                 mysqli_stmt_execute($stmt);
                 break;
             case 'adr&rest':
-                $adresseSøkekriterie = $_SESSION['adresseSøkekriterie'];
-                $poststedSøkekriterie = $_SESSION['poststedSøkekriterie'];
-                $restaurantSøkekriterie = $_SESSION['restaurantSøkekriterie'];
-                mysqli_stmt_bind_param($stmt, 'sss', $poststedSøkekriterie, $adresseSøkekriterie, $restaurantSøkekriterie);
+                mysqli_stmt_bind_param($stmt, 'sss', $_SESSION['poststedSøkekriterie'], $_SESSION['adresseSøkekriterie'], $_SESSION['restaurantSøkekriterie']);
                 mysqli_stmt_execute($stmt);
                 break;
             case 'adr':
-                $adresseSøkekriterie = $_SESSION['adresseSøkekriterie'];
-                $poststedSøkekriterie = $_SESSION['poststedSøkekriterie'];
-                mysqli_stmt_bind_param($stmt, 'ss' , $poststedSøkekriterie, $adresseSøkekriterie);
+                mysqli_stmt_bind_param($stmt, 'ss' , $_SESSION['poststedSøkekriterie'], $_SESSION['adresseSøkekriterie']);
                 mysqli_stmt_execute($stmt);
                 break;
             case 'rest':
-             	$restaurantSøkekriterie = $_SESSION['restaurantSøkekriterie'];
-                mysqli_stmt_bind_param($stmt, 's' , $restaurantSøkekriterie);
+                mysqli_stmt_bind_param($stmt, 's' ,$_SESSION['restaurantSøkekriterie']);
                 mysqli_stmt_execute($stmt);
                 break;
             default:
@@ -245,59 +202,10 @@ if (!isset($_POST["søkeKnapp"])) {
                         }
                         else{
                         $søkTeller++;
-                        $id = $rad['tilsynsobjektid'];
-                        $rNavn = $rad['navn'];
-                        $rPostnr = $rad['postnr'];
-                        $rAdresse = $rad['adrlinje1'];
-                        $rPoststed = $rad['poststed'];
-                        $orgnummer = $rad['orgnummer'];
-
-                        //Trenger ikke hindre SQL-injection her, ettersom det er hindret på laget over, der vi henter '$id' fra.
-                        $sqlSpørringHenteKarakter = (
-                        "SELECT t.total_karakter FROM
-                            Tilsynsrapporter AS t
-                        WHERE t.tilsynsobjektid LIKE '$id'
-                        ORDER BY MOD(t.dato, 10) DESC, MOD((t.dato/10000), 100) DESC, t.dato/1000000 DESC" 
-                        );
-                        $utførSpørringMedKarakter = mysqli_query($db, $sqlSpørringHenteKarakter);
-                        $svarKarakter = mysqli_fetch_assoc($utførSpørringMedKarakter);
-                        $karakterSisteTilsyn = 0;
-                        $teller = 0;
-                        while ($svarKarakter && $teller<3) {
-                        $karakterSisteTilsyn = $karakterSisteTilsyn + $svarKarakter['total_karakter'];
-                        $teller = $teller + 1;
-                        $svarKarakter = mysqli_fetch_assoc($utførSpørringMedKarakter);
+                        skrivUtSøkeresultat($rad, $db); // Skriver ut en rad av resultat
                         }
-                        $karakterSisteTilsynSnitt = $karakterSisteTilsyn/$teller;
-                        if ($karakterSisteTilsynSnitt<0.5) {
-                                $bilde = '/bilder/smileys/storSmil.png';
-                            }else if ($karakterSisteTilsynSnitt<=1) {
-                                $bilde = '/bilder/smileys/liteSmil.png';
-                            }else if ($karakterSisteTilsynSnitt<=1.5) {
-                                $bilde = '/bilder/smileys/ingenSmil.png';
-                            }else{
-                                $bilde = '/bilder/smileys/spySmil.png';
-                            }
-                        /*Legger til alle resultater i en tabell*/
-                        echo "<tbody>";
-                        echo    "<tr class='clickable-link' data-href='/restaurant.php?res=$id' style='cursor:pointer'>";
-                        echo        "<td>$rNavn</td>";
-                        echo        "<td>$rAdresse</td>";
-                        echo        "<td>$rPostnr</td>";
-                        echo        "<td>$rPoststed</td>";
-                        echo        "<td><img id ='karakterSmil' src='$bilde' title='smilefjes' width= '30px' height='30px'</td>";
-                        echo        "<td>$karakterSisteTilsynSnitt</td>";
-                        echo    "</tr>";
-                        echo "</tbody>";
                     }
-                    }
-                if (count($resultat) > $sluttSøk){
-                        echo "<tr><td><a href='$nesteSide'><button type='button'>10 neste resultater</button></a><td>";
-                        if ($sluttSøk>10) {
-                        	echo "<td><a href='$forrigeSide'><button type='button'>10 forrige resultater</button></a><td>";
-                        }
-                        echo "</tr>";
-                }
+                nesteForrigeSideButton($resultat, $sluttSøk, $nesteSide, $nesteForrigeSideButton);
                 else if ($sluttSøk>10) {
                         	echo "<tr><td><a href='$forrigeSide'><button type='button'>10 forrige resultater</button></a><td></tr>";
                         } 
