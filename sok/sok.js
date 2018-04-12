@@ -40,12 +40,14 @@ function orgKlikk(){
         document.getElementById("poststedLabel").hidden = true;
         document.getElementById("poststedInput").hidden = true;
         document.getElementById("adresse").disabled = true;
-        //document.getElementByID("sokeFelt").onkeyup=alert("hei");
         document.getElementById("restaurant").disabled = true;
         document.getElementById("utforSok").disabled = false;
         document.getElementById("geolokasjon").checked = false;
         document.getElementById("kategoriCheckbox").disabled = true;
         document.getElementById("kategoriCheckbox").checked = false;
+        var sok = document.getElementById('org');
+        sok.addEventListener('focusout',alert("hei"));
+
         
         katKlikk();
     }
