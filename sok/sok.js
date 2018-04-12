@@ -40,11 +40,13 @@ function orgKlikk(){
         document.getElementById("poststedLabel").hidden = true;
         document.getElementById("poststedInput").hidden = true;
         document.getElementById("adresse").disabled = true;
+        //document.getElementByID("sokeFelt").onkeyup=alert("hei");
         document.getElementById("restaurant").disabled = true;
         document.getElementById("utforSok").disabled = false;
         document.getElementById("geolokasjon").checked = false;
         document.getElementById("kategoriCheckbox").disabled = true;
         document.getElementById("kategoriCheckbox").checked = false;
+        
         katKlikk();
     }
     else{
@@ -169,4 +171,27 @@ function geolocationSupport() {
         document.getElementById("geolokasjon").hidden = true;
         document.getElementById("geolokasjonTekst").hidden = true;
     }
+
+}
+function visOrgnr(){
+    var xmlhttp;
+    alert("hei");
+  
+  // Blank ut listen hvis søkeordet er tomt
+  if (str.length==0) {
+    document.getElementById("sokeFelt").innerHTML="";
+    return;
+  }
+  if (window.XMLHttpRequest) {
+    // IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+  }
+  xmlhttp.onreadystatechange=function() {
+    if (xmlhttp.readyState==2 && xmlhttp.status==100) {
+      document.getElementById("sokeFelt").innerHTML=xmlhttp.responseText;
+    }
+  }
+  xmlhttp.open("POST", "sokAlleOrg.php?innOrg="+str, true);
+  xmlhttp.send();
+
 }
