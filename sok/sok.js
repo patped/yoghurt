@@ -44,11 +44,7 @@ function orgKlikk(){
         document.getElementById("utforSok").disabled = false;
         document.getElementById("geolokasjon").checked = false;
         document.getElementById("kategoriCheckbox").disabled = true;
-        document.getElementById("kategoriCheckbox").checked = false;
-        var sok = document.getElementById('org');
-        sok.addEventListener('focusout',alert("hei"));
-
-        
+        document.getElementById("kategoriCheckbox").checked = false;;
         katKlikk();
     }
     else{
@@ -175,9 +171,9 @@ function geolocationSupport() {
     }
 
 }
-function visOrgnr(){
+function visOrgnr(str){
     var xmlhttp;
-    alert("hei");
+    alert(str);
   
   // Blank ut listen hvis søkeordet er tomt
   if (str.length==0) {
@@ -187,13 +183,19 @@ function visOrgnr(){
   if (window.XMLHttpRequest) {
     // IE7+, Firefox, Chrome, Opera, Safari
     xmlhttp=new XMLHttpRequest();
+    
+    
   }
   xmlhttp.onreadystatechange=function() {
-    if (xmlhttp.readyState==2 && xmlhttp.status==100) {
-      document.getElementById("sokeFelt").innerHTML=xmlhttp.responseText;
+    if (this.readyState==4 && this.status==200) {
+        document.getElementById("txtOrg").innerHTML=xmlhttp.responseText;
+      
     }
   }
-  xmlhttp.open("POST", "sokAlleOrg.php?innOrg="+str, true);
-  xmlhttp.send();
+  if(str.length>3){
+    alert("søker");
+    xmlhttp.open("POST", "sokAlleOrg.php?innOrg="+str, true);
+    xmlhttp.send(orgnr+str);
+}
 
 }
