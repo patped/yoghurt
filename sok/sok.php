@@ -21,7 +21,7 @@ function sok() {
             <br>
             <label hidden='true' id='adresseLabel'>Adresse: </label><input type='text' id='sokeFelt' name='Søkefelt' value='' placeholder='Søk på navnet til spisested' onkeyup= 'visOrgnr(this.value)'; hidden='true'>
             <br>
-            <p> Søk: <span id='txtOrg'></span><p>
+            <ul><span id='txtOrg'></span><ul>
             <label hidden='true' id='poststedLabel'>Poststed: </label><input type='text' id='poststedInput' name='poststedInput' value='' placeholder='Poststed' hidden='true'>
             <br>
             
