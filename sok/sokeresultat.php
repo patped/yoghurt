@@ -4,6 +4,9 @@ require_once '../div/session-kapring.php';
 require_once '../div/database.php';
 require_once 'sok.php';
 require_once '../logginn/logginn.php';
+if (!isset($_GET['start']) || (!isset($_POST["søkeKnapp"]) && !isset($_SESSION['tidligereSøk']))) {
+    header("Location: /index.php");
+}
 function finnKategori(){
 	if (isset($_POST["kategori"])) {
 		return $_POST["kategori"];
@@ -50,18 +53,9 @@ function finnTabellEllerView($kat){
     $side = 'Location: /sok/sokeresultat.php?start=0';
     logginn($side);
     $db = kobleOpp();
-   
-   if (!isset($_GET['start'])) {
-   	header("Location: /index.php");
-   }
     $startSøk = $_GET['start'];
     $sluttSøk = $startSøk + 10;
     $søkTeller = 0;
-    if (!isset($_POST["søkeKnapp"])) {
-        if (!isset($_SESSION['tidligereSøk'])) {
-            header("Location: /index.php");
-        }  
-    }
     $status = mysqli_set_charset($db, "utf8");
     $stmt;
     $hvordanSøk;
