@@ -1,0 +1,23 @@
+#h3Resultat{
+	margin-top: 0px;
+}
+#søkPåNyttTekst{
+	margin: auto;
+}
+#tabellContainer{
+	 padding-bottom: 40px;
+}
+#tabellContainer2{
+	 padding-bottom: 40px;
+}
+#clearme{
+	clear: both;
+}
+#knappeDiv{
+	text-align: center;
+}
+#fremoverKnapp{
+}
+#bakoverKnapp{
+	margin-right: 30px;
+}

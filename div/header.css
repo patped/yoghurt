@@ -47,7 +47,11 @@ footer {
 	bottom: 0;
 	position: absolute;
 	color: lightgrey;
-	background-color: #558ebf;
+	background-color: #337ab7;
 	width: 100%;
 	text-align: center;
+}
+#footer{
+  min-height: 30px;
+  bottom: 0;
 }
