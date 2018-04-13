@@ -1,7 +1,8 @@
 <?php
+require_once 'Tilsynsrapport.class.php';
 session_start();
 require_once '../div/session-kapring.php';
-require "tilsyn-modell.php";
+require_once 'tilsyn-modell.php';
 require_once '../logginn/logginn.php';
 ?>
 
@@ -14,26 +15,23 @@ require_once '../logginn/logginn.php';
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-  <?php include_once '../div/header.php'; ?>
+  <?php require_once '../div/header.php'; ?>
   <?php 
-    $tilsynsID = $_GET['tilsynid'];
     starAlertInnlogg();
-    $side = 'Location: /tilsynsrapport/tilsyn.php?tilsynid=' . $tilsynsID . '&dato=' . $dato;
+    $side = "Location: /tilsynsrapport/tilsyn.php?tilsynid=$tilsynid";
     logginn($side);
-    ?>
+  ?>
 
-  <div class="container">
-    <div class="jumbotron">
-      <h1 class="text-center">Tilsynsrapport</h1>
-    </div>
+  <div class="jumbotron">
+    <h1 class="text-center"><?php echo $tilsynsrapport->restaurant; ?></h1>
   </div>
 
   <div class="container">
-    <div class='page-header'> <h2>Tilsynsrapport for dato: <?php echo $dato; ?></h2>
-      <?php adminrett($tilsynsID); ?>
+    <div class='page-header'> <h2>Tilsynsrapport for dato: <?php echo $tilsynsrapport->dato(); ?></h2>
+      <?php adminrett($tilsynsrapport); ?>
     </div>
     <div class="table-responsive">
-      <?php tilsynsrapport(); ?>
+      <?php tilsynsrapport($tilsynsrapport); ?>
     </div>
   </div>
 
