@@ -45,6 +45,7 @@ function orgKlikk(){
         document.getElementById("geolokasjon").checked = false;
         document.getElementById("kategoriCheckbox").disabled = true;
         document.getElementById("kategoriCheckbox").checked = false;
+
         //document.getElementById("sokeFelt").onkeyup= visOrgnr(this.value);
         katKlikk();
     }
@@ -176,10 +177,14 @@ function visOrgnr(str){
     var xmlhttp;
   
   // Blank ut listen hvis søkeordet er tomt
-  if (str.length==0) {
+    if (str.length==0) {
     document.getElementById("sokeFelt").innerHTML="";
+
     return;
 }
+    if(str.length<3){
+        document.getElementById("txtOrg").hidden=true;
+    }
     // IE7+, Firefox, Chrome, Opera, Safari
     xmlhttp=new XMLHttpRequest();
     
@@ -188,14 +193,22 @@ function visOrgnr(str){
   xmlhttp.onreadystatechange=function() {
     
     if (this.readyState==4 && this.status==200) {
-        alert(xmlhttp.readyState);
         document.getElementById("txtOrg").innerHTML=xmlhttp.responseText;
       
     }
   }
   if(str.length>3){
     xmlhttp.open("GET", "/sok/sokAlleOrg.php?innOrg="+str, true);
+    document.getElementById("txtOrg").hidden=false;
     xmlhttp.send();
 }
 
+
 }
+function leggTil(org){
+    document.getElementByID("txtOrg").value=org;
+}
+/*
+leggInnOrg(org){
+    document.getElementByID("txtOrg").value=org;
+}*/
