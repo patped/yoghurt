@@ -1,4 +1,5 @@
 <?php
+require_once 'Tilsynsrapport.class.php';
 session_start();
 require_once '../div/session-kapring.php';
 require_once 'tilsyn-modell.php';
@@ -14,11 +15,10 @@ require_once '../logginn/logginn.php';
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
-  <?php include_once '../div/header.php'; ?>
+  <?php require_once '../div/header.php'; ?>
   <?php 
-    $tilsynsid = $_GET['tilsynid'];
     starAlertInnlogg();
-    $side = 'Location: /tilsynsrapport/tilsyn.php?tilsynid=$tilsynsid';
+    $side = "Location: /tilsynsrapport/tilsyn.php?tilsynid=$tilsynid";
     logginn($side);
   ?>
 
@@ -28,7 +28,7 @@ require_once '../logginn/logginn.php';
 
   <div class="container">
     <div class='page-header'> <h2>Tilsynsrapport for dato: <?php echo $tilsynsrapport->dato(); ?></h2>
-      <?php adminrett($tilsynid); ?>
+      <?php adminrett($tilsynsrapport); ?>
     </div>
     <div class="table-responsive">
       <?php tilsynsrapport($tilsynsrapport); ?>

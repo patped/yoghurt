@@ -11,12 +11,12 @@ require_once 'Tilsynsrapport.class.php';
 
 $tilsynid = false;
 $tilsynsobjektid = false;
-if (isset($_GET['tilsynid'])) {
+if (isset($_GET['tilsynsobjektid'])) {
+	$tilsynsobjektid = $_GET['tilsynsobjektid'];
+	$tilsynsrapport = Tilsynsrapport::medTilsynsobjektid($tilsynsobjektid);
+} else if (isset($_SESSION['tilsynsrapport']) && isset($_GET['tilsynid'])) {
 	$tilsynid = $_GET['tilsynid'];
 	$tilsynsrapport = Tilsynsrapport::medTilsynid($tilsynid);
-} else if (isset($_GET['tilsynsobjektid'])) {
-	$tilsynsobjektid = $_GET['tilsynsobjektid'];
-	$tilsynsrapport = Tilsynsrapport::medTilsynsobjektid();
 } else {
 	$tilsynsrapport = new Tilsynsrapport();
 }

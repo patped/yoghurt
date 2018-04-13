@@ -26,8 +26,29 @@ class Tilsynsrapport {
         $this->temaer = $this->temaer();
         $this->kravpunkter = $this->tomKravpunkter();
     }
-    
+
     public static function medTilsynid($tilsynid) {
+        // Sjekker om tilsynsrapport-objektet allerede eksisterer.
+        if (isset($_SESSION['tilsynsrapport']) && ($tilsynid == $_SESSION['tilsynsrapport']->tilsynid)) {
+            // Lager et nytt objekt hvis objektet er mer enn 10 min gammelt.
+            if (isset($_SESSION['tilsynsrapport_levetid']) && (time() - $_SESSION['tilsynsrapport_levetid']) > 600) {
+                unset($_SESSION['tilsynsrapport_levetid']);
+                unset($_SESSION['tilsynsrapport']);
+                $tilsynsrapport = Tilsynsrapport::medTilsynidKonstruktor($tilsynid);
+                $_SESSION['tilsynsrapport'] = $tilsynsrapport;
+                $_SESSION['tilsynsrapport_levetid'] = time();
+            } else {
+                $tilsynsrapport = $_SESSION['tilsynsrapport'];
+            }
+        } else {
+            $tilsynsrapport = Tilsynsrapport::medTilsynidKonstruktor($tilsynid);
+            $_SESSION['tilsynsrapport'] = $tilsynsrapport;
+            $_SESSION['tilsynsrapport_levetid'] = time();
+        }
+        return $tilsynsrapport;
+    }
+    
+    private static function medTilsynidKonstruktor($tilsynid) {
         $tilsynsrapport = new self();
         $data = $tilsynsrapport->hentData($tilsynid);
         $tilsynsrapport->restaurant = $tilsynsrapport->restaurant($data['tilsynsobjektid']);
@@ -60,20 +81,6 @@ class Tilsynsrapport {
             $dato = "0".$tmp;
         }
         return $dato;
-    }
-
-    public function test() {
-        echo (
-            "restaurant $this->restaurant
-            sakref $this->sakref, 
-            status $this->status, 
-            total_karakter $this->total_karakter, 
-            tilsynsbesøktype $this->tilsynsbesoektype"
-        );
-        echo " karakter1 ", $this->karakterer['karakter1'];
-        echo " tema1_no ", $this->temaer['tema1_no'];
-        echo " kravpunkt1_1 ", $this->kravpunkter['1.1']->karakter;
-        echo " dato ", $this->dato();
     }
 
     // Private klassefunksjoner

@@ -1,10 +1,7 @@
 <?php
 require_once "tilsyn-kontroller.php";
-require_once 'Tilsynsrapport.class.php';
-
 $tilsynid = $_GET['tilsynid'];
 $tilsynsrapport = Tilsynsrapport::medTilsynid($tilsynid);
-
 
 function kravpunkter($tilsynsrapport, $ordningsverdi) {
     $kravpunkter = $tilsynsrapport->kravpunkter;
@@ -46,11 +43,11 @@ function tilsynsrapport($tilsynsrapport) {
     }
 }
 
-function adminrett($tilsynid){
+function adminrett($tilsynsrapport){
     if(isset($_SESSION['adminrett']) && $_SESSION['adminrett']) {
-          echo <<< EOT
-            <h3>ID: $tilsynid</h3><br>
-            <a href='endre.php?tilsynid=$tilsynid'><button type='button'>Oppdater</button></a></h2><br>
+        echo <<< EOT
+        <h3>ID: $tilsynsrapport->tilsynid</h3><br>
+        <a href='endre.php?tilsynid=$tilsynsrapport->tilsynid'><button type='button'>Oppdater</button></a></h2><br>
 EOT;
     }
 }
