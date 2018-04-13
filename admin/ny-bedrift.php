@@ -41,7 +41,7 @@ include_once '../logginn/logginn.php';
 						<tbody>
 							<tr>
 								<td>TilsynsobjektID:</td>
-								<td><input type="text" name="tilsynsobjektID" required></td>
+								<td><input type="text" name="tilsynsobjektID" pattern="[A-Za-z0-9_]+" required></td>
 							</tr>
 
 							<tr>
@@ -51,17 +51,17 @@ include_once '../logginn/logginn.php';
 
 							<tr>
 								<td>Navn:</td>
-									<td><input type="text" name="navn" required></td>
+									<td><input class="xssKontroll" type="text" name="navn" required></td>
 							</tr>
 
 							<tr>
 								<td>Adresselinje1:</td>
-								<td><input type="text" name="adresselinje1" required></td>
+								<td><input class="xssKontroll" type="text" name="adresselinje1" required></td>
 							</tr>
 							
 							<tr>
 								<td>Adresselinje2:</td>
-								<td><input type="text" name="adresselinje2"></td>
+								<td><input class="xssKontroll" type="text" name="adresselinje2"></td>
 							</tr> 
 
 							<tr>
@@ -85,5 +85,6 @@ include_once '../logginn/logginn.php';
 
 	<script src="/bibloteker/jquery/jquery-3.3.1.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="../div/xssKontroll.js"></script>
 </body>
 </html>

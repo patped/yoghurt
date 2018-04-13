@@ -1,6 +1,7 @@
-settFelterDisablet();
 
-function settFelterDisablet() {
+lytterKarakter();
+
+function lytterKarakter() {
     var karakter = document.getElementsByClassName("karakter");
     for (var i = karakter.length - 1; i >= 0; i--) {
         karakter[i].addEventListener("change", sjekkKarakter);
@@ -25,3 +26,4 @@ function sjekkKarakter(){
         return false;
     }
 }
+

@@ -58,12 +58,12 @@ if (isset($_GET['tilsynsobjektid'])) {
 						<tbody>
 							<tr>
 				    			<td>TilsynsobjektID:</td>
-				    			<td><input type="text" name="tilsynsobjektid" <?php echo "value='$tilsynsrapport->tilsynsobjektid'"; ?>></td>
+				    			<td><input type="text" name="tilsynsobjektid"  pattern="[A-Za-z0-9_]+" <?php echo "value='$tilsynsrapport->tilsynsobjektid'"; ?>></td>
 				  			</tr>
 
 				  			<tr>
 				    			<td>TilsynsID:</td>
-				    			<td><input type="text" name="tilsynid" <?php echo "value='$tilsynsrapport->tilsynid'"; ?> ></td>
+				    			<td><input type="text" name="tilsynid" pattern="[A-Za-z0-9_]+" <?php echo "value='$tilsynsrapport->tilsynid'"; ?> ></td>
 				  			</tr>
 
 							<tr>
@@ -124,5 +124,6 @@ if (isset($_GET['tilsynsobjektid'])) {
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script src="endre.js"></script>
+	<script src="../div/xssKontroll.js"></script>
 </body>
 </html>

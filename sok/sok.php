@@ -1,4 +1,122 @@
 <?php
+function finnKategori(){
+    if (isset($_POST["kategori"])) {
+        return $_POST["kategori"];
+    }
+    return;
+}
+function finnTabellEllerView($kat){
+    switch ($kat) {
+        case 'Italiensk':
+            return 'katItalia';
+            break;
+        case 'Indisk':
+            return 'katIndia';
+            break;
+        case 'Kinesisk':
+            return 'katKina';
+            break;
+        case 'Annen Asiatisk':
+            return 'katAsia';
+            break;
+        case 'Burger og Kebab':
+            return 'katBurger';
+            break;      
+        default:
+            return 'Restauranter';
+            break;
+    }
+}
+function hentOrgSpørring($tabellEllerView){
+    return  ("SELECT r.tilsynsobjektid, r.navn, r.adrlinje1, r.postnr, p.poststed, r.orgnummer
+            FROM $tabellEllerView AS r, Poststed AS p
+            WHERE p.postnr = r.postnr
+            AND r.orgnummer LIKE ?
+            ORDER BY r.navn");
+}
+function hentAdresseSpisestedSpørring($tabellEllerView){
+    return  ("SELECT r.tilsynsobjektid, r.navn, r.adrlinje1, r.postnr, p.poststed, r.orgnummer
+            FROM $tabellEllerView AS r, Poststed AS p
+            WHERE p.postnr = r.postnr
+            AND p.poststed LIKE ?
+            AND r.adrlinje1 LIKE ?
+            AND r.navn LIKE ?
+            ORDER BY r.navn");
+}
+function hentAdresseSpørring($tabellEllerView){
+    return  ("SELECT r.tilsynsobjektid, r.navn, r.adrlinje1, r.postnr, p.poststed, r.orgnummer
+            FROM $tabellEllerView AS r, Poststed AS p
+            WHERE p.postnr = r.postnr
+            AND p.poststed LIKE ?
+            AND r.adrlinje1 LIKE ?
+            ORDER BY r.navn");
+}
+function hentSpisestedSpørring($tabellEllerView){
+    return  ("SELECT r.tilsynsobjektid, r.navn, r.adrlinje1, r.postnr, p.poststed, r.orgnummer
+            FROM $tabellEllerView AS r, Poststed AS p
+            WHERE p.postnr = r.postnr
+            AND r.navn LIKE ?
+            ORDER BY r.navn");
+}
+function hentKarakterSpørring($id){
+    return ("SELECT t.total_karakter FROM
+            Tilsynsrapporter AS t
+            WHERE t.tilsynsobjektid LIKE '$id'
+            ORDER BY MOD(t.dato, 10) DESC, MOD((t.dato/10000), 100) DESC, t.dato/1000000 DESC");
+}
+function smilefjesBilde($karakterSisteTilsynSnitt){
+    if ($karakterSisteTilsynSnitt<0.5) {
+        return '/bilder/smileys/storSmil.png';
+    }else if ($karakterSisteTilsynSnitt<=1) {
+        return '/bilder/smileys/liteSmil.png';
+    }else if ($karakterSisteTilsynSnitt<=1.5) {
+        return '/bilder/smileys/ingenSmil.png';
+    }else{
+        return '/bilder/smileys/spySmil.png';
+    }
+}
+
+function skrivUtSøkeresultat($rad, $db){
+    $id = $rad['tilsynsobjektid'];
+                        $rNavn = $rad['navn'];
+                        $rPostnr = $rad['postnr'];
+                        $rAdresse = $rad['adrlinje1'];
+                        $rPoststed = $rad['poststed'];
+                        $orgnummer = $rad['orgnummer'];
+                        //Trenger ikke hindre SQL-injection her, ettersom det er hindret på laget over, der vi henter '$id' fra.
+                        //Du kommer ikke inn i denne spørringen om du ikke har mottatt et resultat som har count>0. 
+                        $sqlSpørringHenteKarakter = hentKarakterSpørring($id);
+                        $utførSpørringMedKarakter = mysqli_query($db, $sqlSpørringHenteKarakter);
+                        $svarKarakter = mysqli_fetch_assoc($utførSpørringMedKarakter);
+                        $karakterSisteTilsyn = $teller = 0;
+                        while ($svarKarakter && $teller<3) {
+                        $karakterSisteTilsyn = $karakterSisteTilsyn + $svarKarakter['total_karakter'];
+                        $teller = $teller + 1;
+                        $svarKarakter = mysqli_fetch_assoc($utførSpørringMedKarakter);
+                        }
+                        $karakterSisteTilsynSnitt = $karakterSisteTilsyn/$teller;
+                        $bilde = smilefjesBilde($karakterSisteTilsynSnitt);
+                        /*Legger til alle resultater i en tabell*/
+                        echo "<tbody>";
+                        echo    "<tr class='clickable-link' data-href='/restaurant.php?res=$id' style='cursor:pointer'>";
+                        echo        "<td>$rNavn</td>";
+                        echo        "<td>$rAdresse</td>";
+                        echo        "<td>$rPostnr</td>";
+                        echo        "<td>$rPoststed</td>";
+                        echo        "<td><img id ='karakterSmil' src='$bilde' title='smilefjes' width= '30px' height='30px'</td>";
+                        echo        "<td>$karakterSisteTilsynSnitt</td>";
+                        echo    "</tr>";
+                        echo "</tbody>";
+}
+
+function nesteForrigeSideButton($resultat, $sluttSøk, $nesteSide, $forrigeSide){
+                        echo "<tr><td><a href='$nesteSide'><button type='button'>10 neste resultater</button></a><td>";
+                        if ($sluttSøk>10) {
+                            echo "<td><a href='$forrigeSide'><button type='button'>10 forrige resultater</button></a><td>";
+                        }
+}
+
+
 function sok() {
     echo (
         "<form action='/sok/sokeresultat.php?start=0' method='POST' onsubmit='return sjekkForm()'>
