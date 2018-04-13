@@ -170,3 +170,6 @@ function geolocationSupport() {
         document.getElementById("geolokasjonTekst").hidden = true;
     }
 }
+function visSøkeFelt(){
+    document.getElementById("søkeFeltDiv").style.display = "block";
+}

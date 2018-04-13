@@ -13,6 +13,7 @@ require_once '../logginn/logginn.php';
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="sokeresultat.css">
 </head>
 <body>
     <?php 
@@ -25,8 +26,9 @@ require_once '../logginn/logginn.php';
    if (!isset($_GET['start'])) {
    	header("Location: /index.php");
    }
+   	$antallResultat = 10;
     $startSøk = $_GET['start'];
-    $sluttSøk = $startSøk + 10;
+    $sluttSøk = $startSøk + $antallResultat;
     $søkTeller = 0;
     if (!isset($_POST["søkeKnapp"])) {
         if (!isset($_SESSION['tidligereSøk'])) {
@@ -36,8 +38,8 @@ require_once '../logginn/logginn.php';
     $status = mysqli_set_charset($db, "utf8");
     $stmt;
     $hvordanSøk;
-    $nesteSøkTall = $startSøk + 10;
-    $forrigeSøkTall = $startSøk-10;
+    $nesteSøkTall = $startSøk + $antallResultat;
+    $forrigeSøkTall = $startSøk-$antallResultat;
     $nesteSide = '/sok/sokeresultat.php?start=' . $nesteSøkTall;
     $forrigeSide = '/sok/sokeresultat.php?start=' . $forrigeSøkTall;
     $kategori = finnKategori();
@@ -70,7 +72,6 @@ require_once '../logginn/logginn.php';
                 mysqli_stmt_bind_param($stmt, 'ss' , $_SESSION['poststedSøkekriterie'], $_SESSION['adresseSøkekriterie']);
                 mysqli_stmt_execute($stmt);
                 $hvordanSøk = "adr";
-
             }
         }else if (isset($_POST["restaurant"])) {
             $_SESSION['restaurantSøkekriterie'] = "%" . $_POST["spisestedSokefelt"] . "%";
@@ -81,8 +82,10 @@ require_once '../logginn/logginn.php';
             $hvordanSøk = "rest";
         }
         echo "<div class='container text-center'>";
-        echo "<h2>Søk på nytt?</h2>";
+        echo "<button type='button' onclick='visSøkeFelt()' id='søkPåNytt' class='btn btn-primary'><h2 id='søkPåNyttTekst'>Søk på nytt?</h2></button>";
+        echo "<div id='søkeFeltDiv' style='display:none'>";
         sok();
+        echo "</div>";
         echo "</div>";
 
         if (!$status) {
@@ -102,16 +105,15 @@ require_once '../logginn/logginn.php';
                 $svar = mysqli_stmt_get_result($stmt);
                 $resultat = $svar->fetch_all(MYSQLI_ASSOC);
             }
-            echo "<div class='container'>";
-            echo "<div class='page-header'> <h3>Resultat</h3> </div>";
+            echo "<div id='tabellContainer' class='container col-xs-offset-1 col-xs-9'>";
+            echo "<div class=''> <h3 id='h3Resultat'>Resultat</h3> </div>";
 
             if (count($resultat) > 0) {                    
                 echo (
-                    "<table class='table table-hover'>
+                    "<table class='table table-condensed table-hover'>
                         <thead>
                             <th>Navn</th>
                             <th>Adresse</th>
-                            <th>Postnummer</th>
                             <th>Poststed</th>
                             <th>Smilefjes</th>
                         </thead>"
@@ -130,6 +132,7 @@ require_once '../logginn/logginn.php';
                         skrivUtSøkeresultat($rad, $db); // Skriver ut en rad av resultat
                         }
                     }
+                    echo "</table>";
                     //Legger til neste, knapp og initierer at det er utført et søk før
                     $_SESSION['hvordanSøk'] = $hvordanSøk; // lagrer variabel om hvordan søk som er utført.
                     if (isset($sqlSpørring)) {
@@ -137,20 +140,19 @@ require_once '../logginn/logginn.php';
                     }
                     $_SESSION['tidligereSøk'] = true;
                     nesteForrigeSideButton($resultat, $sluttSøk, $nesteSide, $forrigeSide);
-                    echo "</tr>";
             } else {
                 echo"<p>Ingen resultat matcher ditt søk</p>";
-            }
-            echo "</table>";
+            } 
             echo "</div>";
-            
         }
     }
 if (!isset($_POST["søkeKnapp"])) {
     if (isset($_SESSION['tidligereSøk'])) {
     	echo "<div class='container text-center'>";
-        echo "<h2>Søk på nytt?</h2>";
+        echo "<button type='button' onclick='visSøkeFelt()' id='søkPåNytt' class='btn btn-primary'><h2 id='søkPåNyttTekst'>Søk på nytt?</h2></button>";
+        echo "<div id='søkeFeltDiv' style='display:none'>";
         sok();
+        echo "</div>";
         echo "</div>";
         $sqlSpørring = $_SESSION['spørringen'];
         $stmt = mysqli_prepare($db, $sqlSpørring);
@@ -179,20 +181,20 @@ if (!isset($_POST["søkeKnapp"])) {
         $svar = mysqli_stmt_get_result($stmt);
         $resultat = $svar->fetch_all(MYSQLI_ASSOC);
             }
-            echo "<div class='container'>";
-            echo "<div class='page-header'> <h3>Resultat</h3> </div>";
+            echo "<div id='tabellContainer' class='container col-xs-offset-1 col-xs-10'>";
+            echo "<div> <h3 id='h3Resultat'>Resultat</h3> </div>";
             if (count($resultat) > 0) {                    
                 echo (
-                    "<table class='table table-hover'>
+                    "<table class='table table-condensed table-hover'>
                         <thead>
                             <th>Navn</th>
                             <th>Adresse</th>
-                            <th>Postnummer</th>
                             <th>Poststed</th>
                             <th>Smilefjes</th>
                         </thead>"
                 );
-                    
+                // Her kunne vi lagt inn LIMIT i spørringene til SQL istedet for å kjøre gjennom
+                // løkka like mange ganger som startSøk er i antall.
                     foreach ($resultat as $rad) {
                         if ($søkTeller >= $sluttSøk) {
                             break;
@@ -205,17 +207,19 @@ if (!isset($_POST["søkeKnapp"])) {
                         skrivUtSøkeresultat($rad, $db); // Skriver ut en rad av resultat
                         }
                     }
+                    echo "</table>";
                 if (count($resultat) > $sluttSøk){
                 nesteForrigeSideButton($resultat, $sluttSøk, $nesteSide, $forrigeSide);
                 }
                 else if ($sluttSøk>10) {
-                        	echo "<tr><td><a href='$forrigeSide'><button type='button'>10 forrige resultater</button></a><td></tr>";
-                        } 
+                	echo "<div id='knappeDiv'><tr><td><a href='$forrigeSide'><button type='button' id='bakoverKnapp' class='btn btn-primary'>10 forrige resultater</button></a><td></tr></div>";
+                }
+                echo "</div>";
     }
-}
-    ?>
 
-    </main>
+}
+echo "<div id='clearme'></div>";
+    ?>
     <?php include_once '../div/footer.php'; ?>
 
     <script src="sok.js"></script>
