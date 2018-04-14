@@ -29,22 +29,23 @@ class Tilsynsrapport {
 
     public static function medTilsynid($tilsynid) {
         // Sjekker om tilsynsrapport-objektet allerede eksisterer.
-        if (isset($_SESSION['tilsynsrapport']) && ($tilsynid == $_SESSION['tilsynsrapport']->tilsynid)) {
-            // Lager et nytt objekt hvis objektet er mer enn 10 min gammelt.
-            if (isset($_SESSION['tilsynsrapport_levetid']) && (time() - $_SESSION['tilsynsrapport_levetid']) > 600) {
-                unset($_SESSION['tilsynsrapport_levetid']);
-                unset($_SESSION['tilsynsrapport']);
-                $tilsynsrapport = Tilsynsrapport::medTilsynidKonstruktor($tilsynid);
-                $_SESSION['tilsynsrapport'] = $tilsynsrapport;
-                $_SESSION['tilsynsrapport_levetid'] = time();
-            } else {
-                $tilsynsrapport = $_SESSION['tilsynsrapport'];
+        if (isset($_SESSION['tilsynsrapport'])) {
+            $tilsynsrapport = unserialize($_SESSION['tilsynsrapport']);
+            if ($tilsynid == $tilsynsrapport->tilsynid) {
+                // Lager et nytt objekt hvis objektet er mer enn 10 min gammelt.
+                if (isset($_SESSION['tilsynsrapport_levetid']) && (time() - $_SESSION['tilsynsrapport_levetid']) > 600) {
+                    unset($_SESSION['tilsynsrapport_levetid']);
+                    unset($_SESSION['tilsynsrapport']);
+                    $tilsynsrapport = Tilsynsrapport::medTilsynidKonstruktor($tilsynid);
+                    $_SESSION['tilsynsrapport'] = serialize($tilsynsrapport);
+                    $_SESSION['tilsynsrapport_levetid'] = time();
+                }
+                return $tilsynsrapport;
             }
-        } else {
-            $tilsynsrapport = Tilsynsrapport::medTilsynidKonstruktor($tilsynid);
-            $_SESSION['tilsynsrapport'] = $tilsynsrapport;
-            $_SESSION['tilsynsrapport_levetid'] = time();
         }
+        $tilsynsrapport = Tilsynsrapport::medTilsynidKonstruktor($tilsynid);
+        $_SESSION['tilsynsrapport'] = serialize($tilsynsrapport);
+        $_SESSION['tilsynsrapport_levetid'] = time();
         return $tilsynsrapport;
     }
     

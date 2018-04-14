@@ -148,11 +148,12 @@ if (isset($_POST["submit"])) {
 		}
 	}
 	if ($ok) {
+		unset($_SESSION['tilsynsrapport']);
 		mysqli_commit($db);
 	} else {
 		mysqli_rollback($db);
 	}
 	lukk($db);		
-	header("Location: tilsyn.php?tilsynid=$tilsynid&dato=$dato");
+	header("Location: tilsyn.php?tilsynid=$tilsynid");
 }
 ?>
