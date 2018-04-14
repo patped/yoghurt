@@ -92,8 +92,6 @@ require_once '../logginn/logginn.php';
             echo "Feil i pålogging";
             exit;
         } else {
-            $svar;
-            $resultat;
             if (isset($_POST["geolokasjon"])) {
                 require_once "geo-resultat.php";
                 $latitude = $_POST["latitude"];
