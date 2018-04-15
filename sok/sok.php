@@ -97,7 +97,7 @@ function skrivUtSøkeresultat($rad, $db){
     $bilde = smilefjesBilde($karakterSisteTilsynSnitt);
     /*Legger til alle resultater i en tabell*/
     echo "<tbody>";
-    echo    "<tr class='clickable-link' data-href='/restaurant.php?res=$id' style='cursor:pointer'>";
+    echo    "<tr class='clickable-link' data-href='/restaurantVisning/restaurant.php?res=$id' style='cursor:pointer'>";
     echo        "<td>$rNavn</td>";
     echo        "<td>$rAdresse</td>";
     echo        "<td>$rPoststed</td>";
