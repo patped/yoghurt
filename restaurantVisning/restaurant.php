@@ -26,7 +26,7 @@ $db = kobleOpp();
         } else if (isset($_GET["res"])) {
             $id = $_GET["res"];
             starAlertInnlogg();
-            $side = 'Location: /restaurant.php?res=' . $id;
+            $side = 'Location: /restaurantVisning/restaurant.php?res=' . $id;
             loggInn($side);
             $sqlSpørring = restaurantSpørring(); /* Legger til ORDER BY her for at den første linjen skal være den som er sist utført mtp DATO. 
             Dato er lagret som Integer, ettersom databasen fra Mattilsynet ikke hadde lagret 0'ere i en av de to 
