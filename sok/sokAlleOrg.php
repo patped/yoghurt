@@ -5,26 +5,40 @@ $sql="SELECT orgnummer, navn, tilsynsobjektid from Restauranter";
 $resultat = mysqli_query($db, $sql);
 $alleOrg = $resultat->fetch_all(MYSQLI_ASSOC);
 $inOrg = $_GET['innOrg'];
-		
+$teller = 0;
 	foreach ($alleOrg as $org) {
-		$pos = strpos($org['orgnummer'], $inOrg);
+				$pos = strpos($org['orgnummer'], $inOrg);
 			if($pos!==false){
-				if($pos==0)
-					
-					echo "<li>";
-					$side = '/restaurantVisning/restaurant.php?res=' . $org['tilsynsobjektid']; 
-					echo "<a href=" . $side;
-					echo ">";
-					echo $org['orgnummer'];
-					echo " : ";
-					echo $org['navn'];
-					echo "</a>";
-					echo "</li>";
-					echo "<br>";
+				$teller++;
+			}
+				
+			}
+	if($teller==0){
+		echo "<p>Ingen resultater i Orgnummer</p>";
+	}
+
+	else if($teller<10){				
+		foreach ($alleOrg as $org) {
+			$pos = strpos($org['orgnummer'], $inOrg);
+				if($pos!==false){
+					if($pos==0)
+						
+						echo "<li>";
+						$side = '/restaurantVisning/restaurant.php?res=' . $org['tilsynsobjektid']; 
+						echo "<a href=" . $side;
+						echo ">";
+						echo $org['orgnummer'];
+						echo " : ";
+						echo $org['navn'];
+						echo "</a>";
+						echo "</li>";
+						echo "<br>";
 					
 		}
 		
-		# code...
 	}
+	}
+	else
+		echo "Over ti søkeresultat";
 
 ?>

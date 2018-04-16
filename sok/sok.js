@@ -185,8 +185,9 @@ function visOrgNr(str){
 
     return;
 }
-    if(str.length<3){
+    if(!xmlhttp){
         document.getElementById("txtOrg").hidden=true;
+        document.getElementById("dropdownDisplay").style.display="none";
     }
     // IE7+, Firefox, Chrome, Opera, Safari
     xmlhttp=new XMLHttpRequest();
@@ -212,15 +213,16 @@ function visOrgNr(str){
 function visNavn(str){
     var xmlhttp;
     str = str.toUpperCase();
+
   
   // Blank ut listen hvis søkeordet er tomt
     if (str.length==0) {
     document.getElementById("spisestedSokefelt").innerHTML="";
-
     return;
 }
-    if(str.length<3){
+    if(!xmlhttp){
         document.getElementById("txtOrg").hidden=true;
+        document.getElementById("dropdownDisplay").style.display="none";
     }
     // IE7+, Firefox, Chrome, Opera, Safari
     xmlhttp=new XMLHttpRequest();
@@ -236,8 +238,10 @@ function visNavn(str){
   }
   if(str.length>3){
     xmlhttp.open("GET", "/sok/sokAllenavn.php?inNavn="+str, true);
+    if(xmlhttp){
     document.getElementById("txtOrg").hidden=false;
     document.getElementById("dropdownDisplay").style.display="block";
+}
     xmlhttp.send();
 }
 
