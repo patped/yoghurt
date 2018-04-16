@@ -14,7 +14,10 @@ $teller = 0;
 		# code...
 	}
 	}
-	if($teller<$maxRes){
+	if($teller==0){
+		echo "<p>Ingen søkeresultat</p>";
+	}
+	else if($teller<$maxRes){
 	foreach ($alleNavn as $nav) {
 		$pos = strpos($nav['navnOpp'], $inNav);
 			if($pos!==false){
@@ -35,5 +38,8 @@ $teller = 0;
 		
 		# code...
 	}
+}
+else{
+	echo "Over ti søkeresultat";
 }
 ?>
