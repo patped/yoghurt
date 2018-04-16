@@ -110,7 +110,11 @@ function nesteForrigeSideButton($resultat, $sluttSøk, $nesteSide, $forrigeSide)
     if ($sluttSøk>10) {
         echo "<a href='$forrigeSide'><button type='button' id='bakoverKnapp' class='btn btn-primary'>10 forrige resultater</button></a>";
     }
-    echo "<a href='$nesteSide'><button type='button' id='fremoverKnapp' class='btn btn-primary'>10 neste resultater</button></a></div>";
+    if (count($resultat) > $sluttSøk) {
+        echo "<a href='$nesteSide'><button type='button' id='fremoverKnapp' class='btn btn-primary'>10 neste resultater</button></a>";
+    }
+    echo"</div>";
+    
 }
 function sok() {
     echo (
