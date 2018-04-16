@@ -32,12 +32,11 @@ function katKlikk(){
 function orgKlikk(){
     if(document.getElementById("orgnr").checked) {
         document.getElementById("sokeFelt").pattern = "[0-9]{9}";
-        document.getElementById("sokeFelt").title = "Et organisasjonsnummer består av 9 siffer"
+        document.getElementById("sokeFelt").title = "Et organisasjonsnummer består av 9 siffer";
         document.getElementById("adresse").checked = false;
         document.getElementById("restaurant").checked = false;
         document.getElementById("sokeFelt").placeholder="Søk på orgnummer";
         document.getElementById("sokeFelt").hidden = false;
-        //document.getElementById("sokeFelt").onkeyup= visOrgnr(this.value);
         document.getElementById("poststedLabel").hidden = true;
         document.getElementById("poststedInput").hidden = true;
         document.getElementById("adresse").disabled = true;
@@ -172,7 +171,7 @@ function geolocationSupport() {
     }
 
 }
-function visOrgnr(str){
+function visOrgNr(str){
     var xmlhttp;
   
   // Blank ut listen hvis søkeordet er tomt
@@ -204,10 +203,48 @@ function visOrgnr(str){
 
 
 }
+function visNavn(str){
+    var xmlhttp;
+  
+  // Blank ut listen hvis søkeordet er tomt
+    if (str.length==0) {
+    document.getElementById("spisestedSokefelt").innerHTML="";
+
+    return;
+}
+    if(str.length<3){
+        document.getElementById("txtOrg").hidden=true;
+    }
+    // IE7+, Firefox, Chrome, Opera, Safari
+    xmlhttp=new XMLHttpRequest();
+    
+    
+  
+  xmlhttp.onreadystatechange=function() {
+    
+    if (this.readyState==4 && this.status==200) {
+        document.getElementById("txtOrg").innerHTML=xmlhttp.responseText;
+      
+    }
+  }
+  if(str.length>3){
+    xmlhttp.open("GET", "/sok/sokAllenavn.php?inNavn="+str, true);
+    document.getElementById("txtOrg").hidden=false;
+    xmlhttp.send();
+}
+
+}
+/*
 function leggTil(org){
     document.getElementByID("txtOrg").value=org;
 }
-/*
-leggInnOrg(org){
-    document.getElementByID("txtOrg").value=org;
-}*/
+*/
+function visAjax(org){
+    var test = org;
+    if(document.getElementById("orgnr").checked){
+        visOrgNr(test);
+    } 
+    else if(document.getElementById("restaurant").checked){
+        visNavn(test);
+    }
+}
