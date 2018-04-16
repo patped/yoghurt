@@ -1,8 +1,9 @@
 #logginn {
     position: fixed;
     right: 10px;
-    top: 20px;
+    top: 8px;
     font-size: 10px;
+    background-color: #558ebf;
 }
 
 #resultatTabell{

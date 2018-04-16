@@ -3,12 +3,19 @@
 <script>
 	function goBack() {
 		window.history.back();
-	}
+		}
+
+		function hover(element){
+			element.setAttribute('src', "/bilder/backButtonHover.png");
+		}
+
+		function hoverOut(element){
+			element.setAttribute('src', "/bilder/backButton.png");
+		}
 </script>
 <script src="/logginn/loginn.js"></script>
 <div id="wrapper">
 	<header>
-		<button onClick="window.location='/index.php'"><img style="height: 30px;" src="/bilder/homeButton.png"></button>
-		<button onClick="goBack()"><img style="height: 30px;" src="/bilder/backButton.svg"></button>
-		<img id="logo" src="/bilder/tempLogo.jpg">
+		<button id="tilbake" onClick="goBack()"><img onmouseover="hover(this)" onmouseout="hoverOut(this)" style="height: 30px;" src="/bilder/backButton.png"></button>
+		<a id="link" href ="/index.php" ><img id="logo" src="/bilder/logoNy.png" ></a>
 	</header>
