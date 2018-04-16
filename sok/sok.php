@@ -132,7 +132,10 @@ function sok() {
             <br>
             <label hidden='true' id='spisestedLabel'>Navn på spisested: </label><input type='text' id='spisestedSokefelt' name='spisestedSokefelt' value='' placeholder='Søk på navnet til spisested' hidden='true'>
             <br>
-            <label hidden='true' id='adresseLabel'>Adresse: </label><input type='text' id='sokeFelt' name='Søkefelt' value='' placeholder='Søk på navnet til spisested' hidden='true'>
+            <label hidden='true' id='spisestedLabel'>Navn på spisested: </label><input type='text' id='spisestedSokefelt' name='spisestedSokefelt' value='' placeholder='Søk på navnet til spisested' onkeyup = 'visAjax(this.value)'; hidden='true'>
+            <br>
+            <label hidden='true' id='adresseLabel'>Adresse: </label><input type='text' id='sokeFelt' name='Søkefelt' value='' placeholder='Søk på navnet til spisested' hidden='true' onkeyup= 'visAjax(this.value)';>
+            <p id='txtOrg'></p>
             <br>
             <label hidden='true' id='poststedLabel'>Poststed: </label><input type='text' id='poststedInput' name='poststedInput' value='' placeholder='Poststed' hidden='true'><br>
             <input type='submit' id='utforSok' name='søkeKnapp' value='Utfør søk' disabled='true'>
