@@ -37,6 +37,7 @@ function orgKlikk(){
         document.getElementById("restaurant").checked = false;
         document.getElementById("sokeFelt").placeholder="Søk på orgnummer";
         document.getElementById("sokeFelt").hidden = false;
+        document.getElementById("sokeFelt").onkeyup= visOrgnr(this.value);
         document.getElementById("poststedLabel").hidden = true;
         document.getElementById("poststedInput").hidden = true;
         document.getElementById("adresse").disabled = true;
@@ -45,8 +46,6 @@ function orgKlikk(){
         document.getElementById("geolokasjon").checked = false;
         document.getElementById("kategoriCheckbox").disabled = true;
         document.getElementById("kategoriCheckbox").checked = false;
-
-        //document.getElementById("sokeFelt").onkeyup= visOrgnr(this.value);
         katKlikk();
     }
     else{
