@@ -12,7 +12,7 @@ $inOrg = $_GET['innOrg'];
 				if($pos==0)
 					
 					echo "<li>";
-					$side = '/restaurant.php?res=' . $org['tilsynsobjektid']; 
+					$side = '/restaurantVisning/restaurant.php?res=' . $org['tilsynsobjektid']; 
 					echo "<a href=" . $side;
 					echo ">";
 					echo $org['orgnummer'];
