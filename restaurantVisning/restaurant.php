@@ -45,7 +45,7 @@ $db = kobleOpp();
                     <h1>$navn</h1>
                     <h2>$fullAdresse</h2>
                     </div>";
-                echo "<div class='container-fluid'>
+                echo "<div class='container-fluid padding0'>
                     <div id='venstreTabell' class='col-xs-2 col-xs-offset-1'>
                     <div class='table-responsive'>
                     <table class='table table-hover'>

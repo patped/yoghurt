@@ -46,7 +46,7 @@ footer {
 	height: 30px;
 	bottom: 0;
 	position: absolute;
-	color: lightgrey;
+	color: #FFF;
 	background-color: #337ab7;
 	width: 100%;
 	text-align: center;
@@ -54,4 +54,13 @@ footer {
 #footer{
   min-height: 30px;
   bottom: 0;
+}
+
+.jumbotron {
+  padding-top: 5px;
+  padding-bottom: 10px;
+}
+ 
+.padding0 {
+  padding-left: 0;
 }
