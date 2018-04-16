@@ -12,22 +12,28 @@ body{
 }
 
 header {
-  height: 50px;
+  height: 80px;
   width: calc(100% - 3px);
   padding-left: 3px;
   padding-top: 3px;
   margin-bottom: 10px;
 }
 
+#link{
+  margin: auto;
+  display: block;
+  width: 220px;
+}
+
 #logo {
-	margin: auto;
-	height: 50px;
-	display: block;
+  margin: auto;
+	height: 55px;
+  display: block;
 }
 
 header button {
   float: left;
-  height: 30px;
+  height: 40px;
   display: block;
   border: none;
   text-align: center;

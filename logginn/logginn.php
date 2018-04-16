@@ -1,4 +1,3 @@
-<link rel="stylesheet" href="/logginn/logginn.css" type="text/css">
 <?php
  
 function logginn($sideSkalJegTil){
@@ -91,4 +90,3 @@ EOT;
 }
 
 ?>
-<script src="/logginn/loginn.js"></script>

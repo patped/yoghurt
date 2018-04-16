@@ -4,7 +4,9 @@ require_once '../div/session-kapring.php';
 require_once '../div/database.php';
 require_once 'sok.php';
 require_once '../logginn/logginn.php';
-
+if (!isset($_GET['start']) || (!isset($_POST["søkeKnapp"]) && !isset($_SESSION['tidligereSøk']))) {
+    header("Location: /index.php");
+}
 ?>
 <!doctype html>
 <html>
@@ -30,11 +32,6 @@ require_once '../logginn/logginn.php';
     $startSøk = $_GET['start'];
     $sluttSøk = $startSøk + $antallResultat;
     $søkTeller = 0;
-    if (!isset($_POST["søkeKnapp"])) {
-        if (!isset($_SESSION['tidligereSøk'])) {
-            header("Location: /index.php");
-        }  
-    }
     $status = mysqli_set_charset($db, "utf8");
     $stmt;
     $hvordanSøk;
