@@ -205,6 +205,7 @@ function visOrgNr(str){
 }
 function visNavn(str){
     var xmlhttp;
+    str = str.toUpperCase();
   
   // Blank ut listen hvis søkeordet er tomt
     if (str.length==0) {
