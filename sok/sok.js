@@ -31,6 +31,8 @@ function katKlikk(){
 
 function orgKlikk(){
     if(document.getElementById("orgnr").checked) {
+        document.getElementById("adresseLabel").hidden = false; 
+        document.getElementById("adresseLabel").innerHTML = "Organisasjonsnummer:";
         document.getElementById("sokeFelt").pattern = "[0-9]{9}";
         document.getElementById("sokeFelt").title = "Et organisasjonsnummer består av 9 siffer";
         document.getElementById("adresse").checked = false;
@@ -48,7 +50,9 @@ function orgKlikk(){
         katKlikk();
     }
     else{
-        document.getElementById("sokeFelt").placeholder="Søk på navnet til spisested";
+        document.getElementById("adresseLabel").hidden = true; 
+        document.getElementById("adresseLabel").innerHTML = "Organisasjonsnummer:"; 
+        document.getElementById("sokeFelt").placeholder="Spisested";
         document.getElementById("sokeFelt").value = "";
         document.getElementById("restaurant").disabled = false;
         document.getElementById("adresse").disabled = false;
@@ -65,10 +69,11 @@ function orgKlikk(){
 function adresseKlikk(){
     if(document.getElementById("adresse").checked) {
         document.getElementById("orgnr").checked = false;
-        document.getElementById("sokeFelt").placeholder="Søk på adresse";
+        document.getElementById("sokeFelt").placeholder="Adresse";
         document.getElementById("sokeFelt").hidden = false;
         document.getElementById("poststedLabel").hidden = false;
         document.getElementById("adresseLabel").hidden = false;
+        document.getElementById("adresseLabel").innerHTML = "Adresse";
         document.getElementById("poststedInput").hidden = false;
         document.getElementById("orgnr").disabled = true;
         document.getElementById("utforSok").disabled = false;
@@ -77,7 +82,7 @@ function adresseKlikk(){
         if (!document.getElementById("restaurant").checked) {
             document.getElementById("orgnr").disabled = false;
         }
-        document.getElementById("sokeFelt").placeholder="Søk på navnet til spisested";
+        document.getElementById("sokeFelt").placeholder="Spisested";
         document.getElementById("poststedLabel").hidden = true;
         document.getElementById("poststedInput").hidden = true;
         document.getElementById("sokeFelt").hidden = true;
@@ -95,7 +100,7 @@ function restaurantKlikk(){
         document.getElementById("orgnr").checked = false;
         document.getElementById("spisestedLabel").hidden = false;
         document.getElementById("spisestedSokefelt").hidden = false;
-        document.getElementById("spisestedSokefelt").placeholder="Søk på navnet til spisested";
+        document.getElementById("spisestedSokefelt").placeholder="Spisested";
         document.getElementById("orgnr").disabled = true;
         document.getElementById("utforSok").disabled = false;
         document.getElementById("geolokasjon").checked = false;
