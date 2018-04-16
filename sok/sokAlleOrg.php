@@ -20,6 +20,7 @@ $inOrg = $_GET['innOrg'];
 					echo $org['navn'];
 					echo "</a>";
 					echo "</li>";
+					echo "<br>";
 					
 		}
 		

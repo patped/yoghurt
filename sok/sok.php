@@ -130,10 +130,14 @@ function sok() {
             <input type='radio' disabled='true' name='kategori' id='asiatisk' value='Annen Asiatisk'>Annen Asiatisk
             <input type='radio' disabled='true' name='kategori' id='burger' value='Burger og Kebab'>Burger og Kebab
             <br>
+            <div class='dropdown'>
             <label hidden='true' id='spisestedLabel'>Navn på spisested: </label><input type='text' id='spisestedSokefelt' name='spisestedSokefelt' value='' placeholder='Søk på navnet til spisested' onkeyup = 'visAjax(this.value)'; hidden='true'>
-            <br>
             <label hidden='true' id='adresseLabel'>Adresse: </label><input type='text' id='sokeFelt' name='Søkefelt' value='' placeholder='Søk på navnet til spisested' hidden='true' onkeyup= 'visAjax(this.value)';>
+            <div class='dropdown-content' id='dropdownDisplay' style='display:none'>
             <p id='txtOrg'></p>
+            </div>
+            </div>
+            <br>
             <br>
             <label hidden='true' id='poststedLabel'>Poststed: </label><input type='text' id='poststedInput' name='poststedInput' value='' placeholder='Poststed' hidden='true'><br>
             <input type='submit' id='utforSok' name='søkeKnapp' value='Utfør søk' disabled='true'>

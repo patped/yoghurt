@@ -198,6 +198,7 @@ function visOrgNr(str){
   if(str.length>3){
     xmlhttp.open("GET", "/sok/sokAlleOrg.php?innOrg="+str, true);
     document.getElementById("txtOrg").hidden=false;
+    document.getElementById("dropdownDisplay").style.display="block";
     xmlhttp.send();
 }
 
@@ -231,49 +232,12 @@ function visNavn(str){
   if(str.length>3){
     xmlhttp.open("GET", "/sok/sokAllenavn.php?inNavn="+str, true);
     document.getElementById("txtOrg").hidden=false;
+    document.getElementById("dropdownDisplay").style.display="block";
     xmlhttp.send();
 }
 
 }
-function visPostNr(str){
-    var xmlhttp;
-    alert("hei");
-    str = str.toUpperCase();
-  
-  // Blank ut listen hvis søkeordet er tomt
-    if (str.length==0) {
-    document.getElementById("poststedInput").innerHTML="";
 
-    return;
-}
-    if(str.length<3){
-        document.getElementById("txtOrg").hidden=true;
-    }
-    // IE7+, Firefox, Chrome, Opera, Safari
-    xmlhttp=new XMLHttpRequest();
-    
-    
-  
-  xmlhttp.onreadystatechange=function() {
-    
-    if (this.readyState==4 && this.status==200) {
-        document.getElementById("txtOrg").innerHTML=xmlhttp.responseText;
-      
-    }
-  }
-  if(str.length>2){
-    alert("hei");
-    xmlhttp.open("GET", "/sok/sokPostNR.php?inPNR="+str, true);
-    document.getElementById("txtOrg").hidden=false;
-    xmlhttp.send();
-}
-
-}
-/*
-function leggTil(org){
-    document.getElementByID("txtOrg").value=org;
-}
-*/
 function visAjax(org){
     var test = org;
     if(document.getElementById("orgnr").checked){

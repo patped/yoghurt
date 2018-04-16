@@ -3,9 +3,18 @@ require_once '../div/database.php';
 $db = kobleOpp();
 $sql="SELECT orgnummer, upper(navn) as navnOpp,navn, tilsynsobjektid from Restauranter order by navn";
 $resultat = mysqli_query($db, $sql);
+$maxRes = 10;
 $alleNavn = $resultat->fetch_all(MYSQLI_ASSOC);
 $inNav = $_GET['inNavn'];
-		
+$teller = 0;
+	foreach ($alleNavn as $nav) {
+		$pos = strpos($nav['navnOpp'], $inNav);
+			if($pos!==false){
+		$teller++;
+		# code...
+	}
+	}
+	if($teller<$maxRes){
 	foreach ($alleNavn as $nav) {
 		$pos = strpos($nav['navnOpp'], $inNav);
 			if($pos!==false){
@@ -26,5 +35,5 @@ $inNav = $_GET['inNavn'];
 		
 		# code...
 	}
-
+}
 ?>
