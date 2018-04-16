@@ -12,7 +12,7 @@ $inNav = $_GET['inNavn'];
 				if($pos==0)
 					
 					echo "<li>";
-					$side = '/restaurant.php?res=' . $nav['tilsynsobjektid']; 
+					$side = '/restaurantVisning/restaurant.php?res=' . $nav['tilsynsobjektid']; 
 					echo "<a href=" . $side;
 					echo ">";
 					echo $nav['navn'];
