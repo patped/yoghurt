@@ -185,8 +185,9 @@ function visOrgNr(str){
 
     return;
 }
-    if(str.length<3){
+    if(str.length<4){
         document.getElementById("txtOrg").hidden=true;
+        document.getElementById("dropdownDisplay").style.display="none";
     }
     // IE7+, Firefox, Chrome, Opera, Safari
     xmlhttp=new XMLHttpRequest();
@@ -221,6 +222,7 @@ function visNavn(str){
 }
     if(str.length<3){
         document.getElementById("txtOrg").hidden=true;
+        document.getElementById("dropdownDisplay").style.display="none";
     }
     // IE7+, Firefox, Chrome, Opera, Safari
     xmlhttp=new XMLHttpRequest();
