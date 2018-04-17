@@ -39,14 +39,15 @@ if (isset($_GET['tilsynsobjektid'])) {
 	logginn($side);
     ?>
     
+	
+	
+	
 	<div class="container">
-    	<div class="jumbotron">
-      		<h1 class="text-center">Tilsynsrapport</h1>
-    	</div>
-  	</div>
-
-  	<div class="container">
-    	<div class="page-header"> <h2> <?php echo $tilsynsrapport->restaurant; ?> </h2> </div>
+		<div class="jumbotron">
+			  <h1 class="text-center">Tilsynsrapport</h1>
+		</div>
+		<h2 class="text-center">Fyll ut skjema</h2>
+		<div class="page-header"> <h2> <?php echo $tilsynsrapport->restaurant; ?> </h2> </div>
 		<div class="table-responsive">
 			<form method="POST" action="endre-kontroller.php">
 				<div class="col-xs-4">
