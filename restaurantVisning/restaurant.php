@@ -41,9 +41,11 @@ $db = kobleOpp();
                 $adresse = $rad['adrlinje1'];
                 $totalkarakter = $rad['total_karakter'];
                 $fullAdresse = $rad['adrlinje1'] . ' i ' . $rad['poststed'];
-                echo "<div class='jumbotron text-center'>
-                    <h1>$navn</h1>
-                    <h2>$fullAdresse</h2>
+                echo "<div class='container'>
+                        <div class='jumbotron text-center'>
+                            <h1>$navn</h1>
+                            <h2>$fullAdresse</h2>
+                        </div>
                     </div>";
                 echo "<div class='container-fluid padding0'>
                     <div id='venstreTabell' class='col-xs-2 col-xs-offset-1'>
