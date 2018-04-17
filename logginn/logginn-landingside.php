@@ -57,7 +57,6 @@ $db = kobleOpp();
 
 </main>
 <?php include_once '../div/footer.php'; ?>
- <script type="text/javascript"src="jquery-3.2.0.js"></script>
 </body>
 </html>
 <?php
