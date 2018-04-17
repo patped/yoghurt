@@ -24,10 +24,20 @@ require_once 'sok/sok.php';
         $side = 'Location: /index.php';
         logginn($side);
         ?>
-        <h1>Hvilken smiley har bedriften fått?</h1>
-        <h2>Velg hva du vil søke på</h2>
-        <?php sok(); ?>
-    </div>
+        <div class="jumbotron text-center">
+ 
+            <h1>Hvilken smiley har bedriften fått?</h1>
+ 
+            <h2>Velg hva du vil søke på?</h2>
+ 
+        </div>
+ 
+        <div class="container text-center">
+ 
+            <?php sok(); ?>
+ 
+        </div>
+ 
     <?php include_once 'div/footer.php'; ?>
 
     <script src="sok/sok.js"></script>
