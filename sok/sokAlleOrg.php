@@ -17,7 +17,7 @@ $teller = 0;
 		echo "<p>Ingen resultater i Orgnummer</p>";
 	}
 
-	else if($teller<10){				
+	else{				
 		foreach ($alleOrg as $org) {
 			$pos = strpos($org['orgnummer'], $inOrg);
 				if($pos!==false){
@@ -37,7 +37,5 @@ $teller = 0;
 		}
 	}
 	}
-	else
-		echo "Over ti søkeresultat";
 
 ?>
