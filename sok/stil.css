@@ -19,9 +19,25 @@
 li{
     list-style-type: none;
 }
-#heleSokeTabell{
-    
+#sokeValg, #kategoriValg, #sokefeltOgLabels{
+
+    margin: auto;
 }
 #heleSokeTabellForm{
-    text-align: center;
+
+}
+#sokeKnappTd{
+    padding-top: 10px;
+}
+#dropdown{
+    margin: auto;
+}
+#dropdownDisplay{
+    position: relative;
+}
+#txtOrg{
+    margin-bottom: 0;
+}
+#txtOrgUl{
+    padding-left: 0;
 }
