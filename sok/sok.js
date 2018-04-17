@@ -9,13 +9,37 @@ function sjekkForm(){
 
 function katKlikk(){
     if (document.getElementById("kategoriCheckbox").checked) {
+        //Aktiverer alle knapper
+        document.getElementById("italiensk").hidden = false;
+        document.getElementById("indisk").hidden = false;
+        document.getElementById("kinesisk").hidden = false;
+        document.getElementById("asiatisk").hidden = false;
+        document.getElementById("burger").hidden = false;
         document.getElementById("italiensk").disabled = false;
         document.getElementById("indisk").disabled = false;
         document.getElementById("kinesisk").disabled = false;
         document.getElementById("asiatisk").disabled = false;
         document.getElementById("burger").disabled = false;
+        //Aktiverer alle labels: 
+        document.getElementById("italienskL").hidden = false;
+        document.getElementById("indiskL").hidden = false;
+        document.getElementById("kinesiskL").hidden = false;
+        document.getElementById("asiatiskL").hidden = false;
+        document.getElementById("burgerL").hidden = false;
+
+        
     }
     else{
+        document.getElementById("italiensk").hidden = true;
+        document.getElementById("indisk").hidden = true;
+        document.getElementById("kinesisk").hidden = true;
+        document.getElementById("asiatisk").hidden = true;
+        document.getElementById("burger").hidden = true;
+        document.getElementById("italienskL").hidden = true;
+        document.getElementById("indiskL").hidden = true;
+        document.getElementById("kinesiskL").hidden = true;
+        document.getElementById("asiatiskL").hidden = true;
+        document.getElementById("burgerL").hidden = true;
         document.getElementById("italiensk").checked = false;
         document.getElementById("indisk").checked = false;
         document.getElementById("kinesisk").checked = false;
@@ -89,7 +113,12 @@ function adresseKlikk(){
 }
 
 function restaurantKlikk(){
+    if (!document.getElementById("adresse").checked) { 
+             document.getElementById("adresseLabel").hidden = true;
+             document.getElementById("sokeFelt").hidden = true;
+        } 
     if(document.getElementById("restaurant").checked) {
+        document.getElementById("adresseLabel").innerHTML = "Adresse"; 
     	document.getElementById("utforSok").disabled = false;
         document.getElementById("orgnr").checked = false;
         document.getElementById("spisestedLabel").hidden = false;
