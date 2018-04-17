@@ -31,6 +31,7 @@ function katKlikk(){
 
 function orgKlikk(){
     if(document.getElementById("orgnr").checked) {
+    	document.getElementById("utforSok").disabled = false;
         document.getElementById("adresseLabel").hidden = false; 
         document.getElementById("adresseLabel").innerHTML = "Organisasjonsnummer:";
         document.getElementById("sokeFelt").pattern = "[0-9]{9}";
@@ -49,6 +50,7 @@ function orgKlikk(){
         katKlikk();
     }
     else{
+    	document.getElementById("utforSok").disabled = true;
         document.getElementById("adresseLabel").hidden = true; 
         document.getElementById("adresseLabel").innerHTML = "Organisasjonsnummer:"; 
         document.getElementById("sokeFelt").placeholder="Spisested";
@@ -63,6 +65,7 @@ function orgKlikk(){
 
 function adresseKlikk(){
     if(document.getElementById("adresse").checked) {
+    	document.getElementById("utforSok").disabled = false;
         document.getElementById("orgnr").checked = false;
         document.getElementById("sokeFelt").placeholder="Adresse";
         document.getElementById("sokeFelt").hidden = false;
@@ -79,11 +82,15 @@ function adresseKlikk(){
         document.getElementById("sokeFelt").value = "";
         document.getElementById("poststedInput").value = "";
         document.getElementById("adresseLabel").hidden = true;
+        if (!document.getElementById("restaurant").checked && !document.getElementById("orgnr").checked) { 
+            document.getElementById("utforSok").disabled = true; 
+        } 
     }
 }
 
 function restaurantKlikk(){
     if(document.getElementById("restaurant").checked) {
+    	document.getElementById("utforSok").disabled = false;
         document.getElementById("orgnr").checked = false;
         document.getElementById("spisestedLabel").hidden = false;
         document.getElementById("spisestedSokefelt").hidden = false;
@@ -94,11 +101,15 @@ function restaurantKlikk(){
         document.getElementById("spisestedSokefelt").value = "";
         document.getElementById("spisestedLabel").hidden = true;
         document.getElementById("spisestedSokefelt").hidden = true;
-        
+        if (!document.getElementById("adresse").checked && !document.getElementById("orgnr").checked) { 
+            document.getElementById("utforSok").disabled = true; 
+        }
     }
 }
 
 function geoKlikk() {
+	 if(document.getElementById("geolokasjon").checked) {
+		document.getElementById("utforSok").disabled = false;
         document.getElementById("orgnr").checked = false;
         document.getElementById("adresse").checked = false;
         document.getElementById("restaurant").checked = false;
@@ -112,6 +123,9 @@ function geoKlikk() {
         document.getElementById("poststedInput").value = "";
         document.getElementById("adresseLabel").hidden = true;
         getLocation();
+    }else{
+    	document.getElementById("utforSok").disabled = true;
+    }
 }
 
 function getLocation() {
