@@ -249,6 +249,9 @@ function visNavn(str){
     
     if (this.readyState==4 && this.status==200) {
         document.getElementById("txtOrg").innerHTML=xmlhttp.responseText;
+        if (document.getElementById("txtOrg").innerHTML=="") {
+            document.getElementById("txtOrg").innerHTML="Ingen søkeresultat";
+        }
       
     }
   }
