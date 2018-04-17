@@ -1,11 +1,12 @@
 <?php
 session_start();
 require_once '../div/session-kapring.php';
-if(!$_SESSION['adminrett']) {
-	header("Location: /div/401.php");
-}
 include_once '../div/database.php';
 include_once '../logginn/logginn.php';
+if(!$_SESSION['loggetInn']) {
+	header("Location: /div/401.php");
+}
+
 ?>
 <!doctype html>
 <html lang="no">
@@ -22,11 +23,6 @@ include_once '../logginn/logginn.php';
     starAlertInnlogg();
     $side = 'Location: /admin/ny-bedrift.php';
     logginn($side);
-    if(!isset($_SESSION['adminrett']))
-			header('Location: /div/401.php');
-			if($_SESSION['adminrett']==false){
-				header ('Location: /div/401.php');
-		}
 	?>
 
 

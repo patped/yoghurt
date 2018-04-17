@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../div/session-kapring.php';
-if(!$_SESSION['adminrett']) {
+if(!$_SESSION['loggetInn']) {
 	header("Location: ../div/401.php");
 }
 require_once '../div/database.php';
