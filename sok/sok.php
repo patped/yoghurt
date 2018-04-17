@@ -153,7 +153,7 @@ function sok() {
                 <label hidden='true' id='adresseLabel'>Adresse: </label>
                 <input type='text' id='sokeFelt' name='Søkefelt' value='' placeholder='Søk på navnet til spisested' hidden='true' onkeyup= 'visAjax(this.value)';>
                 <div class='dropdown-content' id='dropdownDisplay' style='display:none'>
-                    <ul><p id='txtOrg'></p></ul>
+                    <ul style='padding: 0;'><p id='txtOrg'></p></ul>
                 </div>
             </div>
             <br>
