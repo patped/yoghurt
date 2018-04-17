@@ -17,11 +17,11 @@ $teller = 0;
 		echo "<p>Ingen resultater i Orgnummer</p>";
 	}
 
-	else if($teller<10){				
+	else{				
 		foreach ($alleOrg as $org) {
 			$pos = strpos($org['orgnummer'], $inOrg);
 				if($pos!==false){
-					if($pos==0)
+					if($pos==0){
 						
 						echo "<li>";
 						$side = '/restaurantVisning/restaurant.php?res=' . $org['tilsynsobjektid']; 
@@ -34,10 +34,8 @@ $teller = 0;
 						echo "</li>";
 					
 		}
-		
+		}
 	}
 	}
-	else
-		echo "Over ti søkeresultat";
 
 ?>
