@@ -37,6 +37,11 @@ if (isset($_GET['tilsynsobjektid'])) {
     starAlertInnlogg();
     $side = 'Location: /tilsynsrapport/endre.php';
 	logginn($side);
+	if(!isset($_SESSION['adminrett']))
+			header('Location: /div/401.php');
+			if($_SESSION['adminrett']==false){
+				header ('Location: /div/401.php');
+		}
     ?>
     
 	
