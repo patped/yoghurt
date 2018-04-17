@@ -32,6 +32,7 @@ $teller = 0;
 						echo $org['navn'];
 						echo "</a>";
 						echo "</li>";
+						echo "<br>"
 					
 		}
 		
