@@ -88,6 +88,8 @@ function orgKlikk(){
 }
 
 function adresseKlikk(){
+	document.getElementById("sokeFelt").removeAttribute("pattern");
+    document.getElementById("sokeFelt").removeAttribute("title");
     if(document.getElementById("adresse").checked) {
     	document.getElementById("utforSok").disabled = false;
         document.getElementById("orgnr").checked = false;
@@ -113,6 +115,8 @@ function adresseKlikk(){
 }
 
 function restaurantKlikk(){
+	document.getElementById("sokeFelt").removeAttribute("pattern");
+    document.getElementById("sokeFelt").removeAttribute("title");
     if (!document.getElementById("adresse").checked) { 
              document.getElementById("adresseLabel").hidden = true;
              document.getElementById("sokeFelt").hidden = true;
@@ -195,10 +199,9 @@ function visOrgNr(str){
   
   // Blank ut listen hvis søkeordet er tomt
     if (str.length==0) {
-    document.getElementById("sokeFelt").innerHTML="";
-
+    document.getElementById("dropdownDisplay").style.display="none";
     return;
-}
+	}
     if(!xmlhttp){
         document.getElementById("txtOrg").hidden=true;
         document.getElementById("dropdownDisplay").style.display="none";
@@ -228,12 +231,11 @@ function visNavn(str){
     var xmlhttp;
     str = str.toUpperCase();
 
-  
   // Blank ut listen hvis søkeordet er tomt
     if (str.length==0) {
-    document.getElementById("spisestedSokefelt").innerHTML="";
+    document.getElementById("dropdownDisplay").style.display="none";
     return;
-}
+	}
     if(!xmlhttp){
         document.getElementById("txtOrg").hidden=true;
         document.getElementById("dropdownDisplay").style.display="none";
@@ -261,15 +263,18 @@ function visNavn(str){
 
 }
 
-function visAjax(org){
-    var test = org;
+function visAjax(input){
+    var søkestring = input;
     if(document.getElementById("orgnr").checked){
-        visOrgNr(test);
+        visOrgNr(søkestring);
     } 
     else if(document.getElementById("restaurant").checked){
-        visNavn(test);
+        visNavn(søkestring);
     }
 }
 function visSøkeFelt(){
     document.getElementById("søkeFeltDiv").style.display = "block";
+}
+function fjernResultater(){
+	document.getElementById("dropdownDisplay").style.display="none";
 }

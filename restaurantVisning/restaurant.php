@@ -15,7 +15,7 @@ $db = kobleOpp();
   <link rel="stylesheet" type="text/css" href="restaurantVisning.css">
 </head>
     <body>
-        <?php include_once '../div/header.php'; ?>
+        <?php include_once '../div/header.php'; ?> 
 
         <?php
         $status = mysqli_set_charset($db, "utf8");

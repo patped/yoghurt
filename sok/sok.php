@@ -129,7 +129,7 @@ function nesteForrigeSideButton($resultat, $sluttSøk, $nesteSide, $forrigeSide)
     echo"</div>";
     
 }
-function sok() {
+function sok() { // Setter en timer på id='sokeFelt' og d='spisestedSokefelt' fordi vi ellers ikke rekker å klikker på linken
     echo (
         "<form action='/sok/sokeresultat.php?start=0' id='heleSokeTabellForm' method='POST' onsubmit='return sjekkForm()'>
             <table id='sokeValg' class='table-responsive'><tr>
@@ -163,15 +163,15 @@ function sok() {
             <table id='sokefeltOgLabels' class='table-responsive'>
             <div class='dropdown'>
             	<div><tr><td><label hidden='true' id='spisestedLabel'>Spisested: </label></td>
-                <td><input type='text' id='spisestedSokefelt' name='spisestedSokefelt' autocomplete='false' placeholder='Søk på navnet til spisested' onkeyup = 'visAjax(this.value)'; hidden='true'></td></tr></div>
+                <td><input type='text' id='spisestedSokefelt' name='spisestedSokefelt' placeholder='Søk på navnet til spisested' onkeyup = 'visAjax(this.value)' onfocusout='setTimeout(fjernResultater, 100)'; hidden='true'></td></tr></div>
                 <div><tr><td><label hidden='true' id='adresseLabel'>Adresse: </label></div>
-                <td><input type='text' id='sokeFelt' name='Søkefelt' autocomplete='false' placeholder='Søk på navnet til spisested' hidden='true' onkeyup= 'visAjax(this.value)';></td></tr></div>
+                <td><input type='text' id='sokeFelt' name='Søkefelt' placeholder='Søk på navnet til spisested' hidden='true' onkeyup= 'visAjax(this.value)' onfocusout='setTimeout(fjernResultater, 100)';></td></tr></div>
                 <tr><td colspan='2'><div class='dropdown-content' id='dropdownDisplay' style='display:none'>
                     <ul id='txtOrgUl'><p id='txtOrg'></p></ul>
                 </div></td></tr>
 
             </div>
-            <tr><td><label hidden='true' id='poststedLabel'>Poststed: </label></td><td><input type='text' id='poststedInput' name='poststedInput' autocomplete='false' placeholder='Poststed' hidden='true'><br></td></tr>
+            <tr><td><label hidden='true' id='poststedLabel'>Poststed: </label></td><td><input type='text' id='poststedInput' name='poststedInput' placeholder='Poststed' hidden='true'><br></td></tr>
             <tr id='sokeKnappTr'><td id='sokeKnappTd' colspan='2'><input type='submit' id='utforSok' name='søkeKnapp' value='Utfør søk' disabled='true'></td></tr>
             </table>
 
