@@ -41,13 +41,14 @@ $db = kobleOpp();
                 $adresse = $rad['adrlinje1'];
                 $totalkarakter = $rad['total_karakter'];
                 $fullAdresse = $rad['adrlinje1'] . ' i ' . $rad['poststed'];
-                echo "<div class='container'>
-                        <div class='jumbotron text-center'>
+                echo "<div class='container-fluid padding0'>
+                        <div id='banner' class='text-center col-xs-offset-1 jumbotron'>
                             <h1>$navn</h1>
                             <h2>$fullAdresse</h2>
                         </div>
+                        <div class='col-xs-1'></div>
                     </div>";
-                echo "<div class='container-fluid padding0'>
+                echo "<div class='container-fluid padding0 text-center'>
                     <div id='venstreTabell' class='col-xs-2 col-xs-offset-1'>
                     <div class='table-responsive'>
                     <table class='table table-hover'>
@@ -85,10 +86,17 @@ $db = kobleOpp();
                     mysqli_stmt_execute($stmt);
                     $svar = mysqli_stmt_get_result($stmt);
                     $svarTilsynsrapport = mysqli_fetch_assoc($svar);
-                    echo "<table id='infoTabell' class='table table-hover'>
-                    <th class='thMidt'>Dato for rapport</th>
-                    <th class='thMidt'>Karakter*</th>
-                    <th class='thMidt'>Mattilsynets smilefjes</th>";
+                    echo (
+                        "<table id='infoTabell' class='table table-hover text-center'>
+                            <thead>
+                                <tr>
+                                    <th class='thMidt'>Dato for rapport</th>
+                                    <th class='thMidt'><a href='#' data-toggle='tooltip' title='Karakter går fra 0-3, hvor 0 er best'>Karakter*</a></th>
+                                    <th class='thMidt'>Mattilsynets smilefjes</th>
+                                </tr>
+                            </thead>
+                            <tbody>"
+                    );
                     $teller = 0;
                     while ($svarTilsynsrapport && $teller<3) {
                         $dato = $svarTilsynsrapport['dato'];
@@ -105,21 +113,22 @@ $db = kobleOpp();
                         $mattilsynetSmil = mattilsynSmil($svarTilsynsrapport);
                         $karakter = $svarTilsynsrapport['total_karakter'];
                         $tilsynid = $svarTilsynsrapport['tilsynid'];
-                        echo "<tr><td>
-                        <a href='../tilsynsrapport/tilsyn.php?tilsynid=$tilsynid'>$dag.$måned.$år</td>
-                        <td>$karakter</td>
-                        <td><a href='../tilsynsrapport/tilsyn.php?tilsynid=$tilsynid'><img id ='smileBilde' src='$mattilsynetSmil' title='smilefjes' width= '35px'></td>
-                        ";
+                        echo (
+                            "<tr>
+                                <td><a href='../tilsynsrapport/tilsyn.php?tilsynid=$tilsynid'>$dag.$måned.$år</td>
+                                <td>$karakter</td>
+                                <td><a href='../tilsynsrapport/tilsyn.php?tilsynid=$tilsynid'><img id ='smileBilde' src='$mattilsynetSmil' title='smilefjes' width= '35px'></td>
+                            </tr>"
+                        );
                         $svarTilsynsrapport = mysqli_fetch_assoc($svar);
-                        echo "</tr>";
+//                        echo "</tr>";
                         if ($teller == 0) { // Sjekker kun den nyeste rapporten
                             $tilsynDato = strtotime($år . "-" . $måned . "-" . $dag);
                             $datodiff = tilsynsrapportAntallDagerSiden($tilsynDato);
                         }
                         $teller++;
                     }
-                    echo "</table>
-                    <h4>* Karakter går fra 0-3, hvor 0 er best</h4>";
+                    echo "</table>";
                     if ($datodiff > 180) {
                        //Vi sjekker om det er mer enn 6 måneder siden siste tilsyn og gir beskjed til brukeren om ny tilsynsrapport bør utføres
                         echo "<br><br><h3 id='obsMelding'>OBS! Det er mer enn 6 måneder siden siste tilsyn</h3>";
@@ -131,10 +140,9 @@ $db = kobleOpp();
                     }
                     echo "
                     </div>
-                    <div id='hoyreTabell' class='col-xs-4'><table class='table table-hover'>
+                    <div id='kart' class='col-xs-4'>
                       <div id='map' hidden='true'></div>
-                      </table></div>
-                  </div>";
+                    </div>";
                     /*Legger til script for å vise Google Map*/
                     include_once 'googleMaps.php';
             } else {
