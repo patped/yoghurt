@@ -9,6 +9,11 @@ function sjekkForm(){
 
 function katKlikk(){
     if (document.getElementById("kategoriCheckbox").checked) {
+        document.getElementById("italiensk").hidden = true;
+        document.getElementById("indisk").hidden = true;
+        document.getElementById("kinesisk").hidden = true;
+        document.getElementById("asiatisk").hidden = true;
+        document.getElementById("burger").hidden = true;
         document.getElementById("italiensk").disabled = false;
         document.getElementById("indisk").disabled = false;
         document.getElementById("kinesisk").disabled = false;

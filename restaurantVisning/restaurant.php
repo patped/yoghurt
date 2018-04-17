@@ -123,7 +123,7 @@ $db = kobleOpp();
                         echo "<br><br><h3 id='obsMelding'>OBS! Det er mer enn 6 måneder siden siste tilsyn</h3>";
                         if (isset($_SESSION['loggetInn'])) {
                             if ($_SESSION['loggetInn'] == true) { // Dersom logget inn, få knapp til å legge inn ny tilsynsrapport med en gang.
-                            echo "<a href='localhost/tilsynsrapport/endre.php'><button type='button'>Legg til ny rapport</button></a>";
+                            echo "<a href='../tilsynsrapport/endre.php'><button type='button'>Legg til ny rapport</button></a>";
                             }
                         }
                     }
