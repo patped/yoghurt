@@ -25,13 +25,11 @@ require_once 'sok/sok.php';
         logginn($side);
         ?>
         <div class="jumbotron text-center">
- 
             <h1>Hvilken smiley har bedriften fått?</h1>
- 
-            <h2>Velg hva du vil søke på?</h2>
- 
         </div>
- 
+        
+        <h2>Velg hva du vil søke på?</h2>
+        
         <div class="container text-center">
  
             <?php sok(); ?>
