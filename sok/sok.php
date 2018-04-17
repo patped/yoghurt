@@ -162,13 +162,14 @@ function sok() {
             </table>
             <table id='sokefeltOgLabels' class='table-responsive'>
             <div class='dropdown'>
-                <div><tr><td><label hidden='true' id='spisestedLabel'>Spisested: </label></td>
+            	<div><tr><td><label hidden='true' id='spisestedLabel'>Spisested: </label></td>
+                <td><input type='text' id='spisestedSokefelt' name='spisestedSokefelt' autocomplete='false' placeholder='Søk på navnet til spisested' onkeyup = 'visAjax(this.value)'; hidden='true'></td></tr></div>
                 <div><tr><td><label hidden='true' id='adresseLabel'>Adresse: </label></div>
                 <td><input type='text' id='sokeFelt' name='Søkefelt' autocomplete='false' placeholder='Søk på navnet til spisested' hidden='true' onkeyup= 'visAjax(this.value)';></td></tr></div>
                 <tr><td colspan='2'><div class='dropdown-content' id='dropdownDisplay' style='display:none'>
                     <ul id='txtOrgUl'><p id='txtOrg'></p></ul>
                 </div></td></tr>
-                <td><input type='text' id='spisestedSokefelt' name='spisestedSokefelt' autocomplete='false' placeholder='Søk på navnet til spisested' onkeyup = 'visAjax(this.value)'; hidden='true'></td></tr></div>
+
             </div>
             <tr><td><label hidden='true' id='poststedLabel'>Poststed: </label></td><td><input type='text' id='poststedInput' name='poststedInput' autocomplete='false' placeholder='Poststed' hidden='true'><br></td></tr>
             <tr id='sokeKnappTr'><td id='sokeKnappTd' colspan='2'><input type='submit' id='utforSok' name='søkeKnapp' value='Utfør søk' disabled='true'></td></tr>
