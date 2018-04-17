@@ -1,14 +1,21 @@
-#infoTabell{
-
-}
-.thMidt{
+.thMidt {
 	width: 33%;
+	text-align: center;
 }
-#map{
+
+#map {
 	height: 450px;
 	margin-bottom: 30px;
 }
 
-#obsMelding{
+#kart {
+	padding-right: 0px;
+}
+
+#obsMelding {
 	color: red;
+}
+
+#banner {
+	width: 83.33333333%;
 }

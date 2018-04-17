@@ -1,3 +1,7 @@
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+
 function visKarakterInfo(){
 
     if (document.getElementById("smileBilde").src == 'http://localhost/bilder/smileys/storSmil.png'){
@@ -14,6 +18,7 @@ function visKarakterInfo(){
     }
     document.getElementById("hoverText").style.display = "block";
 }
+
 function skjulKarakterInfo(){
     document.getElementById("hoverText").style.display = "none";
 }
