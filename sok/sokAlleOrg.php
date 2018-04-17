@@ -21,7 +21,7 @@ $teller = 0;
 		foreach ($alleOrg as $org) {
 			$pos = strpos($org['orgnummer'], $inOrg);
 				if($pos!==false){
-					if($pos==0)
+					if($pos==0){
 						
 						echo "<li>";
 						$side = '/restaurantVisning/restaurant.php?res=' . $org['tilsynsobjektid']; 
@@ -34,7 +34,7 @@ $teller = 0;
 						echo "</li>";
 					
 		}
-		
+		}
 	}
 	}
 	else
