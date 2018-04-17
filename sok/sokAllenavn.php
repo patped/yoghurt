@@ -21,8 +21,7 @@ $teller = 0;
 	foreach ($alleNavn as $nav) {
 		$pos = strpos($nav['navnOpp'], $inNav);
 			if($pos!==false){
-				if($pos==0)
-					
+				if($pos==0){
 					echo "<li>";
 					$side = '/restaurantVisning/restaurant.php?res=' . $nav['tilsynsobjektid']; 
 					echo "<a href=" . $side;
@@ -32,12 +31,12 @@ $teller = 0;
 					echo $nav['orgnummer'];
 					echo "</a>";
 					echo "</li>";
-					echo "<br>";
 					
 		}
 		
 		# code...
 	}
+}
 }
 else{
 	echo "Over ti søkeresultat";
