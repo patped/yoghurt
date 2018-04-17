@@ -25,9 +25,11 @@ include_once '../logginn/logginn.php';
 	?>
 
 	<div class="container text-center">
-		
-		<h1>Legg til ny bedrift</h1>
-		<h2>Fyll ut skjema</h2>
+	
+		<div class="jumbotron">
+			<h1>Legg til ny bedrift</h1>
+		</div>
+		<h2 class="text-center">Fyll ut skjema</h2>
 
 		<form method="POST" action="ny-bedrift-kontroller.php">
 			<div class="table-responsive">

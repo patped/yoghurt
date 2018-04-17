@@ -26,7 +26,10 @@ include_once '../logginn/logginn.php';
 		logginn($side);
 		?>
 
-		<h2>Legg til en ny bruker</h2>
+		<div class="jumbotron">
+			<h1 class="text-center">Legg til en ny bruker</h1>	
+		</div>
+		<h2 class="text-center">Fyll ut skjema</h2>  
 
 		<form method="POST" action="ny-bruker-landingside.php">
 			<div class="table-responsive">

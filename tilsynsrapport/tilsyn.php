@@ -22,11 +22,10 @@ require_once '../logginn/logginn.php';
     logginn($side);
   ?>
 
-  <div class="jumbotron">
-    <h1 class="text-center"><?php echo $tilsynsrapport->restaurant; ?></h1>
-  </div>
-
   <div class="container">
+      <div class="jumbotron">
+        <h1 class="text-center"><?php echo $tilsynsrapport->restaurant; ?></h1>
+      </div>
     <div class='page-header'> <h2>Tilsynsrapport for dato: <?php echo $tilsynsrapport->dato(); ?></h2>
       <?php adminrett($tilsynsrapport); ?>
     </div>
