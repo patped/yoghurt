@@ -76,6 +76,16 @@ function smilefjesBilde($karakterSisteTilsynSnitt){
     }
 }
 
+function matTilsynetSmilefjes($karakter) {
+    if ($karakter<2) {
+        return '/bilder/smileys/liteSmil.png';
+    } else if ($karakter>2) {
+        return '/bilder/smileys/spySmil.png';
+    } else {
+        return '/bilder/smileys/ingenSmil.png';
+    }
+}
+
 function skrivUtSøkeresultat($rad, $db){
     $id = $rad['tilsynsobjektid'];
     $rNavn = $rad['navn'];
@@ -87,21 +97,24 @@ function skrivUtSøkeresultat($rad, $db){
     $sqlSpørringHenteKarakter = hentKarakterSpørring($id);
     $utførSpørringMedKarakter = mysqli_query($db, $sqlSpørringHenteKarakter);
     $svarKarakter = mysqli_fetch_assoc($utførSpørringMedKarakter);
+    $matTilsynkarakter = $svarKarakter['total_karakter'];
     $karakterSisteTilsyn = $teller = 0;
     while ($svarKarakter && $teller<3) {
-    $karakterSisteTilsyn = $karakterSisteTilsyn + $svarKarakter['total_karakter'];
-    $teller = $teller + 1;
-    $svarKarakter = mysqli_fetch_assoc($utførSpørringMedKarakter);
+        $karakterSisteTilsyn = $karakterSisteTilsyn + $svarKarakter['total_karakter'];
+        $teller = $teller + 1;
+        $svarKarakter = mysqli_fetch_assoc($utførSpørringMedKarakter);
     }
     $karakterSisteTilsynSnitt = $karakterSisteTilsyn/$teller;
     $bilde = smilefjesBilde($karakterSisteTilsynSnitt);
+    $mattilsynBilde = matTilsynetSmilefjes($matTilsynkarakter);
     /*Legger til alle resultater i en tabell*/
     echo "<tbody>";
     echo    "<tr class='clickable-link' data-href='/restaurantVisning/restaurant.php?res=$id' style='cursor:pointer'>";
     echo        "<td>$rNavn</td>";
     echo        "<td>$rAdresse</td>";
     echo        "<td>$rPoststed</td>";
-    echo        "<td><img id ='karakterSmil' src='$bilde' title='smilefjes' width= '25px' height='25px'</td>";
+    echo        "<td><img src='$bilde' title='Yoghurts smilefjes' width= '25px' height='25px'</td>";
+    echo        "<td><img src='$mattilsynBilde' title='Mattilsynets smilefjes' width= '25px' height='25px'</td>";
     echo    "</tr>";
     echo "</tbody>";
 }

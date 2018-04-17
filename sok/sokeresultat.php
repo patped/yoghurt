@@ -109,6 +109,7 @@ if (!isset($_GET['start']) || (!isset($_POST["søkeKnapp"]) && !isset($_SESSION[
                             <th>Adresse</th>
                             <th>Poststed</th>
                             <th>Smilefjes</th>
+                            <th>Mattilsynets<br>Smilefjes</th>
                         </thead>"
                 );
                     
