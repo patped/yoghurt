@@ -33,12 +33,14 @@ $db = kobleOpp();
 		    $svarAdminRes = mysqli_fetch_assoc($utførAdminRes);
 		    $testSvar = $svarAdminRes['@admin'];
 		    $_SESSION['adminrett'] = $testSvar;
-
+		    
     		if ($testSvar == false) {
-    			echo "<p><b>$brukernavn</b> har ikke administratorrettighet på denne nettsiden. Kontakt sjefen ;)</p>
-    				<p>Administrasjonsrettighet til <b>$brukernavn</b> er nå: $testSvar </p>
-    				<br><br><p><b>DET KAN VÆRE FORDI SLUTTDATOEN DIN HAR GÅTT UT PÅ PASSORDET I BASEN<b></p>" ;
-    				$_SESSION['loggetInn'] = false;
+    			$sideJegSkalTil = $_SESSION['sideJegSkalTil'];
+    			echo '<script language="javascript">';
+                echo 'alert("Du har mistet din Adminrett")';
+                echo '</script>';
+    			$_SESSION['loggetInn'] = true;
+    			header($sideJegSkalTil);
     		}else{
     			$sideSkalJegTil = $_SESSION['sideJegSkalTil'];
     			$_SESSION['loggInnAlert'] = true;
@@ -55,6 +57,7 @@ $db = kobleOpp();
 
 </main>
 <?php include_once '../div/footer.php'; ?>
+ <script type="text/javascript"src="jquery-3.2.0.js"></script>
 </body>
 </html>
 <?php
