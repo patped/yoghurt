@@ -32,21 +32,28 @@ function sjekkInnLogg($db, $brukernavn, $passord){
 
 function starAlertInnlogg(){
     if (isset($_SESSION['loggInnAlert'])) {
-            if ($_SESSION['loggInnAlert'] == true) {
-                $_SESSION['loggInnAlert'] = false;
-                echo '<script language="javascript">';
-                echo 'alert("Du er nå logget inn som administrator på nettsiden!")';
-                echo '</script>';
-            }
+        if ($_SESSION['loggInnAlert'] == true) {
+            $_SESSION['loggInnAlert'] = false;
+            echo '<script language="javascript">';
+            echo 'alert("Du er nå logget inn som administrator på nettsiden!")';
+            echo '</script>';
         }
+    }
+
     if (isset($_SESSION['altertFeilInnLogg'])) {
-    
         if ($_SESSION['altertFeilInnLogg'] == true) {
             $_SESSION['altertFeilInnLogg'] = false;
             echo '<script language="javascript">';
             echo 'alert("Du tastet feil brukernavn eller passord!")';
             echo '</script>';
         }
+    }
+
+    if (isset($_SESSION['adminrett']) && $_SESSION['adminrett'] == false) {
+        unset($_SESSION['adminrett']);
+        echo '<script language="javascript">';
+        echo 'alert("Du har ikke administratorrettigheter dette kan være fordi datoen har utløpt. Kontakt admin")';
+        echo '</script>';
     }
     
 }
@@ -57,7 +64,7 @@ function admin(){
         <div id="logginn">
         <div class="dropdown">
         <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">$bruker
-  <span class="caret"></span></button>
+        <span class="caret"></span></button>
         <ul class="dropdown-menu dropdown-menu-right pull-right">
         <li><a href="/admin/ny-bedrift.php">Legg til bedrift</a></li>
         <li><a href="/tilsynsrapport/endre.php">Legg til tilynsrapport</a></li>
