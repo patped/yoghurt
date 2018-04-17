@@ -32,7 +32,6 @@ $teller = 0;
 					echo $nav['orgnummer'];
 					echo "</a>";
 					echo "</li>";
-					echo "<br>";
 					
 		}
 		
