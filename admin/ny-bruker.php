@@ -24,6 +24,15 @@ include_once '../logginn/logginn.php';
 		starAlertInnlogg();
 		$side = 'Location: /admin/ny-bruker.php';
 		logginn($side);
+		
+		?>
+		<?php
+		if(!isset($_SESSION['adminrett']))
+			header('Location: /div/401.php');
+			if($_SESSION['adminrett']==false){
+				header ('Location: /div/401.php');
+		}
+
 		?>
 
 		<div class="jumbotron">
