@@ -131,74 +131,57 @@ function nesteForrigeSideButton($resultat, $sluttSøk, $nesteSide, $forrigeSide)
 }
 function sok() { // Setter en timer på id='sokeFelt' og d='spisestedSokefelt' fordi vi ellers ikke rekker å klikker på linken
     echo (
-        "<form action='/sok/sokeresultat.php?start=0' id='heleSokeTabellForm' method='POST' onsubmit='return sjekkForm()'>
-            <table id='sokeValg' class='table-padding'>
-                <input type='hidden' name='latitude' id='latitude' value=''>
-                <input type='hidden' name='longitude' id='longitude' value=''>
-                <tr>
-                    <td>
-                        <input type='hidden' name='latitude' id='latitude' value=''>
-                        <input type='hidden' name='longitude' id='longitude' value=''>
-                    </td>
-                </tr>
-                <tr>
-                    <td><label><input type='checkbox' onclick='orgKlikk()' name='orgnr' id='orgnr' value=''>Søk på organisasjonsnummer</label></td>
-                    <td><label><input type='checkbox' onclick='adresseKlikk()' name='adresse' id='adresse' value=''>Søk på adresse eller poststed</label></td>
-                    <td><label><input type='checkbox' onclick='restaurantKlikk()' name='restaurant' id='restaurant' value=''>Søk på spisested</label></td>
-                    <td><label id='geolokasjonTekst'><input type='checkbox' onclick='geoKlikk()' name='geolokasjon' id='geolokasjon' value=''>Søk på spisested i nærheten</label></td>
-                </tr> 
-                <tr>
-                    <td colspan='4'><input type='checkbox' onclick='katKlikk()' name='kategoriCheckbox' id='kategoriCheckbox'> 
-                    <label for='kategoriCheckbox'>Velg kategori </label></td>
-                </tr> 
-            </table>
+        "<form class='form-horizontal' action='/sok/sokeresultat.php?start=0' method='POST' onsubmit='return sjekkForm()'>
+            <input type='hidden' name='latitude' id='latitude' value=''>
+            <input type='hidden' name='longitude' id='longitude' value=''>
+            <div class='form-group'>
+                <label><input type='checkbox' onclick='orgKlikk()' name='orgnr' id='orgnr' value=''>Søk på organisasjonsnummer</label>
+                <label><input type='checkbox' onclick='adresseKlikk()' name='adresse' id='adresse' value=''>Søk på adresse eller poststed</label>
+                <label><input type='checkbox' onclick='restaurantKlikk()' name='restaurant' id='restaurant' value=''>Søk på spisested</label>
+                <label id='geolokasjonTekst'><input type='checkbox' onclick='geoKlikk()' name='geolokasjon' id='geolokasjon' value=''>Søk på spisested i nærheten</label> 
+            </div>
+            <div class='form-group'>
+                <input type='checkbox' onclick='katKlikk()' name='kategoriCheckbox' id='kategoriCheckbox'>
+                <label for='kategoriCheckbox'>Velg kategori </label>
+            </div>
+            <div class='form-group'>
+                <input type='radio' disabled name='kategori' id='italiensk' value='Italiensk' hidden=''> 
+                <label id='italienskL' hidden=''>Italiensk</label>
 
-            <table id='kategoriValg' class='table-padding'>
-                <tr>
-                    <td><input type='radio' disabled name='kategori' id='italiensk' value='Italiensk' hidden=''> 
-                    <label id='italienskL' hidden=''>Italiensk</label></td>
- 
-                    <td><input type='radio' disabled name='kategori' id='indisk' value='Indisk' hidden=''> 
-                    <label id='indiskL' hidden=''>Indisk</label> </td>
-         
-                    <td><input type='radio' disabled name='kategori' id='kinesisk' value='Kinesisk' hidden=''> 
-                    <label id='kinesiskL' hidden=''>Kinesisk</label> </td>
-         
-                    <td><input type='radio' disabled name='kategori' id='asiatisk' value='Annen Asiatisk' hidden=''> 
-                    <label id='asiatiskL' hidden=''>Annen Asiatisk</label> </td>
-         
-                    <td><input type='radio' disabled name='kategori' id='burger' value='Burger og Kebab' hidden=''> 
-                    <label id='burgerL' hidden=''>Burger og Kebab</label> </td>
-                </tr>
-            </table>
-            <table id='sokefeltOgLabels' class='table-padding'>
-                <div class='dropdown'>
-                    <tr>
-                        <td><label hidden='' id='spisestedLabel'>Spisested: </label></td>
-                        <td><input type='text' id='spisestedSokefelt' name='spisestedSokefelt' placeholder='Søk på navnet til spisested' onkeyup = 'visAjax(this.value)' onfocusout='setTimeout(fjernResultater, 100)'; hidden=''></td>
-                    </tr>
-                    <tr>
-                        <td><label hidden='' id='adresseLabel'>Adresse: </label><td>
-                            <input type='text' id='sokeFelt' name='Søkefelt' placeholder='Søk på navnet til spisested' hidden='' onkeyup= 'visAjax(this.value)' onfocusout='setTimeout(fjernResultater, 100)';>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan='2' style='padding: 0'>
-                            <div class='dropdown-content' id='dropdownDisplay' style='display:none'>
-                            <ul id='txtOrgUl'><p id='txtOrg'></p></ul>
-                        </td>
-                    </tr>
-
+                <input type='radio' disabled name='kategori' id='indisk' value='Indisk' hidden=''> 
+                <label id='indiskL' hidden=''>Indisk</label>
+        
+                <input type='radio' disabled name='kategori' id='kinesisk' value='Kinesisk' hidden=''> 
+                <label id='kinesiskL' hidden=''>Kinesisk</label>
+        
+                <input type='radio' disabled name='kategori' id='asiatisk' value='Annen Asiatisk' hidden=''> 
+                <label id='asiatiskL' hidden=''>Annen Asiatisk</label>
+        
+                <input type='radio' disabled name='kategori' id='burger' value='Burger og Kebab' hidden=''> 
+                <label id='burgerL' hidden=''>Burger og Kebab</label>
+            </div>
+            <div class='dropdown'>
+                <div class='form-group sokeFelt'>
+                    <label hidden='' id='spisestedLabel'>Spisested: </label>
+                    <input type='text' id='spisestedSokefelt' name='spisestedSokefelt' placeholder='Søk på navnet til spisested' onkeyup='visAjax(this.value)' hidden=''>
                 </div>
-                <tr>
-                    <td><label hidden='' id='poststedLabel'>Poststed: </label></td>
-                    <td><input type='text' id='poststedInput' name='poststedInput' placeholder='Poststed' hidden=''><br></td>
-                </tr>
-                <tr id='sokeKnappTr'>
-                    <td id='sokeKnappTd' colspan='2'><input type='submit' id='utforSok' name='søkeKnapp' value='Utfør søk' disabled></td>
-                </tr>
-            </table>
-
+                <div class='form-group sokeFelt'>
+                    <label hidden='' id='adresseLabel'>Adresse: </label>
+                    <input type='text' id='sokeFelt' name='Søkefelt' placeholder='Søk på navnet til spisested' hidden='' onkeyup='visAjax(this.value)'>
+                </div>
+                <div class='form-group sokeFelt'>
+                    <label hidden='' id='poststedLabel'>Poststed: </label>
+                    <input type='text' id='poststedInput' name='poststedInput' placeholder='Poststed' hidden=''>
+                    <div class='dropdown-content' id='dropdownDisplay' style='display:none'>
+                        <ul id='txtOrgUl'>
+                            <li id='txtOrg'></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class='form-group sokeFelt'>
+                <input type='submit' id='utforSok' name='søkeKnapp' value='Utfør søk' disabled>
+            </div>
         </form>"
     );
 }

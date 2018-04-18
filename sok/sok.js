@@ -1,4 +1,11 @@
 geolocationSupport();
+document.getElementById("sokeFelt").addEventListener("focusout", setFocusOut);
+document.getElementById("spisestedSokefelt").addEventListener("focusout", setFocusOut);
+
+function setFocusOut() {
+    setTimeout(fjernResultater, 200);
+}
+
 function sjekkForm(){
     var orgInnhold = document.getElementById("sokeFelt").value;
     if (document.getElementById("orgnr").checked && orgInnhold =="") {
@@ -275,9 +282,11 @@ function visAjax(input){
         visNavn(søkestring);
     }
 }
+
 function visSøkeFelt(){
     document.getElementById("søkeFeltDiv").style.display = "block";
 }
+
 function fjernResultater(){
 	document.getElementById("dropdownDisplay").style.display="none";
 }

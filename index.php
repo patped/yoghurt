@@ -12,9 +12,8 @@ require_once 'sok/sok.php';
     <title>Yoghurt</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="/sok/stil.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    
+    <link rel="stylesheet" href="/sok/stil.css">
 </head>
 <body>
     
@@ -36,7 +35,7 @@ require_once 'sok/sok.php';
             <?php sok(); ?>
  
         </div>
- 
+    </div>
     <?php include_once 'div/footer.php'; ?>
 
     <script src="sok/sok.js"></script>

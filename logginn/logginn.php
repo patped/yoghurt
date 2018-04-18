@@ -62,16 +62,15 @@ function admin(){
     $bruker = $_SESSION['bruker'];
     echo<<< EOT
         <div id="logginn">
-        <div class="dropdown">
-        <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">$bruker
-        <span class="caret"></span></button>
-        <ul class="dropdown-menu dropdown-menu-right pull-right">
-        <li><a href="/admin/ny-bedrift.php">Legg til bedrift</a></li>
-        <li><a href="/tilsynsrapport/endre.php">Legg til tilynsrapport</a></li>
-        <li><a href="/admin/ny-bruker.php">Legg til ny bruker</a></li>
-        <li><button type='button' class='btn btn-primary' id='loggUtKnapp' onclick="window.location.href='/logginn/loggut.php'">Logg Ut</button></li>
-        </ul>
-        </div>
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">$bruker<span class="caret"></span></button>
+                <ul class="dropdown-menu dropdown-menu-right pull-right">
+                    <li><a href="/admin/ny-bedrift.php">Legg til bedrift</a></li>
+                    <li><a href="/tilsynsrapport/endre.php">Legg til tilynsrapport</a></li>
+                    <li><a href="/admin/ny-bruker.php">Legg til ny bruker</a></li>
+                    <li><button type='button' class='btn btn-primary' id='loggUtKnapp' onclick="window.location.href='/logginn/loggut.php'">Logg Ut</button></li>
+                </ul>
+            </div>
         </div>
 EOT;
 }
