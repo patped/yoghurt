@@ -133,16 +133,14 @@ function sok() { // Setter en timer på id='sokeFelt' og d='spisestedSokefelt' f
     echo (
         "<form action='/sok/sokeresultat.php?start=0' id='heleSokeTabellForm' method='POST' onsubmit='return sjekkForm()'>
             <table id='sokeValg' class='table-responsive'>
+                <input type='hidden' name='latitude' id='latitude' value=''>
+                <input type='hidden' name='longitude' id='longitude' value=''>
                 <tr>
                     <td><label><input type='checkbox' onclick='orgKlikk()' name='orgnr' id='orgnr' value=''>Søk på organisasjonsnummer</label></td>
                     <td><label><input type='checkbox' onclick='adresseKlikk()' name='adresse' id='adresse' value=''>Søk på adresse eller poststed</label></td>
                     <td><label><input type='checkbox' onclick='restaurantKlikk()' name='restaurant' id='restaurant' value=''>Søk på spisested</label></td>
                     <td><label id='geolokasjonTekst'><input type='checkbox' onclick='geoKlikk()' name='geolokasjon' id='geolokasjon' value=''>Søk på spisested i nærheten</label></td>
-
-                    <input type='hidden' name='latitude' id='latitude' value=''>
-                    <input type='hidden' name='longitude' id='longitude' value=''>
-                </tr>
-
+                </tr> 
                 <tr>
                     <td colspan='4'><input type='checkbox' onclick='katKlikk()' name='kategoriCheckbox' id='kategoriCheckbox'> 
                     <label for='kategoriCheckbox'>Velg kategori </label></td>

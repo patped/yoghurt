@@ -57,7 +57,7 @@ function orgKlikk(){
     if(document.getElementById("orgnr").checked) {
     	document.getElementById("utforSok").disabled = false;
         document.getElementById("adresseLabel").hidden = false; 
-        document.getElementById("adresseLabel").innerHTML = "Organisasjonsnummer:";
+        document.getElementById("adresseLabel").innerHTML = "Organisasjonsnummer: ";
         document.getElementById("sokeFelt").pattern = "[0-9]{9}";
         document.getElementById("sokeFelt").title = "Et organisasjonsnummer består av 9 siffer";
         document.getElementById("adresse").checked = false;
@@ -76,7 +76,7 @@ function orgKlikk(){
     else{
     	document.getElementById("utforSok").disabled = true;
         document.getElementById("adresseLabel").hidden = true; 
-        document.getElementById("adresseLabel").innerHTML = "Organisasjonsnummer:"; 
+        document.getElementById("adresseLabel").innerHTML = "Organisasjonsnummer: "; 
         document.getElementById("sokeFelt").placeholder="Spisested";
         document.getElementById("sokeFelt").value = "";
         document.getElementById("sokeFelt").hidden = true;
@@ -97,7 +97,7 @@ function adresseKlikk(){
         document.getElementById("sokeFelt").hidden = false;
         document.getElementById("poststedLabel").hidden = false;
         document.getElementById("adresseLabel").hidden = false;
-        document.getElementById("adresseLabel").innerHTML = "Adresse";
+        document.getElementById("adresseLabel").innerHTML = "Adresse: ";
         document.getElementById("poststedInput").hidden = false;
         document.getElementById("geolokasjon").checked = false;
     }else{
@@ -122,7 +122,7 @@ function restaurantKlikk(){
              document.getElementById("sokeFelt").hidden = true;
         } 
     if(document.getElementById("restaurant").checked) {
-        document.getElementById("adresseLabel").innerHTML = "Adresse"; 
+        document.getElementById("adresseLabel").innerHTML = "Adresse: "; 
     	document.getElementById("utforSok").disabled = false;
         document.getElementById("orgnr").checked = false;
         document.getElementById("spisestedLabel").hidden = false;
