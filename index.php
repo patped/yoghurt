@@ -12,7 +12,7 @@ require_once 'sok/sok.php';
     <title>Yoghurt</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bibloteker/bootstrap-3.3.7-dist/css/bootstrap.min.css"> 
     <link rel="stylesheet" href="/sok/stil.css">
 </head>
 <body>
@@ -39,7 +39,7 @@ require_once 'sok/sok.php';
     <?php include_once 'div/footer.php'; ?>
 
     <script src="sok/sok.js"></script>
-    <script src="/bibloteker/jquery/jquery-3.3.1.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/bibloteker/jquery/jquery-3.3.1.min.js"></script>
+    <script src="/bibloteker/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
 </body>
 </html>

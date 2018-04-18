@@ -11,7 +11,7 @@ $db = kobleOpp();
   <title>Restauranter</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/bibloteker/bootstrap-3.3.7-dist/css/bootstrap.min.css"> 
   <link rel="stylesheet" type="text/css" href="restaurantVisning.css">
 </head>
     <body>
@@ -156,7 +156,7 @@ EOT;
         <?php include_once '../div/footer.php'; ?>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCG_9QaZStF7k76o_tBYtuA3J89WnQXedQ&callback=initMap"></script>
         <script src="restaurantVisningJS.js"></script>
-        <script src="/bibloteker/jquery/jquery-3.3.1.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="/bibloteker/jquery/jquery-3.3.1.min.js"></script>
+        <script src="/bibloteker/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     </body>
 </html>
