@@ -134,15 +134,17 @@ function sok() { // Setter en timer på id='sokeFelt' og d='spisestedSokefelt' f
         "<form action='/sok/sokeresultat.php?start=0' id='heleSokeTabellForm' method='POST' onsubmit='return sjekkForm()'>
             <table id='sokeValg' class='table-responsive'>
                 <tr>
+                    <td>
+                        <input type='hidden' name='latitude' id='latitude' value=''>
+                        <input type='hidden' name='longitude' id='longitude' value=''>
+                    </td>
+                </tr>
+                <tr>
                     <td><label><input type='checkbox' onclick='orgKlikk()' name='orgnr' id='orgnr' value=''>Søk på organisasjonsnummer</label></td>
                     <td><label><input type='checkbox' onclick='adresseKlikk()' name='adresse' id='adresse' value=''>Søk på adresse eller poststed</label></td>
                     <td><label><input type='checkbox' onclick='restaurantKlikk()' name='restaurant' id='restaurant' value=''>Søk på spisested</label></td>
                     <td><label id='geolokasjonTekst'><input type='checkbox' onclick='geoKlikk()' name='geolokasjon' id='geolokasjon' value=''>Søk på spisested i nærheten</label></td>
-
-                    <input type='hidden' name='latitude' id='latitude' value=''>
-                    <input type='hidden' name='longitude' id='longitude' value=''>
-                </tr>
-
+                </tr> 
                 <tr>
                     <td colspan='4'><input type='checkbox' onclick='katKlikk()' name='kategoriCheckbox' id='kategoriCheckbox'> 
                     <label for='kategoriCheckbox'>Velg kategori </label></td>
@@ -151,19 +153,19 @@ function sok() { // Setter en timer på id='sokeFelt' og d='spisestedSokefelt' f
 
             <table id='kategoriValg' class='table-responsive'>
                 <tr>
-                    <td><input type='radio' disabled='true' name='kategori' id='italiensk' value='Italiensk' hidden=''> 
+                    <td><input type='radio' disabled name='kategori' id='italiensk' value='Italiensk' hidden=''> 
                     <label id='italienskL' hidden=''>Italiensk</label></td>
  
-                    <td><input type='radio' disabled='true' name='kategori' id='indisk' value='Indisk' hidden=''> 
+                    <td><input type='radio' disabled name='kategori' id='indisk' value='Indisk' hidden=''> 
                     <label id='indiskL' hidden=''>Indisk</label> </td>
          
-                    <td><input type='radio' disabled='true' name='kategori' id='kinesisk' value='Kinesisk' hidden=''> 
+                    <td><input type='radio' disabled name='kategori' id='kinesisk' value='Kinesisk' hidden=''> 
                     <label id='kinesiskL' hidden=''>Kinesisk</label> </td>
          
-                    <td><input type='radio' disabled='true' name='kategori' id='asiatisk' value='Annen Asiatisk' hidden=''> 
+                    <td><input type='radio' disabled name='kategori' id='asiatisk' value='Annen Asiatisk' hidden=''> 
                     <label id='asiatiskL' hidden=''>Annen Asiatisk</label> </td>
          
-                    <td><input type='radio' disabled='true' name='kategori' id='burger' value='Burger og Kebab' hidden=''> 
+                    <td><input type='radio' disabled name='kategori' id='burger' value='Burger og Kebab' hidden=''> 
                     <label id='burgerL' hidden=''>Burger og Kebab</label> </td>
                 </tr>
             </table>
@@ -191,7 +193,7 @@ function sok() { // Setter en timer på id='sokeFelt' og d='spisestedSokefelt' f
                     <td><input type='text' id='poststedInput' name='poststedInput' placeholder='Poststed' hidden=''><br></td>
                 </tr>
                 <tr id='sokeKnappTr'>
-                    <td id='sokeKnappTd' colspan='2'><input type='submit' id='utforSok' name='søkeKnapp' value='Utfør søk' disabled='true'></td>
+                    <td id='sokeKnappTd' colspan='2'><input type='submit' id='utforSok' name='søkeKnapp' value='Utfør søk' disabled></td>
                 </tr>
             </table>
 

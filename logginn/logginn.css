@@ -4,6 +4,7 @@
     top: 8px;
     font-size: 10px;
     background-color: #558ebf;
+    z-index: 1;
 }
 
 #resultatTabell{
@@ -24,4 +25,8 @@
 
 #mgli {
     margin-left: 5px;
+}
+#loggUtKnapp{
+    display: block;
+    margin:auto;
 }
