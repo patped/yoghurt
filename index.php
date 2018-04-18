@@ -29,7 +29,7 @@ require_once 'sok/sok.php';
             <h1>Hvilken smiley har bedriften fått?</h1>
         </div>
         
-        <h2>Velg hva du vil søke på?</h2>
+        <h2>Velg hva du ønsker å søke på</h2>
         
         <div class="container text-center">
  

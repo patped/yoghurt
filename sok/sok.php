@@ -151,31 +151,31 @@ function sok() { // Setter en timer på id='sokeFelt' og d='spisestedSokefelt' f
 
             <table id='kategoriValg' class='table-responsive'>
                 <tr>
-                    <td><input type='radio' disabled='true' name='kategori' id='italiensk' value='Italiensk' hidden='true'> 
-                    <label id='italienskL' hidden='true'>Italiensk</label></td>
+                    <td><input type='radio' disabled='true' name='kategori' id='italiensk' value='Italiensk' hidden=''> 
+                    <label id='italienskL' hidden=''>Italiensk</label></td>
  
-                    <td><input type='radio' disabled='true' name='kategori' id='indisk' value='Indisk' hidden='true'> 
-                    <label id='indiskL' hidden='true'>Indisk</label> </td>
+                    <td><input type='radio' disabled='true' name='kategori' id='indisk' value='Indisk' hidden=''> 
+                    <label id='indiskL' hidden=''>Indisk</label> </td>
          
-                    <td><input type='radio' disabled='true' name='kategori' id='kinesisk' value='Kinesisk' hidden='true'> 
-                    <label id='kinesiskL' hidden='true'>Kinesisk</label> </td>
+                    <td><input type='radio' disabled='true' name='kategori' id='kinesisk' value='Kinesisk' hidden=''> 
+                    <label id='kinesiskL' hidden=''>Kinesisk</label> </td>
          
-                    <td><input type='radio' disabled='true' name='kategori' id='asiatisk' value='Annen Asiatisk' hidden='true'> 
-                    <label id='asiatiskL' hidden='true'>Annen Asiatisk</label> </td>
+                    <td><input type='radio' disabled='true' name='kategori' id='asiatisk' value='Annen Asiatisk' hidden=''> 
+                    <label id='asiatiskL' hidden=''>Annen Asiatisk</label> </td>
          
-                    <td><input type='radio' disabled='true' name='kategori' id='burger' value='Burger og Kebab' hidden='true'> 
-                    <label id='burgerL' hidden='true'>Burger og Kebab</label> </td>
+                    <td><input type='radio' disabled='true' name='kategori' id='burger' value='Burger og Kebab' hidden=''> 
+                    <label id='burgerL' hidden=''>Burger og Kebab</label> </td>
                 </tr>
             </table>
             <table id='sokefeltOgLabels' class='table-responsive'>
                 <div class='dropdown'>
                     <tr>
-                        <td><label hidden='true' id='spisestedLabel'>Spisested: </label></td>
-                        <td><input type='text' id='spisestedSokefelt' name='spisestedSokefelt' placeholder='Søk på navnet til spisested' onkeyup = 'visAjax(this.value)' onfocusout='setTimeout(fjernResultater, 100)'; hidden='true'></td>
+                        <td><label hidden='' id='spisestedLabel'>Spisested: </label></td>
+                        <td><input type='text' id='spisestedSokefelt' name='spisestedSokefelt' placeholder='Søk på navnet til spisested' onkeyup = 'visAjax(this.value)' onfocusout='setTimeout(fjernResultater, 100)'; hidden=''></td>
                     </tr>
                     <tr>
-                        <td><label hidden='true' id='adresseLabel'>Adresse: </label><td>
-                            <input type='text' id='sokeFelt' name='Søkefelt' placeholder='Søk på navnet til spisested' hidden='true' onkeyup= 'visAjax(this.value)' onfocusout='setTimeout(fjernResultater, 100)';>
+                        <td><label hidden='' id='adresseLabel'>Adresse: </label><td>
+                            <input type='text' id='sokeFelt' name='Søkefelt' placeholder='Søk på navnet til spisested' hidden='' onkeyup= 'visAjax(this.value)' onfocusout='setTimeout(fjernResultater, 100)';>
                         </td>
                     </tr>
                     <tr>
@@ -187,8 +187,8 @@ function sok() { // Setter en timer på id='sokeFelt' og d='spisestedSokefelt' f
 
                 </div>
                 <tr>
-                    <td><label hidden='true' id='poststedLabel'>Poststed: </label></td>
-                    <td><input type='text' id='poststedInput' name='poststedInput' placeholder='Poststed' hidden='true'><br></td>
+                    <td><label hidden='' id='poststedLabel'>Poststed: </label></td>
+                    <td><input type='text' id='poststedInput' name='poststedInput' placeholder='Poststed' hidden=''><br></td>
                 </tr>
                 <tr id='sokeKnappTr'>
                     <td id='sokeKnappTd' colspan='2'><input type='submit' id='utforSok' name='søkeKnapp' value='Utfør søk' disabled='true'></td>
