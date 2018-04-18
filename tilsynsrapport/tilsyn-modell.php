@@ -49,7 +49,7 @@ function adminrett($tilsynsrapport){
     if(isset($_SESSION['adminrett']) && $_SESSION['adminrett']) {
         echo <<< EOT
         <h3>ID: $tilsynsrapport->tilsynid</h3><br>
-        <a href='endre.php?tilsynid=$tilsynsrapport->tilsynid'><button type='button'>Oppdater</button></a></h2><br>
+        <button type="button" onclick="window.location='endre.php?tilsynid=$tilsynsrapport->tilsynid'">Oppdater</button>
 EOT;
     }
 }
