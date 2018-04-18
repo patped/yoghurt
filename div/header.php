@@ -16,6 +16,6 @@
 <script src="/logginn/loginn.js"></script>
 <div id="wrapper">
 	<header>
-		<button id="tilbake" onClick="goBack()"><img onmouseover="hover(this)" onmouseout="hoverOut(this)" style="height: 30px;" src="/bilder/backButton.png"></button>
-		<a id="link" href ="/index.php" ><img id="logo" src="/bilder/logoNy.png" ></a>
+		<button id="tilbake" onClick="goBack()"><img alt="Tilbakeknapp" onmouseover="hover(this)" onmouseout="hoverOut(this)" style="height: 30px;" src="/bilder/backButton.png"></button>
+		<a id="link" href ="/index.php" ><img alt="logo" id="logo" src="/bilder/logoNy.png" ></a>
 	</header>

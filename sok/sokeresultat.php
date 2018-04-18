@@ -11,7 +11,7 @@ if (!isset($_GET['start']) || (!isset($_POST["søkeKnapp"]) && !isset($_SESSION[
 <!doctype html>
 <html>
 <head>
-  <title>Yoghurt</title>
+  <title>Søkeresultater</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
