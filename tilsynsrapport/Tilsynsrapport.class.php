@@ -3,7 +3,7 @@ require_once '../div/database.php';
 require_once 'Kravpunkt.class.php';
 
 class Tilsynsrapport {
-    public $restaurant = "";
+    public $restaurant = "Ny tilsynsraport";
     public $tilsynsobjektid = "";
     public $tilsynid = "";
     public $sakref = "";
