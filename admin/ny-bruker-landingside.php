@@ -10,6 +10,7 @@ $db = kobleOpp();
 ?>
 
 <!doctype html>
+<html lang="no">
 <head>
 	<title>Yoghurt</title>
 	<meta charset="utf-8">
@@ -46,8 +47,8 @@ $db = kobleOpp();
 				echo <<<EOT
 				<div class="container text-center">
 					<h1>Suksess</h1>
-					<table class='table table-hover'>
 					<h2>Du har registrert følgende bruker: </h2>
+					<table class='table table-hover'>
 
 						
 					
