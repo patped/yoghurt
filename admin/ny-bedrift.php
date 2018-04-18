@@ -32,15 +32,10 @@ if(!$_SESSION['loggetInn']) {
 			<h1>Legg til ny bedrift</h1>
 		</div>
 		<h2 class="text-center">Fyll ut skjema</h2>
-
 		<form method="POST" action="ny-bedrift-kontroller.php">
 			<div class="table-responsive">
 				<div class="col-xs-4 col-xs-offset-4">
 					<table class="table">
-						<thead>
-							<th></th>
-							<th></th>
-						</thead>
 						<tbody>
 							<tr>
 								<td>TilsynsobjektID:</td>

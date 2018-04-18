@@ -78,7 +78,7 @@ if (!isset($_GET['start']) || (!isset($_POST["søkeKnapp"]) && !isset($_SESSION[
             $hvordanSøk = "rest";
         }
         echo "<div class='container text-center'>";
-        echo "<button type='button' onclick='visSøkeFelt()' id='søkPåNytt' class='btn btn-primary'><h2 id='søkPåNyttTekst'>Søk på nytt?</h2></button>";
+        echo "<button type='button' onclick='visSøkeFelt()' id='søkPåNytt' class='btn btn-primary'>Søk på nytt?</button>";
         echo "<div id='søkeFeltDiv' style='display:none'>";
         sok();
         echo "</div></div>";
@@ -147,7 +147,7 @@ if (!isset($_POST["søkeKnapp"])) {
     if (isset($_SESSION['tidligereSøk'])) { // Hvis søkeknappen ikke er trykket på, men et tidligere søk er utført
     	//Dette kan skje om man for eksempel bruker tilbakeknappen eller neste 10 resultater.
     	echo "<div class='container text-center'>";
-        echo "<button type='button' onclick='visSøkeFelt()' id='søkPåNytt' class='btn btn-primary'><h2 id='søkPåNyttTekst'>Søk på nytt?</h2></button>";
+        echo "<button type='button' onclick='visSøkeFelt()' id='søkPåNytt' class='btn btn-primary'>Søk på nytt?</button>";
         echo "<div id='søkeFeltDiv' style='display:none'>";
         sok();
         echo "</div>";
