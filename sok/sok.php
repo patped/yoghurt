@@ -147,7 +147,7 @@ function sok() { // Setter en timer på id='sokeFelt' og d='spisestedSokefelt' f
                 </tr> 
             </table>
 
-            <table id='kategoriValg'>
+            <table id='kategoriValg' class='table-padding'>
                 <tr>
                     <td><input type='radio' disabled='true' name='kategori' id='italiensk' value='Italiensk' hidden=''> 
                     <label id='italienskL' hidden=''>Italiensk</label></td>
@@ -165,7 +165,7 @@ function sok() { // Setter en timer på id='sokeFelt' og d='spisestedSokefelt' f
                     <label id='burgerL' hidden=''>Burger og Kebab</label> </td>
                 </tr>
             </table>
-            <table id='sokefeltOgLabels'>
+            <table id='sokefeltOgLabels' class='table-padding'>
                 <div class='dropdown'>
                     <tr>
                         <td><label hidden='' id='spisestedLabel'>Spisested: </label></td>
@@ -177,7 +177,7 @@ function sok() { // Setter en timer på id='sokeFelt' og d='spisestedSokefelt' f
                         </td>
                     </tr>
                     <tr>
-                        <td colspan='2'>
+                        <td colspan='2' style='padding: 0'>
                             <div class='dropdown-content' id='dropdownDisplay' style='display:none'>
                             <ul id='txtOrgUl'><p id='txtOrg'></p></ul>
                         </td>
