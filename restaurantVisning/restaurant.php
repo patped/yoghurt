@@ -6,7 +6,7 @@ require_once '../logginn/logginn.php';
 $db = kobleOpp();
 ?>
 <!doctype html>
-<html>
+<html lang="no">
 <head>
   <title>Restauranter</title>
   <meta charset="utf-8">
@@ -52,7 +52,7 @@ $db = kobleOpp();
                     <div id='venstreTabell' class='col-xs-2 col-xs-offset-1'>
                     <div class='table-responsive'>
                     <table class='table table-hover'>
-                        <th>Kompi Kvalitet:</th>";
+                        <tr><th>Kompi Kvalitet:</th></tr>";
                     /* Legger til Smilefjes-karakter*/
                     $sqlSpørringHenteKarakter = tilsynsrapportSpørring();
                     $stmt = mysqli_prepare($db, $sqlSpørringHenteKarakter);
@@ -72,8 +72,8 @@ $db = kobleOpp();
                     $bilde = bildeSnittKarakter($karakterSisteTilsynSnitt);
                     
                     echo "
-                     <tr><td><img alt='smilefjes' id ='smileBilde' src='$bilde' title='smilefjes' width= '150px' onmouseover='visKarakterInfo()' onmouseout='skjulKarakterInfo()'></td></tr>
-                     <tr><td><h4 id='hoverText' style='display:none'></h4></td></tr>
+                     <tr><td><img alt='smilefjes' id ='smileBilde' src='$bilde' title='smilefjes' width= '150' onmouseover='visKarakterInfo()' onmouseout='skjulKarakterInfo()'></td></tr>
+                     <tr><td><h4 id='hoverText' style='display:none'>abc</h4></td></tr>
                     </table>
                     </div>
                 </div>
@@ -115,9 +115,9 @@ $db = kobleOpp();
                         $tilsynid = $svarTilsynsrapport['tilsynid'];
                         echo (
                             "<tr>
-                                <td><a href='../tilsynsrapport/tilsyn.php?tilsynid=$tilsynid'>$dag.$måned.$år</td>
+                                <td><a href='../tilsynsrapport/tilsyn.php?tilsynid=$tilsynid'>$dag.$måned.$år</a></td>
                                 <td>$karakter</td>
-                                <td><a href='../tilsynsrapport/tilsyn.php?tilsynid=$tilsynid'><img alt='smilefjes' id ='smileBilde' src='$mattilsynetSmil' title='smilefjes' width= '35px'></td>
+                                <td><a href='../tilsynsrapport/tilsyn.php?tilsynid=$tilsynid'><img alt='smilefjes' src='$mattilsynetSmil' title='smilefjes' width= '35'></a></td>
                             </tr>"
                         );
                         $svarTilsynsrapport = mysqli_fetch_assoc($svar);
@@ -134,15 +134,17 @@ $db = kobleOpp();
                         echo "<br><br><h3 id='obsMelding'>OBS! Det er mer enn 6 måneder siden siste tilsyn</h3>";
                         if (isset($_SESSION['loggetInn'])) {
                             if ($_SESSION['loggetInn'] == true) { // Dersom logget inn, få knapp til å legge inn ny tilsynsrapport med en gang.
-                            echo "<a href='/tilsynsrapport/endre.php'><button type='button'>Legg til ny rapport</button></a>";
+                            echo <<<EOT
+                            <button type='button' onclick="window.location.href='/tilsynsrapport/endre.php'">Legg til ny rapport</button>
+EOT;
                             }
                         }
                     }
                     echo "
                     </div>
                     <div id='kart' class='col-xs-4'>
-                      <div id='map' hidden='true'></div>
-                    </div>";
+                      <div id='map' hidden=''></div>
+                    </div></div>";
                     /*Legger til script for å vise Google Map*/
                     include_once 'googleMaps.php';
             } else {
@@ -151,10 +153,7 @@ $db = kobleOpp();
         }   
         mysqli_close($db);
         ?>
-        </main>
         <?php include_once '../div/footer.php'; ?>
-
-
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCG_9QaZStF7k76o_tBYtuA3J89WnQXedQ&callback=initMap"></script>
         <script src="restaurantVisningJS.js"></script>
         <script src="/bibloteker/jquery/jquery-3.3.1.js"></script>
