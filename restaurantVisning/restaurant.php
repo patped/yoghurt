@@ -51,7 +51,7 @@ $db = kobleOpp();
                 echo "<div class='container-fluid padding0 text-center'>
                     <div id='venstreTabell' class='col-xs-2 col-xs-offset-1'>
                     <div class='table-responsive'>
-                    <table class='table table-hover'>
+                    <table class='table'>
                         <tr><th>Kompi Kvalitet:</th></tr>";
                     /* Legger til Smilefjes-karakter*/
                     $sqlSpørringHenteKarakter = tilsynsrapportSpørring();
@@ -73,7 +73,7 @@ $db = kobleOpp();
                     
                     echo "
                      <tr><td><img alt='smilefjes' id ='smileBilde' src='$bilde' title='smilefjes' width= '150' onmouseover='visKarakterInfo()' onmouseout='skjulKarakterInfo()'></td></tr>
-                     <tr><td><h4 id='hoverText' style='display:none'>abc</h4></td></tr>
+                     <tr><td><h4 id='hoverText' style='display:none'>$karakterSisteTilsynSnitt</h4></td></tr>
                     </table>
                     </div>
                 </div>
@@ -87,7 +87,7 @@ $db = kobleOpp();
                     $svar = mysqli_stmt_get_result($stmt);
                     $svarTilsynsrapport = mysqli_fetch_assoc($svar);
                     echo (
-                        "<table id='infoTabell' class='table table-hover text-center'>
+                        "<table id='infoTabell' class='table text-center'>
                             <thead>
                                 <tr>
                                     <th class='thMidt'>Dato for rapport</th>
