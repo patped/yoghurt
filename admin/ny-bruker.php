@@ -9,6 +9,7 @@ include_once '../logginn/logginn.php';
 ?>
 
 <!doctype html>
+<html lang="no">
 
 <head>
 	<title>Ny bruker</title>
@@ -38,8 +39,6 @@ include_once '../logginn/logginn.php';
 				<div class="col-xs-4 col-xs-offset-4">
 					<table class="table">
 						<thead>
-							<th></th>
-							<th></th>
 						</thead>
 						<tbody>
 							<tr>
@@ -60,7 +59,7 @@ include_once '../logginn/logginn.php';
 							</tr>
 							<tr>
 								<td></td>
-								<td><input type="submit" name="registrer" value="Registrer" class="pull-right"></p></td>
+								<td><input type="submit" name="registrer" value="Registrer" class="pull-right"></td>
 							</tr>
 						</tbody>
 					</table>
