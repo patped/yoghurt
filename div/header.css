@@ -55,11 +55,10 @@ footer {
 	color: #FFF;
 	background-color: #337ab7;
 	width: 100%;
-	text-align: center;
+  text-align: center;
 }
-#footer{
-  min-height: 30px;
-  bottom: 0;
+#paddingBottom {
+  padding-bottom: 40px;
 }
 
 .jumbotron {
