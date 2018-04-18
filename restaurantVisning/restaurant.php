@@ -135,7 +135,7 @@ $db = kobleOpp();
                         if (isset($_SESSION['loggetInn'])) {
                             if ($_SESSION['loggetInn'] == true) { // Dersom logget inn, få knapp til å legge inn ny tilsynsrapport med en gang.
                             echo <<<EOT
-                            <button type='button' onclick="window.location.href='/tilsynsrapport/endre.php'">Legg til ny rapport</button>
+                            <button type='button' onclick="window.location.href='/tilsynsrapport/endre.php?tilsynsobjektid=$id'">Legg til ny rapport</button>
 EOT;
                             }
                         }
