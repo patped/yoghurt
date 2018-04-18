@@ -27,10 +27,12 @@ function tilsynsrapport($tilsynsrapport) {
             "<div class='page-header'> <h3>$tema</h3> </div>
             <table class='table'>
                 <thead>
-                    <th class='col-xs-1'>#</th>
-                    <th class='col-xs-5'>Kravpunktnavn</th>
-                    <th class='col-xs-1'>Karakter</th>
-                    <th class='col-xs-5'>Kommentar</th>
+                    <tr>
+                        <th class='col-xs-1'>#</th>
+                        <th class='col-xs-5'>Kravpunktnavn</th>
+                        <th class='col-xs-1'>Karakter</th>
+                        <th class='col-xs-5'>Kommentar</th>
+                    </tr>
                 </thead>
                 <tbody>"
         );
