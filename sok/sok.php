@@ -171,11 +171,11 @@ function sok() { // Setter en timer på id='sokeFelt' og d='spisestedSokefelt' f
                 <div class='dropdown'>
                     <tr>
                         <td><label hidden='' id='spisestedLabel'>Spisested: </label></td>
-                        <td><input type='text' id='spisestedSokefelt' name='spisestedSokefelt' placeholder='Søk på navnet til spisested' onkeyup = 'visAjax(this.value)' onfocusout='setTimeout(fjernResultater, 100)'; hidden=''></td>
+                        <td><input type='text' id='spisestedSokefelt' name='spisestedSokefelt' placeholder='Søk på navnet til spisested' onkeyup = 'visAjax(this.value)'onfocusout='setTimeout(fjernResultater, 200)'; hidden=''></td>
                     </tr>
                     <tr>
                         <td><label hidden='' id='adresseLabel'>Adresse: </label><td>
-                            <input type='text' id='sokeFelt' name='Søkefelt' placeholder='Søk på navnet til spisested' hidden='' onkeyup= 'visAjax(this.value)' onfocusout='setTimeout(fjernResultater, 100)';>
+                            <input type='text' id='sokeFelt' name='Søkefelt' placeholder='Søk på navnet til spisested' hidden='' onkeyup= 'visAjax(this.value)' onfocusout='setTimeout(fjernResultater, 200)';>
                         </td>
                     </tr>
                     <tr>
