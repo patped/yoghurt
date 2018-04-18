@@ -71,3 +71,8 @@ footer {
 .padding0 {
   padding-left: 0;
 }
+
+.centerLgIn {
+  display: block;
+  margin: auto;
+}

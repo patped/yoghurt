@@ -11,7 +11,7 @@ if(!$_SESSION['loggetInn']) {
 <!doctype html>
 <html lang="no">
 <head>
-	<title>Yoghurt</title>
+	<title>Ny bedrift</title>
   	<meta charset="utf-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1">
   	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> 

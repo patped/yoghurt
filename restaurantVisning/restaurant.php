@@ -8,7 +8,7 @@ $db = kobleOpp();
 <!doctype html>
 <html>
 <head>
-  <title>Yoghurt</title>
+  <title>Restauranter</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -72,7 +72,7 @@ $db = kobleOpp();
                     $bilde = bildeSnittKarakter($karakterSisteTilsynSnitt);
                     
                     echo "
-                     <tr><td><img id ='smileBilde' src='$bilde' title='smilefjes' width= '150px' onmouseover='visKarakterInfo()' onmouseout='skjulKarakterInfo()'></td></tr>
+                     <tr><td><img alt='smilefjes' id ='smileBilde' src='$bilde' title='smilefjes' width= '150px' onmouseover='visKarakterInfo()' onmouseout='skjulKarakterInfo()'></td></tr>
                      <tr><td><h4 id='hoverText' style='display:none'></h4></td></tr>
                     </table>
                     </div>
@@ -117,7 +117,7 @@ $db = kobleOpp();
                             "<tr>
                                 <td><a href='../tilsynsrapport/tilsyn.php?tilsynid=$tilsynid'>$dag.$måned.$år</td>
                                 <td>$karakter</td>
-                                <td><a href='../tilsynsrapport/tilsyn.php?tilsynid=$tilsynid'><img id ='smileBilde' src='$mattilsynetSmil' title='smilefjes' width= '35px'></td>
+                                <td><a href='../tilsynsrapport/tilsyn.php?tilsynid=$tilsynid'><img alt='smilefjes' id ='smileBilde' src='$mattilsynetSmil' title='smilefjes' width= '35px'></td>
                             </tr>"
                         );
                         $svarTilsynsrapport = mysqli_fetch_assoc($svar);

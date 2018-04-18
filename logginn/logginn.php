@@ -82,16 +82,16 @@ function loggeinn(){
     echo<<< EOT
         <div id="logginn">
             <div class="dropdown">
-            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Logg Inn <span class="caret"></span></button>
-            <ul class="dropdown-menu dropdown-menu-right pull-right">
-            <h4 id="mgli"> Logg inn</h4>
-            <li><form method="POST" action="/logginn/logginn-landingside.php" onsubmit="return sjekkInnhold()"></li>
-            <li><input type="text" name="brukernavn" placeholder="Brukernavn" id="brukernavn"  style="margin-top: 5px"></li>
-            <input type="password" name="passord" placeholder="Passord" id="pass" style="margin-top: 5px">
-            <li><input id="liBtn" type="submit" name="submit" value=" Logg inn " style=" width: 80px; height: 30px"></li>
-            </form>
-            </ul>
-        </div>
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> Logg inn <span class="caret"></span></button>
+                <div class="dropdown-menu dropdown-menu-right pull-right ">
+                    <p class="text-center">Logg inn</p>
+                    <form method="POST" action="/logginn/logginn-landingside.php" onsubmit="return sjekkInnhold()">
+                        <input class="centerLgIn" type="text" name="brukernavn" placeholder="Brukernavn" id="brukernavn"  style="margin-top: 5px">
+                        <input class="centerLgIn" type="password" name="passord" placeholder="Passord" id="pass" style="margin-top: 5px">
+                        <input id="liBtn" type="submit" name="submit" value=" Logg inn " style=" width: 80px; height: 30px">
+                    </form>
+                </div>
+            </div>
         </div>
 EOT;
 }
