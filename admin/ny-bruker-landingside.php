@@ -16,6 +16,14 @@ $db = kobleOpp();
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <style type="text/css">
+    	#nyBrukerError{
+    		text-align: center;
+    	}
+    	#tabellError{
+    		margin: auto;
+    	}
+    </style>
 </head>
 <body>
 	<?php
@@ -43,8 +51,28 @@ $db = kobleOpp();
 				mysqli_stmt_bind_param($stmt, 'sss' , $brukerNavn, $passord, $tlf);
 				mysqli_stmt_execute($stmt);
 				$error = mysqli_stmt_error($stmt);
-				if(!$error){
+				if (mysqli_errno($db)<> 0) {
+					$errno = mysqli_errno($db);
+					$sqlstate = mysqli_sqlstate($db);
+					$sqlerror = mysqli_error($db);
+					echo <<<EOT
+					<div class='jumbotron'>
+					<h1 class='text-center'>Feil ved brukernavn</h1>	
+					</div>
+					<div id='nyBrukerError'><table id='tabellError' class='table-striped'><tr><th>Feil oppstått</th><th>Feilkoden</th></tr>
+					<tr><td>$sqlerror</td><td>$sqlstate</td></tr>
+					<tr><td colspan='2'><button type='button' onclick="window.location.href='/admin/ny-bruker.php'">Prøv på nytt</td></tr></table></div>"
+EOT;
+
+				}
+
+
+
+				else if(!$error){
 				echo <<<EOT
+				<div class="jumbotron">
+			<h1 class="text-center">Suksess!</h1>	
+			</div>
 				<div class="container text-center">
 					<h1>Suksess</h1>
 					<h2>Du har registrert følgende bruker: </h2>
@@ -71,8 +99,11 @@ EOT;
 }
 else if($error){
 	echo <<<EOT
+	<div class="jumbotron">
+			<h1 class="text-center">Noe gikk galt</h1>	
+		</div>
 	<p>Ooops, her skjedde det noe feil og bruker er ikke registrert</p>
-	<a href="ny-bruker.php">Prøv på nytt</a>
+	
 EOT;
 }
 }
