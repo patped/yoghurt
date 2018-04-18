@@ -109,7 +109,7 @@ if (!isset($_GET['start']) || (!isset($_POST["søkeKnapp"]) && !isset($_SESSION[
                             <th>Navn</th>
                             <th>Adresse</th>
                             <th>Poststed</th>
-                            <th>Smilefjes</th>
+                            <th>Yoghurtsmil</th>
                             <th>Mattilsynets<br>Smilefjes</th>
                         </thead>"
                 );
@@ -188,7 +188,8 @@ if (!isset($_POST["søkeKnapp"])) {
                             <th>Navn</th>
                             <th>Adresse</th>
                             <th>Poststed</th>
-                            <th>Smilefjes</th>
+                            <th>Yoghurtsmil</th>
+                            <th>Mattilsynets<br>Smilefjes</th>
                         </thead>"
                 );
                 // Her kunne vi lagt inn LIMIT i spørringene til SQL istedet for å kjøre gjennom
