@@ -13,7 +13,7 @@ $tilsynid = false;
 $tilsynsobjektid = false;
 if (isset($_GET['tilsynsobjektid'])) {
 	$tilsynsobjektid = $_GET['tilsynsobjektid'];
-	$tilsynsrapport = Tilsynsrapport::medTilsynsobjektid($tilsynsobjektid);
+	$tilsynsrapport = Tilsynsrapport::medTilsynobjektid($tilsynsobjektid);
 } else if (isset($_SESSION['tilsynsrapport']) && isset($_GET['tilsynid'])) {
 	$tilsynid = $_GET['tilsynid'];
 	$tilsynsrapport = Tilsynsrapport::medTilsynid($tilsynid);
