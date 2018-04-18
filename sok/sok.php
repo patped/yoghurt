@@ -132,7 +132,9 @@ function nesteForrigeSideButton($resultat, $sluttSøk, $nesteSide, $forrigeSide)
 function sok() { // Setter en timer på id='sokeFelt' og d='spisestedSokefelt' fordi vi ellers ikke rekker å klikker på linken
     echo (
         "<form action='/sok/sokeresultat.php?start=0' id='heleSokeTabellForm' method='POST' onsubmit='return sjekkForm()'>
-            <table id='sokeValg' class='table-responsive'>
+            <table id='sokeValg' class='table-padding'>
+                <input type='hidden' name='latitude' id='latitude' value=''>
+                <input type='hidden' name='longitude' id='longitude' value=''>
                 <tr>
                     <td>
                         <input type='hidden' name='latitude' id='latitude' value=''>
@@ -151,7 +153,7 @@ function sok() { // Setter en timer på id='sokeFelt' og d='spisestedSokefelt' f
                 </tr> 
             </table>
 
-            <table id='kategoriValg' class='table-responsive'>
+            <table id='kategoriValg' class='table-padding'>
                 <tr>
                     <td><input type='radio' disabled name='kategori' id='italiensk' value='Italiensk' hidden=''> 
                     <label id='italienskL' hidden=''>Italiensk</label></td>
@@ -169,7 +171,7 @@ function sok() { // Setter en timer på id='sokeFelt' og d='spisestedSokefelt' f
                     <label id='burgerL' hidden=''>Burger og Kebab</label> </td>
                 </tr>
             </table>
-            <table id='sokefeltOgLabels' class='table-responsive'>
+            <table id='sokefeltOgLabels' class='table-padding'>
                 <div class='dropdown'>
                     <tr>
                         <td><label hidden='' id='spisestedLabel'>Spisested: </label></td>
@@ -181,7 +183,7 @@ function sok() { // Setter en timer på id='sokeFelt' og d='spisestedSokefelt' f
                         </td>
                     </tr>
                     <tr>
-                        <td colspan='2'>
+                        <td colspan='2' style='padding: 0'>
                             <div class='dropdown-content' id='dropdownDisplay' style='display:none'>
                             <ul id='txtOrgUl'><p id='txtOrg'></p></ul>
                         </td>
