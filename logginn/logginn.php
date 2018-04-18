@@ -71,7 +71,7 @@ function admin(){
         <li><a href="/admin/ny-bruker.php">Legg til ny bruker</a></li>
         <form method="POST" action="/logginn/loggut.php">
             <li><input id="luBtn" type="submit" name="Logg Ut" value="Logg ut">
-            </form></li>
+            </form>
         </ul>
         </div>
         </div>
