@@ -49,18 +49,30 @@ header button {
 
 footer {
 	left: 0;
-	height: 30px;
+	height: 40px;
 	bottom: 0;
 	position: absolute;
 	color: #FFF;
 	background-color: #337ab7;
-	width: 100%;
+  width: 100%;
   text-align: center;
 }
 
-#footer{
-  min-height: 30px;
-  bottom: 0;
+#w3 {
+  float: right;
+  height: 30px;
+  padding-left: 10px;
+
+}
+#divFotter {
+	bottom: 0;
+  position: absolute;
+  padding-bottom: 5px;
+}
+
+#paragraf {
+  padding-top: 10px;
+  
 }
 
 #paddingBottom {
