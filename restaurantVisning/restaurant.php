@@ -11,7 +11,7 @@ $db = kobleOpp();
   <title>Restauranter</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/bibloteker/bootstrap-3.3.7-dist/css/bootstrap.min.css"> 
   <link rel="stylesheet" type="text/css" href="restaurantVisning.css">
 </head>
     <body>
@@ -51,7 +51,7 @@ $db = kobleOpp();
                 echo "<div class='container-fluid padding0 text-center'>
                     <div id='venstreTabell' class='col-xs-2 col-xs-offset-1'>
                     <div class='table-responsive'>
-                    <table class='table table-hover'>
+                    <table class='table'>
                         <tr><th>Kompi Kvalitet:</th></tr>";
                     /* Legger til Smilefjes-karakter*/
                     $sqlSpørringHenteKarakter = tilsynsrapportSpørring();
@@ -73,7 +73,7 @@ $db = kobleOpp();
                     
                     echo "
                      <tr><td><img alt='smilefjes' id ='smileBilde' src='$bilde' title='smilefjes' width= '150' onmouseover='visKarakterInfo()' onmouseout='skjulKarakterInfo()'></td></tr>
-                     <tr><td><h4 id='hoverText' style='display:none'>abc</h4></td></tr>
+                     <tr><td><h4 id='hoverText' style='display:none'>$karakterSisteTilsynSnitt</h4></td></tr>
                     </table>
                     </div>
                 </div>
@@ -87,7 +87,7 @@ $db = kobleOpp();
                     $svar = mysqli_stmt_get_result($stmt);
                     $svarTilsynsrapport = mysqli_fetch_assoc($svar);
                     echo (
-                        "<table id='infoTabell' class='table table-hover text-center'>
+                        "<table id='infoTabell' class='table text-center'>
                             <thead>
                                 <tr>
                                     <th class='thMidt'>Dato for rapport</th>
@@ -156,7 +156,7 @@ EOT;
         <?php include_once '../div/footer.php'; ?>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCG_9QaZStF7k76o_tBYtuA3J89WnQXedQ&callback=initMap"></script>
         <script src="restaurantVisningJS.js"></script>
-        <script src="/bibloteker/jquery/jquery-3.3.1.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="/bibloteker/jquery/jquery-3.3.1.min.js"></script>
+        <script src="/bibloteker/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     </body>
 </html>
