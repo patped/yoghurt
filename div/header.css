@@ -76,3 +76,7 @@ footer {
   display: block;
   margin: auto;
 }
+
+.labelSpace {
+  padding: 5px;
+}
