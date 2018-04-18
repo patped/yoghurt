@@ -113,18 +113,22 @@ function skrivUtSøkeresultat($rad, $db){
     echo        "<td>$rNavn</td>";
     echo        "<td>$rAdresse</td>";
     echo        "<td>$rPoststed</td>";
-    echo        "<td><img alt='smilefjes' src='$bilde' title='Yoghurts smilefjes' width= '25px' height='25px'</td>";
-    echo        "<td><img alt='smilefjes' src='$mattilsynBilde' title='Mattilsynets smilefjes' width= '25px' height='25px'</td>";
+    echo        "<td><img alt='smilefjes' src='$bilde' title='Yoghurts smilefjes' width= '25' height='25'></td>";
+    echo        "<td><img alt='smilefjes' src='$mattilsynBilde' title='Mattilsynets smilefjes' width= '25' height='25'></td>";
     echo    "</tr>";
     echo "</tbody>";
 }
 function nesteForrigeSideButton($resultat, $sluttSøk, $nesteSide, $forrigeSide){
     echo "<div id='knappeDiv'>";
     if ($sluttSøk>10) {
-        echo "<a href='$forrigeSide'><button type='button' id='bakoverKnapp' class='btn btn-primary'>10 forrige resultater</button></a>";
+        echo<<< EOT
+        <button type='button' id='bakoverKnapp' class='btn btn-primary' onclick="location.href = '$forrigeSide'">10 forrige resultater</button>
+EOT;
     }
     if (count($resultat) > $sluttSøk) {
-        echo "<a href='$nesteSide'><button type='button' id='fremoverKnapp' class='btn btn-primary'>10 neste resultater</button></a>";
+        echo<<< EOT
+        <button type='button' id='fremoverKnapp' class='btn btn-primary' onclick="location.href = '$nesteSide'">10 neste resultater</button>
+EOT;
     }
     echo"</div>";
     

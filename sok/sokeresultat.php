@@ -9,7 +9,7 @@ if (!isset($_GET['start']) || (!isset($_POST["søkeKnapp"]) && !isset($_SESSION[
 }
 ?>
 <!doctype html>
-<html>
+<html lang="no">
 <head>
   <title>Søkeresultater</title>
   <meta charset="utf-8">
@@ -105,13 +105,12 @@ if (!isset($_GET['start']) || (!isset($_POST["søkeKnapp"]) && !isset($_SESSION[
             if (count($resultat) > 0) { // Hvis resultatet av SQL-spørringen inneholder 1 eller flere rader                    
                 echo (
                     "<table class='table table-condensed table-hover'>
-                        <thead>
-                            <th>Navn</th>
+                            <tr><th>Navn</th>
                             <th>Adresse</th>
                             <th>Poststed</th>
                             <th>Yoghurtsmil</th>
-                            <th>Mattilsynets<br>Smilefjes</th>
-                        </thead>"
+                            <th>Mattilsynets<br>Smilefjes</th></tr>
+                        "
                 );
                     
                     foreach ($resultat as $rad) {
@@ -184,13 +183,11 @@ if (!isset($_POST["søkeKnapp"])) {
             if (count($resultat) > 0) {                    
                 echo (
                     "<table class='table table-condensed table-hover'>
-                        <thead>
-                            <th>Navn</th>
+                            <tr><th>Navn</th>
                             <th>Adresse</th>
                             <th>Poststed</th>
                             <th>Yoghurtsmil</th>
-                            <th>Mattilsynets<br>Smilefjes</th>
-                        </thead>"
+                            <th>Mattilsynets<br>Smilefjes</th></tr>"
                 );
                 // Her kunne vi lagt inn LIMIT i spørringene til SQL istedet for å kjøre gjennom
                 // løkka like mange ganger som startSøk er i antall.
@@ -224,7 +221,7 @@ echo "<div id='clearme'></div>";
     <script src="/bibloteker/jquery/jquery-3.3.1.min.js"></script>
     <script src="/bibloteker/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script src="sok.js"></script>
-    <script type="text/javascript">
+    <script>
         jQuery(document).ready(function($) {
             $(".clickable-link").click(function() {
                 window.location = $(this).data("href");
