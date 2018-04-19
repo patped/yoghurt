@@ -63,13 +63,25 @@ if (isset($_POST["submit"])) {
 	$formSvarTab[24][0] = $_POST["beskrivelse4_2"];
 	$formSvarTab[24][1] = $_POST["karakter4_2"];
 
-	mysqli_begin_transaction($db);
+	$sql4 = (
+		"SELECT *
+		FROM Tilsynsrapporter
+		WHERE tilsynid LIKE '$tilsynid'
+		AND tilsynsobjektid LIKE $tilsynsobjektid"
+	);
+	$svar4 = mysqli_query( $db, $sql4 );
+	$svar4 = mysqli_fetch_assoc($svar4);
+
 	$querys = [];
-	$sql = ("INSERT INTO Tilsynsrapporter (tilsynsobjektid, tilsynid,tema1_no, tema2_no, tema3_no, tema4_no, dato, status, tilsynsbesoektype) 
-			VALUES (?, ?, 'Rutiner og ledelse', 'Lokaler og utstyr', 'Mat-håndtering og tilberedning', 'Merking og sporbarhet', ?, ?, ?);");
-	$stmt = mysqli_prepare($db, $sql);
-	mysqli_stmt_bind_param($stmt, 'ssiii' , $tilsynsobjektid, $tilsynid, $dato, $status, $tilsynsbesoektype);
-	$querys[] = mysqli_stmt_execute($stmt);
+	mysqli_begin_transaction($db);
+	
+	if(!$svar4) {
+		$sql = ("INSERT INTO Tilsynsrapporter (tilsynsobjektid, tilsynid, tema1_no, tema2_no, tema3_no, tema4_no, dato, status, tilsynsbesoektype) 
+				VALUES (?, ?, 'Rutiner og ledelse', 'Lokaler og utstyr', 'Mat-håndtering og tilberedning', 'Merking og sporbarhet', ?, ?, ?);");
+		$stmt = mysqli_prepare($db, $sql);
+		mysqli_stmt_bind_param($stmt, 'ssiii' , $tilsynsobjektid, $tilsynid, $dato, $status, $tilsynsbesoektype);
+		$querys[] = mysqli_stmt_execute($stmt);
+	}
 
 	//henter kravpunktnavn og ordningsverdi fra kravpunkter. Trenger ikke forhindre SQL-inj. på denne
 	$sqlspørring = ("SELECT DISTINCT ordingsverdi,kravpunktnavn_no
@@ -89,18 +101,37 @@ if (isset($_POST["submit"])) {
 		$kravpunktnavn_no = $rad['kravpunktnavn_no'];
 		$tekst_no = $formSvarTab[$teller][0];
 		$karakter = $formSvarTab[$teller][1];
-		$sql2 = ("INSERT INTO Kravpunkter (tilsynid, dato, ordingsverdi, kravpunktnavn_no, karakter, tekst_no) 
-					VALUES (?, ?, ?, ?, ?, ?);");
-		// '$tilsynid', '$dato', '$ordingsverdi', '$kravpunktnavn_no', '$karakter', '$tekst_no'
-		$stmt = mysqli_prepare($db, $sql2);
-		mysqli_stmt_bind_param($stmt, 'sissis' , $tilsynid, $dato, $ordingsverdi, $kravpunktnavn_no, $karakter, $tekst_no);
-		$querys[] = mysqli_stmt_execute($stmt);
+		if(!$svar4){
+			$sql2 = ("INSERT INTO Kravpunkter (tilsynid, dato, ordingsverdi, kravpunktnavn_no, karakter, tekst_no) 
+						VALUES (?, ?, ?, ?, ?, ?);");
+			$stmt = mysqli_prepare($db, $sql2);
+			mysqli_stmt_bind_param($stmt, 'sissis' , $tilsynid, $dato, $ordingsverdi, $kravpunktnavn_no, $karakter, $tekst_no);
+			$querys[] = mysqli_stmt_execute($stmt);
+		} else {
+			if ($karakter!=null) {
+				$sql2 = ("UPDATE Kravpunkter
+				SET karakter=?
+				WHERE tilsynid LIKE ? AND ordingsverdi like ?;");
+				$stmt = mysqli_prepare($db, $sql2);
+				mysqli_stmt_bind_param($stmt, 'iss' , $karakter, $tilsynid, $ordingsverdi);
+				$querys[] = mysqli_stmt_execute($stmt);
+			}
+			if ($tekst_no!=null) {
+				$sql2 = (
+					"UPDATE Kravpunkter
+					SET tekst_no=?
+					WHERE tilsynid LIKE ? AND ordingsverdi like ?;"
+					);
+					$stmt = mysqli_prepare($db, $sql2);
+					mysqli_stmt_bind_param($stmt, 'sss' , $tekst_no, $tilsynid, $ordingsverdi);
+					$querys[] = mysqli_stmt_execute($stmt);
+			}
+		}
 
-		$rad= mysqli_fetch_assoc($svar);
+		$rad = mysqli_fetch_assoc($svar);
 
 		$tema = substr( $ordingsverdi, 0, 1 );
 		
-
 		switch ($tema) {
 			case '1':
 				if ($karakter > $karakter1) {
@@ -135,7 +166,6 @@ if (isset($_POST["submit"])) {
 	$sql3 = ("UPDATE Tilsynsrapporter
 			SET karakter1 =?, karakter2 =?, karakter3=?, karakter4 = ?, total_karakter = ?
 			WHERE tilsynid LIKE ?");
-	//SET karakter1 ='$karakter1', karakter2 ='$karakter2', karakter3='$karakter3', karakter4 = '$karakter4', total_karakter = '$totalkarakter'
 	$stmt = mysqli_prepare($db, $sql3);
 	mysqli_stmt_bind_param($stmt, 'iiiiis' , $karakter1, $karakter2, $karakter3, $karakter4, $totalkarakter, $tilsynid);
 	$querys[] = mysqli_stmt_execute($stmt);
@@ -143,6 +173,8 @@ if (isset($_POST["submit"])) {
 	$ok = true;
 	foreach ($querys as $query) {
 		if (!$query) {
+			// LAGE NOE FORM FOR FEIL MELDING HER!
+			$feil = "en melding om hva feilen gjelder!";
 			$ok = false;
 			break;
 		}
@@ -150,10 +182,11 @@ if (isset($_POST["submit"])) {
 	if ($ok) {
 		unset($_SESSION['tilsynsrapport']);
 		mysqli_commit($db);
+		lukk($db);		
+		header("Location: tilsyn.php?tilsynid=$tilsynid");
 	} else {
 		mysqli_rollback($db);
+		header("Location: endre.php?tilsynid=$tilsynid&feil=$feil");
 	}
-	lukk($db);		
-	header("Location: tilsyn.php?tilsynid=$tilsynid");
 }
 ?>
