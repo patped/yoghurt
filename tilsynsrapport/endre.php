@@ -84,7 +84,7 @@ if (isset($_GET['tilsynsobjektid'])) {
 										name="dato" 
 										pattern="[0-3]{1}[0-9]{1}[.]{1}[0-1]{1}[0-9]{1}[.]{1}[0-9]{4}" 
 										placeholder="dd.mm.åååå" 
-										<?php if ($tilsynid) echo "value='".$tilsynsrapport->dato()."'"; ?>
+										<?php if (strlen($tilsynsrapport->dato) > 0) echo "value='".$tilsynsrapport->dato()."'"; ?>
 									>
 								</td>
 				  			</tr>
@@ -108,7 +108,7 @@ if (isset($_GET['tilsynsobjektid'])) {
                             <td>Status:</td>    
                             <td> 
                                 <select name="status">
-                                    <?php if($tilsynid) status($tilsynsrapport->status); ?>
+                                    <?php status($tilsynsrapport->status); ?>
                                     <option value="0">utestående avvik finnes</option>
                                     <option value="1">alle avvik lukket</option>
                                 </select>

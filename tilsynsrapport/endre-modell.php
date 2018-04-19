@@ -32,7 +32,7 @@ function kravpunkter($tilsynsrapport, $tilsynid){
                 <td>
                     <select class='karakter' name='karakter$temaOrdingsverdi'>"
         );
-        if ($tilsynid) {
+        if (strlen($karakter > 0)) {
             echo "      <option value='$karakter' selected hidden>$karakter</option>";
         }
         echo (
