@@ -63,10 +63,12 @@ if (isset($_POST["submit"])) {
 	$formSvarTab[24][0] = $_POST["beskrivelse4_2"];
 	$formSvarTab[24][1] = $_POST["karakter4_2"];
 
-	$sql4 = ("SELECT *
-			FROM Tilsynsrapporter
-			where tilsynid like '$tilsynid';
-			");
+	$sql4 = (
+		"SELECT *
+		FROM Tilsynsrapporter
+		WHERE tilsynid LIKE '$tilsynid'
+		AND tilsynsobjektid LIKE $tilsynsobjektid"
+	);
 	$svar4 = mysqli_query( $db, $sql4 );
 	$svar4 = mysqli_fetch_assoc($svar4);
 
@@ -171,6 +173,8 @@ if (isset($_POST["submit"])) {
 	$ok = true;
 	foreach ($querys as $query) {
 		if (!$query) {
+			// LAGE NOE FORM FOR FEIL MELDING HER!
+			$feil = "en melding om hva feilen gjelder!";
 			$ok = false;
 			break;
 		}
@@ -182,7 +186,7 @@ if (isset($_POST["submit"])) {
 		header("Location: tilsyn.php?tilsynid=$tilsynid");
 	} else {
 		mysqli_rollback($db);
-		header("Location: endre.php");
+		header("Location: endre.php?tilsynid=$tilsynid&feil=$feil");
 	}
 }
 ?>

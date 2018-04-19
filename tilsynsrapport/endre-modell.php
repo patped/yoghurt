@@ -2,17 +2,17 @@
 
 function tilsynsbesoektype($tilsynsbesoektype) {
     if($tilsynsbesoektype == 0) {
-        echo "<option value='0' selected disabled hidden>Ordinært</option>";
+        echo "<option value='0' selected hidden>Ordinært</option>";
     } else if ($tilsynsbesoektype == 1) {
-        echo "<option value='1' selected disabled hidden>Oppfølgings-tilsyn</option>";
+        echo "<option value='1' selected hidden>Oppfølgings-tilsyn</option>";
     }
 }
 
 function status($status) {
     if ($status == 0) {
-        echo "<option value='0' selected disabled hidden>utestående avvik finnes</option>";
+        echo "<option value='0' selected hidden>utestående avvik finnes</option>";
     } else if ($status == 1) {
-        echo "<option value='1' selected disabled hidden>alle avvik lukket</option>";
+        echo "<option value='1' selected hidden>alle avvik lukket</option>";
     }
 }
 
