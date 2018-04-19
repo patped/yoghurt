@@ -2,7 +2,6 @@
 
 function iNaerheten($tabellEllerView, $db, $userLat, $userLong) {
     $resultat = [];
-    //$sql = ("SELECT * FROM $tabellEllerView WHERE latitude IS NOT NULL;");
     $sql = ("SELECT r.tilsynsobjektid, r.navn, r.adrlinje1, r.postnr, p.poststed, r.orgnummer, r.latitude, r.longitude
         FROM $tabellEllerView AS r, Poststed AS p
         WHERE p.postnr = r.postnr
