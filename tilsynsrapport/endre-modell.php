@@ -33,7 +33,7 @@ function kravpunkter($tilsynsrapport, $tilsynid){
                     <select class='karakter' name='karakter$temaOrdingsverdi'>"
         );
         if ($tilsynid) {
-            echo "      <option value='$karakter' selected disabled hidden>$karakter</option>";
+            echo "      <option value='$karakter' selected hidden>$karakter</option>";
         }
         echo (
                         "<option value='0'>0</option>
