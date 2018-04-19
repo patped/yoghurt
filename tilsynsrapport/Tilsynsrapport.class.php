@@ -52,6 +52,9 @@ class Tilsynsrapport {
     private static function medTilsynidKonstruktor($tilsynid) {
         $tilsynsrapport = new self();
         $data = $tilsynsrapport->hentData($tilsynid);
+        if (!$data) {
+            return $tilsynsrapport;
+        }
         $tilsynsrapport->restaurant = $tilsynsrapport->restaurant($data['tilsynsobjektid']);
         $tilsynsrapport->tilsynsobjektid = $data['tilsynsobjektid'];
         $tilsynsrapport->tilsynid = $tilsynid;
