@@ -34,8 +34,9 @@ if (isset($_GET['tilsynsobjektid'])) {
 <body>
 	<?php
 	if(isset($_GET['feil'])){
+		$feil = $_GET['feil'];
 		echo (
-			'<script>alert("Hei dette er en feil!")</script>'
+			"<script>alert('$feil')</script>"
 		);
 	}
 	include_once '../div/header.php';
