@@ -67,7 +67,7 @@ if (isset($_POST["submit"])) {
 		"SELECT *
 		FROM Tilsynsrapporter
 		WHERE tilsynid LIKE '$tilsynid'
-		AND tilsynsobjektid LIKE $tilsynsobjektid"
+		AND tilsynsobjektid LIKE '$tilsynsobjektid'"
 	);
 	$svar4 = mysqli_query( $db, $sql4 );
 	$svar4 = mysqli_fetch_assoc($svar4);
