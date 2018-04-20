@@ -33,15 +33,15 @@ if (isset($_GET['tilsynsobjektid'])) {
 	</head>
 <body>
 	<?php
+	if(isset($_GET['feil'])){
+		echo (
+			'<script>alert("Hei dette er en feil!")</script>'
+		);
+	}
 	include_once '../div/header.php';
     starAlertInnlogg();
     $side = 'Location: /tilsynsrapport/endre.php';
 	logginn($side);
-	if(!isset($_SESSION['adminrett']))
-			header('Location: /div/401.php');
-			if($_SESSION['adminrett']==false){
-				header ('Location: /div/401.php');
-		}
     ?>
     	
 	<div class="container">
