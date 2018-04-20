@@ -134,22 +134,22 @@ if (isset($_POST["submit"])) {
 		
 		switch ($tema) {
 			case '1':
-				if ($karakter > $karakter1) {
+				if ($karakter > $karakter1 && $karakter<4) {
 					$karakter1 = $karakter;
 				}
 				break;
 			case '2':
-				if($karakter > $karakter2) {
+				if($karakter > $karakter2 && $karakter<4) {
 					$karakter2 = $karakter;
 				}
 				break;
 			case '3':
-				if($karakter > $karakter3) {
+				if($karakter > $karakter3 && $karakter<4) {
 					$karakter3 = $karakter;
 				}
 				break;
 			case '4':
-				if ($karakter > $karakter4) {
+				if ($karakter > $karakter4 && $karakter<4) {
 					$karakter4 = $karakter;
 				}
 				break;
