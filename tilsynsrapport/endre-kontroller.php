@@ -97,8 +97,12 @@ if (isset($_POST["submit"])) {
 	}
 
 	//henter kravpunktnavn og ordningsverdi fra kravpunkter. Trenger ikke forhindre SQL-inj. på denne
-	$sql = ("SELECT DISTINCT ordingsverdi,kravpunktnavn_no
-						FROM Kravpunkter;");
+	$sql = (
+		"SELECT DISTINCT ordingsverdi, kravpunktnavn_no 
+		FROM Kravpunkter 
+		ORDER BY SUBSTRING(ordingsverdi, 1 , 1), 
+		LENGTH(ordingsverdi), ordingsverdi"
+	);
 	$svar = mysqli_query($db, $sql);
 	
 	//bygger opp og sender 25 spøringer for å sette inn i kravpunkter

@@ -145,7 +145,7 @@ class Tilsynsrapport {
 
     private function hentTomKravpunkter() {
         $db = kobleOpp();
-        $sql = "SELECT DISTINCT ordingsverdi, `kravpunktnavn_no` FROM `Kravpunkter`";
+        $sql = "SELECT DISTINCT ordingsverdi, kravpunktnavn_no FROM Kravpunkter ORDER BY SUBSTRING(ordingsverdi, 1 , 1), LENGTH(ordingsverdi), ordingsverdi";
         $kravpunkter = mysqli_query($db, $sql);
         $kravpunkter->fetch_all(MYSQLI_ASSOC);
         lukk($db);
@@ -156,7 +156,8 @@ class Tilsynsrapport {
     private function hentKravpunkter($tilsynid) {
         $db = kobleOpp();
         // Bruker ORDER BY LENGTH(k.ordingsverdi), k.ordingsverdi for å få ordningsverdiene i riktig rekkefølge.
-        $sql = "SELECT * FROM Kravpunkter AS k WHERE k.tilsynid LIKE ? ORDER BY LENGTH(k.ordingsverdi), k.ordingsverdi";
+        //$sql = "SELECT * FROM Kravpunkter AS k WHERE k.tilsynid LIKE ? ORDER BY LENGTH(k.ordingsverdi), k.ordingsverdi";
+        $sql = "SELECT DISTINCT * FROM Kravpunkter WHERE tilsynid LIKE ?  ORDER BY SUBSTRING(ordingsverdi, 1 , 1), LENGTH(ordingsverdi), ordingsverdi";
         $stmt = mysqli_prepare($db, $sql);
         mysqli_stmt_bind_param($stmt, 's', $tilsynid);
         mysqli_stmt_execute($stmt);
