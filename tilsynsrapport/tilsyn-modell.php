@@ -1,5 +1,4 @@
 <?php
-require_once "tilsyn-kontroller.php";
 $tilsynid = $_GET['tilsynid'];
 $tilsynsrapport = Tilsynsrapport::medTilsynid($tilsynid);
 

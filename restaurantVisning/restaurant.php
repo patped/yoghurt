@@ -155,8 +155,8 @@ EOT;
         ?>
         <?php include_once '../div/footer.php'; ?>
         <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCG_9QaZStF7k76o_tBYtuA3J89WnQXedQ&callback=initMap"></script>
-        <script src="restaurantVisningJS.js"></script>
         <script src="/bibloteker/jquery/jquery-3.3.1.min.js"></script>
         <script src="/bibloteker/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+        <script src="restaurantVisningJS.js"></script>
     </body>
 </html>
