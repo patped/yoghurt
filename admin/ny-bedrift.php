@@ -23,6 +23,12 @@ if(!$_SESSION['loggetInn']) {
     starAlertInnlogg();
     $side = 'Location: /admin/ny-bedrift.php';
     logginn($side);
+    if (isset($_SESSION['leggTilBedriftFeilet'])) {
+    	if ($_SESSION['leggTilBedriftFeilet']) {
+	    	$_SESSION['leggTilBedriftFeilet'] = false;
+	    		echo '<script>alert("Bedriften ble ikke lagt til, prøv igjen")</script>';
+	    }
+    } 
 	?>
 
 

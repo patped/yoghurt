@@ -16,8 +16,12 @@ if (isset($_POST["send"])) {
 	VALUES(?, ?, ?, ?, ?, ?);");
 	$stmt = mysqli_prepare($db, $sql);
 	mysqli_stmt_bind_param($stmt, 'sissss' , $tilsynsobjektID, $organisasjonsnummer, $navn, $adresselinje1, $adresselinje2, $postnummer);
-	mysqli_stmt_execute($stmt);
-	$error = mysqli_stmt_error($stmt);
+	$resultat = mysqli_stmt_execute($stmt);
+	if (!$resultat) {
+		$_SESSION['leggTilBedriftFeilet'] = true;
+		header("Location: ny-bedrift.php");
+		exit;
+	}
 	lukk($db);
 	header("Location: ../tilsynsrapport/endre.php?tilsynsobjektid=$tilsynsobjektID");
 	
