@@ -11,7 +11,7 @@ require_once 'sok/sok.php';
 <head>
     <title>Yoghurt</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/bibloteker/bootstrap-3.3.7-dist/css/bootstrap.min.css"> 
     <link rel="stylesheet" href="/sok/stil.css">
 </head>

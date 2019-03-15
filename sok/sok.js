@@ -1,3 +1,8 @@
+jQuery(document).ready(function($) {
+    $(".clickable-link").click(function() {
+        window.location = $(this).data("href");
+    });
+});
 geolocationSupport();
 document.getElementById("sokeFelt").addEventListener("focusout", setFocusOut);
 document.getElementById("spisestedSokefelt").addEventListener("focusout", setFocusOut);
