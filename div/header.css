@@ -1,0 +1,95 @@
+html{
+  margin: 0;
+  padding: 0;
+  height: 100%
+}
+
+body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  margin-top: -2px;
+}
+
+header {
+  height: 80px;
+  width: calc(100% - 3px);
+  padding-left: 3px;
+  padding-top: 3px;
+  margin-bottom: 10px;
+}
+
+#link{
+  margin: auto;
+  display: block;
+  width: 220px;
+}
+
+#logo {
+  margin: auto;
+	height: 55px;
+  display: block;
+}
+
+header button {
+  float: left;
+  height: 40px;
+  display: block;
+  border: none;
+  text-align: center;
+  padding: 5px 6px;
+  text-decoration: none;
+  background-color: unset;
+}
+
+#wrapper {
+  min-height: 100%;
+  position: relative;
+}
+
+footer {
+	left: 0;
+	height: 40px;
+	bottom: 0;
+	position: absolute;
+	color: #FFF;
+	background-color: #337ab7;
+  width: 100%;
+  text-align: center;
+}
+
+.w3 {
+  float: right;
+  height: 30px;
+  padding-left: 10px;
+
+}
+#divFotter {
+	bottom: 0;
+  position: absolute;
+  padding-bottom: 5px;
+}
+
+#paragraf {
+  padding-top: 10px;
+  
+}
+
+#paddingBottom {
+  padding-bottom: 40px;
+}
+
+.jumbotron {
+  padding-top: 5px;
+  padding-bottom: 10px;
+  width: 100%;
+}
+ 
+.padding0 {
+  padding-left: 0;
+}
+
+.centerLgIn {
+  display: block;
+  margin: auto;
+}

@@ -1,0 +1,32 @@
+#logginn {
+    position: fixed;
+    right: 10px;
+    top: 8px;
+    font-size: 10px;
+    background-color: #558ebf;
+    z-index: 1;
+}
+
+#resultatTabell{
+    text-align: left;
+    border-spacing: 10px;
+    border-collapse: separate;
+}
+
+#luBtn {
+    margin: 0px auto;
+    display: block;
+}
+
+#liBtn {
+    margin: 0px auto;
+    display: block;
+}
+
+#mgli {
+    margin-left: 5px;
+}
+#loggUtKnapp{
+    display: block;
+    margin:auto;
+}

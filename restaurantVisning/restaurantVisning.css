@@ -1,0 +1,21 @@
+.thMidt {
+	width: 33%;
+	text-align: center;
+}
+
+#map {
+	height: 450px;
+	margin-bottom: 30px;
+}
+
+#kart {
+	padding-right: 0px;
+}
+
+#obsMelding {
+	color: red;
+}
+
+#banner {
+	width: 83.33333333%;
+}
