@@ -107,6 +107,9 @@ $RECYCLE.BIN/
 ### PHP ###
 # Composer
 composer.phar
-/vendor/
+vendor/
+
+### Andre filer ###
+andre-ting/
 
 # End of https://www.gitignore.io/api/linux,macos,windows,sublimetext,visualstudiocode
