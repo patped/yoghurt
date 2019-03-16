@@ -2,18 +2,15 @@
 
 // Etablerer forbindelse til databasen
 function kobleOpp() {
-    $tilsynrapportConfig=array(
-        'TJENER'=>'itfag.usn.no',
-        'BRUKER'=>'v18u125',
-        'PASSORD'=>'pw125',
-        'DB'=>'v18db125'
-    );
-    $dblink = mysqli_connect(
-        $tilsynrapportConfig['TJENER'],
-        $tilsynrapportConfig['BRUKER'],
-        $tilsynrapportConfig['PASSORD'],
-        $tilsynrapportConfig['DB']
-    );
+    $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+
+    $server = $url["host"];
+    $username = $url["user"];
+    $password = $url["pass"];
+    $db = substr($url["path"], 1);
+    
+    $dblink = new mysqli($server, $username, $password, $db);
+
     if (!$dblink) {
         die('Klarte ikke å koble til databasen: ' . mysql_error($dblink));
     }

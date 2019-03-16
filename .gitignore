@@ -110,6 +110,6 @@ composer.phar
 vendor/
 
 ### Andre filer ###
-andre-ting/
+andre-ting/dataBasefiler
 
 # End of https://www.gitignore.io/api/linux,macos,windows,sublimetext,visualstudiocode
