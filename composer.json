@@ -1,0 +1,7 @@
+{
+  "name": "yoghurt/yoghurt",
+  "description": "Yoghurt er en applikasjon hvor du kan se hvilket smilefjes en gitt restaurant har fått av mattilsynet.",
+  "require-dev": {
+    "heroku/heroku-buildpack-php": "*"
+  }
+}

@@ -104,38 +104,12 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-### Java ###
-# Compiled class file
-*.class
+### PHP ###
+# Composer
+composer.phar
+vendor/
 
-# Log file
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-andre-ting/GeolokasjonTilDatabase/hs_err_pid*
-
-### NetBeans ###
-andre-ting/GeolokasjonTilDatabase/nbproject/private/
-andre-ting/GeolokasjonTilDatabase/build/
-andre-ting/GeolokasjonTilDatabase/nbbuild/
-andre-ting/GeolokasjonTilDatabase/dist/
-andre-ting/GeolokasjonTilDatabase/nbdist/
-andre-ting/GeolokasjonTilDatabase/.nb-gradle/
-andre-ting/GeolokasjonTilDatabase/nbactions.xml
-
+### Andre filer ###
+andre-ting/
 
 # End of https://www.gitignore.io/api/linux,macos,windows,sublimetext,visualstudiocode
