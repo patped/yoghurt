@@ -11,9 +11,11 @@ function kobleOpp() {
     
     $dblink = new mysqli($server, $username, $password, $db);
 
-    if (!$dblink) {
-        die('Klarte ikke å koble til databasen: ' . mysql_error($dblink));
+    if ($mysqli->connect_error) {
+        die('Connect Error (' . $mysqli->connect_errno . ') '
+                . $mysqli->connect_error);
     }
+    
     mysqli_set_charset($dblink, 'utf8');
     return $dblink;
 }
