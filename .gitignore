@@ -112,4 +112,8 @@ vendor/
 ### Andre filer ###
 andre-ting/dataBasefiler
 
+### Heroku ###
+# Local variables
+.env
+
 # End of https://www.gitignore.io/api/linux,macos,windows,sublimetext,visualstudiocode
