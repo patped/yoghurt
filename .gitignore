@@ -108,6 +108,8 @@ $RECYCLE.BIN/
 # Composer
 composer.phar
 vendor/
+# https://stackoverflow.com/questions/12896780/should-composer-lock-be-committed-to-version-control
+composer.lock
 
 ### Andre filer ###
 andre-ting/dataBasefiler
