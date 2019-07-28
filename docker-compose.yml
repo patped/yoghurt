@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+
+  db:
+    container_name: db_local
+    image: mysql:5.5
+    env_file: .env-local
+    restart: always
+    ports:
+      - '3306:3306'
+    volumes:
+      - ./andre-ting:/docker-entrypoint-initdb.d/
+      - ./andre-ting/my.cnf:/etc/my.cnf
+
+  local:
+    container_name: web_local
+    #image: php:7.2-apache
+    #depends_on:
+    #  - db
+    build: .
+    env_file: .env-local
+    command: 'bash -c ''vendor/bin/heroku-php-apache2'''
+    working_dir: /user/app
+    environment:
+      PORT: 8080
+    ports:
+      - '8080:8080'
+    volumes:
+    #  - '.:/var/www/html'
+      - '.:/user/app'
+    #tty: true
+
+  # shell:
+  #   depends_on:
+  #     - db
+  #   build: .
+  #   env_file: .env-local
+  #   command: bash
+  #   working_dir: /app/user
+  #   environment:
+  #     PORT: 8080
+  #   ports:
+  #     - '8080:8080'
+  #   volumes:
+  #     - '.:/app/user'

@@ -1,23 +1,24 @@
 {
-    "name": "yoghurt",
-    "scripts": {},
-    "env": {
-      "CLEARDB_DATABASE_URL": {
-        "required": true
-      }
-    },
-    "formation": {
-      "web": {
-        "quantity": 1
-      }
-    },
-    "addons": [
-      "cleardb"
-    ],
-    "buildpacks": [
-      {
-        "url": "heroku/php"
-      }
-    ],
-    "stack": "heroku-18"
+  "name": "yoghurt",
+  "image": "heroku/php",
+  "scripts": {},
+  "env": {
+    "CLEARDB_DATABASE_URL": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+    "cleardb"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/php"
+    }
+  ],
+  "stack": "heroku-18"
 }

@@ -18,8 +18,14 @@ if (isset($_POST['submit'])) {
 				SELECT @admin");
 	    $utførAdminRes = mysqli_query($db, $sqlSpørring);
 	    $svarAdminRes = mysqli_fetch_assoc($utførAdminRes);
-	    $adminrettighet = $svarAdminRes['@admin'];
-	    $_SESSION['adminrett'] = $adminrettighet;
+		
+	# 	Workaround for localhost. 
+	# 	Får ikke procedyren til å fungere på mysql localt.
+	# 	Legge logiken i php istedet?
+	# 	$adminrettighet = $svarAdminRes['@admin'];
+		$adminrettighet = true;
+		$_SESSION['adminrett'] = $adminrettighet;
+		
 	    
 		if ($adminrettighet == false) {
 			$sideJegSkalTil = $_SESSION['sideJegSkalTil'];
